@@ -1,0 +1,1039 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+This chapter briefly review the mathematical fact to define the pairing, and shows a target class of elliptic curves.
+In addition, we describe the conventional pairings such as Tate, Ate, {\it twisted} Ate pairings.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Finite Field}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%--------------------------------------
+\subsection{Group}\label{group}
+%--------------------------------------
+A group\index{group} is an algebraic system defined as follows.
+\begin{definition}[Group\index{group}]
+A group\index{group} $\langle \mathbb{G}\index{group},\circ\rangle$ is a nonempty set with a binary operations $\circ$ that satisfies the following group\index{group} axioms:
+\begin{quote}\begin{description}
+\item[G1 : (Closure)] For all $a, b \in \mathbb{G}\index{group}$, the result of $a\circ b$ is also in $\mathbb{G}\index{group}$.
+\item[G2 : (Associativity)] $(a\circ b)\circ c=a\circ (b\circ c)$\hspace{2em}$a,b,c\in\mathbb{G}\index{group}$.
+\item[G3 : (Unit Element)] For $\forall a \in\mathbb{G}\index{group}$, there exists an element $e\in\mathbb{G}\index{group}$ such that $a\circ e=e\circ a=a$, where $e$ is called unit element.
+\item[G4 : (Inverse Element)] For ${\forall}a \in\mathbb{G}\index{group}$, there exists an element $x\in\mathbb{G}\index{group}$ such that $a\circ x=x\circ a=e$, where $x$ is called inverse element of $a$.
+\end{description}\end{quote}
+\qed
+\end{definition}
+
+\begin{definition}[Commutative Group\index{group}]\hspace{0em}
+
+\begin{quote}\begin{description}
+\item[AG5 : (Commutativity)] A group\index{group} $\mathbb{G}\index{group}$ is said to be commutative (or abelian), if $a\circ b=b\circ a$ for $^{\forall}a,b \in\mathbb{G}\index{group}$.
+\end{description}\end{quote}
+\qed
+\end{definition}
+
+For example, the algebraic system $\langle\mathbb{Z},+\rangle$ is an infinite commutative group\index{group}, where $\mathbb Z$ is the integer set and $+$ means the ordinary addition for integers. For a finite group\index{group}, its order\index{order} is defined as follows.
+
+\begin{definition}[Order of Group\index{group}]\hspace{0em}
+The order\index{order} $\#\mathbb{G}\index{group}$ is the number of elements in finite group\index{group} $\mathbb{G}\index{group}$.
+\\\qed
+\end{definition}
+
+Let us consider an example of finite groups\index{group}. An algebraic system $\langle\mathbb{Z}_{n}=\{0,1,2,3,\cdots,n-1\},+\rangle$ is not a group\index{group} because it does not satisfy the group\index{group} axioms. Therefore, in order\index{order} to construct a group\index{group} from $\mathbb{Z}_n$, it is necessary to modify the addition. We will define a new sum as
+\begin{equation}
+a+b\equiv c\ \ \bmod n\hspace{3em}a,b\in \mathbb{Z}_{n},\label{Sum Definition}\\
+\end{equation}
+where the notation ``$\bmod\ n$'' means that $c$ is assigned to a remainder on division by $n$ when $a+b=c\notin\mathbb{Z}_{n}$. Therefore, $c$ certainly belongs to $\mathbb{Z}_{n}$ and then $\langle \mathbb{Z}_{n},+\rangle$ forms a group\index{group}.
+
+There is a convenient way of presenting a finite group\index{group}. A table displaying the group\index{group} operation is referred to as {\em Cayley table\index{Cayley!Cayley table}}. For example, the group\index{group} $\mathbb{Z}_4$ is presented as follows.
+
+\begin{example}The Cayley table\index{Cayley!Cayley table} for the group\index{group} $\mathbb{Z}_4$ is:
+\begin{center}
+\begin{tabular}{c|cccc}
+        $+$&\em 0&\em 1&\em 2&\em 3       \\
+\hline
+        \em 0&\em 0&\em 1&\em 2&\em 3       \\
+        \em 1&\em 1&\em 2&\em 3&\em 0       \\
+        \em 2&\em 2&\em 3&\em 0&\em 1       \\
+        \em 3&\em 3&\em 0&\em 1&\em 2       \\
+\end{tabular}
+\end{center}
+\end{example}
+
+In what follows, we will use the notation of ordinary addition such that $a+a=2a$ and $a+a+a=3a$ (in multiplicative notation, these are denoted by $a^2$,$a^3$).
+
+\begin{definition}[Cyclic Group\index{group}]
+A group\index{group} $\mathbb{G}\index{group}$ is said to be {\em cyclic} if there is an element $g\in\mathbb{G}\index{group}$ such that for any $a\in\mathbb{G}\index{group}$ there is some integer $j$ with $a=g^{j}$. Such an element $g$ is called a generator\index{generator} of the cyclic group\index{cyclic group}\index{group}. \qed
+\end{definition}
+
+From the definition, we can see that any elements in cyclic group\index{cyclic group} are generated with iterative operations of generator\index{generator} $g$. \fgref{Cyclic group} shows it schematically.
+
+\begin{figure}[h]
+\begin{center}
+\special{pn 10}%
+\special{ar 3150 950 700 700 0.1200000 0.14959965}
+\special{ar 3150 950 700 700 0.2991993 0.44879895}
+\special{ar 3150 950 700 700 0.5983986 0.74799825}
+\special{ar 3150 950 700 700 0.8975979 1.04719755}
+\special{ar 3150 950 700 700 1.1967972 1.34639685}
+\special{ar 3150 950 700 700 1.4959965 1.64559615}
+\special{ar 3150 950 700 700 1.7951958 1.94479545}
+\special{ar 3150 950 700 700 2.0943951 2.24399475}
+\special{ar 3150 950 700 700 2.3935944 2.54319405}
+\special{ar 3150 950 700 700 2.6927937 2.84239335}
+\special{ar 3150 950 700 700 2.9919930 3.02159265}
+\special{ar 3850 950 80 80 0.000000000 6.283185304}
+\special{ar 2450 950 80 80 0.000000000 6.283185304}
+\special{ar 3150 250 80 80 0.000000000 6.283185304}
+\special{ar 3500 355 80 80 0.000000000 6.283185304}
+\special{ar 3745 600 80 80 0.000000000 6.283185304}
+\special{ar 2555 600 80 80 0.000000000 6.283185304}
+\special{ar 2800 355 80 80 0.000000000 6.283185304}
+\special{ar 3150 950 700 700 3.261 3.555}
+\special{ar 3150 950 700 700 3.79 4.065}
+\special{ar 3150 950 700 700 4.3 4.591}
+\special{ar 3150 950 700 700 4.83 5.122}
+\special{ar 3150 950 700 700 5.365 5.63}
+\special{ar 3150 950 700 700 5.87 6.165}
+\begin{picture}(150,120)%
+\put(58,109){$g^{m}=e$}
+\put(110,100){$g$}
+\put(128,80){$g^{2}$}
+\put(136,54){$g^{3}$}
+\put(0,54){$g^{m-3}$}
+\put(9,80){$g^{m-2}$}
+\put(32,98){$g^{m-1}$}
+\end{picture}%
+\end{center}
+\caption{Cyclic group\index{cyclic group}\index{group}}
+\label{Cyclic group}
+\end{figure}
+
+In general, for an element $a\in\mathbb{G}\index{group}$, the least positive integer $m$ such that $a^{m}=e$ is called the order\index{order} of $a$, where $e$ is the unit element in $\mathbb{G}\index{group}$.
+
+%--------------------------------------
+\subsection{Field}
+%--------------------------------------
+Field is an algebraic system defined as follows.
+\begin{definition}[Field]
+A field $\langle\f{},+,\cdot\rangle$ has two binary operations denoted by $+$ and $\cdot$, such that:
+\begin{quote}\begin{description}
+\item[F1 : (Additive Group)] $\f{}$ is a commutative group with respect to $+$.
+\item[F2 : (Multiplicative Group)] ${\f{\,}}^{\ast}\!\!$ is a group with respect to $\cdot$, where ${\f{\,}}^{\ast}\!\!$ is the set that consists of every element distinct from the unit element (zero element) with respect to $+$.
+\item[F3 : (Distributive law)] For all $a,b,c \in\f{}$ we have $a\cdot(b+c)=a\cdot b+a\cdot c$ and $(b+c)\cdot a=b\cdot a +c\cdot a$.
+\end{description}\end{quote}
+\qed
+\end{definition}
+In general, the elements $0$ and $1$ denote the unit elements regarding to addition $+$ and multiplication $\cdot$, respectively.
+\begin{definition}[Order of Finite Field]\hspace{0em}
+The order is the number of elements in $\f{}$. If the order of $\f{}$ is finite, $\f{}$ is called finite field. \qed
+\end{definition}
+\begin{definition}[Characteristic of Finite Field]\hspace{0em}
+The least positive number $n$ such that $na=0$ for every $a\in \f{}$ is called characteristic. \qed
+\end{definition}
+
+This paper treats only finite fields. Finite fields have the following property, which is often used in cryptographic area.
+\begin{theorem}\label{Cyclic Group in Finite Field}
+For every finite field $\f{}$, the multiplicative group ${\f{\,}}^{\ast}\!\!$ is cyclic. \qed
+\end{theorem}
+For example, ElGamal encryption \cite{multi} can be defined over multiplicative group of $\f{}$. Its security depends on the difficulty of a problem in $\f{}$ related to computing {\em discrete logarithms}.
+A subset $\mathbb K$ of a field $\f{}$ that is itself a field under the operations of $\f{}$ will be called a {\em subfield} of $\f{}$. In this case, $\f{}$ is called an {\em extension (field)} of $\mathbb K$. If $\mathbb K\neq \f{}$, we say that $\mathbb K$ is a {\em proper subfield} of $\f{}$. Then, {\em prime field} is defined as follows.
+\begin{definition}[Prime Field]
+
+
+
+A field containing no proper subfield is called prime field. \qed
+\end{definition}
+Moreover, the following theorem is given.
+\begin{theorem}
+Every finite field has a prime field as a subfield. \qed
+\end{theorem}
+
+Therefore, finite fields are classified into two types, which are prime field and its extension field. Prime field $\Fp$ has a prime number $p$ as the order and characteristic. In the same way as \eqref{Sum Definition}, we can define fundamental operations of $\Fp=\{0,1,2\cdots,p-1\}$ by using remainder of integer as follows,
+\begin{subequations}
+\label{Operation Definition}
+\begin{eqnarray}
+a+b\equiv c&&\ \bmod\ p,\\
+a\cdot b\equiv c&&\ \bmod\ p\hspace{3em}a,b\in\Fp.
+\end{eqnarray}
+\end{subequations}
+
+In order to understand it easily, following examples are shown.
+
+\begin{example}The Cayley table for the two operations $+$ and $\cdot$ for elements in $\f{5}$ are as follows:
+\begin{center}
+\begin{tabular}{c|ccccc}
+        $+$&\em 0&\em 1&\em 2&\em 3&\em 4       \\
+\hline
+        \em 0&\em 0&\em 1&\em 2&\em 3&\em 4       \\
+        \em 1&\em 1&\em 2&\em 3&\em 4&\em 0      \\
+        \em 2&\em 2&\em 3&\em 4&\em 0&\em 1      \\
+        \em 3&\em 3&\em 4&\em 0&\em 1&\em 2      \\
+        \em 4&\em 4&\em 0&\em 1&\em 2&\em 3      \\
+\end{tabular}\ \ 
+\begin{tabular}{c|ccccc}
+        $\cdot$&\em 0&\em 1&\em 2&\em 3&\em 4       \\
+\hline
+        \em 0&\em 0&\em 0&\em 0&\em 0&\em 0       \\
+        \em 1&\em 0&\em 1&\em 2&\em 3&\em 4      \\
+        \em 2&\em 0&\em 2&\em 4&\em 1&\em 3      \\
+        \em 3&\em 0&\em 3&\em 1&\em 4&\em 2      \\
+        \em 4&\em 0&\em 4&\em 3&\em 2&\em 1      \\
+\end{tabular}
+\end{center}
+\end{example}
+As described above, we can define arithmetic operations in $\Fp$ by modular operations ($\bmod\ p$) for integers. However, it does not work in an extension field $\F{p}{m}$. In the next section, arithmetic operations in extension field $\F{p}{m}$ is described in detail.
+
+%--------------------------------------
+\subsection{Extension Field}
+%--------------------------------------
+
+A subset $\F{0}{}$ of a field $\F{}{}$ that is itself a field under the operations of $\F{}{}$ will be called a {\it subfield} of $\F{}{}$.
+In this case, $\F{}{}$ is called an {\it extension field} of $\F{0}{}$.
+An extension field of a prime field $\F{p}{}$ can be represented as $m$-dimensional vector space that has $m$ elements in $\F{p}{}$.
+Let the vector space be the $m$-th extension field, it is denoted by $\F{p}{m}$.
+The order of extension fields $\F{p}{m}$ is given as $p^m$. 
+In what follows, let $q$ be the power of $p$, the extension field of a prime field $\F{p}{}$ is denoted by $\F{q}{}$.
+
+%��$\f{}$�̕����W��$\f{0}$��܂��̂ł���Ƃ��C$\f{0}$��$\f{}$�̕����̂Ƃ����C$\f{}$��$\f{0}$�̊g��̂Ƃ����D
+%���̂Ƃ��C$\f{}$��$\f{0}$�͓����Z�@�ɂ��đ̂𐬂��C���@�C��@�ɑ΂���P�ʌ��͂Ƃ��$\f{0}$�Ɋ܂܂��D
+%�C�ӂ̗L���̂͑f��$\Fp$�Ɠ��^�ȑ̂̊g��̂ł���D�܂��C�f��$\Fp$�̊g��̂́C
+%$\Fp$�̌���x�N�g���v�f�ɂ��$m$���̃x�N�g����Ԃŕ\�����Ƃ��ł��C���̃x�N�g����Ԃ�$\Fp$��$m$���g��̂Ƃ��C$\F{p}{m}$�ƕ\�L����D
+%����ȍ~$q$��$p$�ׂ̂����Ƃ��C$\Fp$����т��̊g��̂�܂Ƃ߂�$\Fq$�ƕ\�L����D
+
+There are several methods to represent an element in extension fields, such as polynomial basis and normal basis.
+In this thesis, we use normal basis.
+Let $\omega$ be a root of $m$-th irreducible polynomial over $\F{q}{}$, we consider the following $m$ elements.
+%���̃x�N�g���̕\���C���Ȃ킿�g��̂̌��̕\�����@�ɂ͑��������␳�K���Ȃǂ����݂��邪�C�{�_���ł͐��K����p����D
+%��$\Fq$���$m$�����񑽍���$f\left(x\right)$�̍��̈��$\omega$�Ƃ��C�ȉ���$m$�̌��̏W����l����D
+\begin{equation}
+\omega,\;\omega^q,\;\omega^{q^2},\;\cdots,\;\omega^{q^{m-1}} \nonumber
+\end{equation}
+All elements in this set are conjugate to each other.
+When the set of the conjugates become linearly independent, this is called {\it normal basis}.
+Using normal basis, an element $\alpha \in \F{q}{}$ is expressed as a polynomial by  
+%���̏W���̗v�f�݂͌��ɋ���̊֌W�ɂ���C���̋���̏W�����ꎟ�Ɨ��Ȋ��ƂȂ�Ƃ��C����𐳋K���Ƃ�ԁD
+%���K����p����ƁC����g��̂̌�$\alpha \in \Fq$��$a_1,\;a_2,\;a_3,\cdots,\;a_m \in \f{p}$��W���Ƃ��Ĉȉ��̂悤�ɕ\�����D
+\begin{equation}
+\alpha = a_1 \omega + a_2 \omega^q + a_3 \omega^{q^2} + \cdots + a_m \omega^{q^{m-1}}, 
+\end{equation}
+where $a_1,\;a_2,\;a_3,\cdots,\;a_m \in \F{q}{}$.
+
+Arithmetic operations in $\F{q}{m}$ are carried out with ordinary addition and multiplication for polynomial and modular reduction by irreducible polynomial.
+
+%\GNB is a famous method to systematically construct an extension field $\F{p}{m}$ that has normal basis \cite{GNB}.
+%���K�����g���$\F{p}{m}$��g�D�I�ɍ\��������@�Ƃ��āC\GNB�iGNB�j ��p������@���m���Ă���\cite{GNB}�D
+%�܂��CGNB�ɑ΂��鍂����Z�A���S���Y���̈�Ƃ��āC���������̌������ʂł���\CVMA�iCVMA�j������C
+%GNB����ʓI�ɈÍ��ɗ��p�ł��邱�Ƃ�������Ă���\cite{CVMA}�D\\
+
+
+%�{�_���ł͂��̗L���̏�Œ�`�����ȉ~�Ȑ��ɂ��Ď�舵���C�����ɂ�GNB��CVMA��p����D
+
+
+%--------------------------------------
+\subsection{Frobenius Map}\label{secFrob}
+%--------------------------------------
+
+For any element $\alpha \in \F{q}{m}$, let us consider the following map $\pi_q:\alpha \rightarrow \alpha^q$. 
+%$\F{q}{m}$�̔C�ӂ̌�$\alpha$�ɑ΂���$\pi_q:\alpha \rightarrow \alpha^q$�Ƃ����ʑ���l����D
+\begin{eqnarray}
+\pi_q(\alpha) &=& \left( a_1 \omega + a_2 \omega^q + a_3 \omega^{q^2} + \cdots + a_m \omega^{q^{m-1}} \right)^q \nonumber \\ 
+             &=& a_1 \omega^q + a_2 \omega^{q^2} + a_3 \omega^{q^3} + \cdots + a_m \omega^{q^m} \nonumber \\
+             &=& a_m \omega + a_1 \omega^q + a_2 \omega^{q^2} + \cdots + a_{m-1} \omega^{q^{m-1}}
+\end{eqnarray}
+Note that the order of $\F{q}{m}^*$ is given by $q^m - 1$, that is,  $\omega^{q^m} = \omega$ is satisfied.
+Furthermore, $a^q$ is equal to $a$ for each coefficients $a$.
+
+Therefore, the map $\pi_q(\alpha)$ is efficiently calculated by cyclic shift operations among its basis coefficients, 
+which is free from arithmetic operations.
+From the computational efficiency, the map $\pi_q$ is especially called Frobenius map.
+
+In ElGamal Encryption, many exponentiations are executed in encryption and decryption processes.
+When the exponent is equal to $p$, its calculation cost can be reduced by using Frobenius map.
+Therefore, Frobenius map is widely used in the cryptographic application.     
+%�����ŁC$\F{q}{m}$�̏�@�Q�̈ʐ���$q^m-1$�ł��邱�ƁC���Ȃ킿$\omega^{q^m} = 1$�ł��邱�ƂƁC
+%�e�W��$a \in \f{q}$�ɑ΂�$a^q = a$�ł��邱�Ƃɒ��ӂ���D
+%���������āC���̎ʑ�$\pi(\alpha)$�͊��̊e�W���̏���V�t�g�݂̂ŋ��߂���D
+%���̂悤�ɗL���̏�ł�$\pi_q$�͓���Ȏʑ��Ƃ��ė^�����C�����t���x�j�E�X�ʑ��Ƃ�ԁD
+
+%ElGamal�Í��łׂ͂���Z��̈Í����E���������ɑ��p����D
+%���̌v�Z�̍ۂɂ��̃t���x�j�E�X�ʑ���p����΁C����V�t�g�݂̂ɂ����$p$��Z��s�����Ƃ��ł��邽�߁C
+%�啝�Ɍv�Z�R�X�g����邱�Ƃ��ł���D���̂悤�ɁC�t���x�j�E�X�ʑ��͂��̌v�Z�̊ȒP������Í��ɂ����čL�����p����Ă���D
+
+%--------------------------------------
+\subsection{Quadratic Residue/Quadratic Non-residue, \\and Cubic Residue/Cubic Non-residue}
+%--------------------------------------
+
+For any non-zero element $d\in\F{q}{}$, $d$ is called a Quadratic Residue (QR) when $x$ such that $x^2=d$ exists in $\F{q}{}$.
+On the other hand, when such an $x$ does not exist in $\F{q}{}$, $d$ is called a Quadratic Non-Residue (QNR).
+We can identify whether or not $d$ is a QR by following test.
+%$\f{q}$�̔C�ӂ̔�댳$d$�ɑ΂��C$x^2=d$�ƂȂ�$x$��$\f{q}$�ɑ��݂���Ƃ��C$d$�𕽕���]�iQuadratic Residue; QR�j�Ƃ����C
+%���݂��Ȃ��Ƃ��������]�iQuadratic Non-Residue; QNR�j�Ƃ����D���̔��ʂ͎����ɂ��s����D
+\begin{eqnarray}
+ d^{(q-1)/2} = \left\{
+			   \begin{array}{ll}
+                1 & \mbox{: QR} \\
+               -1 & \mbox{: QNR} 
+               \end{array}
+			   \right.
+\end{eqnarray}
+
+All elements in finite fields $\F{q}{}$ of odd characteristics become QR in extension fields $\F{q}{2j}$.
+On the other hand, quadratic non-residues also become QNR in $\F{q}{i}$, where $i$ is not divisible by 2.
+
+%��W���̗L����$\f{q}$�̂��ׂĂ̌��́C$\f{q}$�̋�{���̊g���$\F{q}{2j}$�ɂ����ĕ�����]�ƂȂ�D
+%�܂��C$\f{q}$�̕������]���́C$\f{q}$�̊�{���̊g���$\F{q}{i},\;2 \mid \hspace{-.66em}/i$�ɂ����Ă������]���ł���D\\
+
+Similarly, for any non-zero element $c\in\F{q}{}$, $c$ is called a Cubic Residue (CR) when $x$ such that $x^3=c$ exists in $\F{q}{}$.
+On the other hand, when such a $x$ does not exist in $\F{q}{}$, $c$ is called a Cubic Non-Residue (CNR).
+We can identify whether or not $x$ is a QR by following test.
+CNRs are classified into two types, and they are represented by a generator $g \in \F{q}{}$ as follows.
+%�@���l�ɁC$\f{q}$�̔C�ӂ̔�댳$c$�ɑ΂��C$x^3=c$�ƂȂ錳$x$��$\f{q}$�ɑ��݂���Ƃ��C
+%$c$��$3$���]�iThird power Residue; TR�j�Ƃ����C���݂��Ȃ��Ƃ�$3$����]�iThird power Non-Residue; TNR�j�Ƃ����D
+%$3$����]����$2$��ނɕ������C$\f{q}$�ɂ����鐶����$g$��p���Ĉȉ��̂悤�ɕ\����D
+\begin{subequations}
+\begin{eqnarray}
+c_1:	\{ g^{3i+1},\;i=0,\;1,\;2,\;\cdots,\;\left(q-4\right)/3 \}, \\
+c_2:	\{ g^{3i+2},\;i=0,\;1,\;2,\;\cdots,\;\left(q-4\right)/3 \}, 
+\end{eqnarray}
+\end{subequations}
+where if an element belongs to class $c_1$ or $c_2$, its square becomes an element in the other class. 
+That is, we can obtain two types of CNR elements by squaring a certain CNR element.
+%�����ŁC$c_1$�̃O���[�v�̌���$2$���$c_2$�̃O���[�v�̌��ƂȂ�C$c_2$�̃O���[�v�̌���$2$���$c_1$�̃O���[�v�̌��ƂȂ�D
+%���Ȃ킿�C������$3$����]����p�ӂ���΁C$2$�悷�邱�Ƃɂ����$2$��ނ�$3$����]���𓾂邱�Ƃ��ł���D
+We can identify whether or not $x$ is CR by following test.
+\begin{eqnarray}
+ c^{(q-1)/3} \left\{
+			 \begin{array}{ll}
+              = 1 	  & \mbox{: CR} \\
+              \not= 1 & \mbox{: CNR}
+             \end{array}
+		     \right.
+\end{eqnarray}
+
+As in the case of QR, all elements in finite fields $\F{q}{}$ of odd characteristics that satisfy $3\mid \left(q-1\right)$ become CR in extension fields $\F{q}{3j}$.
+On the other hand, CNR elements also become CNR in $F_{q^i}$, where $i$ is not divisible by 3.
+
+%������]�̏ꍇ�Ƃقړ��l�ɁC$3\mid \left(q-1\right)$�Ȃ��W���̗L����$\f{q}$�̂��ׂĂ̌��́C
+%$\f{q}$��$3$�̔{�����̊g���$\F{q}{3j}$�ɂ�����$3$���]�ƂȂ�D
+%�܂��C$\f{q}$��$3$����]���́C$\f{q}$��3�̔{���łȂ��g�原���̊g���$F_{q^i},\;3 \mid \hspace{-.66em}/i$�ɂ����Ă�$3$����]���ł���D
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Elliptic Curve}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In this section, we review elliptic curves and pairings. 
+
+%--------------------------------------
+\subsection{Additive Group over Elliptic Curves}
+%--------------------------------------
+
+In general, let $p>3$, an elliptic curve $E/\F{p}{}$ over a finite field $\F{p}{}$ is defined as 
+
+\begin{equation}
+E/\F{p}{}: y^2=x^3+ax+b,\ 42a^3+27b^2 \neq 0,\ a,b\in \F{p}{}. \label{EC}
+\end{equation}
+
+The field that $x$ and $y$ belong to is called the definition field. 
+The solutions $(x,y)$ of \eqref{EC} is called rational points.
+$E(\F{q}{})$ that is the set of rational points on the curve, including the {\it point at infinity} $\mathcal{O}$, forms an additive abelian group. 
+The {\it point at infinity} works as an unity element in $E(\F{q}{})$.
+When the definition field is $\F{q}{m}$, we denote the additive group by $E(\F{q}{m})$.
+
+For rational points $P_1(x_1,y_1)$, $P_2(x_2,y_2)$ $\in E(\F{q}{})$, the elliptic curve addition $P_3(x_3,y_3)=P_1+P_2$ is defined as follows.
+\begin{eqnarray*}
+\lambda &=& \left\{ \begin{array}{ll}
+{\displaystyle \frac{y_2-y_1}{x_2-x_1}} & P_1\neq P_2,\ x_1\neq x_2 \\
+& \\
+{\displaystyle \frac{3x_1^2+a}{2y_1}} & P_1=P_2 \\
+
+\end{array} \right.\\
+x_3 &=& \lambda^3-x_1-x_2\\
+y_3 &=& (x_1-x_3)\lambda-y_1
+\end{eqnarray*} 
+
+In the case of $P_1=P_2$, the addition is especially called elliptic curve doubling. 
+%Let $\#E(\F{p}{})$ be its order, consider a large prime $r$ that divides $\#E(\F{p}{})$. %The smallest positive integer $k$ such that $r$ divides $p^k-1$ is called {\it embedding degree}. One can consider pairings such as Tate and Ate pairings by using $E(\F{p}{k})$. 
+
+Let a rational point $P(x,y)$, an inverse point $-P$ is given by $-P(x, -y)$. 
+Elliptic curve cryptographies is constructed on elliptic curve groups $E(\F{q}{})$.
+
+Let $\#E(\F{p}{})$ be the order of $E(\F{p}{})$, it is given as
+\begin{equation}
+\#E(\F{p}{})=p+1-t, %\Nlabel{order}
+\end{equation}
+where $t$ is the Frobenius trace of $E(\F{p}{})$. 
+
+From Hasse's theorem, $t$ satisfies
+\begin{equation}
+|t| \leq 2\sqrt{p}.
+\end{equation}
+
+
+Let $[s]P$ denote the $(s-1)$-times addition of a rational point $P$ as, 
+\begin{equation}
+[s]P = \sum_{i = 0}^{s-1}{P}.
+\end{equation}
+This operation is called a scalar multiplication.
+As a general approach for accelerating a scalar multiplication, the binary method is the most widely used.
+\algref{2.1} shows the binary method.
+The binary method iterates elliptic curve doublings and elliptic curve additions using binary representation of scalar.
+A scalar multiplication needs $\lfloor \log_2 s\rfloor$ elliptic curve doublings and $\lfloor \log_2 s\rfloor/2$ elliptic curve additions on average.
+
+
+\begin{figure*}[ht]
+\begin{center}
+\noindent {{\bf Algorithm 2.1} : Binary method }
+\begin{tabular}{ll}\hline \hline
+Input : & $P$, $n$-bit integer $s=\sum^{\ell-1}_{i=0}s_i2^i$, $s_i \in \{0,1\}$ \\ 
+Output : & $R=[s]P$ \\ \hline
+\es 1. &$R \leftarrow \Inf$ \\
+\es 2. &For $i=\ell-1$ to 0 by $-1$ do: \\
+\es 3. &\es $R \leftarrow$ $R+R$ \\
+\es 4. &\es If $s_i=1$ then $R \leftarrow$ $R+P$\\
+\es 5. &Return $R$  \\ \hline
+\end{tabular}
+\end{center}
+\end{figure*}
+
+%In this paper, the set of rational points $P\in E(\F{q}{})$ satisfying $[r]P=\mathcal{O}$ is denoted by $E(\F{q}{})[r]$.
+%For two points $P$ and $R$ such that $[s]P=R$, the problem of solving $s$ is called elliptic curve discrete logarithm problem (ECDLP) and the security of ECC relies on the difficulty of ECDLP.
+
+\begin{figure}[h]
+\begin{center}
+\special{pn 10}%
+\special{ar 3150 950 700 700 0.1200000 0.14959965}
+\special{ar 3150 950 700 700 0.2991993 0.44879895}
+\special{ar 3150 950 700 700 0.5983986 0.74799825}
+\special{ar 3150 950 700 700 0.8975979 1.04719755}
+\special{ar 3150 950 700 700 1.1967972 1.34639685}
+\special{ar 3150 950 700 700 1.4959965 1.64559615}
+\special{ar 3150 950 700 700 1.7951958 1.94479545}
+\special{ar 3150 950 700 700 2.0943951 2.24399475}
+\special{ar 3150 950 700 700 2.3935944 2.54319405}
+\special{ar 3150 950 700 700 2.6927937 2.84239335}
+\special{ar 3150 950 700 700 2.9919930 3.02159265}
+\special{ar 3850 950 80 80 0.000000000 6.283185304}
+\special{ar 2450 950 80 80 0.000000000 6.283185304}
+\special{ar 3150 250 80 80 0.000000000 6.283185304}
+\special{ar 3500 355 80 80 0.000000000 6.283185304}
+\special{ar 3745 600 80 80 0.000000000 6.283185304}
+\special{ar 2555 600 80 80 0.000000000 6.283185304}
+\special{ar 2800 355 80 80 0.000000000 6.283185304}
+\special{ar 3150 950 700 700 3.261 3.555}
+\special{ar 3150 950 700 700 3.79 4.065}
+\special{ar 3150 950 700 700 4.3 4.591}
+\special{ar 3150 950 700 700 4.83 5.122}
+\special{ar 3150 950 700 700 5.365 5.63}
+\special{ar 3150 950 700 700 5.87 6.165}
+\begin{picture}(150,120)%
+\put(50,115){$[\#E]P=\Inf$}
+\put(110,100){$P$}
+\put(128,80){$[2]P$}
+\put(136,54){$[3]P$}
+\put(-40,54){$[\#E-3]P$}
+\put(-30,80){$[\#E-2]P$}
+\put(-10,98){$[\#E-1]P$}
+\end{picture}%
+\end{center}
+\caption{An image of elliptic curve group\index{cyclic group}\index{group}}
+\label{fig:ECG}
+\end{figure}
+
+%--------------------------------------
+\subsection{Frobenius Map on Elliptic Curve Groups}
+%--------------------------------------
+In this section, we introduce Frobenius map for a rational point in $E(\F{q}{})$.
+For any rational point $P=(x, y)$, Frobenius map $\phi$ is given by $\phi:P(x, y) \rightarrow ({x}^q, {y}^q)$.
+Then, the following relation holds for any rational points in $E(\F{q}{})$ with regard to Frobenius map.
+\begin{equation*}
+\left(\phi^{2}-[t]\phi+[q]\right)P=\mathcal{O}.
+\end{equation*}
+Thus, we have
+\begin{equation}
+[q]P=\left([t]\phi-\phi^2\right)P. \label{frobscm}
+\end{equation}
+From Hasse's theorem, note the bit-size of Frobenius trace $t$ is about a half of the characteristic $p$. 
+Using \eqref{frobscm}, we can efficiently calculate scalar multiplication \cite{frobexp}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Pairing on Elliptic Curve}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this section, we review the bilinear map pairing defined over elliptic curves.
+%�{�͂ł́C�{�_���Œ�Ă���V�����y�A�����O������鏀���Ƃ��āC
+%�ȉ~�Ȑ���Œ�`�����y�A�����O�Ƃ�΂��o���`�ʑ��ɂ��ĊȒP�ɏq�ׂ�D
+
+%--------------------------------------
+\subsection{Definition of Pairing} \label{secDefPairing} %\label{tp}
+%--------------------------------------
+
+Pairing is a bilinear map from two groups $\mathbb{G}_1$ and $\mathbb{G}_2$ to a group $\mathbb{G}_3$ as follows.
+\begin{equation}
+\mathbb{G}_1 \times \G_2 \rightarrow \G_3 \nonumber
+\end{equation}
+Let $E[r]$ be a rational point group of the prime order $r$, and $k$ be a minimum integer that satisfies $r\,\mid \,q^k-1$.
+The integer $k$ is especially called the {\it embedding degree}.
+Pairing $e$ is defined as follows \cite{Hess}.
+
+\be
+% E[r] \times \EFpxii /r\EFpxii \mapsto \Fpxii ^*/(\Fpxii ^*)^r \\
+e:\;E[r]\cap E(\Fq) \times E[r]\cap E(\F{q}{k}) \rightarrow \F{q}{k} ^*/(\F{q}{k} ^*)^r. \label{pairingdef}
+\ee
+
+From the above equation, $\mathbb{G}_1$ and $\mathbb{G}_2$ become a subgroup of order $r$ in an elliptic curve group $E(\F{q}{})$ and $E(\F{q}{k})$, respectively, and $\mathbb{G}_3$ becomes a subgroup of order $r$ in $\F{q}{k}^*$.
+
+Pairing consists of two calculation parts, one is Miller's algorithm, and the other is so-called {\it final exponentiation}. 
+The calculation costs of pairing depend on selecting elliptic curves, $\mathbb{G}_1$ and $\mathbb{G}_2$ satisfy \eqref{pairingdef}.
+Focusing on this property, several pairings such as $\eta$, Ate, {\it twisted} Ate pairings reduce the calculation costs by optimizing them.
+Among these pairings, this thesis targets Ate and {\it twisted} Ate pairins that can be efficiently calculated over an ordinary elliptic curves.
+
+%--------------------------------------
+\subsection{Properties of Pairing}
+%--------------------------------------
+
+Let $P$ and $R \in \mathbb{G}_1$, and $Q \in \G_2$, pairings have following properties.
+
+\begin{itemize}
+\item Nondegeneracy \\
+If $e(P,Q)=1$, then $P=\mathcal{O}$ or $Q=\mathcal{O}$.\\
+\item Bilinearity\\
+$e(P+R,Q)=e(P,Q)\cdot e(R,Q)$\\
+$e(P,Q+S)=e(P,Q)\cdot e(P,S)$\\
+\end{itemize}
+From this property, we obtain more general relation as 
+\begin{equation}
+e\left([a]P,[b]Q\right)=e\left([b]P,[a]Q\right)=e(P,Q)^{ab}, 
+\end{equation}
+where $a$ and $b$ are integers.
+The bilinearity of pairing is important for cryptographic applications.
+
+%--------------------------------------
+\subsection{Pairing-friendly Curves}\label{sec:pfc}
+%--------------------------------------
+Let $r$ be the largest prime that divides $\#E(\F{q}{})$.
+When an embedding degree $k$ for a rational point group of order $r$ is given by an integer smaller than about 50, the elliptic curve is said pairing-friendly.
+Supersingular curves are well-known as a representative pairing-friendly curve.
+Properties of supersingular curves are summarized as follows.
+\begin{enumerate}
+\item The elliptic curve equation and the order $r$ are given explicitly
+\item The elliptic curves have a distorsion map that is isomorphism between $\mathbb{G}_1$ and $\mathbb{G}_2$ \cite{Handbook} 
+\item The elliptic curves have the emdedding degree $k$ at most 6 
+\end{enumerate}
+Especially, the second features is desireble in some pairing-based applications.
+
+On the other hand, in the case of ordinary curves, it is generally difficult to generate pairing-friendly curves because embedding degree is almost same as the order $r$ when we randomly choose the pairing-friendly curve from ordinary curves.
+Therefore, we can not easily prepare a pairing-friendly curve whose order $r$ is large.
+In order to solve this problem, several methods to easily generate pairing-friendly curves are proposed in recent years\cite{Taxo}.
+
+Pairing-friendly curves are classified into two types, one is {\it families} of pairing friendly curves, and the other is not {\it families} of pairing friendly curves.
+Pairing-friendly curves are called {\it families} of pairing-friendly curves when their parameters such as characteristic $p$, order $r$, and trace $t$ are given by polynomials in terms of integer $\chi$.
+Supersingural curves is not in {\it families} of pairing friendly curves.
+This thesis targets {\it families} of pairing friendly curves.
+Here, we introduce the parameter setting of the representative {\it families} of pairing-friendly curves such as MNT\cite{MNT}, Freeman\cite{FreemanPDF}, and BN curves\cite{BN}.
+
+% The characteristic and the extension degree of the definition field \Fpm\ are, in  general, fixed to a certain prime number $p$ larger than $2^{160}$ and $m\in \{3,4,5,6$, $8,9,10,12,15\}$, respectively. 
+%Pairing-friendly curves generally restrict characteristic and extension degree that is also called \textit{embedding degree}.
+% Therefore, if the efficient extension fields such as OEF also restrict those parameters, some of pairing-based cryptographic applications will not be efficiently implemented. Our proposed multiplication algorithm does not restrict these parameters, thus it is useful for pairing operations. OEF recommends characteristic $p$ in the form of $2^n-s, \ \log_2s<n/2$; however, as found from the following discussion, it is too difficult to prepare such an efficient characteristic for some well--known classes of pairing--friendly elliptic curves. For sake of simplicity, in what follows, even though characteristic $p$ is not in the form, this paper continuously uses the terminologies ``OEF" and ``TypeII OEF".
+
+
+\subsubsection{MNT Curve}
+Ordinary pairing-friendly curves are firstly proposed by Miyaji et al.\cite{MNT}.
+MNT (Miyaji, Nakabayashi, Takano) curve is well--known as a class of pairing--friendly curves of embedding degrees 3, 4, and 6 \cite{MNT}. Using an integer variable $\chi$, MNT curve is prepared with the following parameters:
+\begin{align*}
+k=3:&\notag\\
+ p(\chi) = & 12\chi^2-1,\\
+ t(\chi) = & -1\pm6\chi,\\
+ r(\chi) = & 12\chi^2\pm6\chi+1.\\
+ \\
+k=4:&\notag\\
+ p(\chi) = & \chi^2+\chi+1,\\
+ t(\chi) = & -\chi,\ or\ \  t(\chi) = \chi+1, \\
+ r(\chi) = & \chi^2+2\chi+2.\\
+ \\
+k=6:&\notag\\
+ p(\chi) = & 4\chi^2+1,\\
+ t(\chi) = & 1\pm 2\chi,\\
+ r(\chi) = & 4\chi^2\pm2\chi+1.
+\end{align*}
+Unfortunately, since the degree of $t(\chi)$ is equal to 1, trace $t$ and $\chi$ are same bit-size. 
+
+\subsubsection{Freeman Curve}
+Freeman curve is well--known as a {\it families} of pairing-friendly curves \cite{FreemanPDF}. Using an integer variable $\chi$, Freeman curve is prepared with the following parameters:
+%\begin{subequations}
+\begin{eqnarray*}
+p(\chi) & = & 25\chi^4+25\chi^3+25\chi^2+10\chi+3, \\
+t(\chi) & = & 10\chi^2+5\chi+3, \\
+r(\chi) & = & 25\chi^4+25\chi^3+15\chi^2+5\chi+1.
+\end{eqnarray*}
+%\end{subequations}
+The embedding degree $k$ is equal to 10.
+Since the degree of $t(\chi)$ is equal to 2, $\chi$ is half bit size of $t$. 
+
+\subsubsection{Barreto-Neahrig Curve}
+Barreto-Naehrig (BN) curve is well-known as a {\it families} of pairing-friendly curves.
+BN curve is prepared with the following parameters:
+\begin{align*}
+p(\chi)=&36\chi^4-36\chi^3+24\chi^2-6\chi+1, \\
+t(\chi)=&6\chi^2+1,\\
+r(\chi)=&36\chi^4-36\chi^3+18\chi^2-6\chi+1. \\
+\end{align*} 
+The embedding degree $k$ is equal to 12.
+In addition, the BN curve $E$ is given by
+\begin{equation}
+E/\F{p}{} : y^2 = x^3 + b,\ b\ \in \F{p}{}\nonumber
+\end{equation}
+
+This form enables {\em sextic twist} which is mentioned in the following subsection. 
+In addition, BN curves are classified into {\it complete families} that is special family of {\it families} of pairing-friendly curves \cite{Taxo}.
+Since {\it complete families} generate a lot of elliptic curves, we can select the optimal curve suitable for pairing calculations and scalar multiplications.
+
+In this thesis, we especially focus on BN curves for which $6|(p-1)$.
+
+%--------------------------------------
+\subsection{Point Compression using Twisted Elliptic Curves}\label{sec:twist}
+%--------------------------------------
+
+When the embedding degree $k$ is equal to $2e$, where $e$ is a positive integer, to $E/\F{q}{}$ of \eqref{EC}, consider the following elliptic curve $E'$.
+\begin{equation}
+E':y^2=x^3+av^{-2}x+bv^{-3},\ a,b\in \F{p}{}, \label{TEC}
+\end{equation}
+where $v$ is a QNR in $\F{p}{e}$. Then, between $E'(\F{p}{e})$ and $E(\F{p}{2e})$, the following isomorphism is given.
+\begin{eqnarray}
+\psi_2 : 
+\begin{cases}
+E'(\F{p}{e}) & \rightarrow  E(\F{p}{2e}), \\
+(x,y) & \mapsto (xv,yv^{3/2}).
+\end{cases} \label{2t}
+\end{eqnarray}
+In this case, $E'$ is called {\it quadratic--twisted} curve.
+
+In the same, when embedding degree $k$ satisfies the following conditions, the twisted curves can be respectively considered.
+\begin{itemize}
+\item $k=3e$ (cubic twist) \\
+%\begin{subequations}
+\begin{eqnarray*}
+E : && y^2=x^3+b,\ b\in \F{p}{}, \\
+E' : && y^2=x^3+bv^{-2},
+\end{eqnarray*}
+where $v$ is a CNR in $\F{p}{e}$ and $3\mid (p-1)$.
+\begin{eqnarray}
+\psi_3 : 
+\begin{cases}
+E'(\F{p}{e}) & \rightarrow  E(\F{p}{3e}), \\
+(x,y) & \mapsto (xv^{2/3},yv).
+\end{cases} \label{3t}
+\end{eqnarray}
+%\end{subequations}
+
+\item $k=4e$ (quartic twist) \\
+%\begin{subequations}
+\begin{eqnarray*}
+E : && y^2=x^3+ax,\ b\in \F{p}{}, \\
+E' : && y^2=x^3+av^{-1}x,
+\end{eqnarray*}
+where $v$ is a QNR in $\F{p}{e}$ and \mbox{$4\mid (p-1)$}.
+\begin{eqnarray}
+\psi_4 : 
+\begin{cases}
+E'(\F{p}{e}) & \rightarrow  E(\F{p}{4e}), \\
+(x,y) & \mapsto (xv^{1/2},yv^{3/4}).
+\end{cases} \label{4t}
+\end{eqnarray}
+%\end{subequations}
+
+\item $k=6e$ (sextic twist), Barreto--Naehrig (BN) curve \cite{BN} has this form. \\
+%\begin{subequations}
+\begin{eqnarray*}
+E : && y^2=x^3+b,\ b\in \F{p}{}, \\
+E' : && y^2=x^3+bv^{-1},
+\end{eqnarray*}
+where $v$ is a QNR and CNR in $\F{p}{e}$ and {$3\mid (p-1)$}.
+\begin{eqnarray}
+\psi_6 : 
+\begin{cases}
+E'(\F{p}{e}) & \rightarrow  E(\F{p}{6e}), \\
+(x,y) & \mapsto (xv^{1/3},yv^{1/2}).
+\end{cases} \label{6t}
+\end{eqnarray}
+%\end{subequations}
+\end{itemize}
+
+%\vspace{6pt}
+%When one uses Barreto--Naehrig curve that is a class of {\it pairing--friendly} curves, one can apply quadratic/cubic/sextic twist because its embedding degree is $12$. Of course, sextic twist is the most efficient for pairing calculation and point compression.
+
+\eqsref{2t}, (\ref{3t}), (\ref{4t}), and (\ref{6t}) are summarized as
+\begin{eqnarray}
+\psi_d : 
+\begin{cases}
+E'(\F{p}{e}) & \rightarrow  E(\F{p}{de}), \\
+(x,y) & \mapsto (xv^{2/d},yv^{3/d}).
+\end{cases} \label{gt}
+\end{eqnarray}
+Thus, when the twist degree $d$ is even, $x$--coordinate $xv^{2/d}$ belongs to the subfield $\F{p}{k/2}$ because $v^{2/d}\in \F{p}{k/2}$. In addition, when $d=2$ or $4$, the coefficient of $x$ of the twisted curve $E'$ is written as $av^{-4/d}$.
+
+In pairing based cryptographic applications, a rational point in $E(\F{q}{k})$ can be compressed to a rational point in $E'(\F{q}{e})$ using $\psi_d$.
+In detail, the size of a rational point in $E(\F{q}{k})$ is reduced by $1/d$.
+
+In what follows, adding the dash ``$\ '\ $'' to a rational point, for example, $P'$ denotes a rational point corresponding to $P \in E(\F{q}{k})$ over twisted elliptic curve $E'$.
+%����ɁC$E$��̗L���_��$P$�Ƃ����Ƃ��C$P$�ɑΉ�����$E'$��̗L���_��$P'$��``�_�b�V��"����ĕ\�L����D
+
+%--------------------------------------
+\subsection{Tate Pairing}
+%--------------------------------------
+Tate pairing $\tau$ is defined as 
+
+\begin{eqnarray}
+% E[r] \times \EFpxii /r\EFpxii \mapsto \Fpxii ^*/(\Fpxii ^*)^r \\
+\mathbb{G}_1 &=& E[r]\cap E(\F{q}{}), \nonumber \\
+\Gii &=& E[r]\cap E(\F{q}{k})/rE(\F{q}{k}), \nn \\
+\tau:\;\Gi &\times& \Gii \rightarrow \F{q}{k}^*/(\F{q}{k}^*)^r, \nn
+\end{eqnarray}
+where $rE(\F{q}{k})$ denotes a subgroup of order $\#E(\F{q}{k})/r^2$ in rational group $E(\F{q}{k})$, and $E(\F{q}{k})/rE(\F{q}{k})$ denotes a quotient group of $E(\F{q}{k})$ by $rE(\F{q}{k})$.
+
+Let $P\in\mathbb{G}_1$ and $Q\in\G_2$, Tate pairing $\tau(P,Q)$ is calculated by
+\begin{equation}
+e(P,Q) = f_{r,P}(Q)^{(q^{k}-1)/r}. \label{eq:PairingCalc}
+\end{equation}
+
+In general, to calculate \eqref{eq:PairingCalc}, $F=f_{r,P}(Q)$ is calculated by Miller's algorithm \cite{Handbook}, then {\it final exponentiation} $F^{(p^k-1)/r}$ follows.
+Details of the calculation by Miller's algorithm is shown as following section. 
+
+%--------------------------------------
+\subsection{Ate Pairing}
+%--------------------------------------
+Ate pairing $\alpha$ \cite{Hess} is defined by
+\begin{eqnarray}
+% E[r] \times \EFpxii /r\EFpxii \mapsto \Fpxii ^*/(\Fpxii ^*)^r \\
+\Gi &=& E[r]\cap {\rm Ker}(\phi-[1]), \nonumber \\
+\Gii &=& E[r]\cap {\rm Ker}(\phi-[q]), \nonumber \\
+\alpha :\;\Gii &\times& \Gi \rightarrow \F{q}{k} ^*/(\F{q}{k} ^*)^r, \label{eq:AteDef}
+\end{eqnarray}
+where $\phi$ denotes the Frobenius map over $\F{q}{}$ and Ker($\cdot $) is a set whose elements are mapped to zero element by $\cdot $.
+In other words, rational points $P\in\mathbb{G}_1$ and $Q\in\G_2$ satisfy 
+\begin{eqnarray}
+\phi(P) &=& P, \\
+\phi(Q) &=& [q]Q,
+\end{eqnarray}
+respectively.  
+
+Compared to $\mathbb{G}_2$ of Tate pairing, we have following relation.
+\begin{eqnarray}
+E[r]\cap {\rm Ker}(\phi-[q]) \subset E[r]\cap E(\F{q}{k})/[r]E(\F{q}{k})
+\end{eqnarray}
+Therefore, we can see that Ate pairing is special case of Tate pairing. 
+
+Let $P\in\mathbb{G}_1$, and $Q\in\G_2$, Ate pairing $\alpha(Q,P)$ is calculated by
+\begin{eqnarray}
+\alpha(Q,P) = f_{t-1,Q}(P)^{(q^{k}-1)/r}, \label{eq:AteCalc}
+\end{eqnarray}
+where $t$ denotes Frobenius trace of $E(\F{q}{})$.
+As in the case of Tate pairing, we can calculate $F=f_{t-1,Q}(P)$ by Miller's algorithm, then so-called {\it final exponentiation} $F^{(q^{k}-1)/r}$ follows.
+Compared to Tate pairing, $P$ and $Q$ are inversely substituted to Miller's algorithm.
+Then, if we denote Tate pairing by $\mathbb{G}_1 \times \G_2 \rightarrow \G_3$, then Ate pairing is denoted  by $\G_2 \times \mathbb{G}_1 \rightarrow \G_3$ to clearly indicate this difference. 
+
+In the case of Ate pairing, let $T$ be $(t-1)$, 
+\begin{equation*}
+f_{T^i, Q}(P)^{(p^{k}-1)/r}
+\end{equation*}
+also satisfies the bilinearity, where $i$ is an integer.
+It is called Ate$_i$ pairing\cite{AteI}, however, we simply call Ate pairing in this thesis.
+
+%--------------------------------------
+\subsection{Twisted Ate Pairing}
+%--------------------------------------
+This subsection briefly reviews {\it twisted} Ate pairings \cite{TAte}.
+Let $\phi$ be Frobenius endomorphism, {\i.e.}, 
+\begin{equation}
+\phi:E(\F{p}{k})\rightarrow E(\F{p}{k}):(\text{$x,y$}) \mapsto (\text{$x^p,y^p$}), %\label{G2Frob}
+\end{equation}
+and let $\Gi$ and $\Gii$ be
+\begin{subequations}
+\begin{eqnarray}
+\Gi &=& E(\F{p}{k})[r]\cap {\rm Ker}(\phi-1), \nn \\
+\Gii &=& E(\F{p}{k})[r]\cap{\rm Ker}(\phi-[p]). \nn
+\end{eqnarray}
+%\label{Gdef}
+\end{subequations}
+Then, for $P\in \Gi$ and $Q\in \Gii$, the {\it twisted} Ate pairing $\alpha^{twist}(P, Q)$ is defined as
+\begin{equation}
+\alpha^{twist}(P,Q):
+\begin{cases}
+\Gi\times \Gii & \rightarrow \F{p}{k}^*/(\F{p}{k}^*)\text{$^r$} \\
+(P, Q) & \mapsto  f_{(t-1)^e,P}(Q)^{(p^{k}-1)/r}. \label{eq:twistedAte}
+\end{cases}
+\end{equation}
+Note that $\mathbb{G}_1$ and $\mathbb{G}_2$ of {\it twisted} Ate pairing are same as thoes of Ate pairing, however,  they are replaced each other.
+
+In the case of twisted Ate pairing, let $T_e$ be $(t-1)^e$,
+\begin{equation*}
+f_{T_e^{i}, P}(Q)^{(p^{k}-1)/r}
+\end{equation*}
+also satisfies the bilinearity, where $i$ is an integer.
+
+
+
+%--------------------------------------
+\subsection{Divisor and Rational Function}
+%--------------------------------------
+
+In this subsection, we briefly review divisors and rational functions.
+
+When function $f(x,y)=0$ intersects at $m$ rational points $P_1, P_2, \cdots, P_m$ with $E(x,y)=0$, 
+divisor $div(f)$ of $f(x,y)$ is defined as
+\begin{eqnarray*}
+div(f) = (P_1) + (P_2)+ \cdots +(P_m) - m({\cal O}), \label{di}
+\end{eqnarray*}
+and the function $f$ is said to be rational over $E(\F{q}{})$.
+
+%When $f$ is a constant function, let us denote $dif(f)$ as a zero element of \eqref{di} in 
+Let $l(x,y)=0$ be a line passing through three points $P_1$, $P_2$ and $-P_3 = -(P_1+P_2)$, and $v(x,y)=0$ be a vertical line passing through two points $P_3$ and $-P_3$.
+Then, principal divisors $div(l)$ and $div(v)$ of lines $l$ and $v$ are given as
+\begin{eqnarray}
+div(l) &=& (P_1) + (P_2) + (-P_3) - 3({\cal O}), \nonumber \\
+div(v) &=& (P_3) + (-P_3) - 2({\cal O}).\label{inshi}
+\end{eqnarray}
+
+Subtracting $div(v)$ from $div(l)$, $div(l/v)$ is given as follows.
+\begin{eqnarray}
+div\left(\frac{l}{v}\right) = div(l) - div(v) = (P_1) + (P_2) - (P_3) - ({\cal O}) \label{d}
+\end{eqnarray}
+Here, let divisors $D_1$ and $D_2$ of rational points $P_1$ and $P_2 \in E[n]$ be represented by rational functions $f_1$ and $f_2$ as 
+\begin{eqnarray}
+ D_1&=&(P_1)-({\cal O})+div(f_1)\nonumber \\
+ D_2&=&(P_2)-({\cal O})+div(f_2).\label{dd}
+\end{eqnarray}
+From \eqref{d}, we can calculate $D_1+D_2$ by using elliptic curve addition $P_1+P_2=P_3$ as 
+\begin{eqnarray}
+ D_1 + D_2 &=& (P_1)+(P_2)-2({\cal O})+div(f_1\cdot f_2)\nn \\
+&=&  (P_3)-(\Inf)+div \left( f_1\cdot f_2 \cdot \frac{l}{v}\right) \label{ee}
+\end{eqnarray}
+Note that $v(x,y)=1$ when $P_3=\Inf$.
+
+Let divisor $D$ of $P\in E[r]$ be represented as 
+\begin{eqnarray}
+D = (P) - ({\cal O}) = (P) - ({\cal O}) + div(1).
+\end{eqnarray}
+Then, from \eqref{ee}, the following relation holds.
+\begin{eqnarray}
+[r]D = ([r]P) - ({\cal O}) + div(f_{r,P}) = div(f_{r,P}).
+\end{eqnarray}
+$[r]D= div(f_{r,P})$ is called a principal divisor for $P$.
+In the case of Tate pairng, $f_{r,P}(Q)$ is efficietly calculated by Miller's algorithm.
+
+%--------------------------------------
+\subsection{Miller's Algorithm}
+%--------------------------------------
+Several improvements for Miller's algorithm have been given. Barreto et al. proposed {\it reduced} Miller's algorithm. 
+Let pairing $e$ be defined as $e:\G_A\times\G_B\rightarrow\G_3$, $P_A\in\G_A$, and $P_B\in\G_B$, \algref{1} shows the {\it reduced} Miller's algorithm for $f_{s,P_A}(P_B)$. It consists of functions MDBL and MADD shown in \algref{2} 
+and \algref{3}, {\it see} \tbref{tbN1}.
+
+As shown in the algorithm, the structure of Miller's algorithm is similar to the binary method for a scalar multiplication.
+In this case, Miller's algorithm constantly iterates MDBL $\lfloor\log_2s\rfloor$ times, and execute MADD when $s_i$ is equal to $1$. %That is, if we can reduce the number of iterations, Miller's algorithm can be efficiently carried out.
+
+%In the case of {\it twisted--Ate} pairing, let $P \in \Gi$, $Q \in \Gii$ and $s$ be given by \eqref{loop}, $f_{s,P}(Q)$ becomes an element in $\F{p}{12}^*$.
+%In \fgref{fig:MillerAlg}, $s_i$ is the $i$-th bit of the binary representation of $s$ from the lower, FMUL and FSQR denote multiplication and squaring over $\F{p}{12}$, EADD and EDBL denote elliptic curve addition and doubling over $\Gi$.
+%One operation named {\it main operation} is constantly repeated  $\lfloor\log_2s\rfloor$ times and the other operation named {\it additional operation} is carried out as many times as the number of hamming weight in the binary representation of $s$.
+%In calculation of Miller's Algorithm, we need as many number of operation as the number of
+%Hamming weight in the binary representation of $s$ in addition to .
+%Proposed method reduces calculation cost by reduce the number of additional operation.
+%Thus, the calculation cost of Miller's Algorithm can be reduced by reducing the number of {\it additional operations}.
+
+In general, {\it step} 3. in MDBL and MADD is respectively calculated as  
+\begin{eqnarray*}
+f &\leftarrow& f^2\cdot l_{T,T}(Q)/v_{T+T}(P_B),\\
+f &\leftarrow& f \cdot l_{T,P_A}(P_B)/v_{T+P_A}(P_B). 
+\end{eqnarray*}
+However, $v_{T+T}(P_B)$ and $v_{T+P}(P_B)$ becomes 1 at {\it final exponentiation} because they are elements in a subfield of $\F{p}{k}$ when the {\it embedding degree} is an even number.
+Since an even {\it embedding degree} is mainly dealt with, we omit $v_{T+T}(P_B)$ or $v_{T+P}(P_B)$ in this thesis.
+
+As shown in \algref{1}, a rational point $P_A$ is mainly used for calculating $f_{s,P_A}(P_B)$.
+In detail, MDBL and MADD respectively calculates elliptic curve doublings and elliptic curve additions using $P_A$.
+On the other hand, $P_B$ is only used for substituting to the function $l$.
+Therefore, the calculation cost of MDBL and MADD changes by inputs of Miller's algorithm.
+For example, \tbref{tbl:bn_miller_input} shows the parameter settings for Miller's algorithm using BN curve of embedding degree 12.
+From \tbref{tbl:bn_miller_input}, $\G_A$ of Ate pairing becomes $\G_2\!\subset\! E(\F{p}{12})$ and that of {\it twisted} Ate pairing becomes $\mathbb{G}_1 \!\subseteq \!E(\F{p}{})$.
+Therefore, Ate pairing is slower than {\it twisted} Ate pairing though Ate pairing has a smaller Miller loop length than {\it twisted} Ate pairing.
+
+Focusing on this point, Devegili et al. \cite{Devegili} and Akane et al.\cite{CSS2} have improved Ate pairing with BN curve by using subfield-twisted elliptic curve $E'(\F{p}{2})$.
+Using the sextic twist technique, since an isomorphic group of $\mathbb{G}_2$ exists in $E'(\F{p}{2})$, Devegili et al. efficiently used $\G_2'\subset E'(\F{p}{2})$ in place of $\mathbb{G}_2$ and OEF technique \cite{OEF}.  Akane et al. have also improved Ate pairing so as to substantially use subfield arithmetic operations \cite{CSS2}. 
+In what follows, it is called cross-twisted technique. Cross-twisted technique \cite{CSS2} efficiently uses not only $Q'\in E'(\F{p}{2})[r]$ but also $P'\in E'(\F{p}{12})[r]$, where $P'$ is given by $\psi^{-1}$ from $P\in E(\F{p}{})$. \fgref{fig:twist_point_relation} shows a relation between rational points $P,\ Q,\ P'$, and $Q'$ on elliptic curve $E(\F{p}{k})$ and its twisted curve $E'(\F{p}{k})$. 
+
+Using subfield-twisted elliptic curve, MDBL and MADD in Miller's algorithm of Ate pairing becomes slightly slower than that of {\it twisted} Ate pairing because the calculation for $\G_A$ in Miller's algorithm of Ate pairing can be executed in $E(\F{p}{2})$.
+Therefore, Ate pairing becomes faster than {\it twisted} Ate pairing since Miller loop of Ate pairing is smaller than that of {\it twisted} Ate pairing.
+That is, Miller loop length is an important parameter that determines the calculation cost of pairing.
+In order to improve pairing, we need to reduce Miller loop length.
+
+\begin{figure}[ht]
+\begin{center}\label{fig:twist_point_relation}
+\input{fig1}
+\end{center}
+\caption{A relation between rational points $P,\ Q,\ P'$, and $Q'$ on elliptic curve $E(\F{p}{k})$ and its twisted curve $E'(\F{p}{k})$}
+\end{figure}
+ 
+
+\begin{center}
+\begin{tabular}{llc}
+\multicolumn{2}{c}{{{\bf Algorithm 1: Miller's Algorithm}}}\label{alg:MillerAlg}\\  
+\hline\hline
+%\noalign{\vspace{2pt}}
+Input:&$s$, $P_A\in\G_A$, $P_B\in\G_B$ \\
+Output:&$f_{s,P_A}(P_B)$\\
+%\noalign{\vspace{2pt}}
+\hline
+%\noalign{\vspace{2pt}}
+\ \ 1. &$f\leftarrow 1$.\\
+\ \ 3. &$T\leftarrow P_A$.\\
+\ \ 4. &For $i = \lfloor \log_2(s)\rfloor$ downto $1$:\\
+\ \ 5. &\ \ \ \ MDBL($f, T, P_B$). \text{//$T\leftarrow 2T$} \\
+\ \ 6. &\ \ \ \ If $s_i = 1$, then:\\
+\ \ 7. &\ \ \ \ \ \ \ \ \ \ \ \ MADD($f, P_A, T, P_B$).\text{//$T\leftarrow T+P_A$} \\
+\ \ 8. &Return $f$\\
+%\noalign{\vspace{2pt}}
+\hline\hline
+\multicolumn{2}{l}{*$s_i$ denotes the $i$-th bit of the loop parameter $s$ from the lower.}\\
+\end{tabular}
+\end{center}
+
+%\comout{
+\begin{center}
+\begin{table}[h]
+{
+\label{table1}
+\begin{center}
+\begin{tabular}{llc}
+\multicolumn{2}{c}{\bf Algorithm 1 : MDBL in Miller's Algorithm}\\
+\hline\hline
+%\noalign{\vskip.5mm}
+Input : & $f$, $T\in \G_A$, $P_B\in \G_B$\\
+Output : & $f,T$\\
+\hline
+\ \ 1. &$\lambda _{T,T} \leftarrow (3x_{T}^2)/(2y_{T})$ \\
+\ \ 2. &$l_{T,T}(P_B) \leftarrow (x_{P_B}-x_{T})\lambda _{T,T}- (y_{P_B}-y_{T})$\\
+\ \ 3. &$f\leftarrow f^2\cdot l_{T,T}(P_B)$ \\
+\ \ 4. &$x_{T} \leftarrow \lambda _{T,T}^2-2x_{T}$\\
+\ \ 5. &$y_{T} \leftarrow (x_{T}-x_{2T})\lambda _{T,T}-y_{T}$\\
+\ \ 6. &return $f$, $T$\\
+\hline\hline
+\end{tabular}%
+\end{center}
+}
+\end{table}
+\end{center}
+%}
+%\comout{
+%\begin{table}[ht]
+%\Nlabel{tb1}
+\begin{center}
+\begin{table}[h]
+\label{table2}
+\begin{center}
+\begin{tabular}{llc}
+\multicolumn{2}{c}{\bf Algorithm 2 : MADD in Miller's Algorithm}\\ 
+\hline\hline
+%\noalign{\vskip.5mm}
+Input : & $f$, $P_A,T\in \G_A, P_B\in \G_B$\\
+Output : & $f,T$\\
+\hline
+\ \ 1. &$\lambda _{T,P_A} \leftarrow (y_{P_A}-y_{T})/(x_{P_A}-x_{T})$ \\
+%2. &\bTAB $\lambda _{T,P_B} \leftarrow \lambda _{T,P_B}$ \\
+\ \ 2. &$l_{T,P_A}(P_B) \leftarrow (x_{P_B}-x_{P_A})\lambda _{T,P_A}- (y_{P_B}-y_{P_A})$\\
+\ \ 3. &$f\leftarrow f\cdot l_{T,P_A}(P_B)$ \\
+\ \ 4. &$x_{T} \leftarrow \lambda _{T,P_A}^2-x_{T}-x_{P_A}$\\
+\ \ 5. &$y_{T} \leftarrow (x_{P_A}-x_{T+P_A})\lambda _{T,P_A}-y_{P_A}$\\
+\ \ 6. &return $f$, $T$\\
+\hline\hline
+\end{tabular}%
+\end{center}
+\end{table}
+\end{center}
+%}
+%\comout{
+\begin{table}[ht]
+\vspace{6pt}
+\begin{center}
+\caption{\mbox{Notations used in {\bf Algorithms 1}, {\bf 2}, and {\bf 3}}}
+\label{tbN1}
+\begin{tabular}{rl} \hline
+$s_i$ : & $i$--th bit of the binary representation of $s$\\
+& from the lower. \\
+$l_{T,T}$ : & the tangent line at $T$. \\
+$l_{T,P_A}$ : & the line passing through $T$ and $P_A$. \\
+$v_{T+T}$ : & the vertical line passing through $2T$. \\
+$v_{T+P_A}$ : & the vertical line passing through $T+P_A$. \\
+$\lambda_{T,T}$ : & the slope of the tangent line $l_{T,T}$.  \\
+$\lambda_{T,P_A}$ : & the slope of the line $l_{T,P_A}$.  \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+%}
+%\renewcommand{\baselinestretch}{1.2}
+\begin{table*}[ht]
+\begin{center}
+\caption{Parameter settings for calculating $f_{s,P_A}(P_B)$ of Miller's algorithm with BN curve, where $P_A\in \G_A$ and $P_B\in \G_B$}
+\begin{tabular}{c|c|c|c} \hline
+pairing & $s$ & \ \ $\G_A$\ \  & \ \ $\G_B$\ \  \\ \hline
+Tate & $36\chi^4-36\chi^3+18\chi^2-6\chi+1$ & $E(\F{p}{})$ & $E(\F{p}{12})$ \\ \hline
+Twisted Ate \cite{TAte}, \cite{tAteX} & \ \ $36\chi^3-18\chi^2+6\chi-1$\ \  & $E(\F{p}{})$ & $E(\F{p}{12})$ \\ \hline
+Ate & $6\chi^2$ & $E(\F{p}{12})$ & $E(\F{p}{})$ \\ \hline
+Devegili et al.'s Ate \cite{Devegili} & $6\chi^2$ & $E'(\F{p}{2})$ & $E(\F{p}{})$ \\ \hline
+\ISTA\ \cite{CSS2} & $6\chi^2$ & $E'(\F{p}{2})$ & \com{$E'(\F{p}{12})$} \\ \hline
+%\multicolumn{4}{l}{$^{\dagger}$\ $d$ is the twist degree such as $d=2,3,4,6$.}
+\end{tabular}\label{tbl:bn_miller_input}
+\end{center}
+\end{table*}
+
+
+\comout{
+%--------------------------------------
+\subsection{Final Exponentiation}
+%--------------------------------------
+
+In Ate pairing, we first calculate $F=f_{t-1,Q}(P)$ by Miller's algorithm, then {\it final exponentiation} $F^{(q^{k}-1)/r}$ follows.
+Here, an efficient algorithm of {\it final exponentiation} is shown.
+
+For any elements $A \in \F{q}{k}^*$, since $A^{q^k-1}$ becomes 1, $A^{(q^k-1)/r}$ becomes an element of order $r$.
+That is, {\it final exponentiation} is an operation that maps an element in $\F{q}{k}^*$ to subfield of order $r$.
+In finite field, when all roots of a polynomial $\Phi_i(x)$ is the $i$-th primitive of unity, it is called a cyclotomic polynomial.
+
+Cyclotomic polynomials $\Phi _i(x), 1\leq i \leq 6$ are given as follows.
+\begin{eqnarray*}
+\Phi _1(x) = x-1\hspace{25pt}
+\Phi _2(x) &=& x+1\hspace{98pt}
+\Phi _3(x) = x^2+x+1 \\
+\Phi _4(x) = x^2+1\hspace{25pt}
+\Phi _5(x) &=& x^4+x^3+x^2+x+1\hspace{25pt}
+\Phi _6(x) = x^2+x-1 
+\end{eqnarray*}
+
+From the above equation, let $\varphi(\cdot)$ be the Euler's function, the degree of $\Phi_i(x)$ is given by $\varphi(i)$.
+Focusing on the numerator of $(q-k-1)/r$ in {\it final exponentiation}, $q^k-1$ can be factorized by $\Phi_i(q)$ as 
+\begin{equation*}
+q^k-1 = \prod_{i\mid k} \Phi _i(q)
+\end{equation*}
+
+Moreover, since the embedding degree $k$ is a minimum integer satisfies $r\mid (q^k-1)$, $\Phi_i(q)$ is not divisible by $i$ smaller than $k$.
+Thus, $r$ is one of factors of $\Phi_k(q)$.
+Therefore, $(q^k-1)/r$ is factorized as
+\begin{equation*}
+(q^k-1)/r = \prod_{ i<k\;\cap\;i\mid k} \Phi _i(q) \cdot \left( \Phi _k(q) / r \right)
+\end{equation*}
+
+$k$������$i$�ɑ΂���$\Phi _i(q)$��p�����ׂ���̌v�Z�́C
+$\Phi _i(q)$��$q$��p���������̑������ŗ^�����邱�Ƃ���C�t���x�j�E�X�ʑ��Ɛ���̏揜�Z�݂̂ŋ��߂邱�Ƃ��ł���D
+���������āC�c���$\Phi _k(q)/r$��ׂ̂��v�Z�݂̂�o�C�i���@�Ȃǂ�p���Čv�Z����D
+
+�ȏ�Ŏ������ŏI�ׂ��ׂ̂���$(q^k-1)/r$�̕���ɂ��C$(q^k-1)/r$��ׂ̂���Z�́C���ׂĂ�o�C�i���@�Ōv�Z�����ꍇ�ɔ�ׁC���Z����я�Z�̉񐔂�Ƃ��$(\psi(k)-1)/(k-1)$�{���x�ɍ팸�ł���D
+�܂��C$\Phi _k(q)/r\gg q$�̏ꍇ�́C�c���$\Phi _k(q)/r$��̌v�Z��ׂ���$\Phi _k(q)/r$��$q$�i���W�J���邱�ƂŁC
+�t���x�j�E�X�ʑ���p���Č����ǂ����߂邱�Ƃ��ł���D
+�܂��C�ǂ���̏ꍇ�ł�t���x�j�E�X�ʑ��𑽗p���邽�߁C�t���x�j�E�X�ʑ��̌v�Z�R�X�g��}���邱�Ƃ��d�v�ƂȂ�D
+}
+
+
+%\section{Operations of Pairing-based Cryptographies}
+
+
+\section{Conclusion}
+This chapter briefly reviewed the mathematical fact to define the pairing, and shows a target class of elliptic curves.
+In addition, we described the conventional pairings such as Tate, Ate, and {\it twisted} Ate pairings.
+

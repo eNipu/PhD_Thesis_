@@ -1,0 +1,260 @@
+%%
+%% This is file `nogamacro.sty',
+%% generated with the docstrip utility.
+%%
+%% IMPORTANT NOTICE:
+%% 
+%% For the copyright see the source file.
+%% 
+%% Any modified versions of this file must be renamed
+%% with new filenames distinct from okumacro.sty.
+%% 
+%% For distribution of the original source see the terms
+%% for copying and modification in the file okumacro.dtx.
+%% 
+%% This generated file may be distributed as long as the
+%% original source files, as listed above, are part of the
+%% same distribution. (The sources need not necessarily be
+%% in the same archive or directory.)
+\NeedsTeXFormat{LaTeX2e}%
+\ProvidesPackage{nogamacro}[2008/06/13 NAMBA Ryo, NEKADO Kenta]
+%
+%%%%%%%% Including Packages %%%%%%%%
+\usepackage{amsmath}%
+\RequirePackage{amssymb}%
+\RequirePackage{color}%
+\RequirePackage[normalem]{ulem}%
+\RequirePackage{graphicx}%
+% \RequirePackage{listings}%
+\RequirePackage{keyval}
+%\RequirePackage[T1]{fontenc}
+%%%% Default Value %%%%
+\newif\ifdraft\relax%
+\newif\ifnonlabel\relax%
+\newif\ifnopdf\relax%
+\newif\ifnotitle\relax%
+\newif\ifnoauthor\relax%
+\drafttrue\nonlabelfalse\nopdftrue\noauthortrue\notitletrue%
+\def\PDFTITLE{}\def\PDFAUTHOR{}\def\PDFKEYWORDS{}%
+%%%%%%%% Color Definition %%%%%%%%%%%%%%
+\definecolor{PineGreen}{cmyk}{0.92,0,0.59,0.25}%
+\definecolor{DarkBlue}{rgb}{0.0039,0.3137,0.5216}%
+\definecolor{DarkRed}{rgb}{0.7686,0.0000,0.0000}%
+\definecolor{Purple}{rgb}{0.4,0,1}%
+%%%%%%%%%% Option Operation %%%%%%%%%%%%
+\define@key{Noga}{pdf}[true]{\nopdffalse}%
+\define@key{Noga}{final}[true]{\draftfalse\nonlabeltrue}%
+\define@key{Noga}{draft}[true]{\drafttrue}%
+\define@key{Noga}{nonlabel}[true]{\nonlabeltrue}%
+\define@key{Noga}{pdftitle}{\notitlefalse\def\PDFTITLE{#1}}%
+\define@key{Noga}{pdfauthor}{\noauthorfalse\def\PDFAUTHOR{#1}}%
+\define@key{Noga}{pdfkeywords}{\def\PDFKEYWORDS{#1}}%
+\def\ProcessOptionsWithKV#1{%
+  \let\@tempc\relax
+  \let\Hv@tempa\@empty
+  \@for\CurrentOption:=\@classoptionslist\do{%
+    \@ifundefined{KV@#1@\CurrentOption}%
+    {}%
+    {%
+      \edef\Hv@tempa{\Hv@tempa,\CurrentOption,}%
+      \@expandtwoargs\@removeelement\CurrentOption
+        \@unusedoptionlist\@unusedoptionlist
+    }%
+  }%
+  \edef\Hv@tempa{%
+    \noexpand\setkeys{#1}{%
+      \Hv@tempa\@ptionlist{\@currname.\@currext}%
+    }%
+  }%
+  \Hv@tempa
+  \let\CurrentOption\@empty
+}%
+\ProcessOptionsWithKV{Noga}%
+%%%%%%%% Comment Command Definition %%%%%%%%%%%
+\ifdraft%
+\newcommand{\com}[1]{\textcolor{red}{#1}}%
+\newcommand{\comb}[1]{\textcolor{blue}{#1}}%
+\newcommand{\comg}[1]{\textcolor{green}{#1}}%
+\newcommand{\comc}[1]{\textcolor{cyan}{#1}}%
+\newcommand{\comp}[1]{\textcolor[named]{Purple}{#1}}%
+\newcommand{\comq}[1]{\textcolor[named]{Purple}{\uuline{#1}$_{{\com{?}}\!\!\!\!}$}}%
+\newcommand{\comqq}[1]{\textcolor[named]{Purple}{#1}}%
+\newcommand{\Nlabel}[1]{\comqq{\text{ #1 }}\label{#1}}%
+\else%
+\newcommand{\com}[1]{#1}%
+\newcommand{\comb}[1]{#1}%
+\newcommand{\comg}[1]{#1}%
+\newcommand{\comc}[1]{#1}%
+\newcommand{\comp}[1]{#1}%
+\newcommand{\comq}[1]{#1}%
+\newcommand{\comqq}[1]{#1}%
+\newcommand{\Nlabel}[1]{\label{#1}}%
+\fi%
+\newcommand{\comout}[1]{}%
+%%%%%%%% Hyperref Definition %%%%%%
+\def\PDFSetting{\RequirePackage[dvipdfm,pdftitle={\PDFTITLE},pdfsubject={\PDFTITLE},pdfauthor={\PDFAUTHOR},pdfkeywords={\PDFKEYWORDS},bookmarks=true,bookmarksopen=false,bookmarksnumbered=false,colorlinks=true,linkcolor=blue,citecolor=blue,filecolor=blue,pagecolor=blue,urlcolor=blue,pdfstartview=FitH]{hyperref}\def\@pdfcreator{LaTeX with nogamacro package}}%
+\ifnopdf%
+\ifnoauthor%
+\ifnotitle%
+\else%
+\PDFSetting%
+\fi%
+\else%
+\PDFSetting%
+\fi%
+\else%
+\PDFSetting%
+\fi%
+%%%%%%%% Label Command Definition %%%%%%%%%%
+\ifnonlabel%
+%\newcommand\Nlabel[1]{\label{#1}}%
+\else%
+%\newcommand\Nlabel[1]{\ \textcolor{blue}{#1}\label{#1}}%
+\fi%
+%%%%%%%% Reference Command Definition %%%%%%
+\renewcommand{\eqref}[1]{Eq.(\ref{#1})}%
+\newcommand{\eqsref}[1]{Eqs. (\ref{#1})}%
+\newcommand{\tbref}[1]{{\bf Table} \ref{#1}}%
+\newcommand{\propref}[1]{{\bf Property}. \ref{#1}}%
+\newcommand{\defref}[1]{{\bf Definition}. \ref{#1}}%
+\newcommand{\secref}[1]{{\bf Section}. \ref{#1}}%
+\newcommand{\chref}[1]{{\bf Chapter}. \ref{#1}}%
+\newcommand{\thref}[1]{{\bf Theory}. \ref{#1}}%
+\newcommand{\coref}[1]{{\bf Condition}. \ref{#1}}
+\newcommand{\fgref}[1]{{\bf Figure}. \ref{#1}}%
+\newcommand{\apref}[1]{{\bf Appendix}. #1}%
+%%%%%%%% Field Symbol Definiftion %%%%%%%%
+\newcommand{\F}[2]{\ensuremath{{\mathbb{F}}_{#1^{#2}}}}%
+\newcommand{\f}[1]{\ensuremath{{\mathbb{F}}_{#1}}}%
+\newcommand{\mF}[2]{\ensuremath{{{\mathbb{F}}^{\ast}}_{\!\!\!#1^{#2}}}}%
+\newcommand{\mf}[1]{\ensuremath{{{\mathbb{F}}^{\ast}}_{\!\!\!#1}}}%
+\newcommand{\Fp}{\f{p}}%
+\newcommand{\Fpm}{\F{p}{m}}%
+\newcommand{\Fq}{\f{q}}%
+\newcommand{\Fqm}{\F{q}{m}}%
+\newcommand{\mFp}{\mf{p}}%
+\newcommand{\mFpm}{\mF{p}{m}}%
+\newcommand{\mFq}{\mf{q}}%
+\newcommand{\mFqm}{\mF{q}{m}}%
+\newcommand{\TF}[3]{\F{(#1^{#2})}{#3}}
+\newcommand{\TFp}[2]{\F{(p^{#1})}{#2}}
+\newcommand{\TFq}[2]{\F{(q^{#1})}{#2}}
+%%%%%%%% Elliptic Curve Symbol Definition %%%%%%%%
+\newcommand\g[1]{\ensuremath{{\mathbb{G}}_{#1}}}
+\newcommand\EFq[1]{\ensuremath{E({\mathbb{F}}_{q^{#1}})}}
+\newcommand\EFp[1]{\ensuremath{E({\mathbb{F}}_{p^{#1}})}}
+\newcommand\EdFq[1]{\ensuremath{E'({\mathbb{F}}_{q^{#1}})}}
+\newcommand\EdFp[1]{\ensuremath{E'({\mathbb{F}}_{p^{#1}})}}
+\newcommand\Hw[1]{{\rm Hw}(#1)}
+%%%%%%%% Trace Symbol Definiftion %%%%%%%%
+\newcommand{\tr}[1]{\ensuremath{{\mathrm{Tr}}\left(#1\right)}}%
+\newcommand{\trace}[3]{\ensuremath{{\mathrm{Tr}}_{#1\mid #2}\left(#3\right)}}%
+%%%%%%%% Norm Symbol Definiftion %%%%%%%%
+\newcommand{\nr}[1]{\ensuremath{{\mathrm{N}}\left(#1\right)}}%
+\newcommand{\norm}[3]{\ensuremath{{\mathrm{N}}_{#1\mid #2}\left(#3\right)}}%
+%%% Fractions like 1/2 by DEK (TUGboat, 6(1):36, TeXbook (Excercise 11.6))
+\def\FRAC#1#2{\ensuremath{\leavevmode\kern.1em
+  \raise.5ex\hbox{\the\scriptfont0 #1}\kern-.1em
+  /\kern-.15em\lower.25ex\hbox{\the\scriptfont0 #2}}}
+\def\DFRAC#1#2{\ensuremath{\leavevmode\kern.1em
+  \raise1.0ex\hbox{#1}\kern-.2em
+  {\Big/}\kern-.3em\lower.9ex\hbox{#2}}}
+%%%%%%%% Legendre Symbol Definiftion %%%%%%%%
+\newcommand{\Leg}[2]{\ensuremath{\left(\!\FRAC{$#1$}{$#2$}\right)}}%
+\newcommand{\DLeg}[2]{\ensuremath{\left(\!\DFRAC{$#1$}{$#2$}\right)}}%
+%%%%%%%% Power Residue Symbol Definiftion %%%%%%%%
+\newcommand{\Legk}[3]{\ensuremath{\left(\!\FRAC{$#1$}{$#2$}\right)_{#3}}}%
+\newcommand{\DLegk}[3]{\ensuremath{\left(\!\DFRAC{$#1$}{$#2$}\right)_{#3}}}%
+%%%%%%%% Cost Symbol Definiftion %%%%%%%%
+\newcommand{\SM}{\ensuremath{{\mathrm{\sharp_{SMUL}}}}}%
+\newcommand{\SA}{\ensuremath{{\mathrm{\sharp_{SADD}}}}}%
+%\newcommand{\SI}{\ensuremath{{\mathrm{\sharp_{SINV}}}}}%
+%%%%%%%% Other Mathematical Symbol Definiftion %%%%%%%%
+\newcommand{\dic}[1]{D_{#1}\left(t_1,p\right)}%
+\newcommand{\LW}[2]{LW\left(\displaystyle\frac{#1}{#2}\right)}%
+\newcommand{\FinDef}{\hfill\ensuremath{\Box}}%
+%%%%%%%% Bracket Command Definition %%%%%%%%%%%
+\newcommand{\an}[1]{\ensuremath{\left\langle #1\right\rangle}}%
+\newcommand{\ran}[1]{\ensuremath{\left[\left\langle #1\right\rangle\right]}}%
+\newcommand{\dip}[2]{\ensuremath{\left(\displaystyle\frac{#1}{#2}\right)}}%
+%%%%%%%% Our Symbol Definition %%%%%%%%%%%
+\newcommand{\QPR}{\mbox{QPR}}%
+\newcommand{\QPNR}{\mbox{QPNR}}%
+\newcommand{\TPR}{\mbox{TPR}}%
+\newcommand{\TPNR}{\mbox{TPNR}}%
+\newcommand{\FM}{\mbox{FM}}%
+\newcommand{\QR}{\mbox{QR}}%
+\newcommand{\QNR}{\mbox{QNR}}%
+\newcommand{\CR}{\mbox{CR}}%
+\newcommand{\CNR}{\mbox{CNR}}%
+\newcommand{\GNB}{Gauss\ period\ normal\ basis}%
+\newcommand{\GNBS}{Gauss\ period\ normal\ bases}%
+\newcommand{\sdn}{self\--dual\ normal\ basis}%
+\newcommand{\sdns}{self\--dual\ normal\ bases}%
+\newcommand{\SDN}{Self\--dual\ normal\ basis}%
+\newcommand{\SDNS}{Self\--dual\ normal\ bases}%
+\newcommand{\CVMA}{Cyclic\ vector\ multiplication\ algorithm}%
+\newcommand{\cvma}{cyclic\ vector\ multiplication\ algorithm}%
+\newcommand{\Typekm}{Type--\an{k,m}}
+\newcommand{\typekm}{type--\an{k,m}}
+%\newcommand{\Type}[2]{Type--\an{#1,#2}}
+\newcommand{\type}[2]{type--\an{#1,#2}}
+%%%%%%%% Useful Command Definition %%%%%%%%%%%
+\DeclareRobustCommand{\yen}{{\ooalign{Y\crcr\hss=\hss}}}%
+\newcommand{\MARU}[1]{{%
+    \ooalign{\hfil
+      \@ifundefined{scalebox}{%
+        #1\/\hfil\crcr\raise.167ex}{\raise.1zw\hbox{\scalebox{0.8}{#1\/}}\hfil\crcr\raise.1zw}%
+      \hbox{\fontencoding{OMS}\fontfamily{cmsy}\fontseries{m}\fontshape{n}\selectfont
+        \char"0D}}}}%
+\newcommand{\DoW}{{\@tempcnta=\year \@tempcntb=\month
+  \ifnum \@tempcntb<3
+    \advance \@tempcnta by -1
+    \advance \@tempcntb by 12
+  \fi
+  \multiply \@tempcntb by 13
+  \advance \@tempcntb by 8
+  \divide \@tempcntb by 5
+  \advance \@tempcntb by \@tempcnta
+  \divide \@tempcnta by 4
+  \advance \@tempcntb by \@tempcnta
+  \divide \@tempcnta by 25
+  \advance \@tempcntb by -\@tempcnta
+  \divide \@tempcnta by 4
+  \advance \@tempcntb by \@tempcnta
+  \advance \@tempcntb by \day
+  \@tempcnta=\@tempcntb
+  \divide \@tempcntb by 7
+  \multiply \@tempcntb by 7
+  \advance \@tempcnta by -\@tempcntb
+  \ifcase \@tempcnta Sun.\or Mon.\or Tue.\or Wed.\or Thu.\or Fri.\or Sat.\fi}}
+%%%%%%%%% Lstlisting Environment %%%%%%%%%%%%%
+% \renewcommand{\lstlistingname}{List}%
+% \lstset{%
+% language=C,%
+% basicstyle=\ttfamily\small,%
+% numbers=left,%
+% numberstyle=\small,%
+% lineskip=0pt,
+% stepnumber=1,%
+% numbersep=1.0em,%
+% xleftmargin=2.5em,%
+% tabsize = 2,%
+% breaklines = true,%
+% frameround = tttt,%
+% framerule = 0.8pt,%
+% frame= tbrl%
+% showtabs=false,%
+% showspaces = false,%
+% showstringspaces = false,%
+% morecomment=[s][\color{DarkBlue}]{/*}{*/},%
+% morecomment=[s][\color{PineGreen}]{"}{"},%
+% morecomment=[s][\color{Purple}]{'}{'},%
+% morecomment=[l][\color{DarkBlue}]{//},%
+% emph={int, char, long, FILE, void }, emphstyle=\color{DarkRed}%
+% }%
+\AtEndOfPackage{%
+\let\@unprocessedoptions\relax%
+}%
+%%
+%% End of file `nogamacro.sty'.

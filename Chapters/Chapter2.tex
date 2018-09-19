@@ -1,0 +1,394 @@
+% Chapter 1
+
+\chapter{Fundamentals} % Main chapter title
+
+\label{Chapter2} % For referencing the chapter elsewhere, use \ref{Chapter1} 
+
+\section{Introduction}
+This chapter briefly review the mathematical fact to define the pairing, and shows a target class of elliptic curves.
+In addition, we describe the conventional pairings such as Tate, Ate, {\it twisted} Ate pairings.
+
+
+\section{Finite Field}
+\subsection{Group}\label{group}
+
+A group \index{group} is an algebraic system defined as follows.
+\begin{definition}[Group\index{group}]
+A group\index{group} $\langle\mathbb{G}\index{group},\circ\rangle$ is a nonempty set with a binary operations $\circ$ that satisfies the following group\index{group} axioms:
+\begin{quote}\begin{description}
+\item[G1 : (Closure)] For all $a, b \in\mathbb{G}\index{group}$, the result of $a\circ b$ is also in $\mathbb{G}\index{group}$.
+\item[G2 : (Associativity)] $(a\circ b)\circ c=a\circ (b\circ c)$\hspace{2em}$a,b,c\in\mathbb{G}\index{group}$.
+\item[G3 : (Unit Element)] For $\forall a \in\mathbb{G}\index{group}$, there exists an element $e\in\mathbb{G}\index{group}$ such that $a\circ e=e\circ a=a$, where $e$ is called unit element.
+\item[G4 : (Inverse Element)] For ${\forall}a \in\mathbb{G}\index{group}$, there exists an element $x\in\mathbb{G}\index{group}$ such that $a\circ x=x\circ a=e$, where $x$ is called inverse element of $a$.
+\end{description}\end{quote}
+\qed
+\end{definition}
+
+\begin{definition}[Commutative Group\index{group}]\hspace{0em}
+
+\begin{quote}\begin{description}
+\item[AG5 : (Commutativity)] A group\index{group} $\mathbb{G}\index{group}$ is said to be commutative (or abelian), if $a\circ b=b\circ a$ for $^{\forall}a,b \in\mathbb{G}\index{group}$.
+\end{description}\end{quote}
+\qed
+\end{definition}
+
+For example, the algebraic system $\langle\mathbb{Z},+\rangle$ is an infinite commutative group\index{group}, where $\mathbb Z$ is the integer set and $+$ means the ordinary addition for integers. For a finite group\index{group}, its order\index{order} is defined as follows.
+
+\begin{definition}[Order of Group\index{group}]\hspace{0em}
+The order\index{order} $\#\mathbb{G}\index{group}$ is the number of elements in finite group\index{group} $\mathbb{G}\index{group}$.
+\\\qed
+\end{definition}
+
+Let us consider an example of finite groups\index{group}. An algebraic system $\langle\mathbb{Z}_{n}=\{0,1,2,3,\cdots,n-1\},+\rangle$ is not a group\index{group} because it does not satisfy the group\index{group} axioms. Therefore, in order\index{order} to construct a group\index{group} from $\mathbb{Z}_n$, it is necessary to modify the addition. We will define a new sum as
+\begin{equation}
+a+b\equiv c\ \ \bmod n\hspace{3em}a,b\in \mathbb{Z}_{n},\label{Sum Definition}\\
+\end{equation}
+where the notation ``$\bmod\ n$'' means that $c$ is assigned to a remainder on division by $n$ when $a+b=c\notin\mathbb{Z}_{n}$. Therefore, $c$ certainly belongs to $\mathbb{Z}_{n}$ and then $\langle \mathbb{Z}_{n},+\rangle$ forms a group\index{group}.
+
+There is a convenient way of presenting a finite group\index{group}. A table displaying the group\index{group} operation is referred to as {\em Cayley table\index{Cayley!Cayley table}}. For example, the group\index{group} $\mathbb{Z}_4$ is presented as follows.
+
+\begin{example}The Cayley table\index{Cayley!Cayley table} for the group\index{group} $\mathbb{Z}_4$ is:
+\begin{center}
+\begin{tabular}{c|cccc}
+        $+$&\em 0&\em 1&\em 2&\em 3       \\
+\hline
+        \em 0&\em 0&\em 1&\em 2&\em 3       \\
+        \em 1&\em 1&\em 2&\em 3&\em 0       \\
+        \em 2&\em 2&\em 3&\em 0&\em 1       \\
+        \em 3&\em 3&\em 0&\em 1&\em 2       \\
+\end{tabular}
+\end{center}
+\end{example}
+
+In what follows, we will use the notation of ordinary addition such that $a+a=2a$ and $a+a+a=3a$ (in multiplicative notation, these are denoted by $a^2$,$a^3$).
+
+\begin{definition}[Cyclic Group\index{group}]
+A group\index{group} $\mathbb{G}\index{group}$ is said to be {\em cyclic} if there is an element $g\in\mathbb{G}\index{group}$ such that for any $a\in\mathbb{G}\index{group}$ there is some integer $j$ with $a=g^{j}$. Such an element $g$ is called a generator\index{generator} of the cyclic group\index{cyclic group}\index{group}. \qed
+\end{definition}
+
+From the definition, we can see that any elements in cyclic group\index{cyclic group} are generated with iterative operations of generator\index{generator} $g$. \fgref{Cyclic group} shows it schematically.
+
+\begin{figure}[h]
+\begin{center}
+\special{pn 10}%
+\special{ar 3150 950 700 700 0.1200000 0.14959965}
+\special{ar 3150 950 700 700 0.2991993 0.44879895}
+\special{ar 3150 950 700 700 0.5983986 0.74799825}
+\special{ar 3150 950 700 700 0.8975979 1.04719755}
+\special{ar 3150 950 700 700 1.1967972 1.34639685}
+\special{ar 3150 950 700 700 1.4959965 1.64559615}
+\special{ar 3150 950 700 700 1.7951958 1.94479545}
+\special{ar 3150 950 700 700 2.0943951 2.24399475}
+\special{ar 3150 950 700 700 2.3935944 2.54319405}
+\special{ar 3150 950 700 700 2.6927937 2.84239335}
+\special{ar 3150 950 700 700 2.9919930 3.02159265}
+\special{ar 3850 950 80 80 0.000000000 6.283185304}
+\special{ar 2450 950 80 80 0.000000000 6.283185304}
+\special{ar 3150 250 80 80 0.000000000 6.283185304}
+\special{ar 3500 355 80 80 0.000000000 6.283185304}
+\special{ar 3745 600 80 80 0.000000000 6.283185304}
+\special{ar 2555 600 80 80 0.000000000 6.283185304}
+\special{ar 2800 355 80 80 0.000000000 6.283185304}
+\special{ar 3150 950 700 700 3.261 3.555}
+\special{ar 3150 950 700 700 3.79 4.065}
+\special{ar 3150 950 700 700 4.3 4.591}
+\special{ar 3150 950 700 700 4.83 5.122}
+\special{ar 3150 950 700 700 5.365 5.63}
+\special{ar 3150 950 700 700 5.87 6.165}
+\begin{picture}(150,120)%
+\put(58,109){$g^{m}=e$}
+\put(110,100){$g$}
+\put(128,80){$g^{2}$}
+\put(136,54){$g^{3}$}
+\put(0,54){$g^{m-3}$}
+\put(9,80){$g^{m-2}$}
+\put(32,98){$g^{m-1}$}
+\end{picture}%
+\end{center}
+\caption{Cyclic group\index{cyclic group}\index{group}}
+\label{Cyclic group}
+\end{figure}
+
+In general, for an element $a\in\mathbb{G}\index{group}$, the least positive integer $m$ such that $a^{m}=e$ is called the order\index{order} of $a$, where $e$ is the unit element in $\mathbb{G}\index{group}$.
+
+
+%--------------------------------------
+\subsection{Field}
+%--------------------------------------
+Field is an algebraic system defined as follows.
+\begin{definition}[Field]
+	A field $\langle\f{},+,\cdot\rangle$ has two binary operations denoted by $+$ and $\cdot$, such that:
+	\begin{quote}\begin{description}
+			\item[F1 : (Additive Group)] $\f{}$ is a commutative group with respect to $+$.
+			\item[F2 : (Multiplicative Group)] ${\f{\,}}^{\ast}\!\!$ is a group with respect to $\cdot$, where ${\f{\,}}^{\ast}\!\!$ is the set that consists of every element distinct from the unit element (zero element) with respect to $+$.
+			\item[F3 : (Distributive law)] For all $a,b,c \in\f{}$ we have $a\cdot(b+c)=a\cdot b+a\cdot c$ and $(b+c)\cdot a=b\cdot a +c\cdot a$.
+	\end{description}\end{quote}
+	\qed
+\end{definition}
+In general, the elements $0$ and $1$ denote the unit elements regarding to addition $+$ and multiplication $\cdot$, respectively.
+\begin{definition}[Order of Finite Field]\hspace{0em}
+	The order is the number of elements in $\f{}$. If the order of $\f{}$ is finite, $\f{}$ is called finite field. \qed
+\end{definition}
+\begin{definition}[Characteristic of Finite Field]\hspace{0em}
+	The least positive number $n$ such that $na=0$ for every $a\in \f{}$ is called characteristic. \qed
+\end{definition}
+
+This paper treats only finite fields. Finite fields have the following property, which is often used in cryptographic area.
+\begin{theorem}\label{Cyclic Group in Finite Field}
+	For every finite field $\f{}$, the multiplicative group ${\f{\,}}^{\ast}\!\!$ is cyclic. \qed
+\end{theorem}
+For example, ElGamal encryption \cite{multi} can be defined over multiplicative group of $\f{}$. Its security depends on the difficulty of a problem in $\f{}$ related to computing {\em discrete logarithms}.
+A subset $\mathbb K$ of a field $\f{}$ that is itself a field under the operations of $\f{}$ will be called a {\em subfield} of $\f{}$. In this case, $\f{}$ is called an {\em extension (field)} of $\mathbb K$. If $\mathbb K\neq \f{}$, we say that $\mathbb K$ is a {\em proper subfield} of $\f{}$. Then, {\em prime field} is defined as follows.
+\begin{definition}[Prime Field]
+	
+	
+	
+	A field containing no proper subfield is called prime field. \qed
+\end{definition}
+Moreover, the following theorem is given.
+\begin{theorem}
+	Every finite field has a prime field as a subfield. \qed
+\end{theorem}
+
+Therefore, finite fields are classified into two types, which are prime field and its extension field. Prime field $\Fp$ has a prime number $p$ as the order and characteristic. In the same way as \eqref{Sum Definition}, we can define fundamental operations of $\Fp=\{0,1,2\cdots,p-1\}$ by using remainder of integer as follows,
+\begin{subequations}
+	\label{Operation Definition}
+	\begin{eqnarray}
+	a+b\equiv c&&\ \bmod\ p,\\
+	a\cdot b\equiv c&&\ \bmod\ p\hspace{3em}a,b\in\Fp.
+	\end{eqnarray}
+\end{subequations}
+
+In order to understand it easily, following examples are shown.
+
+\begin{example}The Cayley table for the two operations $+$ and $\cdot$ for elements in $\f{5}$ are as follows:
+	\begin{center}
+		\begin{tabular}{c|ccccc}
+			$+$&\em 0&\em 1&\em 2&\em 3&\em 4       \\
+			\hline
+			\em 0&\em 0&\em 1&\em 2&\em 3&\em 4       \\
+			\em 1&\em 1&\em 2&\em 3&\em 4&\em 0      \\
+			\em 2&\em 2&\em 3&\em 4&\em 0&\em 1      \\
+			\em 3&\em 3&\em 4&\em 0&\em 1&\em 2      \\
+			\em 4&\em 4&\em 0&\em 1&\em 2&\em 3      \\
+		\end{tabular}\ \ 
+		\begin{tabular}{c|ccccc}
+			$\cdot$&\em 0&\em 1&\em 2&\em 3&\em 4       \\
+			\hline
+			\em 0&\em 0&\em 0&\em 0&\em 0&\em 0       \\
+			\em 1&\em 0&\em 1&\em 2&\em 3&\em 4      \\
+			\em 2&\em 0&\em 2&\em 4&\em 1&\em 3      \\
+			\em 3&\em 0&\em 3&\em 1&\em 4&\em 2      \\
+			\em 4&\em 0&\em 4&\em 3&\em 2&\em 1      \\
+		\end{tabular}
+	\end{center}
+\end{example}
+As described above, we can define arithmetic operations in $\Fp$ by modular operations ($\bmod\ p$) for integers. However, it does not work in an extension field $\F{p}{m}$. In the next section, arithmetic operations in extension field $\F{p}{m}$ is described in detail.
+
+
+\subsection{Extension Field}
+%--------------------------------------
+A subset $\F{0}{}$ of a field $\F{}{}$ that is itself a field under the operations of $\F{}{}$ will be called a {\it subfield} of $\F{}{}$.
+In this case, $\F{}{}$ is called an {\it extension field} of $\F{0}{}$.
+An extension field of a prime field $\F{p}{}$ can be represented as $m$-dimensional vector space that has $m$ elements in $\F{p}{}$.
+Let the vector space be the $m$-th extension field, it is denoted by $\F{p}{m}$.
+The order of extension fields $\F{p}{m}$ is given as $p^m$. 
+In what follows, let $q$ be the power of $p$, the extension field of a prime field $\F{p}{}$ is denoted by $\F{q}{}$.
+
+
+
+There are several methods to represent an element in extension fields, such as polynomial basis and normal basis.
+In this thesis, we use normal basis.
+Let $\omega$ be a root of $m$-th irreducible polynomial over $\F{q}{}$, we consider the following $m$ elements.
+
+\begin{equation}
+\omega,\;\omega^q,\;\omega^{q^2},\;\cdots,\;\omega^{q^{m-1}} \nonumber
+\end{equation}
+All elements in this set are conjugate to each other.
+When the set of the conjugates become linearly independent, this is called {\it normal basis}.
+Using normal basis, an element $\alpha \in \F{q}{}$ is expressed as a polynomial by  
+\begin{equation}
+\alpha = a_1 \omega + a_2 \omega^q + a_3 \omega^{q^2} + \cdots + a_m \omega^{q^{m-1}}, 
+\end{equation}
+where $a_1,\;a_2,\;a_3,\cdots,\;a_m \in \F{q}{}$.
+
+Arithmetic operations in $\F{q}{m}$ are carried out with ordinary addition and multiplication for polynomial and modular reduction by irreducible polynomial.
+
+\subsection{Frobenius Map}\label{secFrob}
+%--------------------------------------
+
+For any element $\alpha \in \F{q}{m}$, let us consider the following map $\pi_q:\alpha \rightarrow \alpha^q$. 
+%$\F{q}{m}$ÌCÓÌ³$\alpha$ÉÎµÄ$\pi_q:\alpha \rightarrow \alpha^q$Æ¢¤Êðl¦éD
+\begin{eqnarray}
+\pi_q(\alpha) &=& \left( a_1 \omega + a_2 \omega^q + a_3 \omega^{q^2} + \cdots + a_m \omega^{q^{m-1}} \right)^q \nonumber \\ 
+&=& a_1 \omega^q + a_2 \omega^{q^2} + a_3 \omega^{q^3} + \cdots + a_m \omega^{q^m} \nonumber \\
+&=& a_m \omega + a_1 \omega^q + a_2 \omega^{q^2} + \cdots + a_{m-1} \omega^{q^{m-1}}
+\end{eqnarray}
+Note that the order of $\F{q}{m}^*$ is given by $q^m - 1$, that is,  $\omega^{q^m} = \omega$ is satisfied.
+Furthermore, $a^q$ is equal to $a$ for each coefficients $a$.
+
+Therefore, the map $\pi_q(\alpha)$ is efficiently calculated by cyclic shift operations among its basis coefficients, 
+which is free from arithmetic operations.
+From the computational efficiency, the map $\pi_q$ is especially called Frobenius map.
+
+In ElGamal Encryption, many exponentiations are executed in encryption and decryption processes.
+When the exponent is equal to $p$, its calculation cost can be reduced by using Frobenius map.
+Therefore, Frobenius map is widely used in the cryptographic application.     
+
+\subsection{Quadratic Residue/Quadratic Non-residue, \\and Cubic Residue/Cubic Non-residue}
+%--------------------------------------
+
+For any non-zero element $d\in\F{q}{}$, $d$ is called a Quadratic Residue (QR) when $x$ such that $x^2=d$ exists in $\F{q}{}$.
+On the other hand, when such an $x$ does not exist in $\F{q}{}$, $d$ is called a Quadratic Non-Residue (QNR).
+We can identify whether or not $d$ is a QR by following test.
+%$\f{q}$ÌCÓÌñë³$d$ÉÎµC$x^2=d$ÆÈé$x$ª$\f{q}$É¶Ý·éÆ«C$d$ð½ûè]iQuadratic Residue; QRjÆ¢¢C
+%¶ÝµÈ¢Æ«½ûñè]iQuadratic Non-Residue; QNRjÆ¢¤D»Ì»ÊÍ®Éæès¦éD
+\begin{eqnarray}
+d^{(q-1)/2} = \left\{
+\begin{array}{ll}
+1 & \mbox{: QR} \\
+-1 & \mbox{: QNR} 
+\end{array}
+\right.
+\end{eqnarray}
+
+All elements in finite fields $\F{q}{}$ of odd characteristics become QR in extension fields $\F{q}{2j}$.
+On the other hand, quadratic non-residues also become QNR in $\F{q}{i}$, where $i$ is not divisible by 2.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Elliptic Curve}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In this section, we review elliptic curves and pairings. 
+
+%--------------------------------------
+\subsection{Additive Group over Elliptic Curves}
+%--------------------------------------
+
+In general, let $p>3$, an elliptic curve $E/\F{p}{}$ over a finite field $\F{p}{}$ is defined as 
+
+\begin{equation}
+E/\F{p}{}: y^2=x^3+ax+b,\ 42a^3+27b^2 \neq 0,\ a,b\in \F{p}{}. \label{EC}
+\end{equation}
+
+The field that $x$ and $y$ belong to is called the definition field. 
+The solutions $(x,y)$ of \eqref{EC} is called rational points.
+$E(\F{q}{})$ that is the set of rational points on the curve, including the {\it point at infinity} $\mathcal{O}$, forms an additive abelian group. 
+The {\it point at infinity} works as an unity element in $E(\F{q}{})$.
+When the definition field is $\F{q}{m}$, we denote the additive group by $E(\F{q}{m})$.
+
+For rational points $P_1(x_1,y_1)$, $P_2(x_2,y_2)$ $\in E(\F{q}{})$, the elliptic curve addition $P_3(x_3,y_3)=P_1+P_2$ is defined as follows.
+\begin{eqnarray*}
+	\lambda &=& \left\{ \begin{array}{ll}
+		{\displaystyle \frac{y_2-y_1}{x_2-x_1}} & P_1\neq P_2,\ x_1\neq x_2 \\
+		& \\
+		{\displaystyle \frac{3x_1^2+a}{2y_1}} & P_1=P_2 \\
+		
+	\end{array} \right.\\
+	x_3 &=& \lambda^3-x_1-x_2\\
+	y_3 &=& (x_1-x_3)\lambda-y_1
+\end{eqnarray*} 
+
+In the case of $P_1=P_2$, the addition is especially called elliptic curve doubling. 
+%Let $\#E(\F{p}{})$ be its order, consider a large prime $r$ that divides $\#E(\F{p}{})$. %The smallest positive integer $k$ such that $r$ divides $p^k-1$ is called {\it embedding degree}. One can consider pairings such as Tate and Ate pairings by using $E(\F{p}{k})$. 
+
+Let a rational point $P(x,y)$, an inverse point $-P$ is given by $-P(x, -y)$. 
+Elliptic curve cryptographies is constructed on elliptic curve groups $E(\F{q}{})$.
+
+Let $\#E(\F{p}{})$ be the order of $E(\F{p}{})$, it is given as
+\begin{equation}
+\#E(\F{p}{})=p+1-t, %\Nlabel{order}
+\end{equation}
+where $t$ is the Frobenius trace of $E(\F{p}{})$. 
+
+From Hasse's theorem, $t$ satisfies
+\begin{equation}
+|t| \leq 2\sqrt{p}.
+\end{equation}
+
+
+Let $[s]P$ denote the $(s-1)$-times addition of a rational point $P$ as, 
+\begin{equation}
+[s]P = \sum_{i = 0}^{s-1}{P}.
+\end{equation}
+This operation is called a scalar multiplication.
+As a general approach for accelerating a scalar multiplication, the binary method is the most widely used.
+\algref{2.1} shows the binary method.
+The binary method iterates elliptic curve doublings and elliptic curve additions using binary representation of scalar.
+A scalar multiplication needs $\lfloor \log_2 s\rfloor$ elliptic curve doublings and $\lfloor \log_2 s\rfloor/2$ elliptic curve additions on average.
+
+%TODO: Change Algo
+
+\begin{figure*}[ht]
+	\begin{center}
+		\noindent {{\bf Algorithm 2.1} : Binary method }
+		\begin{tabular}{ll}\hline \hline
+			Input : & $P$, $n$-bit integer $s=\sum^{\ell-1}_{i=0}s_i2^i$, $s_i \in \{0,1\}$ \\ 
+			Output : & $R=[s]P$ \\ \hline
+			\es 1. &$R \leftarrow \Inf$ \\
+			\es 2. &For $i=\ell-1$ to 0 by $-1$ do: \\
+			\es 3. &\es $R \leftarrow$ $R+R$ \\
+			\es 4. &\es If $s_i=1$ then $R \leftarrow$ $R+P$\\
+			\es 5. &Return $R$  \\ \hline
+		\end{tabular}
+	\end{center}
+\end{figure*}
+
+%In this paper, the set of rational points $P\in E(\F{q}{})$ satisfying $[r]P=\mathcal{O}$ is denoted by $E(\F{q}{})[r]$.
+%For two points $P$ and $R$ such that $[s]P=R$, the problem of solving $s$ is called elliptic curve discrete logarithm problem (ECDLP) and the security of ECC relies on the difficulty of ECDLP.
+
+\begin{figure}[h]
+	\begin{center}
+		\special{pn 10}%
+		\special{ar 3150 950 700 700 0.1200000 0.14959965}
+		\special{ar 3150 950 700 700 0.2991993 0.44879895}
+		\special{ar 3150 950 700 700 0.5983986 0.74799825}
+		\special{ar 3150 950 700 700 0.8975979 1.04719755}
+		\special{ar 3150 950 700 700 1.1967972 1.34639685}
+		\special{ar 3150 950 700 700 1.4959965 1.64559615}
+		\special{ar 3150 950 700 700 1.7951958 1.94479545}
+		\special{ar 3150 950 700 700 2.0943951 2.24399475}
+		\special{ar 3150 950 700 700 2.3935944 2.54319405}
+		\special{ar 3150 950 700 700 2.6927937 2.84239335}
+		\special{ar 3150 950 700 700 2.9919930 3.02159265}
+		\special{ar 3850 950 80 80 0.000000000 6.283185304}
+		\special{ar 2450 950 80 80 0.000000000 6.283185304}
+		\special{ar 3150 250 80 80 0.000000000 6.283185304}
+		\special{ar 3500 355 80 80 0.000000000 6.283185304}
+		\special{ar 3745 600 80 80 0.000000000 6.283185304}
+		\special{ar 2555 600 80 80 0.000000000 6.283185304}
+		\special{ar 2800 355 80 80 0.000000000 6.283185304}
+		\special{ar 3150 950 700 700 3.261 3.555}
+		\special{ar 3150 950 700 700 3.79 4.065}
+		\special{ar 3150 950 700 700 4.3 4.591}
+		\special{ar 3150 950 700 700 4.83 5.122}
+		\special{ar 3150 950 700 700 5.365 5.63}
+		\special{ar 3150 950 700 700 5.87 6.165}
+		\begin{picture}(150,120)%
+		\put(50,115){$[\#E]P=\Inf$}
+		\put(110,100){$P$}
+		\put(128,80){$[2]P$}
+		\put(136,54){$[3]P$}
+		\put(-40,54){$[\#E-3]P$}
+		\put(-30,80){$[\#E-2]P$}
+		\put(-10,98){$[\#E-1]P$}
+		\end{picture}%
+	\end{center}
+	\caption{An image of elliptic curve group\index{cyclic group}\index{group}}
+	\label{fig:ECG}
+\end{figure}
+
+%--------------------------------------
+\subsection{Frobenius Map on Elliptic Curve Groups}
+%--------------------------------------
+In this section, we introduce Frobenius map for a rational point in $E(\F{q}{})$.
+For any rational point $P=(x, y)$, Frobenius map $\phi$ is given by $\phi:P(x, y) \rightarrow ({x}^q, {y}^q)$.
+Then, the following relation holds for any rational points in $E(\F{q}{})$ with regard to Frobenius map.
+\begin{equation*}
+\left(\phi^{2}-[t]\phi+[q]\right)P=\mathcal{O}.
+\end{equation*}
+Thus, we have
+\begin{equation}
+[q]P=\left([t]\phi-\phi^2\right)P. \label{frobscm}
+\end{equation}
+From Hasse's theorem, note the bit-size of Frobenius trace $t$ is about a half of the characteristic $p$. 
+Using \eqref{frobscm}, we can efficiently calculate scalar multiplication \cite{frobexp}.

@@ -1,0 +1,124 @@
+%%
+%% This is file `nogaref.sty',
+%% generated with the docstrip utility.
+%%
+
+\NeedsTeXFormat{LaTeX2e}%
+\ProvidesPackage{nogaref}[2007/05/31 NEKADO Kenta, RYO Namba]%
+
+%%%%%%%% Including Packages %%%%%%%%
+\RequirePackage{color}%
+\RequirePackage{keyval}%
+
+%%%% Default Value %%%%
+\newif\ifdraft\relax%
+\drafttrue%
+
+%%%%%%%%%% Option Operation %%%%%%%%%%%%
+\define@key{Noga}{final}[true]{\draftfalse}%
+\def\ProcessOptionsWithKV#1{%
+  \let\@tempc\relax
+  \let\Hv@tempa\@empty
+  \@for\CurrentOption:=\@classoptionslist\do{%
+    \@ifundefined{KV@#1@\CurrentOption}%
+    {}%
+    {%
+      \edef\Hv@tempa{\Hv@tempa,\CurrentOption,}%
+      \@expandtwoargs\@removeelement\CurrentOption
+        \@unusedoptionlist\@unusedoptionlist
+    }%
+  }%
+  \edef\Hv@tempa{%
+    \noexpand\setkeys{#1}{%
+      \Hv@tempa\@ptionlist{\@currname.\@currext}%
+    }%
+  }%
+  \Hv@tempa
+  \let\CurrentOption\@empty
+}%
+\ProcessOptionsWithKV{Noga}%
+
+%%%%%%%%% dvipdfmx %%%%%%%%%%
+\ifdraft%
+\def\NAT@parse{\typeout{This is a fake Natbib command to fool Hyperref.}}%
+
+\RequirePackage[dvipdfm,
+	bookmarks=true,
+	bookmarksnumbered=true,
+	bookmarksopen=true,%
+	bookmarksopenlevel=4,%
+%	bookmarkstype=toc,
+	colorlinks=true,
+	linkcolor=black]{hyperref}
+\AtBeginDvi{\special{pdf:tounicode 90ms-RKSJ-UCS2}}%
+\fi%
+
+%%%%%%%%%% nogaref %%%%%%%%%%
+\ifdraft%
+\newcounter{nogacount}
+\setcounter{nogacount}{0}%
+\newcommand{\nogatarget}[2]{%
+	\refstepcounter{nogacount}%
+	\label{noga:#1}%
+	\pdfbookmark{A-\thenogacount}{A-\thenogacount}%
+	\textcolor{red}{\hypertarget{hnoga:#1}{#2}\footnotesize{%
+		$^{\textrm{(A--\thenogacount)}}$}}%
+}
+\definecolor{LightRed}{rgb}{1,0.6,0.6}
+\newcommand{\nogalink}[1]{
+	\ \colorbox{LightRed}{\hyperlink{hnoga:#1}{p.}\pageref{noga:#1}
+	\hyperlink{hnoga:#1}{--(A--}\ref{noga:#1}\hyperlink{hnoga:#1}{)}}}
+
+\newcounter{nogagcount}
+\setcounter{nogagcount}{0}%
+\newcommand{\nogagtarget}[2]{%
+	\refstepcounter{nogagcount}%
+	\label{nogag:#1}%
+	\pdfbookmark{B-\thenogagcount}{B-\thenogagcount}
+	\textcolor[named]{ForestGreen}{\hypertarget{hnogag:#1}{#2}\footnotesize{
+		$^{\textrm{(B--\thenogagcount)}}$}}%
+}
+\definecolor{LightGreen}{rgb}{0.6,1,0.7}
+\newcommand{\nogaglink}[1]{
+	\ \colorbox{LightGreen}{\hyperlink{hnogag:#1}{p.}\pageref{nogag:#1}\hyperlink{hnogag:#1}{--(B--}\ref{nogag:#1}\hyperlink{hnogag:#1}{)}}}
+
+\newcounter{nogabcount}
+\setcounter{nogabcount}{0}%
+\newcommand{\nogabtarget}[2]{%
+	\refstepcounter{nogabcount}%
+	\label{nogab:#1}%
+	\pdfbookmark{3-\thenogabcount}{3-\thenogabcount}
+	\textcolor{blue}{\hypertarget{hnogab:#1}{#2}\footnotesize{
+		$^{\textrm{(3--\thenogabcount)}}$}}%
+}
+\definecolor{LightBlue}{rgb}{0.6,0.6,1}
+\newcommand{\nogablink}[1]{
+	\ \colorbox{LightBlue}{\hyperlink{hnogab:#1}{p.}\pageref{nogab:#1}\hyperlink{hnogab:#1}{--(3--}\ref{nogab:#1}\hyperlink{hnogab:#1}{)}}}
+
+\newcounter{nogaycount}
+\setcounter{nogaycount}{0}%
+\newcommand{\nogaytarget}[2]{%
+	\refstepcounter{nogaycount}%
+	\label{nogay:#1}%
+	\pdfbookmark{4-\thenogaycount}{4-\thenogaycount}
+	\textcolor[named]{Dandelion}{\hypertarget{hnogay:#1}{#2}\footnotesize{
+		$^{\textrm{(4--\thenogaycount)}}$}}%
+}
+\definecolor{LightYellow}{rgb}{1,1,0.6}
+\newcommand{\nogaylink}[1]{
+	\ \colorbox{LightYellow}{\hyperlink{hnogay:#1}{p.}\pageref{nogay:#1}\hyperlink{hnogay:#1}{--(4--}\ref{nogay:#1}\hyperlink{hnogay:#1}{)}}}
+\else
+\newcommand{\nogatarget}[2]{#2}
+\newcommand{\nogagtarget}[2]{#2}
+\newcommand{\nogabtarget}[2]{#2}
+\newcommand{\nogaytarget}[2]{#2}
+\newcommand{\nogalink}[1]{}
+\newcommand{\nogaglink}[1]{}
+\newcommand{\nogablink}[1]{}
+\newcommand{\nogaylink}[1]{}
+\fi
+\AtEndOfPackage{%
+\let\@unprocessedoptions\relax%
+}%
+%%
+%% End of file `nogaref.sty'.

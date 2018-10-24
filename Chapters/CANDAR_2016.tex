@@ -158,7 +158,7 @@
         \subsection{$\FQEN$ extension field arithmetic}
         In pairing, arithmetic  operations are performed in higher degree extension fields, such as $\FQK$  for moderate value of $k$ \cite{Silverman}. Concequently, such higher extension field needs to be constructed as tower of extension fields \cite{const_ext} to perform arithmetic operation cost effectively.
         
-        This paper has  represented extension field $\FQEN$ as a tower of sub-field to improve arithmetic operations. It has also used irreducible binomials introduced by Bailey et al. \cite{OEF}. In what follows, this paper considers $3|(p-1)$ and $c$ is a quadratic and cubic non residue in $\Fp$. In context  of KSS-curve \cite{kss}, where $k=18$, $\FQEN$ is constructed as tower field with irreducible binomial as follows:
+        This paper has  represented extension field $\FQEN$ as a tower of sub-field to improve arithmetic operations. It has also used irreducible binomials introduced by Bailey et al. \cite{JC:BaiPaa01}. In what follows, this paper considers $3|(p-1)$ and $c$ is a quadratic and cubic non residue in $\Fp$. In context  of KSS-curve \cite{kss}, where $k=18$, $\FQEN$ is constructed as tower field with irreducible binomial as follows:
         \begin{equation}\label{eq:KSS_towering}
         \begin{cases}
         \F{p}{3} = \F{p}{}[i]/(i^3-c),  \\ 
@@ -168,7 +168,7 @@
         \end{equation}
         where $c = 2$ is considered to be the best choice for efficient arithmetic.
         From the above towering construction we can find that $i=v^2=\theta^6$, where $i$ is the basis element of the base extension field $\FQTH$. 
-        In the previous work of Aranha et al. \cite{aranha}, explained the base extension field $\FQTH$ for the \textit{sextic twist} of KSS curve.
+        In the previous work of Aranha et al. \cite{PAIRING:AFKMR12}, explained the base extension field $\FQTH$ for the \textit{sextic twist} of KSS curve.
         
         \subsection{\g1, \g2 and \g3 groups.} In the context of pairing-based cryptography, especially on KSS curve, three groups $\g1, \g2$ and $\mathbb{G}_3$ are considered. From \cite{mori}, we define $\g1$, $\g2$ and $\g3$ as follows:
         \begin{eqnarray}\label{eq:g1}

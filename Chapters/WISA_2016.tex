@@ -95,7 +95,7 @@ This paper focuses on efficiently performing scalar multiplication in $\g2$ by s
 By the way, as shown in the definition, $\g1$ is a set of rational points defined over prime field and there are many researches for efficient scalar multiplication in $\g1$.
 
 Scalar multiplication by $s$ means $(s-1)$ times elliptic additions of a given rational point on the elliptic curve. This elliptic addition is not as simple as addition of extension field, but it requires 3 multiplications plus an inversion of the extension field. General approaches to accelerate scalar multiplication are log-step algorithm such as binary and non-adjacent form (NAF) methods, but more efficient approach is to use Frobenius mapping in the case of $\g2$ that is defined over $\F{p}{k}$. Frobenious map $\pi : (x,y) \mapsto  (x^p,y^p)$ is the $p$-th power of the rational point $(x,y)$ defined over $\FQK$. 
-In this paper we also exploited the Frobenious trace $t$, $t = p+1- \#E(\FQ)$ defined over KSS curve. In the previous work on optimal-ate pairing, Aranha et al. \cite{aranha} derived an important relation: $z \equiv -3p + p^4 \bmod {r}$, where $z$ is the mother parameter of KSS curve and $z$ is about six times smaller than the size of order $r$. 
+In this paper we also exploited the Frobenious trace $t$, $t = p+1- \#E(\FQ)$ defined over KSS curve. In the previous work on optimal-ate pairing, Aranha et al. \cite{PAIRING:AFKMR12} derived an important relation: $z \equiv -3p + p^4 \bmod {r}$, where $z$ is the mother parameter of KSS curve and $z$ is about six times smaller than the size of order $r$. 
 We have utilized this relation to construct $z$-adic representation of scalar $s$ which is introduced in section 3. 
 In addition with Frobenius mapping and $z$-adic representation of $s$, we applied the multi-scalar multiplication technique to compute elliptic curve addition in parallel in the proposed scalar multiplication.
 We have compared our proposed method with three other well studied methods named binary method, sliding-window method and non-adjacent form method. The comparison shows that our proposed method is at least 3 times or more than 3 times faster than above mentioned methods in execution time. The comparison also reveals that the proposed method requires more than 5 times less elliptic curve doubling than any of the compared methods.
@@ -157,7 +157,7 @@ The order of rational points $\#E(\FQEN)$ on KSS curve can be obtained by the fo
 \#E(\FQEN) = p^{18}+1-t_{18},
 \end{equation}
 where $t_{18} = \alpha^{18}+\beta^{18}$ and $\alpha$, $\beta$ are complex numbers such that $\alpha+\beta = t$ and $\alpha\beta=p$.
-Since Aranha et al. \cite{aranha} and Scott et al. \cite{kss_param} has proposed the size of the characteristics $p$ to be 508 to 511-bit with order $r$ of 384-bit  for 192-bit security level, therefore this paper considered $p=511$-bit.
+Since Aranha et al. \cite{PAIRING:AFKMR12} and Scott et al. \cite{kss_param} has proposed the size of the characteristics $p$ to be 508 to 511-bit with order $r$ of 384-bit  for 192-bit security level, therefore this paper considered $p=511$-bit.
 
 \subsubsection{Frobenius mapping of rational point in  $E(\FQEN)$.}
 Let $(x,y)$ be the rational point in $E(\FQEN)$. 
@@ -166,7 +166,7 @@ Frobenious map $\pi_p : (x,y) \mapsto  (x^p,y^p)$ is the $p$-th power of the rat
 \subsection{$\FQEN$ extension field arithmetic}
 In context of pairing, it is required to perform arithmetic in higher extension fields, such as $\FQK$  for moderate value of $k$ \cite{Silverman}. Therefore it is important to construct the field as a tower of extension fields \cite{const_ext} to perform arithmetic operation efficiently. Higher level computations can be calculated as a function of lower level computations. Because of that an efficient implementation of lower level arithmetic results in the good performance of arithmetic in higher degree fields.
 
-In this paper extension field  $\FQEN$ is represented as a tower of sub field to improve arithmetic operations. In some previous works, shuch as Bailey et al. \cite{OEF} explained tower of extension by using irreducible binomials. In what follows, let $(p-1)$ is divisible by 3 and $\theta$ is a quadratic and cubic non residue in $\Fp$. Then for case of KSS-curve \cite{kss}, where $k=18$, $\FQEN$ is constructed as tower field with irreducible binomial as follows:
+In this paper extension field  $\FQEN$ is represented as a tower of sub field to improve arithmetic operations. In some previous works, shuch as Bailey et al. \cite{JC:BaiPaa01}  explained tower of extension by using irreducible binomials. In what follows, let $(p-1)$ is divisible by 3 and $\theta$ is a quadratic and cubic non residue in $\Fp$. Then for case of KSS-curve \cite{kss}, where $k=18$, $\FQEN$ is constructed as tower field with irreducible binomial as follows:
 \begin{equation}\label{eq:KSS_towering}
 \begin{cases}
 \F{p}{3} = \F{p}{}[i]/(i^3-\theta),  \text{where $\theta = 2$ is the best choice,}\nonumber \\ 
@@ -175,7 +175,7 @@ In this paper extension field  $\FQEN$ is represented as a tower of sub field to
 \end{cases}
 \end{equation}
 %Here $p$ needs to be prime and $p-1$ needs to be divisible by 4 and $c$ should be quadratic and cubic non residue over $\FQ$.
-According to previous work such as Aranha et al. \cite{aranha}, the base extension field is $\FQTH$ for the \textit{sextic twist} of KSS curve.
+According to previous work such as Aranha et al. \cite{PAIRING:AFKMR12}, the base extension field is $\FQTH$ for the \textit{sextic twist} of KSS curve.
 
 \section{Efficient scalar multiplication}
 In this section we will introduce our proposal for efficient scalar multiplication in $\g2$ rational point for Ate-based pairing on KSS curve. 
@@ -231,7 +231,7 @@ Thus, these relations can accelerate a scalar multiplication in $\g2$.
 Substituting $[p]Q$ in \eqref{eq:Q_rel1} we find $[t-1]Q = \pi_p(Q)$.
 
 \subsubsection{$z$-adic representation of scalar $s$.}
-From the previous work on optimal-ate pairing, Aranha et al. \cite{aranha} derived the following relation from parameters \eqref{eq:kss_char}, \eqref{eq:kss_degree}, \eqref{eq:kss_trace} of KSS curve.
+From the previous work on optimal-ate pairing, Aranha et al. \cite{PAIRING:AFKMR12} derived the following relation from parameters \eqref{eq:kss_char}, \eqref{eq:kss_degree}, \eqref{eq:kss_trace} of KSS curve.
 \begin{equation}\label{eq:aranha_relation}
 z+3p-p^4 \equiv 0 \bmod {r}.
 \end{equation}

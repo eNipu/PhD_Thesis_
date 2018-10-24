@@ -23,8 +23,11 @@ headsepline, % Uncomment to get a line under the header
 %\usepackage{mathpazo} % Use the Palatino font by default
 \usepackage[libertine,cmintegrals,cmbraces,vvarbb]{newtxmath}
 \usepackage[scaled=0.95]{inconsolata}
-\usepackage[backend=bibtex,style=authoryear,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
-\addbibresource{example.bib} % The filename of the bibliography
+%\usepackage[backend=bibtex,style=authoryear,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+\usepackage[backend=bibtex]{biblatex} 
+\addbibresource{cryptobib/abbrev3.bib} % The filename of the bibliography
+\addbibresource{cryptobib/crypto.bib}
+\addbibresource{custombib/journal_ref.bib}
 
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
 \usepackage{amsmath}
@@ -40,16 +43,16 @@ headsepline, % Uncomment to get a line under the header
 \usepackage{eepic}
 %\usepackage{algorithm}
 %\usepackage{algorithmic}
-\usepackage{ascmac,eclbkbox}
+\usepackage{ascmac,styleFiles/eclbkbox}
 \usepackage{amscd}
 \usepackage{geometry}
-\usepackage[final]{nogamacro}
-\usepackage[final]{nogaref}
+\usepackage[final]{styleFiles/nogamacro}
+\usepackage[final]{styleFiles/nogaref}
 \usepackage[ruled,vlined]{algorithm2e}
 \usepackage[makeroom]{cancel}
 \usepackage{romannum}
 \usepackage{tabularx, booktabs}
-\usepackage{manyeqns}
+\usepackage{styleFiles/manyeqns}
 %\usepackage{MinionPro}
 %----------------------------------------------------------------------------------------
 %	MARGIN SETTINGS
@@ -365,6 +368,7 @@ And my wife \textit{Shama} who sacrificed most during this Ph.D. journey}
 %----------------------------------------------------------------------------------------
 
 \printbibliography[heading=bibintoc]
+%\bibliography{cryptobib/abbrev3,cryptobib/crypto}
 \addcontentsline{toc}{chapter}{Biography}
 \include{Chapters/Biography} 
 %----------------------------------------------------------------------------------------

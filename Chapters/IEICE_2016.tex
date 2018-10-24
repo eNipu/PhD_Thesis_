@@ -38,7 +38,7 @@ By the way, as shown in the definition, $\g1$ is a set of rational points define
 The common approach to accelerate scalar multiplication are log-step algorithm such as binary and non-adjacent form (NAF) methods, but more efficient approach is to use Frobenius mapping in the case of $\g2$ that is defined over $\F{p}{k}$.
 Moreover when sextic twist of the pairing friendly curve exists, then we apply skew Frobenius map on the isomorphic sextic-twisted sub-field rational points. Such technique will reduce the computational cost in a great extent.
 In this paper we have exploited the sextic twisted property of KSS curve and utilized skew Frobenius map to reduce the computational time of scalar multiplication on $\g2$ rational point. 
-Utilizing the relation $z \equiv -3p + p^4 \bmod {r}$,\footnote{$z$ is the mother parameter of KSS curve and $z$ is about six times smaller than the size of order $r$.} derived by Aranha et al,\cite{aranha} and the properties of $\g2$ rational point, the scalar can be expressed as $z$-adic representation.
+Utilizing the relation $z \equiv -3p + p^4 \bmod {r}$,\footnote{$z$ is the mother parameter of KSS curve and $z$ is about six times smaller than the size of order $r$.} derived by Aranha et al,\cite{PAIRING:AFKMR12} and the properties of $\g2$ rational point, the scalar can be expressed as $z$-adic representation.
 Together with skew Frobenius mapping and $z$-adic representation the scalar multiplication can be further accelerated.  
 We have utilized this relation to construct $z$-adic representation of scalar $s$ which is introduced in section 3. 
 In addition with Frobenius mapping and $z$-adic representation of $s$, we applied the multi-scalar multiplication technique to compute elliptic curve addition in parallel in the proposed scalar multiplication.
@@ -111,11 +111,11 @@ t(z) &=& (z^4 + 16z + 7)/7, \label{eq:kss_trace}
 \end{subequations} 
 where $z$ is such that $z \equiv 14$ (mod $42$) and the $\rho$ value is $\rho = (\log_2 p/\log_2 r) \approx 1.33$.
 
-In some previous work of  Aranha et al. \cite{aranha} and Scott et al. \cite{kss_param} has mentioned that the size of the characteristics $p$ to be 508 to 511-bit with order $r$ of 384-bit  for 192-bit security level.  
-Therefore this paper used parameter settings according to the suggestion of \cite{aranha} for 192 bit security on KSS curve in the simulation implementation. In the recent work, Kim et al. \cite{kim_ecdlp} has suggested to update the key sizes in pairing-based cryptography due to the  development of new discrete logarithm problem over finite field. The parameter settings used in this paper doesn't completely end up at the 192 bit security level according to \cite{kim_ecdlp}. However the parameter settings used in this paper in order to show the resemblance of the proposal with the experimental result.
+In some previous work of  Aranha et al. \cite{PAIRING:AFKMR12} and Scott et al. \cite{kss_param} has mentioned that the size of the characteristics $p$ to be 508 to 511-bit with order $r$ of 384-bit  for 192-bit security level.  
+Therefore this paper used parameter settings according to the suggestion of \cite{PAIRING:AFKMR12} for 192 bit security on KSS curve in the simulation implementation. In the recent work, Kim et al. \cite{kim_ecdlp} has suggested to update the key sizes in pairing-based cryptography due to the  development of new discrete logarithm problem over finite field. The parameter settings used in this paper doesn't completely end up at the 192 bit security level according to \cite{kim_ecdlp}. However the parameter settings used in this paper in order to show the resemblance of the proposal with the experimental result.
 
 \subsection{$\FQEN$ extension field arithmetic}
-Pairing based cryptography requires to perform arithmetic operation in extension fields of degree $k \geq 6$\cite{Silverman}. In the previous works of Bailey et al. \cite{OEF} explained optimal extension field by towering by using irreducible binomials.  In this paper extension field  $\FQEN$ is represented as a tower of sub field to improve arithmetic operations. 
+Pairing based cryptography requires to perform arithmetic operation in extension fields of degree $k \geq 6$\cite{Silverman}. In the previous works of Bailey et al. \cite{JC:BaiPaa01}  explained optimal extension field by towering by using irreducible binomials.  In this paper extension field  $\FQEN$ is represented as a tower of sub field to improve arithmetic operations. 
 
 Let $(p-1)$ is divisible by 3 and $c$ is a quadratic and cubic non residue in $\Fp$. In KSS curve \cite{kss}, where $k=18$, $\FQEN$ is constructed  with irreducible binomials by the following towering scheme.
 \begin{equation}
@@ -252,7 +252,7 @@ Figure \ref{fig:z_adicl} shows the  $z$-adic representation of scalar $s$.
 \caption{$z$-adic and $(t-1)$-adic representation of scalar $s$.}
 \label{fig:z_adicl}
 \end{figure}
-In the previous work on optimal-ate pairing, Aranha et al. \cite{aranha} derived a relation from the parameter setting of KSS curve as follows:
+In the previous work on optimal-ate pairing, Aranha et al. \cite{PAIRING:AFKMR12} derived a relation from the parameter setting of KSS curve as follows:
 \begin{equation}\label{eq:aranha_relation}
 z+3p-p^4 \equiv 0 \bmod {r},
 \end{equation}

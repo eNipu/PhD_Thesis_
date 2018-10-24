@@ -856,7 +856,7 @@ From \tbref{tbl:bn_miller_input}, $\G_A$ of Ate pairing becomes $\G_2\!\subset\!
 Therefore, Ate pairing is slower than {\it twisted} Ate pairing though Ate pairing has a smaller Miller loop length than {\it twisted} Ate pairing.
 
 Focusing on this point, Devegili et al. \cite{Devegili} and Akane et al.\cite{CSS2} have improved Ate pairing with BN curve by using subfield-twisted elliptic curve $E'(\F{p}{2})$.
-Using the sextic twist technique, since an isomorphic group of $\mathbb{G}_2$ exists in $E'(\F{p}{2})$, Devegili et al. efficiently used $\G_2'\subset E'(\F{p}{2})$ in place of $\mathbb{G}_2$ and OEF technique \cite{OEF}.  Akane et al. have also improved Ate pairing so as to substantially use subfield arithmetic operations \cite{CSS2}. 
+Using the sextic twist technique, since an isomorphic group of $\mathbb{G}_2$ exists in $E'(\F{p}{2})$, Devegili et al. efficiently used $\G_2'\subset E'(\F{p}{2})$ in place of $\mathbb{G}_2$ and OEF technique \cite{JC:BaiPaa01} .  Akane et al. have also improved Ate pairing so as to substantially use subfield arithmetic operations \cite{CSS2}. 
 In what follows, it is called cross-twisted technique. Cross-twisted technique \cite{CSS2} efficiently uses not only $Q'\in E'(\F{p}{2})[r]$ but also $P'\in E'(\F{p}{12})[r]$, where $P'$ is given by $\psi^{-1}$ from $P\in E(\F{p}{})$. \fgref{fig:twist_point_relation} shows a relation between rational points $P,\ Q,\ P'$, and $Q'$ on elliptic curve $E(\F{p}{k})$ and its twisted curve $E'(\F{p}{k})$. 
 
 Using subfield-twisted elliptic curve, MDBL and MADD in Miller's algorithm of Ate pairing becomes slightly slower than that of {\it twisted} Ate pairing because the calculation for $\G_A$ in Miller's algorithm of Ate pairing can be executed in $E(\F{p}{2})$.

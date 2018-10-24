@@ -20,7 +20,9 @@ headsepline, % Uncomment to get a line under the header
 
 \usepackage[utf8]{inputenc} % Required for inputting international characters
 \usepackage[T1]{fontenc} % Output font encoding for international characters
-\usepackage{mathpazo} % Use the Palatino font by default
+%\usepackage{mathpazo} % Use the Palatino font by default
+\usepackage[libertine,cmintegrals,cmbraces,vvarbb]{newtxmath}
+\usepackage[scaled=0.95]{inconsolata}
 \usepackage[backend=bibtex,style=authoryear,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
 \addbibresource{example.bib} % The filename of the bibliography
 
@@ -36,13 +38,19 @@ headsepline, % Uncomment to get a line under the header
 \usepackage[abs]{overpic}
 \usepackage{multirow}
 \usepackage{eepic}
-\usepackage{algorithm}
-\usepackage{algorithmic}
+%\usepackage{algorithm}
+%\usepackage{algorithmic}
 \usepackage{ascmac,eclbkbox}
 \usepackage{amscd}
 \usepackage{geometry}
 \usepackage[final]{nogamacro}
 \usepackage[final]{nogaref}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage[makeroom]{cancel}
+\usepackage{romannum}
+\usepackage{tabularx, booktabs}
+\usepackage{manyeqns}
+%\usepackage{MinionPro}
 %----------------------------------------------------------------------------------------
 %	MARGIN SETTINGS
 %----------------------------------------------------------------------------------------
@@ -94,6 +102,45 @@ headsepline, % Uncomment to get a line under the header
 \newcommand{\esa}{&\es = &\es}
 \def\sp{\vspace{3pt}}
 \newcommand\Inf{\mathcal{O}}
+\newcommand{\FQ}{\mathbb{F}_p}
+\newcommand{\EFQ}{E(\mathbb{F}_q)}
+\newcommand{\EFP}{E(\mathbb{F}_p)}
+\newcommand{\SEFQ}{\#E(\mathbb{F}_q)}
+\newcommand{\SEFP}{\#E(\mathbb{F}_p)}
+\newcommand{\FQK}{\mathbb{F}_{p^k}}
+\newcommand{\FQTH}{\mathbb{F}_{p^3}}
+\newcommand{\FQTHTW}{\mathbb{F}_{(p^3)^2}}
+\newcommand{\FQTHTWTH}{\mathbb{F}_{((p^3)^2)^3}}
+\newcommand{\FQSX}{\mathbb{F}_{p^6}}
+\newcommand{\FQTV}{\mathbb{F}_{p^{12}}}
+\newcommand{\FQEN}{\mathbb{F}_{p^{18}}}
+\newcommand{\GT}{\mathbb{G}_T}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+\newcommand\Fpiii{\ensuremath{\mathbb{F}_{p^{3}}}}
+\newcommand\Fpvi{\ensuremath{\mathbb{F}_{p^{6}}}}
+\newcommand\Fpxviii{\ensuremath{\mathbb{F}_{p^{18}}}}
+\newcommand{\G}[1]{\mathbb{G}_{#1}}
+\newcommand{\Fpk}{\mathbb{F}_{p^k}}
+%\newcommand{\EFp}[1]{E(\mathbb{F}_{p^{#1}})}
+%\newcommand{\FQ}{\mathbb{F}_p}
+%\newcommand{\EFQ}{E(\mathbb{F}_p)}
+%\newcommand{\EFP}{E(\mathbb{F}_p)}
+%\newcommand{\SEFQ}{\#E(\mathbb{F}_p)}
+%\newcommand{\SEFP}{\#E(\mathbb{F}_p)}
+%\newcommand{\FQK}{\mathbb{F}_{p^k}}
+%\newcommand{\FQTH}{\mathbb{F}_{p^3}}
+%\newcommand{\FQTHTW}{\mathbb{F}_{(p^3)^2}}
+%\newcommand{\FQTHTWTH}{\mathbb{F}_{((p^3)^2)^3}}
+%\newcommand{\FQSX}{\mathbb{F}_{p^6}}
+%\newcommand{\FQTV}{\mathbb{F}_{p^{12}}}
+%\newcommand{\FQEN}{\mathbb{F}_{p^{18}}}
+%\newcommand{\GT}{\mathbb{G}_T}
+
+\makeatletter
+\newcommand{\extraPartText}[1]{\def\@extraPartText{#1}}
+\pretocmd{\@endpart}{\vspace{8ex}\begingroup\centering\@extraPartText\par\endgroup\let\@extraPartText\relax}{}{}
+\makeatother
 
 \begin{document}
 
@@ -147,20 +194,31 @@ headsepline, % Uncomment to get a line under the header
 %----------------------------------------------------------------------------------------
 
 \begin{declaration}
+	
 \addchaptertocentry{\authorshipname} % Add the declaration to the table of contents
-\noindent I, \authorname, declare that this thesis titled, \enquote{\ttitle} and the work presented in it are my own. I confirm that:
+\noindent This dissertation and the work presented here for doctoral studies were conducted under the supervision of Professor Yasuyuki Nogami.
+ I, \authorname, declare that this thesis titled, \enquote{\ttitle} and the work presented in it are my own. I confirm that:
 
 \begin{itemize} 
-\item This work was done wholly or mainly while in candidature for a research degree at this University.
-\item Where any part of this thesis has previously been submitted for a degree or any other qualification at this University or any other institution, this has been clearly stated.
-\item Where I have consulted the published work of others, this is always clearly attributed.
-\item Where I have quoted from the work of others, the source is always given. With the exception of such quotations, this thesis is entirely my own work.
-\item I have acknowledged all main sources of help.
-\item Where the thesis is based on work done by myself jointly with others, I have made clear exactly what was done by others and what I have contributed myself.\\
+\item 
+%This work was done wholly or mainly while in candidature for a research degree at this University.
+The work presented in this thesis is the result of original research carried out by myself, in collaboration with others, while enrolled in the Faculty of Engineering of Okayama University as a candidate for the degree of Doctor of Philosophy.
+
+\item This work has not been submitted for a degree or any other qualification at this University or any other institution. 
+ 
+\item  Some of the work presented in this thesis was previously published is listed in ``Research Activity'' \ref{research_activity}.
+
+\item The published work of others cited in this thesis is clearly attributed.
+%\item Where I have quoted from the work of others, the source is always given. With the exception of such quotations, this thesis is entirely my own work.
+\item I have acknowledged all main sources of help to pursue this work.
+%\item Where the thesis is based on work done by myself jointly with others, I have made clear exactly what was done by others and what I have contributed myself.
+ \item In all works all my coauthors contributed equally. 
+ \item The experiments and results presented in this thesis and in the articles where I am the first author were conducted by myself.\\
 \end{itemize}
  
-\noindent Signed:\\
-\rule[0.5em]{25em}{0.5pt} % This prints a line for the signature
+\noindent Signed:\\ 
+\rule[0.5em]{25em}{0.5pt}
+ % This prints a line for the signature\authorname
  
 \noindent Date:\\
 \rule[0.5em]{25em}{0.5pt} % This prints a line to write the date
@@ -174,9 +232,10 @@ headsepline, % Uncomment to get a line under the header
 
 \vspace*{0.2\textheight}
 
-\noindent\enquote{\itshape Thanks to my solid academic training, today I can write hundreds of words on virtually any topic without possessing a shred of information, which is how I got a good job in journalism.}\bigbreak
+\noindent\enquote{\itshape If we knew what it was we were doing, it would not be called research, would it?
+}\bigbreak
 
-\hfill Dave Barry
+\hfill Albert Einstein
 
 %----------------------------------------------------------------------------------------
 %	ABSTRACT PAGE
@@ -193,7 +252,8 @@ The Thesis Abstract is written here (and usually kept to just this page). The pa
 
 \begin{acknowledgements}
 \addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
-The acknowledgments and the people to thank go here, don't forget to include your project advisor\ldots
+\input{Chapters/Acknowledgements}
+%The acknowledgments and the people to thank go here, don't forget to include your project advisor\ldots
 \end{acknowledgements}
 
 %----------------------------------------------------------------------------------------
@@ -221,28 +281,24 @@ The acknowledgments and the people to thank go here, don't forget to include you
 %	PHYSICAL CONSTANTS/OTHER DEFINITIONS
 %----------------------------------------------------------------------------------------
 
-\begin{constants}{lr@{${}={}$}l} % The list of physical constants is a three column table
-
+%\begin{constants}{lr@{${}={}$}l} % The list of physical constants is a three column table
 % The \SI{}{} command is provided by the siunitx package, see its documentation for instructions on how to use it
-
-Speed of Light & $c_{0}$ & \SI{2.99792458e8}{\meter\per\second} (exact)\\
+%Speed of Light & $c_{0}$ & \SI{2.99792458e8}{\meter\per\second} (exact)\\
 %Constant Name & $Symbol$ & $Constant Value$ with units\\
-
-\end{constants}
+%\end{constants}
 
 %----------------------------------------------------------------------------------------
 %	SYMBOLS
 %----------------------------------------------------------------------------------------
 
 \begin{symbols}{lll} % Include a list of Symbols (a three column table)
-
-$a$ & distance & \si{\meter} \\
-$P$ & power & \si{\watt} (\si{\joule\per\second}) \\
+\input{Symbols.tex}
+%%$P$ & power & \si{\watt} (\si{\joule\per\second}) \\
 %Symbol & Name & Unit \\
 
-\addlinespace % Gap to separate the Roman symbols from the Greek
+%\addlinespace % Gap to separate the Roman symbols from the Greek
 
-$\omega$ & angular frequency & \si{\radian} \\
+%$\omega$ & angular frequency & \si{\radian} \\
 
 \end{symbols}
 
@@ -250,7 +306,10 @@ $\omega$ & angular frequency & \si{\radian} \\
 %	DEDICATION
 %----------------------------------------------------------------------------------------
 
-\dedicatory{For/Dedicated to/To my\ldots} 
+\dedicatory{
+	Dedicated to two ladies I owe most. 
+My mother who brought me to this world.
+And my wife \textit{Shama} who sacrificed most during this Ph.D. journey} 
 
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - CHAPTERS
@@ -259,15 +318,32 @@ $\omega$ & angular frequency & \si{\radian} \\
 \mainmatter % Begin numeric (1,2,3...) page numbering
 
 \pagestyle{thesis} % Return the page headers back to the "thesis" style
-
+%\addcontentsline{toc}{chapter}{Research Activities}
+\addchaptertocentry{Research Activities}
+\include{Chapters/ResearchActivity} 
+%\addchaptertocentry
 % Include the chapters of the thesis as separate files from the Chapters folder
 % Uncomment the lines as you write the chapters
 
-\include{Chapters/Chapter1}
-\include{Chapters/Chapter2} 
+%\part{ Group Ring Fields}[Hello there...]
+%\extraPartText{Always be friendly to ducks, capybaras and wombats.}
+%\part{Overall Organization}
+%\include{Chapters/Chapter1}
 
-\include{Chapters/ICCE_TW_16}
-%\include{Chapters/Chapter4} 
+%\extraPartText{Always be friendly to ducks, capybaras and wombats.}
+%\part{Basic Math}
+%\include{Chapters/Chapter2} 
+%\part{Works}
+\chapter{ICCE-TW 2016} 
+\input{Chapters/ICCE_TW_16}
+\chapter{WISA 2016} 
+\input{Chapters/WISA_2016} 
+\chapter{IEICE 2016} 
+\input{Chapters/IEICE_2016} 
+\chapter{CANDAR 2016} 
+\input{Chapters/CANDAR_2016} 
+\chapter{ICISC 2016} 
+\input{Chapters/ICISC_2016} 
 %\include{Chapters/Chapter5} 
 
 
@@ -289,9 +365,6 @@ $\omega$ & angular frequency & \si{\radian} \\
 %----------------------------------------------------------------------------------------
 
 \printbibliography[heading=bibintoc]
-
-\addcontentsline{toc}{chapter}{Research Activities}
-\include{Chapters/ResearchActivity} 
 \addcontentsline{toc}{chapter}{Biography}
 \include{Chapters/Biography} 
 %----------------------------------------------------------------------------------------

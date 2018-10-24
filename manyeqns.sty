@@ -1,0 +1,37 @@
+% MANYEQNS environment - centering version:  T. Iwakuma 2/14/1991
+%    modification of eqnarray to set equation numbers like (3-a)...
+
+\@definecounter{whichequation}
+\def\themanyeqn{\theequation-\alph{whichequation}}
+\def\@manyeqnnum{{\rm (\themanyeqn)}}
+
+\def\manyeqns{\stepcounter{equation}\let\@currentlabel=\themanyeqn
+ \setcounter{whichequation}{1}
+\global\@eqnswtrue
+\global\@eqcnt\z@\tabskip\@centering\let\\=\@manyeqncr
+$$\halign to \displaywidth\bgroup\@eqnsel\hskip\@centering
+  $\displaystyle\tabskip\z@
+ \let\@currentlabel=\theequation
+  {##}$&\global\@eqcnt\@ne
+  \hskip 2\arraycolsep \hfil${##}$\hfil
+  &\global\@eqcnt\tw@ \hskip 2\arraycolsep $\displaystyle\tabskip\z@{##}$\hfil
+   \tabskip\@centering&\llap{##}\tabskip\z@\cr}
+
+\def\endmanyeqns{\@@manyeqncr\egroup
+    \global\advance\c@equation\m@ne$$\global\@ignoretrue
+%            Note: always increment "equation" at MANYEQNS environment
+    \stepcounter{equation}}
+
+\def\@manyeqncr{{\ifnum0=`}\fi\@ifstar{\global\@eqpen\@M
+    \@ymanyeqncr}{\global\@eqpen\interdisplaylinepenalty \@ymanyeqncr}}
+
+\def\@ymanyeqncr{\@ifnextchar [{\@xmanyeqncr}{\@xmanyeqncr[\z@]}}
+
+\def\@xmanyeqncr[#1]{\ifnum0=`{\fi}\@@manyeqncr
+   \noalign{\penalty\@eqpen\vskip\jot\vskip #1\relax}}
+
+\def\@@manyeqncr{\let\@tempa\relax
+    \ifcase\@eqcnt \def\@tempa{& & &}\or \def\@tempa{& &}
+      \else \def\@tempa{&}\fi
+ \@tempa \if@eqnsw\@manyeqnnum\stepcounter{whichequation}\fi
+     \global\@eqnswtrue\global\@eqcnt\z@\cr}

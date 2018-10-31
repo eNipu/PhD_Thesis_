@@ -28,6 +28,7 @@ headsepline, % Uncomment to get a line under the header
 \addbibresource{cryptobib/abbrev3.bib} % The filename of the bibliography
 \addbibresource{cryptobib/crypto.bib}
 \addbibresource{custombib/journal_ref.bib}
+\addbibresource{custombib/thesis_bib.bib}
 
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
 \usepackage{amsmath}
@@ -53,6 +54,7 @@ headsepline, % Uncomment to get a line under the header
 \usepackage{romannum}
 \usepackage{tabularx, booktabs}
 \usepackage{styleFiles/manyeqns}
+\usepackage{path}
 %\usepackage{MinionPro}
 %----------------------------------------------------------------------------------------
 %	MARGIN SETTINGS
@@ -126,19 +128,42 @@ headsepline, % Uncomment to get a line under the header
 \newcommand{\G}[1]{\mathbb{G}_{#1}}
 \newcommand{\Fpk}{\mathbb{F}_{p^k}}
 %\newcommand{\EFp}[1]{E(\mathbb{F}_{p^{#1}})}
-%\newcommand{\FQ}{\mathbb{F}_p}
-%\newcommand{\EFQ}{E(\mathbb{F}_p)}
-%\newcommand{\EFP}{E(\mathbb{F}_p)}
-%\newcommand{\SEFQ}{\#E(\mathbb{F}_p)}
-%\newcommand{\SEFP}{\#E(\mathbb{F}_p)}
-%\newcommand{\FQK}{\mathbb{F}_{p^k}}
-%\newcommand{\FQTH}{\mathbb{F}_{p^3}}
-%\newcommand{\FQTHTW}{\mathbb{F}_{(p^3)^2}}
-%\newcommand{\FQTHTWTH}{\mathbb{F}_{((p^3)^2)^3}}
-%\newcommand{\FQSX}{\mathbb{F}_{p^6}}
-%\newcommand{\FQTV}{\mathbb{F}_{p^{12}}}
-%\newcommand{\FQEN}{\mathbb{F}_{p^{18}}}
-%\newcommand{\GT}{\mathbb{G}_T}
+\newcommand{\FP}{\mathbb{F}_p}
+\newcommand{\FPK}{\mathbb{F}_{p^k}}
+\newcommand{\FPKD}{\mathbb{F}_{p^{k/d}}}
+\newcommand{\FPTH}{\mathbb{F}_{p^3}}
+\newcommand{\FPTHTW}{\mathbb{F}_{(p^3)^2}}
+\newcommand{\FPTHTWTH}{\mathbb{F}_{((p^3)^2)^3}}
+\newcommand{\FPSX}{\mathbb{F}_{p^6}}
+\newcommand{\FPTV}{\mathbb{F}_{p^{12}}}
+\newcommand{\FPEN}{\mathbb{F}_{p^{18}}}
+
+\newcommand\Fpii{\ensuremath{\mathbb{F}_{p^{2}}}}
+\newcommand\Fpxii{\ensuremath{\mathbb{F}_{p^{12}}}}
+
+\newcommand{\FPT}{\mathbb{F}_{p^2}}
+\newcommand{\FPTT}{\mathbb{F}_{(p^2)^2}}
+\newcommand{\FPTTT}{\mathbb{F}_{((p^2)^2)^2}}
+\newcommand{\FPTTTT}{\mathbb{F}_{(((p^2)^2)^2)^2}}
+\newcommand{\FPFR}{\mathbb{F}_{p^4}}
+\newcommand{\FPFRTT}{\mathbb{F}_{((p^4)^2)^2}}
+\newcommand{\FPET}{\mathbb{F}_{p^{8}}}
+\newcommand{\FPSN}{\mathbb{F}_{p^{16}}}
+\newcommand{\PESM}{\textit{pseudo 8-sparse multiplication}}%
+\SetKwComment{Comment}{$\triangleright$ (}{)}
+\newcommand\blfootnote[1]{%
+	\begingroup
+	\renewcommand\thefootnote{}\footnote{#1}%
+	\addtocounter{footnote}{-1}%
+	\endgroup
+}
+\definecolor{orcidlogocol}{HTML}{A6CE39}
+%\newcommand{\G3}{\mathbb{G}_3}
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+\urldef{\footurl}\url{https://github.com/eNipu/candar_glv.git}
+\newtheorem{prop}{Proposition}[section]
+
+%%---------------------------------------------_Custom command end---------------------------------
 
 \makeatletter
 \newcommand{\extraPartText}[1]{\def\@extraPartText{#1}}
@@ -345,8 +370,21 @@ And my wife \textit{Shama} who sacrificed most during this Ph.D. journey}
 \input{Chapters/IEICE_2016} 
 \chapter{CANDAR 2016} 
 \input{Chapters/CANDAR_2016} 
+\chapter{IJNC 2016}
+\input{Chapters/IJNC_2016}
 \chapter{ICISC 2016} 
 \input{Chapters/ICISC_2016} 
+\chapter{ICCIT 2016} 
+\input{Chapters/ICCIT_2016}
+\chapter{INDOCRYPT 2017} 
+\input{Chapters/IndoCrypt_OptAte_2017}
+\chapter{INDOCRYPT Revisited Joournal 2017} 
+\input{Chapters/CVMA_Indo} 
+\chapter{CSS 2017} 
+\input{Chapters/CSS_2017} 
+\chapter{ITC CSCC 2017} 
+\input{Chapters/ITC_CSCC_2017} 
+
 %\include{Chapters/Chapter5} 
 
 
@@ -354,12 +392,12 @@ And my wife \textit{Shama} who sacrificed most during this Ph.D. journey}
 %	THESIS CONTENT - APPENDICES
 %----------------------------------------------------------------------------------------
 
-\appendix % Cue to tell LaTeX that the following "chapters" are Appendices
+%\appendix % Cue to tell LaTeX that the following "chapters" are Appendices
 
 % Include the appendices of the thesis as separate files from the Appendices folder
 % Uncomment the lines as you write the Appendices
-
-\include{Appendices/AppendixA}
+\chapter{IJNC 2016 Parameter Set}
+\include{Appendices/Appendix_IJNC2016}
 %\include{Appendices/AppendixB}
 %\include{Appendices/AppendixC}
 

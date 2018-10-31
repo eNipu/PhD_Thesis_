@@ -855,7 +855,7 @@ For example, \tbref{tbl:bn_miller_input} shows the parameter settings for Miller
 From \tbref{tbl:bn_miller_input}, $\G_A$ of Ate pairing becomes $\G_2\!\subset\! E(\F{p}{12})$ and that of {\it twisted} Ate pairing becomes $\mathbb{G}_1 \!\subseteq \!E(\F{p}{})$.
 Therefore, Ate pairing is slower than {\it twisted} Ate pairing though Ate pairing has a smaller Miller loop length than {\it twisted} Ate pairing.
 
-Focusing on this point, Devegili et al. \cite{Devegili} and Akane et al.\cite{CSS2} have improved Ate pairing with BN curve by using subfield-twisted elliptic curve $E'(\F{p}{2})$.
+Focusing on this point, Devegili et al. \cite{PAIRING:DevScoDah07} and Akane et al.\cite{CSS2} have improved Ate pairing with BN curve by using subfield-twisted elliptic curve $E'(\F{p}{2})$.
 Using the sextic twist technique, since an isomorphic group of $\mathbb{G}_2$ exists in $E'(\F{p}{2})$, Devegili et al. efficiently used $\G_2'\subset E'(\F{p}{2})$ in place of $\mathbb{G}_2$ and OEF technique \cite{JC:BaiPaa01} .  Akane et al. have also improved Ate pairing so as to substantially use subfield arithmetic operations \cite{CSS2}. 
 In what follows, it is called cross-twisted technique. Cross-twisted technique \cite{CSS2} efficiently uses not only $Q'\in E'(\F{p}{2})[r]$ but also $P'\in E'(\F{p}{12})[r]$, where $P'$ is given by $\psi^{-1}$ from $P\in E(\F{p}{})$. \fgref{fig:twist_point_relation} shows a relation between rational points $P,\ Q,\ P'$, and $Q'$ on elliptic curve $E(\F{p}{k})$ and its twisted curve $E'(\F{p}{k})$. 
 
@@ -976,7 +976,7 @@ pairing & $s$ & \ \ $\G_A$\ \  & \ \ $\G_B$\ \  \\ \hline
 Tate & $36\chi^4-36\chi^3+18\chi^2-6\chi+1$ & $E(\F{p}{})$ & $E(\F{p}{12})$ \\ \hline
 Twisted Ate \cite{TAte}, \cite{tAteX} & \ \ $36\chi^3-18\chi^2+6\chi-1$\ \  & $E(\F{p}{})$ & $E(\F{p}{12})$ \\ \hline
 Ate & $6\chi^2$ & $E(\F{p}{12})$ & $E(\F{p}{})$ \\ \hline
-Devegili et al.'s Ate \cite{Devegili} & $6\chi^2$ & $E'(\F{p}{2})$ & $E(\F{p}{})$ \\ \hline
+Devegili et al.'s Ate \cite{PAIRING:DevScoDah07} & $6\chi^2$ & $E'(\F{p}{2})$ & $E(\F{p}{})$ \\ \hline
 \ISTA\ \cite{CSS2} & $6\chi^2$ & $E'(\F{p}{2})$ & \com{$E'(\F{p}{12})$} \\ \hline
 %\multicolumn{4}{l}{$^{\dagger}$\ $d$ is the twist degree such as $d=2,3,4,6$.}
 \end{tabular}\label{tbl:bn_miller_input}

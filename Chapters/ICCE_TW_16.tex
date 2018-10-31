@@ -11,14 +11,14 @@ In elliptic curve cryptography (ECC), a scalar multiplication for rational point
 % \end{equation}
 % where $4a^3 + 27b^2 \neq 0$. 
 In cryptography research, elliptic curve cryptography (ECC) has gained a wide acceptance due to its smaller key size and greater security. 
-In ECC, scalar multiplication (SM) is carried out at the encryption and decryption phases. SM is the major operation in ECC. Let us denote a scalar and rational point by  $s$ and $P$, respectively. Then, the SM is denoted by $[s]P$. In real cases $s$ is significantly large number less than the order of rational point group. Since SM needs a complicated calculation over the definition field such as prime field, an efficient algorithm for SM is needed. Recently, ECC defined over extension field $\F{q}{2}$ with a large prime number $p$ such as more than $2000$ bits is used in some ECC based protocols. On the other hand, pairing based cryptography realizes some innovative application protocol. Pairing based cryptography requires pairing friendly curve which is difficult to generate. Barreto-Naehrig (BN) \cite{SAC:BarNae05} curve is one of the well known pairing friendly curve\cite{BN_def} whose parameters are able to be systematically given. BN curve is mostly used due to its efficiency to realize pairing based cryptography. Thus, this paper proposes an efficient approach for calculating SM on BN curve particularly defined over extension field $\F{q}{2}$, where $q=p^6$ and $p$ is a prime number by using Frobenious Mapping (FM) for the rational points.
+In ECC, scalar multiplication (SM) is carried out at the encryption and decryption phases. SM is the major operation in ECC. Let us denote a scalar and rational point by  $s$ and $P$, respectively. Then, the SM is denoted by $[s]P$. In real cases $s$ is significantly large number less than the order of rational point group. Since SM needs a complicated calculation over the definition field such as prime field, an efficient algorithm for SM is needed. Recently, ECC defined over extension field $\F{q}{2}$ with a large prime number $p$ such as more than $2000$ bits is used in some ECC based protocols. On the other hand, pairing based cryptography realizes some innovative application protocol. Pairing based cryptography requires pairing friendly curve which is difficult to generate. Barreto-Naehrig (BN) \cite{SAC:BarNae05} curve is one of the well known pairing friendly curve\cite{EPRINT:FreScoTes06} whose parameters are able to be systematically given. BN curve is mostly used due to its efficiency to realize pairing based cryptography. Thus, this paper proposes an efficient approach for calculating SM on BN curve particularly defined over extension field $\F{q}{2}$, where $q=p^6$ and $p$ is a prime number by using Frobenious Mapping (FM) for the rational points.
  
 \section{Preliminaries}
 This section briefly discusses the fundamental arithmetic operations required for elliptic curve cryptography defined over prime field $\Fp$ and its extension field $\F{q}{2}$. In addition, this paper focuses on BN curve defined over $\F{q}{2}$, $q=p^6$.
 
 \subsection{BN curve over prime field $\Fp$}
 BN curve is a non\- super-singular (\textit{ordinary}) pairing friendly 
-elliptic curve of embedding degree 12\cite{BN_def}. The equation of BN curve defined over $\Fp$ is given by 
+elliptic curve of embedding degree 12 \cite{EPRINT:FreScoTes06}. The equation of BN curve defined over $\Fp$ is given by 
 \begin{equation}\label{eq:(BN_curve)}
 E:y^2=x^3+b, \quad \mbox{($b \in \Fp$)}.
 \end{equation}
@@ -141,9 +141,9 @@ In this paper, we have introduced an acceleration of scalar multiplication on Ba
 
 %\bibitem{BN}
 %Paulo S. L. M. Barreto and M. Naehrig, ``Pairing-friendly elliptic curves of prime order," Selected Areas in Cryptography, 12th International Workshop, SAC 2005, Kingston, ON, Canada, August 11-12, 2005, Revised Selected Papers, pages 319-331, 2005. Springer LNCS 3897 (2006).
-%\bibitem{BN_def}
-%D. Freeman, M. Scott, and E. Teske, ``A taxonomy of pairing-friendly elliptic curves," Cryptography ePrint Archive, Report 2006/372 (2006), http://eprint.iacr.org/2006/372
-%\bibitem{chibasedBN}
+%\bibitem{EPRINT:FreScoTes06}
+%D. Freeman, M. Scott, and E. Teske, ``A EPRINT:FreScoTes06 of pairing-friendly elliptic curves," Cryptography ePrint Archive, Report 2006/372 (2006), http://eprint.iacr.org/2006/372
+%\bibitem{PAIRING:NASKM08}
 %Y. Nogami, M. Akane, Y. Sakemi, H. Katou, and Y. Morikawa, ``Integer Variable chi-Based Ate Pairing," Pairing- Based Cryptography - Pairing 2008, Second International Conference, Egham, UK, September 1-3, 2008. Proceedings, pages 178-191, 2008. Springer LNCS 5209 (2008).
 
 

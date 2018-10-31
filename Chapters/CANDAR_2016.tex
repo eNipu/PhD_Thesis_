@@ -1,9 +1,4 @@
-
-        \title{Isomorphic Mapping for Ate-based Pairing over KSS Curve of Embedding Degree 18}
-
-        
-        
-
+\title{Isomorphic Mapping for Ate-based Pairing over KSS Curve of Embedding Degree 18}
         Pairing based cryptography is considered as the next generation of security for which it attracts many researcher to work on faster and efficient pairing to make it practical. Among the several challenges of efficient pairing; efficient scalar multiplication of rational point defined over extension field of degree $k \geq 12$ is important. 
         %In Ate-based pairing, efficient arithmetic operation over the higher degree rational point groups reflects on the efficiency of the pairing calculation. Arithmetic over higher degree takes more time than arithmetic over lower degree groups. 
         However, there exists isomorphic rational point group defined over relatively lower degree extension field.
@@ -11,8 +6,8 @@
         Exploiting such property, this paper has showed a mapping technique between isomorphic rational point groups in the context of Ate-based pairing with Kachisa-Schaefer-Scott (KSS) pairing friendly curve of embedding degree $k = 18$. In the case of KSS curve, there exists sub-field sextic twisted curve that includes sextic twisted isomorphic rational point group defined over $\FQTH$. This paper has showed the mapping procedure from  certain $\FQEN$ rational point group to its sub-field isomorphic rational point group in $\FQTH$ and vice versa. This paper has also showed that scalar multiplication is about 20 times faster after applying the proposed mapping  which in-turns resembles that the impact of this mapping will greatly enhance the pairing operation in KSS curve.
         
         \section{Introduction}
-         At the advent of this century, Sakai et al. \cite{sakai} and Joux et al. \cite{joux} independently proposed a cryptosystem based on elliptic curve pairing. Since then, pairing based cryptography has attracted many researchers and it has been considered as the basis of next generation security. Many researchers have proposed several innovative pairing based cryptographic applications such as ID-based encryption \cite{sakai}, broadcast encryption \cite{boradcast} and group signature authentication \cite{group_sign_1} that upsurge the popularity of pairing based cryptography.
-        In such outcome, Ate-based pairings such as Ate \cite{ate}, R-ate \cite{r_ate}, Optimal-ate \cite{op_ate_p}, twisted Ate  \cite{twisted_ate} and $\chi$-Ate \cite{chibasedBN} pairings have gained much attention since they have achieved quite efficient pairing calculation. 
+         At the advent of this century, Sakai et al. \cite{EPRINT:SakKas03} and Joux et al. \cite{joux} independently proposed a cryptosystem based on elliptic curve pairing. Since then, pairing based cryptography has attracted many researchers and it has been considered as the basis of next generation security. Many researchers have proposed several innovative pairing based cryptographic applications such as ID-based encryption \cite{EPRINT:SakKas03}, broadcast encryption \cite{boradcast} and group signature authentication \cite{group_sign_1} that upsurge the popularity of pairing based cryptography.
+        In such outcome, Ate-based pairings such as Ate \cite{ate}, R-ate \cite{r_ate}, Optimal-ate \cite{op_ate_p}, twisted Ate  \cite{twisted_ate} and $\chi$-Ate \cite{PAIRING:NASKM08} pairings have gained much attention since they have achieved quite efficient pairing calculation. 
         There is no alternative of efficient and fast pairing calculation for deploying pairing-based cryptographic applications in practical case. 
         This paper focuses on a peripheral technique of Ate-based pairings with Kachisa-Schaefer-Scott (KSS) curve \cite{kss}. 
         
@@ -28,7 +23,7 @@
         \end{equation}
         where $\alpha$ denotes Ate pairing. Pairings are often found in certain extension field $\FQK$, where $p$ is the prime number, also know as characteristics  and the minimum extension degree $k$ is called \textit{embedding} degree. 
         The rational points $E(\FQK)$ are defined over a certain pairing friendly curve $E$ of embedded extension field of degree $k$.
-        This paper has considered Kachisa-Schaefer-Scott (KSS) \cite{kss} pairing friendly curves of emebdding degree $k=18$ described in \cite{taxonomy}. 
+        This paper has considered Kachisa-Schaefer-Scott (KSS) \cite{kss} pairing friendly curves of emebdding degree $k=18$ described in \cite{EPRINT:FreScoTes06}. 
         
         %Pairing on KSS curve satisfies 192-bit security level which is considered to be the basis of next generation security. 
         In Ate-based pairing with KSS curve, where $k = 18$,  pairing computations are done in higher degree extension field $\FQEN$. However, KSS curves defined over $\FQEN$ have the sextic twisted isomorphism over $\FQTH$. Therefore we can execute computations in the sub-field $\FQTH$. Exploiting such a property, different arithmetic operation of Ate-based pairing can be efficiently performed in $\g2$. In this paper we have mainly focused on mapping $\g2$ rational point from extension field $\FQEN$ to its sextic twisted sub-field $\FQTH$ and its reverse procedure. 
@@ -355,11 +350,11 @@
         \end{table*}
         \renewcommand{\baselinestretch}{1.0}
         
-        Analyzing  Table \ref{tab_opeation}, we can find that scalar multiplication using the proposed  mapping technique  is more than 20 times faster than scalar multiplication without the proposed mapping. It this experiment we used binary method and Montgomery ladder for scalar multiplication in both case. In the previous work of Nogami et al. \cite{nogami}, has showed the procedure to apply Frobenious mapping on twisted elliptic curve for Ate-based pairing. This multiplication can be done more efficiently if skew Frobenius mapping is applied on sextic twisted isomorphic rational point after applying the proposed mapping. 
+        Analyzing  Table \ref{tab_opeation}, we can find that scalar multiplication using the proposed  mapping technique  is more than 20 times faster than scalar multiplication without the proposed mapping. It this experiment we used binary method and Montgomery ladder for scalar multiplication in both case. In the previous work of Nogami et al. \cite{nogami_scm_ate}, has showed the procedure to apply Frobenious mapping on twisted elliptic curve for Ate-based pairing. This multiplication can be done more efficiently if skew Frobenius mapping is applied on sextic twisted isomorphic rational point after applying the proposed mapping. 
         
         In the experiment we have used two execution environments; such as PC and iPhone with different CPU frequencies. In both environments only one processor core is utilized. The result also shows that the ratio of execution time of PC and iPhone without mapping  of both methods is about 0.9. On the other hand the ratio of execution time with mapping  of both methods is about 0.8. But the ratio of CPU frequencies of  iPhone and PC is about $1.84 / 2.7 \approx 0.68$. Since PC and iPhone has different processor architectures therefore it's frequency ratio has no relation with the execution time ratio. 
         
-        The main focus of this experiment is to evaluate the  acceleration ratio of scalar multiplication by applying the proposed mapping on $\g2$ rational point group of  KSS curve of embedding degree 18. The experiment does not focus on efficiently implementing scalar multiplication for certain environment. There are other pairing friendly curves such as BLS-12, BLS-24 \cite{taxonomy} where sextic twist is available. We will try to apply the proposed mapping on those curves as our future work.
+        The main focus of this experiment is to evaluate the  acceleration ratio of scalar multiplication by applying the proposed mapping on $\g2$ rational point group of  KSS curve of embedding degree 18. The experiment does not focus on efficiently implementing scalar multiplication for certain environment. There are other pairing friendly curves such as BLS-12, BLS-24 \cite{EPRINT:FreScoTes06} where sextic twist is available. We will try to apply the proposed mapping on those curves as our future work.
         
         \section{Conclusion and future work}
         In this paper we have proposed mapping procedure of $\g2$ rational point group to its sextic twisted sub-field isomorphic rational point group $\g2'$  and its reverse mapping on KSS curve in context of Ate based pairing. 

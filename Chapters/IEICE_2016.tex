@@ -6,9 +6,9 @@ Utilizing the skew Frobenius map along with multi-scalar multiplication procedur
 In addition to the theoretic proposal, this paper has also presented a comparative simulation of the proposed approach with plain binary method, sliding window method and non-adjacent form (NAF) for scalar multiplication. The simulation shows that the proposed method is about 60 times faster than plain implementation of other compared methods.
 \section{Introduction}
 
-Pairing based cryptography has attracted many researchers since Sakai et al. \cite{sakai} and Joux et al. \cite{joux} independently proposed a cryptosystem based on elliptic curve pairing. This has encouraged to invent several innovative pairing based cryptographic applications such as broadcast encryption \cite{boradcast} and group signature authentication \cite{group_sign_1}, that has increased the popularity of pairing based cryptographic research.
+Pairing based cryptography has attracted many researchers since Sakai et al. \cite{EPRINT:SakKas03} and Joux et al. \cite{joux} independently proposed a cryptosystem based on elliptic curve pairing. This has encouraged to invent several innovative pairing based cryptographic applications such as broadcast encryption \cite{boradcast} and group signature authentication \cite{group_sign_1}, that has increased the popularity of pairing based cryptographic research.
 But using pairing based cryptosytem in industrial state is still restricted by its expensive operational cost with respect to time and computational resources in practical case. 
-In order to make it practical, several pairing techniques such as Ate \cite{ate}, Optimal-ate \cite{op_ate_p}, twisted Ate \cite{twisted_ate}, $\chi$-Ate \cite{chibasedBN} and \textit{sub-field twisted} Ate \cite{devegili} pairings have gained much attention since they have achieved quite efficient pairing calculation in certain pairing friendly curve. 
+In order to make it practical, several pairing techniques such as Ate \cite{ate}, Optimal-ate \cite{op_ate_p}, twisted Ate \cite{twisted_ate}, $\chi$-Ate \cite{PAIRING:NASKM08} and \textit{sub-field twisted} Ate PAIRING:DevScoDah07 pairings have gained much attention since they have achieved quite efficient pairing calculation in certain pairing friendly curve. 
 Researchers still continues on finding efficient way to implement pairing to make it practical enough for industrial standardization. 
 In such consequences, this paper focuses on a peripheral technique of Ate-based pairings  that is scalar multiplication defined over Kachisa-Schaefer-Scott (KSS) curve \cite{kss} of embedding degree 18. 
 
@@ -26,12 +26,12 @@ In  Ate-based pairing, $\g1$, $\g2$ and $\g3$ are defined as:
 where $\alpha$ denotes Ate pairing.
 Pairings are often defined over certain extension field $\FQK$, where $p$ is the prime number, also know as characteristics  and $k$  is the minimum extension degree for pairing also called \textit{embedding} degree. 
 The set of rational points $E(\FQK)$ are defined over a certain pairing friendly curve of embedded extension field of degree $k$.
-This paper has considered Kachisa-Schaefer-Scott (KSS) \cite{kss} pairing friendly curves of emebdding degree $k=18$ described in \cite{taxonomy}.
+This paper has considered Kachisa-Schaefer-Scott (KSS) \cite{kss} pairing friendly curves of emebdding degree $k=18$ described in \cite{EPRINT:FreScoTes06}.
 
 Scalar multiplication is often considered to be  one of the most time consuming operation in cryptographic scene. 
 Efficient scalar multiplication is one of the important factors for making the pairing practical over KSS curve.
 %  depends on several factors such as efficient pairing algorithm, efficient extension field arithmetic and . 
-There are several works \cite{nogami}\cite{sakemi_skew} on efficiently computing scalar multiplication defined over Barreto-Naehrig\cite{BN} curve along with efficient extension field arithmetic \cite{ef_ex}. 
+There are several works \cite{nogami_scm_ate}\cite{sakemi_skew} on efficiently computing scalar multiplication defined over Barreto-Naehrig\cite{BN} curve along with efficient extension field arithmetic \cite{ef_ex}. 
 This paper focuses on efficiently performing scalar multiplication on rational points defined over rational point group $\g2$ by scalar $s$, since scalar multiplication is required repeatedly in cryptographic calculation.
 However in asymmetric pairing such as Ate-based pairing, scalar multiplication of $\g2$ rational points is important as no mapping function is explicitly given between $\g1$ to $\g2$.
 By the way, as shown in the definition, $\g1$ is a set of rational points defined over prime field and there are several researches \cite{sakemi_skew} for efficient scalar multiplication in $\g1$.

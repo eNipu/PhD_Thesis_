@@ -1,0 +1,343 @@
+% \documentclass[10pt,compsoc,conference, letterpaper]{IEEEtran}
+% %\documentclass[10pt,compsoc]{IEEEtran}
+% %\usepackage[letterpaper, total={7in, 1in}]{geometry}
+% \usepackage{geometry}
+% \geometry{
+%  letterpaper,
+%  top=2.2truecm,
+% left=2truecm,
+% bottom=2.6truecm,
+% right = 2truecm,
+% }
+
+% \usepackage{cite}
+% %\usepackage{filecontents,lipsum}
+% \usepackage{nogamacro}
+% %\setcounter{page}{1}
+% \usepackage{amsfonts}
+% \usepackage{amsmath}
+% \usepackage{amssymb}
+% % *** MATH PACKAGES ***
+% \usepackage{amsmath}
+% % *** SPECIALIZED LIST PACKAGES ***
+% \usepackage{algorithmic}
+% % *** ALIGNMENT PACKAGES ***
+% \usepackage{array}
+% \usepackage{mdwmath}
+% \usepackage{mdwtab}
+% \usepackage{eqparbox}
+% \usepackage[makeroom]{cancel}
+% \usepackage{url}
+% % *** SUBFIGURE PACKAGES ***
+% %\usepackage[tight,footnotesize]{subfigure}
+% \usepackage{caption}
+% \usepackage[font=md, labelfont=bf]{caption}
+% % correct bad hyphenation here
+% \hyphenation{op-tical net-works semi-conduc-tor}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newcommand{\keyword}[1]{\par\addvspace\baselineskip
+% \noindent\textbf{Keywords:}\enspace\ignorespaces #1}
+
+% \newcommand{\FP}{\mathbb{F}_p}
+% \newcommand{\EFQ}{E(\mathbb{F}_q)}
+% \newcommand{\EFP}{E(\mathbb{F}_p)}
+% \newcommand{\SEFQ}{\#E(\mathbb{F}_q)}
+% \newcommand{\SEFP}{\#E(\mathbb{F}_p)}
+% \newcommand{\FPK}{\mathbb{F}_{p^k}}
+% \newcommand{\FPKD}{\mathbb{F}_{p^{k/d}}}
+% \newcommand{\FPTH}{\mathbb{F}_{p^3}}
+% \newcommand{\FPTHTW}{\mathbb{F}_{(p^3)^2}}
+% \newcommand{\FPTHTWTH}{\mathbb{F}_{((p^3)^2)^3}}
+% \newcommand{\FPSX}{\mathbb{F}_{p^6}}
+% \newcommand{\FPTV}{\mathbb{F}_{p^{12}}}
+% \newcommand{\FPEN}{\mathbb{F}_{p^{18}}}
+% \newcommand{\GT}{\mathbb{G}_T}
+
+% \newcommand{\FPT}{\mathbb{F}_{p^2}}
+% \newcommand{\FPTT}{\mathbb{F}_{(p^2)^2}}
+% \newcommand{\FPTTT}{\mathbb{F}_{((p^2)^2)^2}}
+% \newcommand{\FPTTTT}{\mathbb{F}_{(((p^2)^2)^2)^2}}
+% \newcommand{\FPFR}{\mathbb{F}_{p^4}}
+% \newcommand{\FPET}{\mathbb{F}_{p^{8}}}
+% \newcommand{\FPSN}{\mathbb{F}_{p^{16}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\newgeometry{top=1.0cm,bottom=1.0cm}
+%\newgeometry{left=2.0cm,right=2.00cm}
+\title{Frobenius Map and Skew Frobenius Map for Ate-based Pairing over KSS Curve of Embedding Degree 16}
+
+In pairing-based cryptography, scalar multiplication is often regarded as one of the major bottlenecks for faster pairing calculations. Frobenius map and skew Frobenius map over the twisted curve, are common techniques to speed up scalar multiplication in a pairing calculation. This paper explicitly shows the detailed procedure to calculate the Frobenius map and skew Frobenius map and their computational complexity in the context of Ate-based pairing over Kachisa-Schaefer-Scott (KSS) curve of embedding degree 16.
+
+
+\section{Introduction}
+Pairing-based cryptography is regarded as the basis of next generation security protocols. From the very beginning, it attracts many researchers which offered us many innovative security protocols till this date. 
+But still there exist several major challenges such as efficiently carry out Miller's algorithm, final exponentiation, efficient scalar multiplication and so on, to practically use pairing in cryptography. Among several optimization techniques,  the Frobenius mapping is well-known for efficient scalar multiplication. Sakemi et al. \cite{sakemi_skew} have shown a technique named as skew Frobenius map in a twisted curve for efficiently calculating scalar multiplication.
+
+The main focus of this paper is to explicitly show the implementation procedure of  Frobenius map and skew Frobenius map for KSS curve of embedding degree 16 (KSS16) in the context of optimal Ate pairing. This paper also gives some comparative study between this two procedures. Recently Ghammam et al. \cite{kss_lub} have proposed that KSS16 curve is a strong candidate to implement pairing-based cryptography at 192-bit security level. Therefore the authors selected KSS16 curve to obtain the skew Frobenius map over the quartic twisted curve. Moreover, to our knowledge, till this date, no work has been proposed for efficiently calculating scalar multiplication over KSS16 curve using skew Frobenius map. This paper will give a clear outline to utilize skew Frobenius map for efficient scalar multiplication.
+
+\section{Preliminaries}
+Fundamentals of KSS curve and  optimal Ate pairing are briefly given in this section.
+\subsection{Kachisa-Schaefer-Scott (KSS) curve \cite{kss}}
+ In  \cite{kss}, Kachisa, Schaefer, and Scott proposed a family of non super-singular Brezing-Weng pairing friendly elliptic curves using the elements in the cyclotomic field.  In what follows, this papers considers \textit{KSS16} curve of embedding degree $k =16$, defined over $\FPSN$ as follows:
+\begin{equation}\label{eq:KSS_16}
+E/\FPSN:Y^2=X^3+aX, \quad \mbox{($a \neq 0 \in \Fp$) },
+\end{equation}
+ where $X,Y \in \FPSN$. Its characteristic $p$, Frobenius trace $t$ and order $r$ are given by the integer variable $u$ as follows:
+\begin{subequations}
+\begin{eqnarray}
+p(u) &= & (u^{10} +2u^9 +5u^8 +48u^6 +152u^5 +240 \nonumber \\
+&&u^4+625u^2 +2398u+3125)/980,  \\\label{eq:kss_16_char}
+r(u) &= & u^8 +48u^4 +625,\label{eq:kss_16_degree}  \\
+t(u) &=& (2u^5 +41u+35)/35, \label{eq:kss_16_trace} 
+\end{eqnarray}
+\end{subequations} 
+where $u$ is such that $u \equiv 25$ or $45$ (mod $70$).
+
+\subsubsection{Towering of $\FPSN$ extension field}
+Let the characteristics $p$ of KSS16 is such that  $p \equiv 5 \bmod 8$  and $c$ is a quadratic non-residue in $\Fp$. By using irreducible binomials, $\FPSN$ is constructed for KSS16 curve  as follows:
+\begin{equation}\label{eq_bls_towering}
+\begin{cases}
+\F{p}{2} = \F{p}{}[\alpha]/(\alpha^2-c),  \\ 
+\F{p}{4} = \F{p}{2}[\beta]/(\beta^2-\alpha),  \\ 
+\F{p}{8} = \F{p}{4}[\gamma]/(\gamma^2-\beta), \\ 
+\F{p}{16} = \F{p}{8}[\omega]/(\omega^2-\gamma), \\ 
+\end{cases}
+\end{equation}
+Here $ c = 2$ will be the most efficient if chosen along with the value of mother parameter $u$.
+
+\subsection{Pairings}
+ Asymmetric bilinear pairing requires two rational point groups to be mapped to a multiplicative group.
+In what follows,  optimal Ate pairing over KSS curve of embedding degree $k = 16$ can be described as follows.
+\subsubsection{Optimal Ate pairing}
+Let us consider the following two additive groups as $\g1$ and $\g2$ and a multiplicative group as $\g3$ of the same order $r$. The Ate pairing $\alpha$ is defined as follows:
+\begin{eqnarray}
+	\g1&=&E(\FPK)[r]\cap {\rm Ker}(\pi_p-[1])\nonumber,\\
+	\g2&=&E(\FPK)[r]\cap {\rm Ker}(\pi_p-[p])\nonumber.
+\end{eqnarray}
+\begin{eqnarray}
+	\alpha:\g2\times\g1\longrightarrow\FPK/(\FPK^*)^r.
+\end{eqnarray}
+where $\g1 \subset E(\FP)$ and $\g2 \subset E(\FPSN)$  in the case of KSS16 curve.
+
+Let $P \in \g1$ and $Q\in\g2$, Ate pairing $\alpha(Q,P)$ is given as follows.
+\begin{equation}
+	\alpha(Q,P)=f_{t-1,Q}(P)^{\frac{p^k-1}{r}},
+\end{equation}
+where $f_{t-1,Q}(P)$ symbolizes the output of Miller's algorithm. 
+
+The optimal Ate pairing over the KSS16 curve is represented as,
+\begin{equation}
+	(Q,P)=((f_{u,Q}\cdot l_{[u]Q,[p]Q})^{p^3}\cdot l_{Q,Q})^{\frac{p^{16}-1}{r}}\label{pairing},
+\end{equation}
+by  Zhang et al. \cite{kss_zan} utilizing $p^8 +1 \equiv 0 \bmod r$, where $u$ is the mother parameter.
+In \eqref{pairing}, line evaluation $l_{[u]Q,[p]Q}$ requires scalar multiplication of $Q$ by $p$. The multiplication of the 1st two terms requires exponentiation by $p^3$. This two calculation can be efficiently carried by Frobenius map and skew Frobenius map which is the major focus of this paper.
+
+\section{Proposal}
+This section describes the Frobenius map for the rational points of KSS16 curve and skew Frobenius map for the rational points of quartic twisted curve of KSS16 curve defined over $\FPFR$.
+
+\subsection{Frobenius mapping in $E(\FPSN)$}
+Let $(x,y)$ be certain rational point in $E(\FPSN)$. 
+By the definition, Frobenius map, denoted as $\pi_p : (x,y) \mapsto  (x^p,y^p)$, is the $p$-th power of the rational point defined over $\FPSN$. 
+
+Since towering is applied to construct the extension field arithmetic for KSS16 curve, therefore a top-down approach can be applied  to calculate the Frobenius map.
+Let $Q \in E(\FPSN)$ be a rational point of KSS16 curve E, whose Frobenius map (FM)  is given as $\pi_p(Q) = (x_Q^p, y_Q^p)$. Now the FM of $x_Q^p = (x_0+x_1\omega)^p$, where $x_0,x_1 \in \FPET$ can be calculated as follows:
+\begin{equation}
+x_Q^p =  x_0^p+x_1^p\omega^p, \nonumber
+\end{equation}
+where  $x_0^p$, $x_1^p$ are the Frobenius maps in $\FPET$. The $\omega^p$ term can be simplified as follows:
+\begin{eqnarray}
+\omega^p & = & (\omega^2)^{\frac{p-1}{2}}\omega\nonumber \\
+& = & (\gamma^2)^{\frac{p-1}{4}}\omega,  \mbox{\quad since $p \equiv 5 \bmod 8$,} \nonumber \\
+& = & (\beta)^{\frac{p-1}{4}-1}\beta\omega \nonumber \\
+& = & (\beta^2)^{\frac{p-5}{8}}\beta\omega \nonumber \\
+& = & (\alpha)^{\frac{p-5}{8}-1}\alpha\beta \omega\nonumber \\
+& = & (\alpha^2)^{\frac{p-13}{16}}\alpha\beta \omega\nonumber \\
+& = & c^{\frac{p-13}{16}}\alpha\beta\omega .\nonumber
+\end{eqnarray}
+Therefore, FM  of $x_Q$ in $\FPSN$ requires FM of  $x_0$, $x_1$ in $\FPET$. The simplified $\omega^p$ shows that 8 $\Fp$ multiplications by  the pre-computed $c^{\frac{p-13}{16}}$ is required with FM of $x_1^p$. Multiplication by the basis element $\alpha\beta$ will change the position of the coefficients. The appearance of $\alpha^2= c$ during the basis multiplication can also be pre-calculated together with $c^{\frac{p-13}{16}}$. Therefore, the number of $\Fp$ multiplication will not increase in this context.
+
+%and a multiplication by the basis element $\alpha\beta$ which requires 6 times 1-bit left shifting since $c=2$ is chosen.  
+FM of $x_0^p = (n_0 + n_1 \gamma)^p \in \FPET$, $n_0, n_1 \in \FPFR$, can be obtained as follows:
+\begin{equation}
+{x_0}^p =  n_0^p+n_1^p\gamma^p, \nonumber
+\end{equation}
+where $n_0^p$, $n_1^p$ are FM in $\FPFR$ and $\gamma^p$ is simplified as,
+\begin{eqnarray}
+\gamma^p & = & (\gamma^2)^{\frac{p-1}{2}}\gamma  \nonumber \\
+& = & (\beta^2)^{\frac{p-1}{4}}\gamma \nonumber \\
+& = & (\alpha)^{\frac{p-1}{4}-1}\alpha\gamma \nonumber \\
+& = & (\alpha^2)^{\frac{p-5}{8}}\alpha\gamma \nonumber \\
+& = & c^{\frac{p-13}{8}}\alpha\gamma .
+\end{eqnarray}
+The same procedure is also applicable for $x_1^p \in \FPET$.
+ %in $\FPET$ requires 2 FM in $\FPFR$, 
+From the above simplification of $\gamma^p$, it is clear that  4 $\Fp$ multiplications by  pre-computed $c^{\frac{p-5}{8}}$ and a multiplication by the basis element $\alpha$ is required. Since they are also part of $\FPET$ vector, therefore the multiplication of $c^{\frac{p-5}{8}}$ can be combined with  $c^{\frac{p-13}{16}}$ during FM of $\FPSN$.
+% This basis multiplication is calculated by  4 times 1-bit left shifting, therefore, no expensive operation is  required for this basis multiplication.
+
+FM of $n_0^p = (m_0 + m_1 \beta)^p \in \FPFR$ where $m_0, m_1 \in \FPT$ is calculated as follows:
+\begin{equation}
+\label{fm4}
+ n_0^p  =  m_0^p + m_1^p {\beta}^p,
+\end{equation}
+ where $m_0^p$ and $m_1^p$ are FM in $\FPT$. The $\beta^p$ is calculated as,
+ \begin{eqnarray}
+  {\beta}^p  & = & {(\beta^2)}^{\frac{p-1}{2}} \beta \nonumber \\
+  &= &{(\alpha^2)}^{\frac{p-1}{4}} \beta \nonumber \\
+  & = & c^{\frac{p-1}{4}} \beta. \nonumber
+ \end{eqnarray}
+ It implies that FM in $\FPFR$ requires 2 FM in $\FPT$ and 2 $\FP$ multiplication by pre-calculated $c^{\frac{p-1}{4}}$. This 2 $\Fp$ multiplications can also be combined with previous pre-calculated multiplications.
+ 
+ And finally FM of $m_0^p = (b_0+b_1 \alpha)^p \in \FPT$, $b_0,b_1 \in \FP$, is given as follows:
+\begin{eqnarray}
+m_0^p  & = & b_0^p+b_1^p \alpha^p \nonumber \\
+&& = b_0 + b_1 (\alpha^2)^{\frac{p-1}{12}} \alpha\nonumber \\
+& & =  b_0 + b_1 c^{\frac{p-1}{2}} \alpha\nonumber \\
+ & & = b_0 - b_1\alpha, \nonumber
+\end{eqnarray}
+where except changing the sign, no operations are required since $c$ is quadratic no-residue in $\Fp$. Therefore, during the FM of $x_Q$, the 1st half ($x_0 \in \FPET$) of 16 coefficients, it only takes 6 $\FP$ multiplications and for the 2nd half ($x_1$) it requires 8 $\FP$ multiplications. The total number of operation in $\FP$ for a single FM of  $Q \in \FPSN$ is given in Table \ref{tab2}.
+
+\subsection{Skew Frobenius map}
+Similar to Frobenius mapping, skew Frobenius map (SFM) is the $p$-th power of the rational points over the twisted curve. In the context of KSS16 curve, there exists a quartic twisted curve $E'$ of order $r$ defined over $\FPFR$. Let  $Q' = (x',y')$ be a point on the twisted curve $E'$. Then SFM of $Q'$ is given as $ \pi' : (x',y') \mapsto  (x'^p,y'^p)$.
+To calculate the SFM, at first let us find the quartic twisted curve of KSS16.
+
+\subsubsection{Quartic twisted mapping}
+For quartic twisted mapping first we need to obtain certain ration point  $Q \in \g2 \subset E(\FPSN)$ of subgroup order $r$. 
+In what follows, let us consider the rational point $Q \in \g2 \subset E(\FPSN)$ and its quartic twisted rational point $Q' \in \g2' \subset E'(\FPFR)$. Rational point $Q$ has a special vector representation given in  Table \ref{tab_Q}.
+From the Table \ref{tab_Q}, coordinates of  $Q = (x_Q,y_Q) \in \FPEN$ are obtained as $Q = (x_Q,y_Q) = (\gamma x_{Q'}, \omega \gamma y_{Q'}) $, where $x_{Q'},y_{Q'}$ are the coordinates of the rational point $Q'$ in the twisted curve. Now let's find the twisted curve of \eqref{eq:KSS_16} in $\FPFR$ as follows:
+\begin{eqnarray}
+(\omega\gamma y_{Q'} )^2 & = & (\gamma x_{Q'})^3 + a (\gamma x_{Q'}), \nonumber \\
+\gamma \beta y_{Q'}^2 & = & \gamma \beta x_{Q'}^3 + a \gamma x_{Q'}, \nonumber \\
+ && \mbox{multiplying $(\gamma \beta)^{-1}$ both sides.} \nonumber \\
+y_{Q'}^2 & = & x_{Q'}^3 + a \beta^{-1}x_{Q'}, 
+\end{eqnarray}
+ The twisted curve of $E$ is obtained as $E':y^2  =  x^3 + a \beta^{-1}x$, where $\beta$ is the basis element in $\FPFR$. 
+ \renewcommand{\baselinestretch}{1.5}
+\begin{table*}[t]
+\caption{Vector representation of $Q = (x_Q,y_Q) \in \FPSN$}
+\label{tab_Q}
+\centering
+\begin{tabular}{*{17}{c}}
+\hline 
+- & 1 & $\alpha$ & $\beta$ & $\alpha \beta$ & $\gamma$ & $\alpha \gamma$ & $\beta \gamma$ & $\alpha \beta \gamma$ & $\omega$ & $\alpha \omega$ & $ \beta \omega$ & $\alpha \beta \omega$ & $\gamma \omega$ & $\alpha \gamma \omega$ &$ \beta \gamma \omega$ & $\alpha \beta \gamma \omega$\\
+  \hline 
+$x_Q$ & 0 & 0 & 0 & 0 & $b_4$ & $b_5$ &$ b_6$ & $b_7$ & 0 & 0 & 0 & 0 & 0 & 0 & 0& 0\\
+ \hline 
+$y_Q$ & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & $b_{12}$ & $b_{13}$ & $b_{14}$ & $b_{15}$\\
+\hline 
+\end{tabular}
+\end{table*}
+\renewcommand{\baselinestretch}{1.0}
+Therefore  the quartic mapping can be represented as follows:
+ \begin{eqnarray}
+ Q & = & (x_Q,y_Q) = (\gamma x_{Q'}, \omega \gamma y_{Q'}) \in \g2 \subset E(\FPSN) \nonumber \\
+ & &   \longmapsto  Q' = (x_{Q'}, y_{Q'}) \in \g2'  \subset E'(\FPFR)   \nonumber
+ \end{eqnarray}
+For mapping and remapping between $Q$ to $Q'$ and no extra calculation is required. By picking the non-zero coefficients  of $Q$ and placing it to the corresponding basis position is enough to get $Q'$.
+
+Moreover, in the case of KSS16 curve, it is known that $Q$ satisfies the following relations:
+\begin{eqnarray}
+[\pi_p -p]Q & = &\cal O \nonumber \\
+\pi_p(Q) & = & [p]Q.
+\end{eqnarray}
+which can be accelerated scalar multiplication in $\g2$. 
+
+\subsubsection{SFM  calculation}
+The detailed procedure to obtain the skew Frobenius map of $Q' = (x_{Q'}, y_{Q'}) \in \g2' \subset E'(\FPFR)$ is given bellow:
+\begin{subequations}
+\begin{equation}
+(x_{Q'}\gamma )^p  =   (x_{Q'})^p \gamma^p. \nonumber \\
+\end{equation}
+After remapping 
+\begin{eqnarray}
+ (x_{Q'})^p \gamma^{p-1} & = &  (x_{Q'})^p (\gamma^2)^{\frac{p-1}{2}}, \nonumber
+\end{eqnarray}
+ \end{subequations}
+ where  $(x_{Q'})^p \in \FPFR$ can be calculated as Frobenius map in $\FPFR$ same as \eqref{fm4}. The $(\gamma^2)^{\frac{p-1}{2}} $ term can be simplified as follows:
+ \begin{subequations}
+ \begin{eqnarray}
+ \label{gama1}
+(\gamma^2)^{\frac{p-1}{2}} & = & (\beta^2)^{\frac{p-1}{4}}, \mbox{\quad since $p \equiv 5 \bmod 8$,} \nonumber \\
+& = & (\alpha)^{\frac{p-1}{4} -1}\alpha  \nonumber \\
+& = & (\alpha^2)^{\frac{p-5}{8}}\alpha \nonumber \\
+& = & c^{\frac{p-5}{8}}\alpha.
+\end{eqnarray}
+SFM of $y_{Q'}$ is given as,
+\begin{equation}\label{skewfm}
+(y_{Q'}\gamma \omega )^p  =   (y_{Q'})^p \gamma^p \omega^p. \nonumber \\
+\end{equation}
+After remapping 
+\begin{eqnarray}
+ (y_{Q'})^p \gamma^{p-1} \omega^{p-1} & = &  (y_{Q'})^p (\gamma^2)^{\frac{p-1}{2}} (\omega^2)^{\frac{p-1}{2}}, \nonumber
+\end{eqnarray}
+$(y_{Q'})^p$ is calculated as same of \eqref{fm4} in $\FPFR$ and $(\gamma^2)^{\frac{p-1}{2}}$ is calculated same as \eqref{gama1}. The $(\omega^2)^{\frac{p-1}{2}}$ term is calculated as follows:
+\begin{eqnarray}
+(\omega^2)^{\frac{p-1}{2}} & = & (\gamma^2)^{\frac{p-1}{4}},\mbox{\quad since $p \equiv 5 \bmod 8$,}\nonumber \\
+& = &  \beta^{\frac{p-1}{4} -1} \beta \nonumber \\
+& = &  ( \beta^2)^{\frac{p-5}{8}} \beta \nonumber \\
+& = &  ( \alpha)^{\frac{p-5}{8}} \beta \nonumber \\
+& = &  ( \alpha)^{\frac{p-5}{8}-1}  \alpha \beta \nonumber \\
+& = &  ( \alpha^2)^{\frac{p-13}{16}}  \alpha \beta \nonumber \\
+& = &  c^{\frac{p-13}{16}}  \alpha \beta. \nonumber
+\end{eqnarray}
+ \end{subequations}
+ Here the multiplications by $c^{\frac{p-13}{16}}$ and $c^{\frac{p-5}{8}}$ together with the basis elements $\alpha$ and $\alpha \beta$ will generate scalars, basically exponents of $c$. Therefore they can be pre-computed since $c$ is known during extension field construction.
+Finally, it requires 8 $\Fp$ multiplications by pre-computed values to calculate SFM of $Q' \in \g2'$. 
+%Also it takes 2 multiplication by the basis element $\alpha$ and $\beta$ which cost 6 times 1-bit left shifting.
+
+\section{Results evaluation}
+This section gives the computational cost comparison of Frobenius map and skew Frobenius map  with respect to operation count and execution time while it has been implemented for calculating optimal Ate pairing over KSS16 curve. Recently, Barbulescu et al. \cite{sulvain_new_param} have presented new parameters for pairing friendly curves. This paper has considered their proposed KSS16 curve as $y^2=x^3+x \in \FPSN$. The mother parameter $ u=2^{35}-2^{32}-2^{18}+2^{8}+1$ and the quadratic non-residue  $c=2$ in $\FP$ of \eqref{eq_bls_towering} is considered accordingly.
+
+Table \ref{tab1} shows the experiment environment used to implement the techniques. Table \ref{tab2} shows the execution time for calculating the $p$-th power, FM and SFM for rational point $Q \in \g2 \subset E(\FPSN)$ where $m$ denotes multiplication in $\FP$.  It is apparent that skew Frobenius map over $Q' \in \g2' \subset E'(\FPFR)$ in the twisted curve is about four times faster than Frobenius mapping in  $Q \in \g2$. In \cite{sakemi_skew}, Sakemi et al. have shown an efficient scalar multiplication by applying skew Frobenius mapping in the context of Ate-based pairing in BN curve of embedding degree $k=12$. Such technique can also be applied in KSS16 curve for the same. Moreover, multi-scalar multiplication technique can also be obtained using the proposed skew Frobenius map.
+\renewcommand{\baselinestretch}{1.5}
+\begin{table}[!ht]
+\centering
+\caption{ Computational Environment}
+\label{tab1}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{|c|c|}
+\hline 
+• & PC \\ 
+\hline \hline 
+CPU {\textsuperscript{*}} & \quad 2.7 GHz Intel Core i5 \quad  \\ 
+\hline 
+Memory & 16 GB  \\ 
+\hline 
+OS & Mac OS X 10.12.3 \\ 
+\hline 
+Compiler & gcc 4.2.1 \\ 
+\hline 
+\quad Programming Language \quad  & C  \\ 
+\hline 
+Library & GNU MP 6.1.0 \cite{gmp}\\ 
+\hline 
+\multicolumn{2}{l}{\textsuperscript{*}\footnotesize{Only single core is used from two cores.}}\\
+\end{tabular}
+}
+\end{table}
+\begin{table}[!ht]
+%\captionsetup{font=scriptsize}
+\caption{Computational cost}
+\label{tab2}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{|c|c|c|}
+\hline 
+Operation & Execution time [ms] & $\Fp$ operations\\ 
+\hline 
+p-th power & 343.21 &  -  \\
+\hline 
+Frobenius map& 0.054 & 28 $m$   \\ 
+\hline 
+Skew Frobenius map & 0.014 &  8 $m$\\ 
+\hline
+\end{tabular}
+}
+\end{table}
+\renewcommand{\baselinestretch}{1.0}
+
+\section{Conclusion and future work}
+This paper shows the detailed procedure to efficiently carry out Frobenius map and skew Frobenius map in a quartic twisted KSS16 curve in the context of optimal Ate pairing. It is  evident from the experimental implementation that, skew Frobenius map is about 4 times faster than Frobenius map for $\g2$ rational points. As a future work, we would like to extend this work for efficient scalar multiplication together with some pairing-based protocol implementation.
+
+
+

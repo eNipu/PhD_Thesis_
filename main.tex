@@ -1,3 +1,4 @@
+
 %----------------------------------------------------------------------------------------
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
@@ -55,6 +56,7 @@ headsepline, % Uncomment to get a line under the header
 \usepackage{tabularx, booktabs}
 \usepackage{styleFiles/manyeqns}
 \usepackage{path}
+\usepackage{makeidx} 
 %\usepackage{MinionPro}
 %----------------------------------------------------------------------------------------
 %	MARGIN SETTINGS
@@ -74,7 +76,8 @@ headsepline, % Uncomment to get a line under the header
 %	THESIS INFORMATION
 %----------------------------------------------------------------------------------------
 
-\thesistitle{Proposals on Efficient Software Implementation of Pairing-Based Cryptographic Primitives} % Your thesis title, this is used in the title and abstract, print it elsewhere with \ttitle
+%\thesistitle{Proposals on Efficient Software Implementation of Pairing-Based Cryptographic Primitives}
+\thesistitle{Efficient Software Implementation of Pairing-Based Cryptographic Primitives for High-level Security for IoT} % Your thesis title, this is used in the title and abstract, print it elsewhere with \ttitle
 \supervisor{Dr. Yasuyuki \textsc{Nogami}} % Your supervisor's name, this is used in the title page, print it elsewhere with \supname
 \examiner{} % Your examiner's name, this is not currently used anywhere in the template, print it elsewhere with \examname
 \degree{Doctor of Philosophy} % Your degree name, this is used in the title page and abstract, print it elsewhere with \degreename
@@ -164,7 +167,7 @@ headsepline, % Uncomment to get a line under the header
 \newtheorem{prop}{Proposition}[section]
 
 %%---------------------------------------------_Custom command end---------------------------------
-
+\makeindex
 \makeatletter
 \newcommand{\extraPartText}[1]{\def\@extraPartText{#1}}
 \pretocmd{\@endpart}{\vspace{8ex}\begingroup\centering\@extraPartText\par\endgroup\let\@extraPartText\relax}{}{}
@@ -179,7 +182,6 @@ headsepline, % Uncomment to get a line under the header
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
-
 \begin{titlepage}
 \begin{center}
 
@@ -224,24 +226,23 @@ headsepline, % Uncomment to get a line under the header
 \begin{declaration}
 	
 \addchaptertocentry{\authorshipname} % Add the declaration to the table of contents
-\noindent This dissertation and the work presented here for doctoral studies were conducted under the supervision of Professor Yasuyuki Nogami.
+\noindent This dissertation and the work presented here for doctoral studies were conducted under the supervision of Professor Yasuyuki Nogami. 
  I, \authorname, declare that this thesis titled, \enquote{\ttitle} and the work presented in it are my own. I confirm that:
 
 \begin{itemize} 
 \item 
 %This work was done wholly or mainly while in candidature for a research degree at this University.
-The work presented in this thesis is the result of original research carried out by myself, in collaboration with others, while enrolled in the Faculty of Engineering of Okayama University as a candidate for the degree of Doctor of Philosophy.
+The work presented in this thesis is the result of original research carried out by myself, in collaboration with others, while enrolled in the Faculty of Engineering at Okayama University as a candidate for the degree of Doctor of Philosophy in Engineering.
 
 \item This work has not been submitted for a degree or any other qualification at this University or any other institution. 
  
-\item  Some of the work presented in this thesis was previously published is listed in ``Research Activity'' \ref{research_activity}.
+\item  Some of the previously published works presented in this dissertation listed in ``Research Activity''. \ref{research_activity}.
 
-\item The published work of others cited in this thesis is clearly attributed.
-%\item Where I have quoted from the work of others, the source is always given. With the exception of such quotations, this thesis is entirely my own work.
+\item The published work of others cited in this thesis is clearly attributed.  Where I have quoted from the work of others, the source is always given. With the exception of such quotations, this thesis is entirely my own work.
 \item I have acknowledged all main sources of help to pursue this work.
 %\item Where the thesis is based on work done by myself jointly with others, I have made clear exactly what was done by others and what I have contributed myself.
- \item In all works all my coauthors contributed equally. 
- \item The experiments and results presented in this thesis and in the articles where I am the first author were conducted by myself.\\
+ \item In all works my coauthors contribution is acknowledged. 
+ \item The experiments and results presented in this thesis and in the articles where I am the first author were conducted by the myself.\\
 \end{itemize}
  
 \noindent Signed:\\ 
@@ -270,8 +271,8 @@ The work presented in this thesis is the result of original research carried out
 %----------------------------------------------------------------------------------------
 
 \begin{abstract}
-\addchaptertocentry{\abstractname} % Add the abstract to the table of contents
-The Thesis Abstract is written here (and usually kept to just this page). The page is kept centered vertically so can expand into the blank space above the title too\ldots
+%\addchaptertocentry{\abstractname} % Add the abstract to the table of contents
+
 \end{abstract}
 
 %----------------------------------------------------------------------------------------
@@ -335,9 +336,9 @@ The Thesis Abstract is written here (and usually kept to just this page). The pa
 %----------------------------------------------------------------------------------------
 
 \dedicatory{
-	Dedicated to two ladies I owe most. 
-My mother who brought me to this world.
-And my wife \textit{Shama} who sacrificed most during this Ph.D. journey} 
+	Dedicated to the people I owe most. \\
+To my parents who brought me to this world.
+And to my wife \textit{Shama} who sacrificed most during my Ph.D. journey.} 
 
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - CHAPTERS
@@ -359,31 +360,32 @@ And my wife \textit{Shama} who sacrificed most during this Ph.D. journey}
 %\include{Chapters/Chapter1}
 
 %\extraPartText{Always be friendly to ducks, capybaras and wombats.}
-%\part{Basic Math}
+%\chapter{Fundamentals}
+%% \part{Basic Math}
 %\include{Chapters/Chapter2} 
-%\part{Works}
-\chapter{ICCE-TW 2016} 
-\input{Chapters/ICCE_TW_16}
-\chapter{WISA 2016} 
-\input{Chapters/WISA_2016} 
-\chapter{IEICE 2016} 
-\input{Chapters/IEICE_2016} 
-\chapter{CANDAR 2016} 
-\input{Chapters/CANDAR_2016} 
-\chapter{IJNC 2016}
-\input{Chapters/IJNC_2016}
-\chapter{ICISC 2016} 
-\input{Chapters/ICISC_2016} 
-\chapter{ICCIT 2016} 
-\input{Chapters/ICCIT_2016}
-\chapter{INDOCRYPT 2017} 
-\input{Chapters/IndoCrypt_OptAte_2017}
-\chapter{INDOCRYPT Revisited Joournal 2017} 
-\input{Chapters/CVMA_Indo} 
-\chapter{CSS 2017} 
-\input{Chapters/CSS_2017} 
-\chapter{ITC CSCC 2017} 
-\input{Chapters/ITC_CSCC_2017} 
+%%\part{Works}
+%\chapter{ICCE-TW 2016} 
+%\input{Chapters/ICCE_TW_16}
+%\chapter{WISA 2016} 
+%\input{Chapters/WISA_2016} 
+%\chapter{IEICE 2016} 
+%\input{Chapters/IEICE_2016} 
+%\chapter{CANDAR 2016} 
+%\input{Chapters/CANDAR_2016} 
+%\chapter{IJNC 2016}
+%\input{Chapters/IJNC_2016}
+%\chapter{ICISC 2016} 
+%\input{Chapters/ICISC_2016} 
+%\chapter{ICCIT 2016} 
+%\input{Chapters/ICCIT_2016}
+%\chapter{INDOCRYPT 2017} 
+%\input{Chapters/IndoCrypt_OptAte_2017}
+%\chapter{INDOCRYPT Revisited Joournal 2017} 
+%\input{Chapters/CVMA_Indo} 
+%\chapter{CSS 2017} 
+%\input{Chapters/CSS_2017} 
+%\chapter{ITC CSCC 2017} 
+%\input{Chapters/ITC_CSCC_2017} 
 
 %\include{Chapters/Chapter5} 
 
@@ -396,8 +398,8 @@ And my wife \textit{Shama} who sacrificed most during this Ph.D. journey}
 
 % Include the appendices of the thesis as separate files from the Appendices folder
 % Uncomment the lines as you write the Appendices
-\chapter{IJNC 2016 Parameter Set}
-\include{Appendices/Appendix_IJNC2016}
+%\chapter{IJNC 2016 Parameter Set}
+%\input{Appendices/Appendix_IJNC2016}
 %\include{Appendices/AppendixB}
 %\include{Appendices/AppendixC}
 
@@ -406,7 +408,7 @@ And my wife \textit{Shama} who sacrificed most during this Ph.D. journey}
 %----------------------------------------------------------------------------------------
 
 \printbibliography[heading=bibintoc]
-%\bibliography{cryptobib/abbrev3,cryptobib/crypto}
+\printindex 
 \addcontentsline{toc}{chapter}{Biography}
 \include{Chapters/Biography} 
 %----------------------------------------------------------------------------------------

@@ -61,7 +61,6 @@
 \ProvideDocumentCommand{\chapterinbetweenskip}{}{\vspace*{20pt}}
 \ProvideDocumentCommand{\autodot}{}{}
 \ProvideDocumentCommand{\mdtChapapp}{}{}
-% \ProvideDocumentCommand{\chapteralign}{}{\raggedleft}
 \ProvideDocumentCommand{\chapteralign}{}{\raggedright}
 \ProvideDocumentCommand{\chapterfont}{}{\Huge\bfseries}
 \ProvideDocumentCommand{\chapterprefixfont}{}{\LARGE\bfseries}
@@ -360,18 +359,18 @@ KOMA-script documentation for details.}]{fancyhdr}
 		#1%added to be able to have abstract more than one page long
 		\thispagestyle{plain}
 		\begin{center}
-			%{\normalsize \MakeUppercase{\univname} \par}% University name in capitals
-			%\bigskip
+			{\normalsize \MakeUppercase{\univname} \par}% University name in capitals
+			\bigskip
 			{\huge\textit{\abstractname} \par}
 			\bigskip
-			%{\normalsize \facname \par}% Faculty name
-			%{\normalsize \deptname \par}% Department name
-			%\bigskip
-			%{\normalsize \degreename\par}% Degree name
-			%\bigskip
-			%{\normalsize\bfseries \@title \par}% Thesis title
-			%\medskip
-			%{\normalsize \byname{} \authorname \par}% Author name
+			{\normalsize \facname \par}% Faculty name
+			{\normalsize \deptname \par}% Department name
+			\bigskip
+			{\normalsize \degreename\par}% Degree name
+			\bigskip
+			{\normalsize\bfseries \@title \par}% Thesis title
+			\medskip
+			{\normalsize \byname{} \authorname \par}% Author name
 			\bigskip
 		\end{center}
 	}
@@ -461,11 +460,11 @@ KOMA-script documentation for details.}]{fancyhdr}
 
 \ifbool{consistentlayout}{
 	\DeclareDocumentCommand{\dedicatory}{
-		m O{\vspace*{.2\textheight} }  }{
+		m O{\vspace*{.7\textheight} }  }{
 			\checktoopen\tttypeout{Dedicatory}
 			\markboth{}{}
 			#2
-			{\hfill\parbox{\textwidth}{\Large\slshape\flushright#1\par}}
+			{\hfill\parbox{.4\textwidth}{\flushright#1\par}}
 		}
 }{
 	\newcommand\dedicatory[1]{
@@ -476,15 +475,6 @@ KOMA-script documentation for details.}]{fancyhdr}
 		\begin{center}{\Large\slshape #1}\end{center}
 		\vfil\null
 	}
-}{
-	\DeclareDocumentCommand{\dedicatory}{
-		m O{\vspace*{.2\textheight} }  }{
-			\checktoopen\tttypeout{Dedicatory}
-			\markboth{}{}
-			#2
-			%\begin{center}{\Large\slshape #1}\end{center}
-			{\hfill\parbox{\textwidth}{\flushright#1\par}}
-		}
 }
 
 

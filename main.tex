@@ -7,16 +7,16 @@
 11pt, % The default document font size, options: 10pt, 11pt, 12pt
 %oneside, % Two side (alternating margins) for binding by default, uncomment to switch to one side
 english, % ngerman for German
-singlespacing, % Single line spacing, alternatives: onehalfspacing or doublespacing
+doublespacing %singlespacing, % Single line spacing, alternatives: onehalfspacing or doublespacing
 %draft, % Uncomment to enable draft mode (no pictures, no links, overfull hboxes indicated)
 %nolistspacing, % If the document is onehalfspacing or doublespacing, uncomment this to set spacing in lists to single
-%liststotoc, % Uncomment to add the list of figures/tables/etc to the table of contents
-%toctotoc, % Uncomment to add the main table of contents to the table of contents
-%parskip, % Uncomment to add space between paragraphs
+liststotoc, % Uncomment to add the list of figures/tables/etc to the table of contents
+toctotoc, % Uncomment to add the main table of contents to the table of contents
+parskip, % Uncomment to add space between paragraphs
 %nohyperref, % Uncomment to not load the hyperref package
 headsepline, % Uncomment to get a line under the header
 %chapterinoneline, % Uncomment to place the chapter title next to the number on one line
-%consistentlayout, % Uncomment to change the layout of the declaration, abstract and acknowledgements pages to match the default layout
+consistentlayout, % Uncomment to change the layout of the declaration, abstract and acknowledgements pages to match the default layout
 ]{MastersDoctoralThesis} % The class file specifying the document structure
 
 \usepackage[utf8]{inputenc} % Required for inputting international characters
@@ -25,11 +25,12 @@ headsepline, % Uncomment to get a line under the header
 \usepackage[libertine,cmintegrals,cmbraces,vvarbb]{newtxmath}
 \usepackage[scaled=0.95]{inconsolata}
 %\usepackage[backend=bibtex,style=authoryear,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
-\usepackage[backend=bibtex]{biblatex} 
+\usepackage[backend=bibtex,style=alphabetic,maxbibnames=99, natbib=true]{biblatex} 
 \addbibresource{cryptobib/abbrev3.bib} % The filename of the bibliography
 \addbibresource{cryptobib/crypto.bib}
-\addbibresource{custombib/journal_ref.bib}
-\addbibresource{custombib/thesis_bib.bib}
+\addbibresource{custombib/previousbib.bib}
+\addbibresource{custombib/thesisbib.bib}
+\addbibresource{custombib/myresearch.bib}
 
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
 \usepackage{amsmath}
@@ -57,6 +58,8 @@ headsepline, % Uncomment to get a line under the header
 \usepackage{styleFiles/manyeqns}
 \usepackage{path}
 \usepackage{makeidx} 
+\usepackage{filecontents}
+%\DeclareFieldFormat{url}{\addcolon\space\bibstring{en ligne <}\url{#1}\bibstring{>}}
 %\usepackage{MinionPro}
 %----------------------------------------------------------------------------------------
 %	MARGIN SETTINGS
@@ -271,8 +274,8 @@ The work presented in this thesis is the result of original research carried out
 %----------------------------------------------------------------------------------------
 
 \begin{abstract}
-%\addchaptertocentry{\abstractname} % Add the abstract to the table of contents
-
+\addchaptertocentry{\abstractname} % Add the abstract to the table of contents
+\input{Chapters/Abstract}
 \end{abstract}
 
 %----------------------------------------------------------------------------------------
@@ -299,12 +302,12 @@ The work presented in this thesis is the result of original research carried out
 %	ABBREVIATIONS
 %----------------------------------------------------------------------------------------
 
-\begin{abbreviations}{ll} % Include a list of abbreviations (a table of two columns)
-
-\textbf{LAH} & \textbf{L}ist \textbf{A}bbreviations \textbf{H}ere\\
-\textbf{WSF} & \textbf{W}hat (it) \textbf{S}tands \textbf{F}or\\
-
-\end{abbreviations}
+%\begin{abbreviations}{ll} % Include a list of abbreviations (a table of two columns)
+%
+%\textbf{LAH} & \textbf{L}ist \textbf{A}bbreviations \textbf{H}ere\\
+%\textbf{WSF} & \textbf{W}hat (it) \textbf{S}tands \textbf{F}or\\
+%
+%\end{abbreviations}
 
 %----------------------------------------------------------------------------------------
 %	PHYSICAL CONSTANTS/OTHER DEFINITIONS
@@ -336,9 +339,22 @@ The work presented in this thesis is the result of original research carried out
 %----------------------------------------------------------------------------------------
 
 \dedicatory{
-	Dedicated to the people I owe most. \\
-To my parents who brought me to this world.
-And to my wife \textit{Shama} who sacrificed most during my Ph.D. journey.} 
+Dedicated to the people I owe most. 
+To my parents who brought me to this world and to my wife who sacrificed the most during my Ph.D. journey.} 
+
+
+\addcontentsline{toc}{chapter}{Research Activities}
+%In \cite{INDOCRYPT:KNGDNK17}
+%\cite{WISA:KNSD16}
+%\cite{ICISC:KONSD16}
+%\cite{WISA:PSLKNK17}
+\include{Chapters/Mypublication} 
+%\addchaptertocentry{Research Activities}
+% Print your own papers.
+%\include{Chapters/ResearchActivity} 
+%\addchaptertocentry
+% Include the chapters of the thesis as separate files from the Chapters folder
+% Uncomment the lines as you write the chapters
 
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - CHAPTERS
@@ -347,20 +363,12 @@ And to my wife \textit{Shama} who sacrificed most during my Ph.D. journey.}
 \mainmatter % Begin numeric (1,2,3...) page numbering
 
 \pagestyle{thesis} % Return the page headers back to the "thesis" style
-%\addcontentsline{toc}{chapter}{Research Activities}
-\addchaptertocentry{Research Activities}
-\include{Chapters/ResearchActivity} 
-%\addchaptertocentry
-% Include the chapters of the thesis as separate files from the Chapters folder
-% Uncomment the lines as you write the chapters
-
 %\part{ Group Ring Fields}[Hello there...]
 %\extraPartText{Always be friendly to ducks, capybaras and wombats.}
 %\part{Overall Organization}
 %\include{Chapters/Chapter1}
 
 %\extraPartText{Always be friendly to ducks, capybaras and wombats.}
-%\chapter{Fundamentals}
 %% \part{Basic Math}
 %\include{Chapters/Chapter2} 
 %%\part{Works}
@@ -380,7 +388,7 @@ And to my wife \textit{Shama} who sacrificed most during my Ph.D. journey.}
 %\input{Chapters/ICCIT_2016}
 %\chapter{INDOCRYPT 2017} 
 %\input{Chapters/IndoCrypt_OptAte_2017}
-%\chapter{INDOCRYPT Revisited Joournal 2017} 
+%\chapter{INDOCRYPT Revisited Journal 2017} 
 %\input{Chapters/CVMA_Indo} 
 %\chapter{CSS 2017} 
 %\input{Chapters/CSS_2017} 

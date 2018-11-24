@@ -1,19 +1,125 @@
-
 \chapter{Introduction}
 \label{chapter1}
-\section{Background}
 
 
+
+This chapter introduces the related literature review, motivation and goals of the undertaken research.
+The chapter begins with a brief preface of cryptology and its importance in the era Internet of Things (IoT) and Big Data.
+In \secref{ch1_subsec_pkc} we present how Public-Key Cryptography (PKC) is shaping the security of our every day life.
+We introduce the importance of Pairing-Based Cryptography(PBC) in \secref{ch1_subsec_pbc} for the next generation of security protocols. 
+\secref{ch1_sec_motivation} presents the motivation behind the works undertaken to assemble of this thesis.
+\secref{ch1_sec_outline} outlines the overall organization of this thesis.
+
+\section{Cryptology}
+\label{ch1_sec_crypto}
+Cryptography is the science of communicating with the authentic receiver through an insecure channel in secret. 
+Cryptanalysis is the techniques of breaking the secret communications.
+Cryptology is the combination of these two domains.
+
+The history of Cryptography dates back to the time of the Greek and Roman empire.
+Julius Caesar used a simple shift and substitute system.
+Up until the early '70s of the last century, cryptology was evolved mostly for military purposes. 
+The cryptography got its first democratic form in 1975 when Diffie and Hellman invented the concept of public-key cryptography \cite{diffie1976new}. 
+The concept was first realized by as practical cryptosystem by the works of Rivest, Shamir and Adleman (RSA) in 1977 \cite{rivest1978method}.
+At the same time in 1977, National Bureau of Standards published a cryptosystem intended for the governmental agencies or banks with the named Data Encryption Standard (DES).
+From then a new era of cryptography known as \textit{Modern cryptography} was initiated.
+The well-organized procedures called \textit{protocols} is the basis of Modern cryptography.
+One of the most elegant features of modern crypto-protocols is their inner algorithms are not secret yet withstand cryptanalysis from experts/attackers.
+More importantly, these protocols are easy to use for people with no understanding of the underlying principles.
+For example, paying by credit cards or withdrawing money using debit cards with a personal identification number (PIN) is doable without concerning what’s going on under the hood. 
+
+The little basic functionality of modern cryptosystem is to enable a sender (Alice \footnote{Alice and Bob are fictional characters first used by Rivest, Shamir and Adleman in \cite{rivest1978method} as placeholder name in cryptology.}) to convert a message (plaintext) into a cipher (ciphertext) before sending to a legitimate receiver (Bob) over the public communication media. 
+The receiver can convert the cipher back into the original message using secret information named as a key.
+An adversary (Eve) eavesdrops in the middle of the conversation to retrieve information from the cipher.
+The cipher is safe from to the adversary until the key is not compromised. 
+
+Cryptography became more important as individuals and business increasingly depend on the Internet as a channel for communication. Therefore, the following four properties are the basis of a cryptosystem.
+
+
+\begin{itemize}
+\item Data confidentiality:
+This property ensures that confidential information such as bank transactions or medical data etc. are secret from unauthorized entities. 
+
+\item Data integrity:
+When data is stored, this property ensures that it not only kept secret (Data confidentiality) but also not rigged.
+Confidentiality and integrity is enforced by encryption.
+
+\item Authentication:
+In a connection-oriented communication authentication proves both parties identity before communication begins.
+Digital signature is used for this purpose to sign a message electronically.
+It shields the legitimate party against masquerader from impersonating as a trusted party.
+This property gives the receiver a confidence to believe that the message sent over the insecure channel is indeed sent by the actual signee.
+
+\item Non-repudiation:
+Non-repudiation (with proof of origin and with proof of receipt) ensures that sender and receiver can not deny having taken part in a communication.
+This is important for many cases especially e-commerce while communicating over the Internet.
+\end{itemize}
+
+The modern crypto-protocols fall in following two major categories. 
+
+\subsection{Symmetric/Private-Key Cryptography}
+Private-Key Cryptography, also known Symmetric Cryptography is the technique where both the sender and the receiver use same \textit{key} or easily derivable from one another to encrypt and decrypt a message.
+This type of cryptography is very old history. 
+
+Modern cryptosystems offer efficient symmetric cryptography algorithms, e.g Advanced Encryption Standard (AES) \cite{AES_DaemenR02}.
+Such cryptography has two main obstacles i.e. \textit{Key management} and \textit{key establishment}.
+Since the keys are same, they need to kept private (\textit{Key management})  in both ends and should be shared securely beforehand (\textit{Key establishment}) without physically meeting.
+
+The Public-key Cryptography offers the solution for \textit{Key establishment} applying Diffie-Hellman key exchange.
+This work primarily focuses on a certain type of Public-key Cryptography. 
+The subsequent chapters will describe in details.
+
+\subsection{Public-key Cryptography}
+\label{ch1_subsec_pkc}
+As afore mentioned, In 1976, Whitfield Diffie and Martin Hellman published their monumental work as a key exchange protocol. 
+
+In the mid 80's the independent work of Miller \cite{C:Miller85} and Koblitz \cite{koblitz1987elliptic} began the journey of elliptic curve cryptosystems (ECC). 
+The shorter key length for same security level than RSA, ECC became popular among the researchers. 
+
+The problems of key distribution and storage associated with symmetric cryptography were the motivation behind the concept of Asymmetric Cryptography, also referred to as Public- Key Cryptography. The first practical public key protocol was introduced by Whitfield Diffie and Martin Hellman in 1976 [24] in the form of a key exchange protocol. The focus of this thesis is an area of asymmetric cryptography. The idea is to use keys kE and kD such that it is infeasible to calculate the one from the other. This way kE , referred to as the public key, can be published and anyone wishing to communicate with Alice, for example, just needs to find Alice’s public key from a list and encrypt the message; only Alice will be 
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=.9\linewidth, height=.67\textheight, keepaspectratio]{Figures/DHKE}
+    \caption{Exchanging shared secret key using DH-key exchange.}
+  \end{figure}
+
+able to decrypt the message using her corresponding private key. This concept solves the problem of securely distributing keys. What’s more, in a network of t people, only t keys are needed, a huge improvement on the situation using symmetric cryptography.
+Asymmetric cryptography uses so called one-way mathematical problems; one-way problems consist of an operation which is easy to compute, but difficult to invert. Using one-way problems we are able to find key pairs kE and kD with the desired properties.
+One such problem is the Integer Factoring Problem (IFP): given two large primes p and q, it is easy to multiply them together to find $l = pq$, but given an integer l, the product of two large primes, it is a much more difficult task to factor l to recover p and q.
+
+\subsection{Pairing-Based Cryptography}
+\label{ch1_subsec_pbc}
+Human civilization is moving to a direction where data generated from the devices used in our daily life will define how smart our society will be.
+In technical jargon we define that IoT (Internet of Things) era controlled by Data Science.
+Some data can be mundane with no purpose and some data can be extraordinary important.
+Let us imagine a case where the adversary takes controls heart beat monitor sensor of our smart watch or control sensors of self-driving car.
+The outcome of the damage is unimaginable. 
+There is not alternative to protect these data from unwanted access.
+The challenge is, most of the IoT devices are computationally resource constrained.
+In some devices it is somewhat impractical to generate key pairs for widely practiced security protocols.
+There are several innovative solutions e.g. Broadcast encryption, or Identity based encryption that can solve such problems.
+The above mentioned applications stands on a compelling topic of mathematics name pairing over elliptic curve.
+
+\section{Motivation}
+\label{ch1_sec_motivation}
+
+\section{Our Contribution}
+\label{ch1_sec_contribution}
+
+
+\section{Thesis Outline}
+\label{ch1_sec_outline}
 
 With  the development of the information and communication technology, a social utilization of a computer network has advanced at a rapid pace.
-As a r esult, several services associated with the society and our daily life such as e-commerce and e-government are provided on the computer network.
+As a result, several services associated with the society and our daily life such as e-commerce and e-government are provided on the computer network.
 These services, however, transmit highly-confidential informations such as financial or privacy informations via the network.
 In order to protect these informations, cryptosystems are indispensable that provides the secret communication and authentication for the current information and communication services.
 %Cryptosystems are roughly classified into two types, 
 In the modern cryptographies, public key cryptography that provides authentication, data integrity, and non-repudiation is one of the most important cryptosystems.
 
 Recently, new cryptographic schemes that relax the restriction on use of the modern public key cryptosystems are proposed.
-Among these innovative cryptographies, pairing-based cryptographies such as ID-based cryptographies\cite{ID} and group signature authentications \cite{BBS}, \cite{nakanisi} have received much attentions.
+Among these innovative cryptographies, pairing-based cryptographies such as ID-based cryptographies \cite{ID} and group signature authentications \cite{BBS}, \cite{nakanisi} have received much attentions.
 For example, in ID-based cryptographies, some unique information about the identity of the user such as e-mail address, name and telephone number can be used as the public key of user.
 In addition, group signature authentications allow the service vendor to verify that a signature is signed by a valid user, but they can not know who is the signer.
 Therefore, group signatures can protect user's privacy while preventing illegal accesses.
@@ -106,7 +212,7 @@ In the case of a scalar multiplication, we can reduce the number of elliptic cur
 Using divisor theorem, a Miller's algorithm can be also decompose into several Miller's algorithm calculations whose the number of iterations are small.
 However, since there is no efficiently computable Miller's algorithm calculation for a certain number of iterations, the decomposition does not work.  
 Rather, when we decompose Miller's algorithm, extra operations such as exponentiations in extension fields are required.
-This thesis shows that when we decompose a Miller's algorithm into several Miller's algorithms, some decomposed Miller's algorithms that has the bilinearity after applying {\it final exponenitaion} can be skipped by using the property of bilinearity.
+This thesis shows that when we decompose a Miller's algorithm into several Miller's algorithms, some decomposed Miller's algorithms that has the bilinearity after applying {\it final exponentiation} can be skipped by using the property of bilinearity.
 In the case of Ate pairing, Miller's algorithm has the bilinearity when a parameter that gives the number of iteration is equal to $(t-1)$.
 Therefore, the key relation for a scalar multiplication in $\mathbb{G}_2$ is closely related to Ate pairing.
 In this thesis, Miller's algorithm is decomposed using the key relation, and then a new pairing whose number of iterations for Miller's algorithm is smaller than that of Ate pairing is proposed.

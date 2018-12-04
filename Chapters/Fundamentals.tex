@@ -136,7 +136,7 @@ This paper treats only finite fields. Finite fields have the following property,
 \begin{theorem}\label{Cyclic Group in Finite Field}
 For every finite field $\f{}$, the multiplicative group ${\f{\,}}^{\ast}\!\!$ is cyclic. \qed
 \end{theorem}
-For example, ElGamal encryption \cite{multi} can be defined over multiplicative group of $\f{}$. Its security depends on the difficulty of a problem in $\f{}$ related to computing {\em discrete logarithms}.
+For example, ElGamal encryption \cite{C:ElGamal84} can be defined over multiplicative group of $\f{}$. Its security depends on the difficulty of a problem in $\f{}$ related to computing {\em discrete logarithms}.
 A subset $\mathbb K$ of a field $\f{}$ that is itself a field under the operations of $\f{}$ will be called a {\em subfield} of $\f{}$. In this case, $\f{}$ is called an {\em extension (field)} of $\mathbb K$. If $\mathbb K\neq \f{}$, we say that $\mathbb K$ is a {\em proper subfield} of $\f{}$. Then, {\em prime field} is defined as follows.
 \begin{definition}[Prime Field]
 
@@ -454,7 +454,7 @@ Thus, we have
 [q]P=\left([t]\phi-\phi^2\right)P. \label{frobscm}
 \end{equation}
 From Hasse's theorem, note the bit-size of Frobenius trace $t$ is about a half of the characteristic $p$. 
-Using \eqref{frobscm}, we can efficiently calculate scalar multiplication \cite{frobexp}.
+Using \eqref{frobscm}, we can efficiently calculate scalar multiplication \cite{C:Koblitz91}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Pairing on Elliptic Curve}
@@ -474,7 +474,7 @@ Pairing is a bilinear map from two groups $\mathbb{G}_1$ and $\mathbb{G}_2$ to a
 \end{equation}
 Let $E[r]$ be a rational point group of the prime order $r$, and $k$ be a minimum integer that satisfies $r\,\mid \,q^k-1$.
 The integer $k$ is especially called the {\it embedding degree}.
-Pairing $e$ is defined as follows \cite{Hess}.
+Pairing $e$ is defined as follows \cite{PAIRING:Hess08}.
 
 \be
 % E[r] \times \EFpxii /r\EFpxii \mapsto \Fpxii ^*/(\Fpxii ^*)^r \\
@@ -524,13 +524,13 @@ Especially, the second features is desireble in some pairing-based applications.
 
 On the other hand, in the case of ordinary curves, it is generally difficult to generate pairing-friendly curves because embedding degree is almost same as the order $r$ when we randomly choose the pairing-friendly curve from ordinary curves.
 Therefore, we can not easily prepare a pairing-friendly curve whose order $r$ is large.
-In order to solve this problem, several methods to easily generate pairing-friendly curves are proposed in recent years\cite{Taxo}.
+In order to solve this problem, several methods to easily generate pairing-friendly curves are proposed in recent years\cite{JC:FreScoTes10}.
 
 Pairing-friendly curves are classified into two types, one is {\it families} of pairing friendly curves, and the other is not {\it families} of pairing friendly curves.
 Pairing-friendly curves are called {\it families} of pairing-friendly curves when their parameters such as characteristic $p$, order $r$, and trace $t$ are given by polynomials in terms of integer $\chi$.
 Supersingural curves is not in {\it families} of pairing friendly curves.
 This thesis targets {\it families} of pairing friendly curves.
-Here, we introduce the parameter setting of the representative {\it families} of pairing-friendly curves such as MNT\cite{MNT}, Freeman\cite{FreemanPDF}, and BN curves\cite{BN}.
+Here, we introduce the parameter setting of the representative {\it families} of pairing-friendly curves such as MNT\cite{MNT}, Freeman\cite{FreemanPDF}, and BN curves\cite{SAC:BarNae05}.
 
 % The characteristic and the extension degree of the definition field \Fpm\ are, in  general, fixed to a certain prime number $p$ larger than $2^{160}$ and $m\in \{3,4,5,6$, $8,9,10,12,15\}$, respectively. 
 %Pairing-friendly curves generally restrict characteristic and extension degree that is also called \textit{embedding degree}.
@@ -585,7 +585,7 @@ E/\F{p}{} : y^2 = x^3 + b,\ b\ \in \F{p}{}\nonumber
 \end{equation}
 
 This form enables {\em sextic twist} which is mentioned in the following subsection. 
-In addition, BN curves are classified into {\it complete families} that is special family of {\it families} of pairing-friendly curves \cite{Taxo}.
+In addition, BN curves are classified into {\it complete families} that is special family of {\it families} of pairing-friendly curves \cite{JC:FreScoTes10}.
 Since {\it complete families} generate a lot of elliptic curves, we can select the optimal curve suitable for pairing calculations and scalar multiplications.
 
 In this thesis, we especially focus on BN curves for which $6|(p-1)$.
@@ -642,7 +642,7 @@ E'(\F{p}{e}) & \rightarrow  E(\F{p}{4e}), \\
 \end{eqnarray}
 %\end{subequations}
 
-\item $k=6e$ (sextic twist), Barreto--Naehrig (BN) curve \cite{BN} has this form. \\
+\item $k=6e$ (sextic twist), Barreto--Naehrig (BN) curve \cite{SAC:BarNae05} has this form. \\
 %\begin{subequations}
 \begin{eqnarray*}
 E : && y^2=x^3+b,\ b\in \F{p}{}, \\
@@ -702,7 +702,7 @@ Details of the calculation by Miller's algorithm is shown as following section.
 %--------------------------------------
 \subsection{Ate Pairing}
 %--------------------------------------
-Ate pairing $\alpha$ \cite{Hess} is defined by
+Ate pairing $\alpha$ \cite{PAIRING:Hess08} is defined by
 \begin{eqnarray}
 % E[r] \times \EFpxii /r\EFpxii \mapsto \Fpxii ^*/(\Fpxii ^*)^r \\
 \Gi &=& E[r]\cap {\rm Ker}(\phi-[1]), \nonumber \\
@@ -742,7 +742,7 @@ It is called Ate$_i$ pairing\cite{AteI}, however, we simply call Ate pairing in 
 %--------------------------------------
 \subsection{Twisted Ate Pairing}
 %--------------------------------------
-This subsection briefly reviews {\it twisted} Ate pairings \cite{TAte}.
+This subsection briefly reviews {\it twisted} Ate pairings \cite{EPRINT:MKHO07}.
 Let $\phi$ be Frobenius endomorphism, {\i.e.}, 
 \begin{equation}
 \phi:E(\F{p}{k})\rightarrow E(\F{p}{k}):(\text{$x,y$}) \mapsto (\text{$x^p,y^p$}), %\label{G2Frob}
@@ -974,7 +974,7 @@ $\lambda_{T,P_A}$ : & the slope of the line $l_{T,P_A}$.  \\ \hline
 \begin{tabular}{c|c|c|c} \hline
 pairing & $s$ & \ \ $\G_A$\ \  & \ \ $\G_B$\ \  \\ \hline
 Tate & $36\chi^4-36\chi^3+18\chi^2-6\chi+1$ & $E(\F{p}{})$ & $E(\F{p}{12})$ \\ \hline
-Twisted Ate \cite{TAte}, \cite{tAteX} & \ \ $36\chi^3-18\chi^2+6\chi-1$\ \  & $E(\F{p}{})$ & $E(\F{p}{12})$ \\ \hline
+Twisted Ate \cite{EPRINT:MKHO07}, \cite{tAteX} & \ \ $36\chi^3-18\chi^2+6\chi-1$\ \  & $E(\F{p}{})$ & $E(\F{p}{12})$ \\ \hline
 Ate & $6\chi^2$ & $E(\F{p}{12})$ & $E(\F{p}{})$ \\ \hline
 Devegili et al.'s Ate \cite{PAIRING:DevScoDah07} & $6\chi^2$ & $E'(\F{p}{2})$ & $E(\F{p}{})$ \\ \hline
 \ISTA\ \cite{CSS2} & $6\chi^2$ & $E'(\F{p}{2})$ & \com{$E'(\F{p}{12})$} \\ \hline

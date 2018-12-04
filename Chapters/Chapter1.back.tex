@@ -33,21 +33,6 @@ The receiver can convert the cipher back into the original message using secret 
 An adversary (Eve) eavesdrops in the middle of the conversation to retrieve information from the cipher.
 The cipher is safe from to the adversary until the key is not compromised. 
 
-The security of modern cryptosystems depend not on the secrecy of the encryption algorithms but on the difficulty of one way problems. 
-Such problems are easy to calculate in one direction but practically impossible to calculate in reverse direction in a reasonable amount of time using reasonable resources.
-For example, let us consider a cipher text $\cal{C}$ and a plaintext $\cal{P}$ and a 128-bit key $\cal{K}$. 
-The encryption scheme $\cal{E}$ takes input $\cal{P}$ and $\cal{K}$ and output $\cal{C}=E( \cal{P}, K)$. 
-To obtain the  key $\cal{K}$ from the $(\cal{P,C})$ pair, we need to try $2^{128} = 340,282,366,920,938,463,463,374,607,431,768,211,456 \approx 3.4 \times 10^{38}$ (39 decimal digits) combination of $128$-bit keys.
-The most powerful supercomputer till this date  can compute 122.3 peta ($10^{15}$) floating-point operations per second (PFLOPS).
-Let us consider an  optimistic assumption that 1000 (FLOPS) is required to check one key combination.
-Under this assumption, the supercomputer can compute $122.3. \times 10^{15} / 1000 = 122.3 \times 10^{12}$ key combinations per second.
-Then it will take about $3.4 \times 10^{38}/((122.3 \times 10^{12})(365 \times 24 \times 60 \times 60)) \approx  8.8 \times 10^{16}$ earth years.
-According to the standard model of physical cosmology \cite{Ade:2015xua} the age of our universe is $13.8 \time 10^9$ or 13.8 billion years. 
-It means finding a key using brute force search will require $6.3$ million years more than the age of the universe.
-We can imagine how big the number $2^{128}$ is from this comparison.
-
-
-
 Cryptography became more important as individuals and business increasingly depend on the Internet as a channel for communication. Therefore, the following four properties are the basis of a cryptosystem.
 
 
@@ -86,16 +71,8 @@ The subsequent chapters will describe in details.
 
 \subsection{Public-key Cryptography}
 \label{ch1_subsec_pkc}
-The inception of public-key cryptography solved the problem of key distribution of Symmetric-key cryptography.
-It is also know as Asymmetric Cryptography.
-The basic idea of  public-key cryptography is to use two different keys for each communicating party .
-One key is public-key which can be used by anyone to encrypt message. 
-The receiver needs correlated private key to decrypt the message.
-From a given public key and cipher text it is asymptotically difficult to obtain the private key.
-
 As afore mentioned, In 1976, Whitfield Diffie and Martin Hellman published their monumental work as a key exchange  protocol\cite{diffie1976new}.  
 \fgref{fig_DHKE} shows the simple overview of the Diffie-Hellman Key Exchange (DHKE).
-The problems of key distribution and storage associated with symmetric cryptography were the motivation behind the concept of Asymmetric Cryptography, also referred to as Public- Key Cryptography. 
 
 In brief, the protocol has two public parameters, prime number $p$ and a generator $g$ known to all the parties involved in the communication.
 The main idea is of this protocol is based on the difficulty to solve the one way function i.e. discrete logarithm.
@@ -112,74 +89,20 @@ Using this key-exchange we change establish a shared secret which can be used fo
 \end{figure}
 
 Rivest, Shamir and Adleman (RSA) realized this protocol in 1977 and published their magnum opus which is widely known as RSA cryptosystem \cite{rivest1978method}. 
-The security of the RSA depends on the difficulty of factorization of a larger integer into its two prime factors and the trapdoor permutation for encryption.
-Let us denote  two large primes $p$ and $q$ (in practice about 1000-bit).
-It is easy to calculate their product to get $n = pq$.
-The reverse process that is for a given integer $n$ it will be very difficult to retain $p$ and $q$.
-Using the state-of-the art integer factoring algorithm \textit{general number field sieve }(GNFS), it will take appoximately $2^{90}$ basic operation to factor a 2048-bit integer.
-After more than 40 year of the RSA breakthrough, it is still standing as an epitome of public key cryptography.
-Beside encryption, RSA also enables \textit{digital signature }where the sender uses his private key to sign a message and the receiver verifies the signature by the senders public key. 
-Verification of a digitally signed message gives the receiver the confidence that a senders private key is tied to his public key.
-It is done to prevent forgery and holds \textit{Non-repudiation} property.
+The security of the RSA depends on the difficulty of 
 
 In the mid 80's the independent work of Miller \cite{C:Miller85} and Koblitz \cite{koblitz1987elliptic} began the journey of elliptic curve cryptosystems (ECC). 
-The security of  elliptic curve cryptography  protocols depends on the difficulty to solve elliptic curve discrete logarithm problem.
-The mathematical details of this problem appears in Chapter 2. %TODO
-ECC provides shorter key length for the same level of security than RSA which makes ECC  popular among the researchers. 
-Compared to RSA, ECC has other advantages. 
-While RSA provides encryption and digital signature; ECC has a family of algorithms for encryption, signature, key agreement and some advanced high-level cryptographic protocols such as ID-based encryption \cite{AC:BonLynSha01} where user's unique ID e.g. email address can be used as a public key. 
-The high level cryptographic functionalities are provided by paring over ellptic curves \cite{-} which brings a new paradigm in cryptography called pairing-based cryptography.
+The shorter key length for same security level than RSA, ECC became popular among the researchers. 
+
+The problems of key distribution and storage associated with symmetric cryptography were the motivation behind the concept of Asymmetric Cryptography, also referred to as Public- Key Cryptography. The first practical public key protocol was introduced by Whitfield Diffie and Martin Hellman in 1976 [24] in the form of a key exchange protocol. The focus of this thesis is an area of asymmetric cryptography. The idea is to use keys kE and kD such that it is infeasible to calculate the one from the other. This way kE , referred to as the public key, can be published and anyone wishing to communicate with Alice, for example, just needs to find Alice’s public key from a list and encrypt the message; only Alice will be 
+
+
+able to decrypt the message using her corresponding private key. This concept solves the problem of securely distributing keys. What’s more, in a network of t people, only t keys are needed, a huge improvement on the situation using symmetric cryptography.
+Asymmetric cryptography uses so called one-way mathematical problems; one-way problems consist of an operation which is easy to compute, but difficult to invert. Using one-way problems we are able to find key pairs kE and kD with the desired properties.
+One such problem is the Integer Factoring Problem (IFP): given two large primes p and q, it is easy to multiply them together to find $l = pq$, but given an integer l, the product of two large primes, it is a much more difficult task to factor l to recover p and q.
 
 \subsection{Pairing-Based Cryptography}
 \label{ch1_subsec_pbc}
-Since the inception by Sakai et al. \cite{sakai2000cryptosystems}, pairing-based cryptography has gained much attention to cryptographic researchers as well as  to mathematicians. It gives flexibility to protocol researcher to innovate applications with provable security and at the same time to mathematicians and cryptography engineers to find efficient algorithms to make pairing implementation more efficient and practical.
-
-Generally, a pairing is a bilinear map $e$ typically defined as  $\g1 \times \g2 \to \g3$, where $\g1$ and $\g2$ are additive cyclic sub-groups of  order $r$  on a certain elliptic curve $E$ over a finite extension field $\FPK$ and $\g3$ is a multiplicative cyclic group of order $r$ in $\mF{p}{k}$.
-Let $E(\Fp)$ be the set of rational points over the prime field $\Fp$ which forms an additive Abelian group together with the point at infinity $\cal{O}$. The total number of rational points is denoted as $\#E(\Fp)$. Here, the order $r$ is a large prime number such that $r | \#E(\Fp)$ and gcd$(r,p)=1$. The embedding degree $k$ is the smallest positive integer such that $r | (p^k -1)$.
-Two basic properties of pairing are
-\begin{itemize}
-	\item bilinearity is such that $\forall P_i \in \g1$ and $\forall Q_i \in \g2$, where $i= 1, 2$, then $e(Q_1+Q_2,P_1) = e(Q_1,P_1). e(Q_2,P_1)$ and $e(Q_1,P_1+P_2) = e(Q_1,P_1). e(Q_1,P_2)$,
-	\item and $e$ is non-degenerate means $\forall P \in \g1$ there is a $Q \in \g2$ such that  $e(Q,P) \neq 1$ and $\forall Q \in \g2$ there is a $P \in \g1$ such that $e(P,Q) \neq 1$.
-\end{itemize}
-Such properties allows researchers to come up with various cryptographic applications including ID-based encryption \cite{C:BonFra01}, group signature authentication \cite{C:BonBoySha04}, and functional encryption \cite{C:OkaTak10}.  However, the security of pairing-based cryptosystems depends  on 
-\begin{itemize}
-	\item  the difficulty of solving elliptic curve discrete logarithm problem (ECDLP) in the groups of order $r$ over $\Fp$,
-	\item  the infeasibility of solving the discrete logarithm problem (DLP) in the multiplicative group $\g3 \in \mF{p}{k}$,
-	\item and the difficulty of pairing inversion.
-\end{itemize}
-To maintain the same security level in both groups, the size of the order $r$ and extension field $p^k$ is chosen accordingly. If the desired security level is $\delta$ then $\log_2 r  \geq 2\delta$ is desirable due to Pollard's rho algorithm.  For efficient pairing, the ratio $\rho = \log_2 p^k/ \log_2 r \approx 1$,   is expected (usually  $1\leq  \rho  \leq 2$). In practice, elliptic curves with small embedding degrees $k$ and large $r$ are selected and commonly are knows as ``pairing-friendly" elliptic curves.
-
-Galbraith et al. \cite{galbraith2008pairings} have classified pairings as three major categories based on the underlying group's structure as 
-\begin{itemize}
-	\item Type 1, where $\g1 = \g2$, also known as symmetric pairing. 
-	\item Type 2, where $\g1 \neq \g2$, known as asymmetric pairing. There exists an efficiently computable isomorphism $\psi : \g2 \to \g1$ but none in reverse direction.
-	\item Type 3, which is also asymmetric pairing, i.e., $\g1 \neq \g2$. But no efficiently computable isomorphism is known in either direction  between $\g1$ and $\g2$.
-\end{itemize}
-This paper chooses one of the Type 3 variants of pairing named as Optimal-Ate \cite{DBLP:journals/tit/Vercauteren10} with Kachisa-Schaefer-Scott (KSS) \cite{EPRINT:KacSchSco07} pairing-friendly curve of embedding degree $k=16$. 
-Few previous works have been done on this  curve. 
-Zhang et al. \cite{INDOCRYPT:ZhaLin12} have shown the computational estimation of the Miller's loop and proposed efficient final exponentiation for 192-bit security level in the context of Optimal-Ate pairing over KSS-16 curve. 
-A few years later Ghammam et al. \cite{EPRINT:GhaFou16b} have shown that KSS-16 is the best suited for multi-pairing (i.e., the product and/or the quotient) when the number of pairing is more than two. 
-Ghammam et al. \cite{EPRINT:GhaFou16b} also corrected the flaws of proposed final exponentiation algorithm by Zhang et al. \cite{INDOCRYPT:ZhaLin12} and proposed a new one and showed the vulnerability of Zhang's parameter settings against small subgroup attack. 
-The recent development of NFS by Kim and Barbulescu \cite{C:KimBar16} requires updating the parameter selection for all the existing pairings over the well known pairing-friendly curve families such as BN \cite{SAC:BarNae05}, BLS \cite{EPRINT:FreScoTes06} and KSS \cite{EPRINT:KacSchSco07}.
-The most recent study by Barbulescu et al. \cite{sylvain_new_param} have shown the security estimation of the current parameter settings used in well-studied curves and proposed new parameters, resistant to small subgroup attack.
-
-Barbulescu and Duquesne's study finds that the current parameter settings for 128-bit security level on BN-curve studied in literature can withstand for 100-bit security. 
-Moreover, they proposed that BLS-12 and surprisingly KSS-16 are the most efficient choice for Optimal-Ate pairing at the 128-bit security level. Therefore, the authors focus on the efficient implementation of the less studied KSS-16 curve for Optimal-Ate pairing by applying the most recent parameters.
-Mori et al. \cite{PAIRING:MANS13} and Khandaker et al. \cite{ICISC:KONSD16} have shown a specific type of sparse multiplication for BN and KSS-18 curve respectively where both of the curves supports sextic twist. 
-The authors have extended the previous works for quartic twisted KSS-16 curve and derived pseudo-8 sparse multiplication for line evaluation step in the Miller's algorithm. 
-As a consequence, the authors made the choice to concentrate on Miller's algorithm's execution time and computational complexity to verify the claim of \cite{sylvain_new_param}.
-The implementation shows that Miller's algorithm time has a tiny difference between KSS-16 and BLS-12 curves. However, they both are more efficient and faster than BN curve. 
-
-
-
-It all started from 
-\section{Motivation}
-\label{ch1_sec_motivation}
-
-This section tries to outline the over all motivation behind the undertaken works.
-In this course, some mathematical notations will appear without detailed definitions.
-The subsequent chapters will define them with further elaboration.
-
 Human civilization is moving to a direction where data generated from the devices used in our daily life will define how smart our society will be.
 In technical jargon we define that IoT (Internet of Things) era controlled by Data Science.
 Some data can be mundane with no purpose and some data can be extraordinary important.
@@ -191,16 +114,48 @@ In some devices it is somewhat impractical to generate key pairs for widely prac
 There are several innovative solutions e.g. Broadcast encryption, or Identity based encryption that can solve such problems.
 The above mentioned applications stands on a compelling topic of mathematics name pairing over elliptic curve.
 
+\section{Motivation}
+\label{ch1_sec_motivation}
+
+\section{Our Contribution}
+\label{ch1_sec_contribution}
+
+
+\section{Thesis Outline}
+\label{ch1_sec_outline}
+
+With  the development of the information and communication technology, a social utilization of a computer network has advanced at a rapid pace.
+As a result, several services associated with the society and our daily life such as e-commerce and e-government are provided on the computer network.
+These services, however, transmit highly-confidential informations such as financial or privacy informations via the network.
+In order to protect these informations, cryptosystems are indispensable that provides the secret communication and authentication for the current information and communication services.
+%Cryptosystems are roughly classified into two types, 
+In the modern cryptographies, public key cryptography that provides authentication, data integrity, and non-repudiation is one of the most important cryptosystems.
+
+Recently, new cryptographic schemes that relax the restriction on use of the modern public key cryptosystems are proposed.
+Among these innovative cryptographies, pairing-based cryptographies such as ID-based cryptographies \cite{AC:BonLynSha01} and group signature authentications \cite{BBS}, \cite{nakanisi} have received much attentions.
+For example, in ID-based cryptographies, some unique information about the identity of the user such as e-mail address, name and telephone number can be used as the public key of user.
+In addition, group signature authentications allow the service vendor to verify that a signature is signed by a valid user, but they can not know who is the signer.
+Therefore, group signatures can protect user's privacy while preventing illegal accesses.
+
+These cryptographic schemes allow us to use the advanced cryptosystems that can not be constructed by the conventional cryptographic technologies.
+However, they have a problem with processing time because a fairly complex calculation is required for their processing.  
+Due to this problem, these sophisticated cryptographies have not yet led to practical use.   
+In order to make these cryptographic applications practical, this thesis proposes efficient methods to calculate operations required for pairing-based cryptographies.
+
+%���@�\�ȈÍ����K�v
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Motivation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Pairing is a bilinear map from two groups $\mathbb{G}_1$ and $\mathbb{G}_2$ to a group $\mathbb{G}_3$, where they have respectively same prime order $r$.
 In detail, $\mathbb{G}_1$ and $\mathbb{G}_2$ respectively becomes a subgroup in an elliptic curve group $E(\F{q}{})$ and $E(\F{q}{k})$, and $\mathbb{G}_3$ becomes a subgroup in $\F{q}{k}$, where $q$ is a power of $p$ and an extension degree $k$ is especially called the {\it embedding degree}.
-
+ 
 In pairing-based cryptography, not only pairing calculation but also scalar multiplications in $\mathbb{G}_1$ and $\mathbb{G}_2$, and exponentiations in $\mathbb{G}_3$ are carried out.
 Among these operations, since pairing is the highest cost operation, a lot of improvements for pairing such as $\eta_T$ pairing over super singular curves and Ate \cite{PAIRING:Hess08}, {\it twisted} Ate\cite{PAIRING:Hess08}, {\it optimized} Ate \cite{EPRINT:MKHO07}, optimized {\it twisted} Ate\cite{EPRINT:MKHO07}, $R$-ate\cite{r_ate}, {\it Optimal}\cite{DBLP:journals/tit/Vercauteren10}, Xate \cite{PAIRING:NASKM08} pairings over ordinary curves, have been proposed in the recent years.
 Among these pairings, the fastest pairing is $\eta_T$ pairing.
 However, $\eta_T$ pairing has a disadvantage that supersingular curves are restricted to {\it embedding degree} $k\leq6$. 
 Since the {\it embedding degree} is important parameter that determines the security level of pairing-based cryptographies, efficient pairings on ordinary curves whose {\it embedding degree} are flexibly selectable are required.
 This thesis targets Ate and {\it twisted} Ate pairings because they are efficiently calculated on ordinary curves.
-
+  
 On the other hand, in addition to pairing, pairing-based cryptographies need to carry out a lot of scalar multiplications in $\mathbb{G}_1$ and $\mathbb{G}_2$ in proportion to the number of users.
 Therefore, efficient scalar multiplications in $\mathbb{G}_1$ and $\mathbb{G}_2$ can reduce the total cost of pairing-based cryptography.
 
@@ -237,7 +192,7 @@ This thesis targets {\it families} of pairing-friendly curves, and we mainly dea
 %G2�̘b
 In the case of BN curves, we can obtain the key relation that joins Frobenius maps and a certain smaller scalar than $t$.
 In detail, since the scalar becomes about $\chi$ and $t$ is given by $(6\chi^2+1)$, its bit-size becomes a half of $t$.
-
+ 
 %G1�̘b
 In the case of $\mathbb{G}_2$, Frobenius endomorphism efficiently works for a scalar multiplication.
 However, Frobenius endomorphism does not work for a rational point $\mathbb{G}_1$ because a rational point applied Frobenius map becomes itself.
@@ -247,7 +202,7 @@ Using twist techniques, we can prepare the another group that is isomorphic to $
 Therefore, let the group be $\mathbb{G}_1'$, we can use Frobenius endomorphism on $\mathbb{G}_1'$.
 Focusing on this property, we derive a new endomorphism from the endomorphism on $\mathbb{G}_1'$.
 Then, we optimize a key relation available for a scalar multiplication in $\mathbb{G}_1$ that joins a new endomorphism and a certain scalar.
-
+  
 Furthermore, we apply the key relations available for scalar multiplications in $\mathbb{G}_1$ and $\mathbb{G}_2$ to accelerating pairing calculations.
 
 %pairing
@@ -264,8 +219,8 @@ That is, the calculation costs of Miller's algorithm is determined by the number
 Therefore, we can reduce the calculation costs of Miller's algorithm by reducing its number of iterations.
 In addition, Hess shows that the lower bound of the number of iterations of Miller's algorithm for each pairing-friendly curve.
 In the case of BN curves, it becomes about $\lfloor \log_2 \chi \rfloor$, however Ate and {\it twisted} Ate pairing does not achieve.
-
-%Xate
+  
+  %Xate
 In the case of a scalar multiplication, we can reduce the number of elliptic curve doublings by decomposing a scalar with the key relation.
 Using divisor theorem, a Miller's algorithm can be also decompose into several Miller's algorithm calculations whose the number of iterations are small.
 However, since there is no efficiently computable Miller's algorithm calculation for a certain number of iterations, the decomposition does not work.  
@@ -290,10 +245,41 @@ Then, using a precomputed scalar multiplication, we propose a method to parallel
 Since the proposed methods can substantially improve operations such as scalar multiplications and pairings required for pairing-based cryptographies, we can help to solve the problem on processing times.  
 Therefore, our research contributes to promoting sophisticated cryptographies such as ID-based cryptographies and group signature authentications. 
 
-\section{Our Contribution}
-\label{ch1_sec_contribution}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Outline}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Thesis Outline}
-\label{ch1_sec_outline}
+This thesis is organized as follows: 
 
+In Chapter 2, we briefly review the mathematical fact to define the pairing, and describe about the conventional pairing such as Tate, Ate, {\it twisted} Ate pairings.
+In addition, a target class of elliptic curves are shown.
+Ate and {\it twisted} Ate pairings improves Tate pairing by setting certain groups that have a special properties to $\mathbb{G}_1$ and $\mathbb{G}_2$.
+In this thesis, we target Ate and {\it twisted} Ate pairings, and accelerates scalar multiplications in their $\mathbb{G}_1$ and $\mathbb{G}_2$.
+In addition, new pairings respectively based on Ate and {\it twisted} Ate pairings are proposed.  
+%
+Chapter 3 proposes an efficient scalar multiplication in $\mathbb{G}_2$ that used by Ate and {\it twisted} Ate pairings.
+To accelerate a scalar multiplication, it is important that a certain scalar multiplication is calculated by efficiently computable endomorphisms.
+A target $\mathbb{G}_2$ has a property that a certain scalar multiplication is calculated by Frobenius endomorphism that is efficiently computable.
+Focusing on this property, we derive a key relation available for a scalar multiplication in $\mathbb{G}_2$ from the structural properties of target elliptic curves.
+Then, using the key relation, an efficient scalar multiplication is proposed.
+In addition, we show that the proposed scalar multiplication is about 40\% faster than the conventional method from experimental results.   
+
+Chapter 4 proposes an efficient scalar multiplication in $\mathbb{G}_1$ that used by Ate and {\it twisted} Ate pairings.
+A target $\mathbb{G}_1$ does not have a property that Frobenius endomorphism is available for a scalar multiplication.
+Therefore, it is difficult to apply the method proposed in chapter 3 to a scalar multiplication in $\mathbb{G}_1$.
+In order to solve this problem, we propose a new endomorphism available for a scalar multiplication in $\mathbb{G}_1$.
+Using the endomorphism, a key relation is derived in a same manner of $\mathbb{G}_2$.
+Then, using the key relation, an efficient scalar multiplication is proposed.   
+In addition, this chapter shows that the proposed method is about 30\% faster than the conventional method from experimental results.   
+
+In chapter 5, how to decompose the Miller's algorithm calculation is described, and it is shown that the approach for accelerating scalar multiplications is also applied to pairing calculations.
+Then, we proposes a new pairing based on Ate pairing using the key relation available for a scalar multiplication in $\mathbb{G}_2$.
+This is because the property of $\mathbb{G}_2$ is closely related to Ate pairing.
+In addition, we show that the proposed pairing is about two times faster than Ate pairings from experimental results.   
+
+Chapter 6 proposes an efficient pairing based on {\it twisted} Ate pairing using the key relation proposed in chapter 4.
+In addition, the pairing can be efficiently applied the parallelizing technique that can not be applied to the conventional pairings.
+From the experimental results, we show that the proposed method can reduce the calculation times of {\it twisted} Ate pairing by up to about 70\%. 
+
+Chapter 7 concludes this thesis.

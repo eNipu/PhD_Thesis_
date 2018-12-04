@@ -1,16 +1,18 @@
 
-\chapter{Fundamentals}
-This chapter serves as an introduction to essential mathematical background that would help readers to understand subsequent contents in the following chapters of this thesis. Note that only the background on topics that are directly relevant to the contents of this thesis are presented. Another purpose of this chapter is to take an opportunity to specify notations that appear in the succeeding chapters.
- % Main chapter title
-\label{Chapter2} % For referencing the chapter elsewhere, use \ref{Chapter1} 
+\chapter{Fundamental Mathematics and Notation}
+It is necessary to recall some fundamental mathematical concept to understand the subsequent chapters and introduce the notations used in the thesis.
+This chapter introduces the essential mathematical backgrounds that are directly relevant to the contents of this thesis to help readers to a clear understanding.
+The theoretical discussion will often appear with minimal definition and citation of the details works since the details discussion is beyond the scope of this thesis.
+As an additional purpose, this chapter specifies most of the notations that will appear in the upcoming chapters.
+\label{Ch_fundamentals} % For referencing the chapter elsewhere, use \ref{Chapter1} 
 
-\section{Introduction}
-This chapter briefly review the mathematical fact to define the pairing, and shows a target class of elliptic curves.
-In addition, we describe the conventional pairings such as Tate, Ate, {\it twisted} Ate pairings.
+Cryptography deals with numbers mostly integers.
+To understand modern cryptography  it is necessary to have a good understanding of the  underlying mathematical concepts. 
+The following concepts is the basic for the discussion of the subsequent chapters.
 
+%\section{Finite Field}
 
-\section{Finite Field}
-\subsection{Group}\label{group}
+\section{Groups}\label{group}
 
 A group \index{group} is an algebraic system defined as follows.
 \begin{definition}[Group\index{group}]
@@ -137,7 +139,7 @@ This paper treats only finite fields. Finite fields have the following property,
 \begin{theorem}\label{Cyclic Group in Finite Field}
 	For every finite field $\f{}$, the multiplicative group ${\f{\,}}^{\ast}\!\!$ is cyclic. \qed
 \end{theorem}
-For example, ElGamal encryption \cite{multi} can be defined over multiplicative group of $\f{}$. Its security depends on the difficulty of a problem in $\f{}$ related to computing {\em discrete logarithms}.
+For example, ElGamal encryption \cite{C:ElGamal84} can be defined over multiplicative group of $\f{}$. Its security depends on the difficulty of a problem in $\f{}$ related to computing {\em discrete logarithms}.
 A subset $\mathbb K$ of a field $\f{}$ that is itself a field under the operations of $\f{}$ will be called a {\em subfield} of $\f{}$. In this case, $\f{}$ is called an {\em extension (field)} of $\mathbb K$. If $\mathbb K\neq \f{}$, we say that $\mathbb K$ is a {\em proper subfield} of $\f{}$. Then, {\em prime field} is defined as follows.
 \begin{definition}[Prime Field]
 	
@@ -391,4 +393,4 @@ Thus, we have
 [q]P=\left([t]\phi-\phi^2\right)P. \label{frobscm}
 \end{equation}
 From Hasse's theorem, note the bit-size of Frobenius trace $t$ is about a half of the characteristic $p$. 
-Using \eqref{frobscm}, we can efficiently calculate scalar multiplication \cite{frobexp}.
+Using \eqref{frobscm}, we can efficiently calculate scalar multiplication \cite{C:Koblitz91}.

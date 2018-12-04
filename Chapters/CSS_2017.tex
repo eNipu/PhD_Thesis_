@@ -4,35 +4,35 @@ This paper shows an efficient Miller's algorithm implementation technique by app
 
 
 \section{Introduction}
-At the beginning of this century, Sakai et al. \cite{sakai2000cryptosystems} and Joux \cite{joux} independently proposed a cryptosystem that has unlocked many novel ideas to cryptography researchers. 
+At the beginning of this century, Sakai et al. \cite{sakai2000cryptosystems} and Joux \cite{JC:Joux04} independently proposed a cryptosystem that has unlocked many novel ideas to cryptography researchers. 
 Many researchers tried to find out security protocol that exploits pairings to remove the need of certification by a trusted authority. 
-In this consequence, several ingenious pairing based encryption scheme such as ID-based encryption scheme by  Boneh and Franklin \cite{id_based} and group signature authentication by Nakanishi et al. \cite{group_sign_2} has come into the focus. 
-In such outcome, Ate-based pairings such as Ate \cite{ate}, Optimal-ate \cite{op_ate_p}, twisted Ate \cite{twisted_ate} and $\chi$-Ate \cite{chibasedBN} pairings and their applications in cryptosystems have caught much attention since they have achieved quite efficient pairing calculation.
+In this consequence, several ingenious pairing based encryption scheme such as ID-based encryption scheme by  Boneh and Franklin \cite{sakai2000cryptosystems} and group signature authentication by Nakanishi et al. \cite{AC:NakFun05} has come into the focus. 
+In such outcome, Ate-based pairings such as Ate \cite{DBLP:reference/crc/2005ehcc}, Optimal-ate \cite{DBLP:journals/tit/Vercauteren10}, twisted Ate \cite{EPRINT:MKHO07} and $\chi$-Ate \cite{PAIRING:NASKM08} pairings and their applications in cryptosystems have caught much attention since they have achieved quite efficient pairing calculation.
 But it has always been a challenge for researchers to make pairing calculation more efficient for being used practically as pairing calculation is regarded as quite time consuming operation. 
 
 Generally, a pairing is a bilinear map $e$ typically defined as  $\g1 \times \g2 \to \g3$, where $\g1$ and $\g2$ are additive cyclic sub-groups of  order $r$  on a certain elliptic curve $E$ over a finite extension field $\FPK$ and $\g3$ is a multiplicative cyclic group of order $r$ over $\mF{p}{k}$.
-This paper chooses an asymmetric variants of pairing named as Optimal-Ate \cite{op_ate_p} with Barreto-Lynn-Scott (BLS) \cite{bls} pairing friendly curve of embedding degree $k=12$ named as BLS-12.
+This paper chooses an asymmetric variants of pairing named as Optimal-Ate \cite{DBLP:journals/tit/Vercauteren10} with Barreto-Lynn-Scott (BLS) \cite{SCN:BarLynSco02} pairing friendly curve of embedding degree $k=12$ named as BLS-12.
 
 Acceleration of Optimal-Ate pairing depends not only on the optimization of Miller algorithm's loop parameter but also on efficient elliptic curve arithmetic operation and efficient final exponentiation.  
 This paper has proposed a \textit{pseudo 8-sparse multiplication} to accelerate Miller's loop calculation in BLS-12 curve by utilizing the property of  rational point groups.
 In addition, this papers has showed an enhancement of the elliptic curve addition and doubling calculation in Miller's algorithm by applying implicit mapping of its sextic twisted isomorphic group. 
 
-The recent development of NFS by Kim and Barbulescu \cite{kim_ecdlp} requires to update the parameter selection for all the existing pairings over the well know pairing friendly curve families such as BN \cite{BN}, BLS \cite{bls} and KSS \cite{kss}.
+The recent development of NFS by Kim and Barbulescu \cite{C:KimBar16} requires to update the parameter selection for all the existing pairings over the well know pairing friendly curve families such as BN \cite{SAC:BarNae05}, BLS \cite{SCN:BarLynSco02} and KSS \cite{EPRINT:KacSchSco07}.
 Barbulescu and Sylvain \cite{sylvain_new_param} has proposed new parameters that for 128-bit security level and found BLS-12 is most efficient choice for Optimal-Ate pairing than well studied BN curve. Therefore the authors focuses on efficient implementation of BLS-12 curve for Optimal-Ate pairing by applying most recent parameters. 
-The authors also applied final exponentiation algorithm of \cite{loubna_bls12} and compared the simulation result with BN with similar implementation technique.
+The authors also applied final exponentiation algorithm of \cite{EPRINT:GhaFou16a} and compared the simulation result with BN with similar implementation technique.
 
 The simulation result shows that the given \textit{pseudo 8-sparse multiplication} gives more efficient Miller's loop calculation of an Optimal Ate pairing operation along with recommended parameters than pairing calculation without sparse multiplication.
 
 \subsection*{Related works.}
-Aranha et al. \cite[Section 4]{aranha2011faster} and Costello et al. \cite{costello2010faster} have  well optimized the Miller's algorithm in Jacobian coordinates by 6-sparse multiplication \footnote{\label{6sparse}{6-Sparse refers the state when in a vector (multiplier/multiplicand), among the 12 coefficients 6 of them are zero.}} for BN curve. 
-Mori et al. \cite{mori} and Khandaker et al. \cite{self_ICISC} have shown  specific type of sparse multiplication for BN curve and KSS-18 curve respectively where both of the curves supports sextic twist.
+Aranha et al. \cite[Section 4]{EC:AKLGL11} and Costello et al. \cite{PKC:CosLanNae10} have  well optimized the Miller's algorithm in Jacobian coordinates by 6-sparse multiplication \footnote{\label{6sparse}{6-Sparse refers the state when in a vector (multiplier/multiplicand), among the 12 coefficients 6 of them are zero.}} for BN curve. 
+Mori et al. \cite{PAIRING:MANS13} and Khandaker et al. \cite{ICISC:KONSD16} have shown  specific type of sparse multiplication for BN curve and KSS-18 curve respectively where both of the curves supports sextic twist.
 It is found that pseudo 8-sparse was clearly efficient than 7-sparse and 6-sparse in Jacobian coordinates.
 The authors have extended the previous works for sextic twisted BLS-12 curve.
 
 
 \section{Fundamentals}
 \subsection{BLS-12 curve}
-Barreto, Lynn and Scott propose polynomial parameterizations by a integer variable $u$ for certain complete pairing-friendly curve families for specific embedding degrees \cite{bls}. The target curve of this paper is such pairing-friendly curve, usually called BLS-12 of embedding degree $k-12$, defined over extension field $\FPSN$ as follows:
+Barreto, Lynn and Scott propose polynomial parameterizations by a integer variable $u$ for certain complete pairing-friendly curve families for specific embedding degrees \cite{SCN:BarLynSco02}. The target curve of this paper is such pairing-friendly curve, usually called BLS-12 of embedding degree $k-12$, defined over extension field $\FPSN$ as follows:
 \begin{equation}\label{eq:KSS_16}
 E/\FPTV:y^2=x^3+b, \quad \mbox{($b \in \Fp$) and  $b \neq 0$},
 \end{equation}
@@ -50,7 +50,7 @@ When the definition field is the $k$-th degree extension field $\FPK$, rational 
 
 \subsection{Extension Field Arithmetic and Towering}
 In extension field arithmetic, higher level computations can be improved by towering. In towering, higher degree extension field is  constructed as a polynomial of lower degree extension fields.
-In some previous works, such as Bailey et al. \cite{OEF} explained tower of extension by using irreducible binomials. 
+In some previous works, such as Bailey et al. \cite{JC:BaiPaa01} explained tower of extension by using irreducible binomials. 
 In what follows, Let $6|(p-1)$, where $p$ is the characteristics of BLS-12 curve and $-1$ is a quadratic and cubic non residue in $\Fp$. 
 Since BLS-12 curve is defined over $\FPTV$, this paper has represented extension field  $\FPTV$ as a tower of sub-fields to improve arithmetic operations.
 \begin{equation}\label{BN_towering}
@@ -62,7 +62,7 @@ Since BLS-12 curve is defined over $\FPTV$, this paper has represented extension
 \end{equation}
 
 \subsubsection*{Extension Field Arithmetic of $\FPTV$}
-Among the arithmetic operations multiplication, squaring and inversion are regarded as expensive operation than addition/subtraction. The calculation cost, based on number of prime field multiplication $M_p$ and squaring $S_p$ is given in Table \ref{tab_f12_op_count}. The algorithms for extension field operation are implemented from \cite{sylvain_bn}. The arithmetic operations in $\Fp$ are denoted as $M_p$ for a multiplication, $S_p$ for a squaring, $I_p$ for an inversion and $m$ with suffix denotes multiplication with basis element.
+Among the arithmetic operations multiplication, squaring and inversion are regarded as expensive operation than addition/subtraction. The calculation cost, based on number of prime field multiplication $M_p$ and squaring $S_p$ is given in Table \ref{tab_f12_op_count}. The algorithms for extension field operation are implemented from \cite{EPRINT:DEHR1}. The arithmetic operations in $\Fp$ are denoted as $M_p$ for a multiplication, $S_p$ for a squaring, $I_p$ for an inversion and $m$ with suffix denotes multiplication with basis element.
 
 \begin{table*}[t]
 \caption{Number of arithmetic operations in $\FPTV$ based on \eqref{BN_towering}}
@@ -88,7 +88,7 @@ $\g1$, $\g2$ and $\g3$ are defined as follows:
 \g3 & = & \mF{p}{k}/(\mF{p}{k})^r, \nonumber \\
  e & : &\g1 \times \g2 \rightarrow \g3,
 \end{eqnarray}
-here $e$ denotes Optimal-Ate pairing \cite{op_ate_p}. $E(\F{p}{k})[r]$ denotes rational points of order $r$ and $[i]$ denotes $i$ times scalar multiplication for a rational point. 
+here $e$ denotes Optimal-Ate pairing \cite{DBLP:journals/tit/Vercauteren10}. $E(\F{p}{k})[r]$ denotes rational points of order $r$ and $[i]$ denotes $i$ times scalar multiplication for a rational point. 
 $\pi_p$ denotes the Frobenius map given as $\pi_p: (x,y) \mapsto (x^p,y^p)$.
 
 In the case of BLS-12, the above $\g1$ is just $E(\FP)$. 
@@ -102,9 +102,9 @@ where $f_{u,Q}(P)$ is the Miller's algorithm's result and $\lfloor \log_2 (u) \r
 
 The generalized calculation procedure of Opt-Ate pairing is shown in Alg. \ref{optimal_algo}. 
 In what follows, the calculation steps from 1 to 7, shown in Alg. \ref{optimal_algo}, is identified as Miller's Algorithm and step 8 is the final exponentiation. Steps 3, 5 and 7 are the line evaluation together with elliptic curve doubling (ECD) and addition (ECA) inside the Miller's loop. These line evaluation steps are the focus point of this paper for acceleration. 
-The authors extended the work of \cite{mori},\cite{self_ICISC} for BLS-12 curve to calculate \textit{pseudo 8-sparse multiplication} described in Sect. 3.
+The authors extended the work of \cite{PAIRING:MANS13},\cite{ICISC:KONSD16} for BLS-12 curve to calculate \textit{pseudo 8-sparse multiplication} described in Sect. 3.
 The ECA and ECD are also calculated efficiently in the twisted curve. 
-Step 8, FE is calculated by applying Ghammam et al.'s final exponentiation algorithm \cite{loubna_bls12}.
+Step 8, FE is calculated by applying Ghammam et al.'s final exponentiation algorithm \cite{EPRINT:GhaFou16a}.
 
 \begin{algorithm}[H]
 	\caption{Optimal Ate pairing on BLS-12 curve}
@@ -134,7 +134,7 @@ In the context of Optimal-Ate, there exists a \textit{twisted curve} with a grou
 
 Since points on the twisted curve are defined over a smaller field than $\FPK$, therefore ECA and ECD becomes faster. 
 However, when required in the Miller's algorithm's line evaluation, the points can be quickly mapped to points on $E(\FPK )$. 
-Since the pairing-friendly BLS-12 \cite{bls} curve has CM discriminant of $D = 3$ and $6|k$, therefore sextic twist is available.
+Since the pairing-friendly BLS-12 \cite{SCN:BarLynSco02} curve has CM discriminant of $D = 3$ and $6|k$, therefore sextic twist is available.
 Let $(\alpha+1)$ be a certain quadratic and cubic non residue in $\FPT$.  The sextic twisted curve $E_b'$ of  curve $E_b$ and their isomorphic mapping $\psi_6$ are given as follows:
 \begin{eqnarray}
 	E_b'&:&y^2=x^3+b(\alpha+1),\;\;\;b\in\Fp, \nonumber\\
@@ -312,7 +312,7 @@ Finally, pseudo 8-sparse multiplication for  BLS-12 is given in
 
 \subsection{Final Exponentiation}
 %\subsubsection*{Final exponentiation of KSS-16 curve}
-Scott et al. \cite{scott_finalexp} shows efficient final exponentiation $f^{p^k-1/r}$ by decomposing it using cyclotomic polynomial $\Phi_{k}$ as 
+Scott et al. \cite{PAIRING:SBCDK09a} shows efficient final exponentiation $f^{p^k-1/r}$ by decomposing it using cyclotomic polynomial $\Phi_{k}$ as 
 \begin{equation}\label{scott_dec}
 (p^k-1)/r = (p^{k/2}-1) \cdot(p^{k/2}+1)/\Phi_{k}(p)\cdot \Phi_{k}(p)/r
 \end{equation}
@@ -322,8 +322,8 @@ According to \eqref{scott_dec}, the exponent decomposition of the BLS-12 curve i
 \begin{equation}\label{bls_final}
 (p^{12}-1)/r = (p^{6}-1) \cdot(p^{2}+1)\cdot (p^4-p^2+1)/r
 \end{equation}
-To efficiently carry out FE for the target curves we applied $p$-adic representation as shown in \cite{loubna_bls12}.
-For scalar multiplication by prime $p$, i.e., $p[Q]$ or $[p^2]Q$, skew Frobenius map technique by Sakemi et al. \cite{sakemi_skew} has been adapted.
+To efficiently carry out FE for the target curves we applied $p$-adic representation as shown in \cite{EPRINT:GhaFou16a}.
+For scalar multiplication by prime $p$, i.e., $p[Q]$ or $[p^2]Q$, skew Frobenius map technique by Sakemi et al. \cite{CANS:SNOKM08} has been adapted.
 
 \section{Experimental result evaluation}
 This gives details of the experimental implementation.

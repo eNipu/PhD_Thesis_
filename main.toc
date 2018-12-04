@@ -1,0 +1,222 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {english}{}
+\contentsline {chapter}{Declaration of Authorship}{iii}{chapter*.1}
+\contentsline {chapter}{Abstract}{vii}{chapter*.2}
+\contentsline {chapter}{Acknowledgements}{ix}{chapter*.3}
+\contentsline {chapter}{Contents}{xi}{chapter*.4}
+\contentsline {chapter}{Research Activities}{xxiii}{section*.9}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.44}
+\contentsline {section}{\numberline {1.1}Cryptology}{1}{section.45}
+\contentsline {subsection}{\numberline {1.1.1}Symmetric/Private-Key Cryptography}{2}{subsection.47}
+\contentsline {subsection}{\numberline {1.1.2}Public-key Cryptography}{3}{subsection.48}
+\contentsline {subsection}{\numberline {1.1.3}Pairing-Based Cryptography}{4}{subsection.50}
+\contentsline {section}{\numberline {1.2}Motivation}{6}{section.51}
+\contentsline {section}{\numberline {1.3}Our Contribution}{9}{section.52}
+\contentsline {section}{\numberline {1.4}Thesis Outline}{9}{section.53}
+\contentsline {chapter}{\numberline {2}Fundamental Mathematics and Notation}{11}{chapter.54}
+\contentsline {section}{\numberline {2.1}Groups}{11}{section.55}
+\contentsline {subsection}{\numberline {2.1.1}Field}{13}{subsection.63}
+\contentsline {subsection}{\numberline {2.1.2}Extension Field}{14}{subsection.73}
+\contentsline {subsection}{\numberline {2.1.3}Frobenius Map}{14}{subsection.76}
+\contentsline {subsection}{\numberline {2.1.4}Quadratic Residue/Quadratic Non-residue, \\and Cubic Residue/Cubic Non-residue}{15}{subsection.78}
+\contentsline {section}{\numberline {2.2}Elliptic Curve}{15}{section.80}
+\contentsline {subsection}{\numberline {2.2.1}Additive Group over Elliptic Curves}{15}{subsection.81}
+\contentsline {subsection}{\numberline {2.2.2}Frobenius Map on Elliptic Curve Groups}{16}{subsection.88}
+\contentsline {chapter}{\numberline {3}ICCE-TW 2016}{17}{chapter.90}
+\contentsline {section}{\numberline {3.1}Preliminaries}{17}{section.91}
+\contentsline {subsection}{\numberline {3.1.1}BN curve over prime field $\ensuremath {{\vvmathbb {F}}_{p}}$}{17}{subsection.92}
+\contentsline {subsubsection}{Point addition}{17}{section*.96}
+\contentsline {subsection}{\numberline {3.1.2}Elliptic curve over extension field $\F {q}{2}$}{18}{subsection.100}
+\contentsline {subsubsection}{Addition and subtraction in $\F {q}{2}$}{18}{section*.103}
+\contentsline {subsubsection}{Vector multiplication in $\F {q}{2}$}{18}{section*.105}
+\contentsline {subsubsection}{Vector inversion in $\F {q}{2}$}{19}{section*.107}
+\contentsline {section}{\numberline {3.2}Efficient scalar multiplication}{19}{section.111}
+\contentsline {section}{\numberline {3.3}Conclusion and future work}{20}{section.115}
+\contentsline {chapter}{\numberline {4}WISA 2016}{21}{chapter.116}
+\contentsline {section}{\numberline {4.1}Preliminaries}{21}{section.117}
+\contentsline {subsection}{\numberline {4.1.1}Elliptic curve \cite {washington2003elliptic}}{21}{subsection.118}
+\contentsline {subsubsection}{Point addition.}{21}{section*.120}
+\contentsline {subsubsection}{Scalar multiplication.}{22}{section*.124}
+\contentsline {subsection}{\numberline {4.1.2}KSS curve}{22}{subsection.126}
+\contentsline {subsubsection}{Frobenius mapping of rational point in $E(\vvmathbb {F}_{p^{18}})$.}{23}{section*.131}
+\contentsline {subsection}{\numberline {4.1.3}$\vvmathbb {F}_{p^{18}}$ extension field arithmetic}{23}{subsection.132}
+\contentsline {section}{\numberline {4.2}Efficient scalar multiplication}{23}{section.134}
+\contentsline {subsubsection}{Overview.}{23}{section*.135}
+\contentsline {subsubsection}{\g 1, \g 2 and \g 3 groups.}{24}{section*.139}
+\contentsline {subsubsection}{$z$-adic representation of scalar $s$.}{25}{section*.144}
+\contentsline {subsubsection}{Reducing the number of ECA and ECD for calculating $[s]Q$.}{25}{section*.149}
+\contentsline {section}{\numberline {4.3}Experimental result evaluation}{27}{section.157}
+\contentsline {section}{\numberline {4.4}Conclusion and future work}{28}{section.161}
+\contentsline {chapter}{\numberline {5}IEICE 2016}{29}{chapter.163}
+\contentsline {section}{\numberline {5.1}Preliminaries}{29}{section.164}
+\contentsline {subsection}{\numberline {5.1.1}Elliptic curve}{29}{subsection.165}
+\contentsline {subsubsection}{Point addition.}{29}{section*.167}
+\contentsline {subsubsection}{Scalar multiplication}{30}{section*.171}
+\contentsline {subsection}{\numberline {5.1.2}KSS curve}{30}{subsection.173}
+\contentsline {subsection}{\numberline {5.1.3}$\vvmathbb {F}_{p^{18}}$ extension field arithmetic}{31}{subsection.177}
+\contentsline {subsubsection}{Frobenius mapping of rational point in $E(\vvmathbb {F}_{p^{18}})$.}{31}{section*.179}
+\contentsline {subsection}{\numberline {5.1.4}Sextic twist of KSS curve}{31}{subsection.180}
+\contentsline {section}{\numberline {5.2}Improved Scalar Multiplication for $\g 2$ rational point}{32}{section.183}
+\contentsline {subsubsection}{Overview of the proposal}{32}{section*.184}
+\contentsline {subsection}{\numberline {5.2.1}\g 1, \g 2 and \g 3 groups}{32}{subsection.186}
+\contentsline {subsection}{\numberline {5.2.2}Isomorphic mapping between $Q$ and $Q'$}{33}{subsection.191}
+\contentsline {subsubsection}{Mapping $Q = (Av\theta , Bv)$ to the rational point $Q' = (x',y')$}{33}{section*.194}
+\contentsline {subsection}{\numberline {5.2.3}$z$-adic representation of scalar $s$}{34}{subsection.200}
+\contentsline {subsubsection}{Reducing number of Elliptic Curve Doubling (ECD) in $[s]Q'$.}{36}{section*.207}
+\contentsline {subsection}{\numberline {5.2.4}Skew Frobenius map}{37}{subsection.215}
+\contentsline {subsection}{\numberline {5.2.5}Multi-scalar multiplication}{37}{subsection.220}
+\contentsline {subsubsection}{Re-mapping rational points from $E'(\vvmathbb {F}_{p^3})$ to $E(\vvmathbb {F}_{p^{18}})$}{37}{section*.222}
+\contentsline {section}{\numberline {5.3}Simulation result evaluation}{38}{section.225}
+\contentsline {section}{\numberline {5.4}Conclusion and future work}{40}{section.230}
+\contentsline {chapter}{\numberline {6}CANDAR 2016}{41}{chapter.231}
+\contentsline {section}{\numberline {6.1}Introduction}{41}{section.232}
+\contentsline {section}{\numberline {6.2}Preliminaries}{42}{section.235}
+\contentsline {subsection}{\numberline {6.2.1}Elliptic curve}{43}{subsection.236}
+\contentsline {subsection}{\numberline {6.2.2}KSS curve}{45}{subsection.253}
+\contentsline {subsection}{\numberline {6.2.3}$\vvmathbb {F}_{p^{18}}$ extension field arithmetic}{45}{subsection.257}
+\contentsline {subsection}{\numberline {6.2.4}\g 1, \g 2 and \g 3 groups.}{45}{subsection.259}
+\contentsline {subsection}{\numberline {6.2.5}Sextic twist of KSS curve}{46}{subsection.262}
+\contentsline {section}{\numberline {6.3}Isomorphic mapping between $Q$ and $Q'$}{46}{section.265}
+\contentsline {subsubsection}{$Q$ to $Q'$ mapping}{48}{section*.275}
+\contentsline {subsubsection}{$Q'$ to $Q$ mapping}{48}{section*.278}
+\contentsline {section}{\numberline {6.4}Result Analysis}{48}{section.281}
+\contentsline {section}{\numberline {6.5}Conclusion and future work}{50}{section.285}
+\contentsline {chapter}{\numberline {7}IJNC 2016}{51}{chapter.287}
+\contentsline {section}{\numberline {7.1}Introduction}{51}{section.288}
+\contentsline {section}{\numberline {7.2}Fundamentals}{53}{section.291}
+\contentsline {subsection}{\numberline {7.2.1}Elliptic curve \cite {washington2003elliptic}}{53}{subsection.292}
+\contentsline {subsubsection}{Point addition}{54}{section*.296}
+\contentsline {subsubsection}{Scalar multiplication}{54}{section*.300}
+\contentsline {paragraph}{Binary method}{54}{section*.302}
+\contentsline {paragraph}{Montgomery ladder method}{55}{section*.311}
+\contentsline {paragraph}{Sliding-window method}{55}{section*.323}
+\contentsline {subsection}{\numberline {7.2.2}Kachisa-Schaefer-Scott (KSS) curve \cite {EPRINT:KacSchSco07}}{57}{subsection.338}
+\contentsline {subsection}{\numberline {7.2.3}Extension field arithmetic}{57}{subsection.345}
+\contentsline {subsubsection}{Towering of $\vvmathbb {F}_{p^{18}}$ extension field}{58}{section*.346}
+\contentsline {subsubsection}{Towering of $\vvmathbb {F}_{p^{16}}$ extension field}{58}{section*.348}
+\contentsline {subsection}{\numberline {7.2.4}\g 1, \g 2 and \g 3 groups}{58}{subsection.350}
+\contentsline {subsection}{\numberline {7.2.5}Twist of KSS curves}{58}{subsection.353}
+\contentsline {subsubsection}{Sextic twist of KSS18 curve}{59}{section*.354}
+\contentsline {subsubsection}{Quartic twist of KSS16 curve}{59}{section*.357}
+\contentsline {section}{\numberline {7.3}Proposed isomorphic mapping between $Q$ and $Q'$}{59}{section.360}
+\contentsline {subsection}{\numberline {7.3.1}Sextic twisted isomorphic mapping between $Q \in \g 2 \subset E(\vvmathbb {F}_{p^{18}})$ and $Q' \in \g 2' \subset E'(\vvmathbb {F}_{p^3})$}{59}{subsection.361}
+\contentsline {subsubsection}{$Q$ to $Q'$ mapping}{61}{section*.371}
+\contentsline {subsubsection}{$Q'$ to $Q$ mapping}{62}{section*.374}
+\contentsline {subsection}{\numberline {7.3.2}Quartic twisted isomorphic mapping}{62}{subsection.377}
+\contentsline {section}{\numberline {7.4}Result Analysis}{63}{section.384}
+\contentsline {section}{\numberline {7.5}Conclusion and future work}{65}{section.388}
+\contentsline {chapter}{\numberline {8}ICISC 2016}{67}{chapter.389}
+\contentsline {section}{\numberline {8.1}Introduction}{67}{section.390}
+\contentsline {section}{\numberline {8.2}Fundamentals}{68}{section.391}
+\contentsline {subsection}{\numberline {8.2.1}KSS curve}{69}{subsection.392}
+\contentsline {subsection}{\numberline {8.2.2}Towering extension field}{69}{subsection.394}
+\contentsline {subsection}{\numberline {8.2.3}Sextic twist}{69}{subsection.396}
+\contentsline {subsubsection}{Isomorphic mapping between E(\ensuremath {{\vvmathbb {F}}_{p}}) and $\mathaccentV {hat}05E{E}(\ensuremath {{\vvmathbb {F}}_{p}})$}{70}{section*.399}
+\contentsline {subsection}{\numberline {8.2.4}Pairings}{70}{subsection.401}
+\contentsline {subsubsection}{Optimal Ate pairing}{70}{section*.402}
+\contentsline {subsection}{\numberline {8.2.5}Sparse multiplication}{71}{subsection.407}
+\contentsline {subsubsection}{Step 3: Elliptic curve doubling phase ($T = Q$)}{71}{section*.408}
+\contentsline {subsubsection}{Step 5: Elliptic curve addition phase ($T\neq Q$)}{71}{section*.410}
+\contentsline {section}{\numberline {8.3}Improved Optimal Ate Pairing for KSS curve}{71}{section.425}
+\contentsline {subsection}{\numberline {8.3.1}Pseudo 12-sparse multiplication}{72}{subsection.428}
+\contentsline {subsection}{\numberline {8.3.2}Line calculation in Miller's loop}{72}{subsection.444}
+\contentsline {subsubsection}{Step 3: Doubling phase ($T=Q$)}{73}{section*.449}
+\contentsline {subsubsection}{Step 5: Addition phase ($T\neq Q$)}{73}{section*.451}
+\contentsline {section}{\numberline {8.4}Cost evaluation and experimental result}{74}{section.453}
+\contentsline {subsection}{\numberline {8.4.1}Parameter settings and computational environment}{74}{subsection.454}
+\contentsline {subsection}{\numberline {8.4.2}Cost evaluation}{74}{subsection.457}
+\contentsline {subsection}{\numberline {8.4.3}Experimental result}{75}{subsection.460}
+\contentsline {section}{\numberline {8.5}Conclusion and future works}{75}{section.462}
+\contentsline {chapter}{\numberline {9}ICCIT 2016}{77}{chapter.464}
+\contentsline {section}{\numberline {9.1}Introduction}{77}{section.465}
+\contentsline {section}{\numberline {9.2}Preliminaries}{78}{section.466}
+\contentsline {subsection}{\numberline {9.2.1}Basis of extension field and towering}{78}{subsection.467}
+\contentsline {subsection}{\numberline {9.2.2}Arithmetic operations over extension field $\vvmathbb {F}_{p^3}$}{79}{subsection.472}
+\contentsline {subsubsection}{Addition and subtraction in $\vvmathbb {F}_{p^3}$}{80}{section*.475}
+\contentsline {subsubsection}{Multiplication in $\vvmathbb {F}_{p^3}$}{80}{section*.477}
+\contentsline {subsubsection}{Squaring in $\vvmathbb {F}_{p^3}$}{81}{section*.482}
+\contentsline {subsubsection}{Vector inversion in $\vvmathbb {F}_{p^3}$}{81}{section*.486}
+\contentsline {subsection}{\numberline {9.2.3}Arithmetic operations over extension field $\vvmathbb {F}_{(p^3)^2}$}{83}{subsection.498}
+\contentsline {subsubsection}{Vector inversion in $\vvmathbb {F}_{(p^3)^2}$}{83}{section*.501}
+\contentsline {subsection}{\numberline {9.2.4}Arithmetic operations over extension field $\vvmathbb {F}_{((p^3)^2)^3}$}{84}{subsection.505}
+\contentsline {subsubsection}{Vector inversion in $\vvmathbb {F}_{((p^3)^2)^3}$}{84}{section*.509}
+\contentsline {section}{\numberline {9.3}Result evaluation}{85}{section.514}
+\contentsline {section}{\numberline {9.4}Conclusion and future work}{87}{section.518}
+\contentsline {chapter}{\numberline {10}INDOCRYPT 2017}{89}{chapter.519}
+\contentsline {section}{\numberline {10.1}Introduction}{89}{section.520}
+\contentsline {section}{\numberline {10.2}Fundamentals of Elliptic Curve and Pairing}{91}{section.521}
+\contentsline {subsection}{\numberline {10.2.1}Kachisa-Schaefer-Scott (KSS) Curve}{91}{subsection.522}
+\contentsline {subsection}{\numberline {10.2.2}Extension Field Arithmetic and Towering}{91}{subsection.526}
+\contentsline {subsubsection}{Towering of $\vvmathbb {F}_{p^{16}}$ extension field:}{92}{section*.527}
+\contentsline {subsection}{\numberline {10.2.3}Ate and Optimal-Ate On KSS-16, BN, BLS-12 Curve}{92}{subsection.534}
+\contentsline {subsection}{\numberline {10.2.4}Twist of KSS-16 Curves}{94}{subsection.555}
+\contentsline {subsubsection}{Quartic twist}{94}{section*.556}
+\contentsline {section}{\numberline {10.3}Proposal}{95}{section.559}
+\contentsline {subsection}{\numberline {10.3.1}Overview: Sparse and Pseudo-Sparse Multiplication}{95}{subsection.560}
+\contentsline {subsection}{\numberline {10.3.2}Pseudo 8-Sparse Multiplication for BN and BLS-12 Curve}{96}{subsection.568}
+\contentsline {subsubsection}{Sextic twist of BN and BLS-12 curve:}{96}{section*.569}
+\contentsline {subsection}{\numberline {10.3.3}Pseudo 8-sparse Multiplication for KSS-16 Curve}{97}{subsection.598}
+\contentsline {subsection}{\numberline {10.3.4}Final Exponentiation}{102}{subsection.634}
+\contentsline {section}{\numberline {10.4}Experimental Result Evaluation}{102}{section.637}
+\contentsline {section}{\numberline {10.5}Conclusion and Future Work}{104}{section.645}
+\contentsline {chapter}{\numberline {11}INDOCRYPT Revisited Journal 2017}{105}{chapter.646}
+\contentsline {section}{\numberline {11.1}Introduction}{105}{section.647}
+\contentsline {section}{\numberline {11.2}Fundamentals of Elliptic Curve and Pairing}{107}{section.648}
+\contentsline {subsection}{\numberline {11.2.1}Kachisa-Schaefer-Scott (KSS) Curve \cite {EPRINT:KacSchSco07}}{107}{subsection.649}
+\contentsline {subsection}{\numberline {11.2.2}Extension Field Arithmetic for Pairing}{108}{subsection.653}
+\contentsline {subsubsection}{Type-I towering}{108}{section*.654}
+\contentsline {subsubsection}{Type-II towering}{108}{section*.656}
+\contentsline {subsubsection}{Field Arithmetic of $\vvmathbb {F}_{p^{16}}$}{108}{section*.658}
+\contentsline {subsection}{\numberline {11.2.3}Optimal-Ate Pairing on KSS-16 Curve}{108}{subsection.660}
+\contentsline {section}{\numberline {11.3}Finding Efficient Line Evaluation in Type-II Towering and Sparse Multiplication}{110}{section.678}
+\contentsline {subsection}{\numberline {11.3.1}$\vvmathbb {F}_{p^4}$ arithmetic in Type-II towering}{111}{subsection.686}
+\contentsline {subsubsection}{Multiplication in $\vvmathbb {F}_{p^4}$ using CVMA}{111}{section*.688}
+\contentsline {subsubsection}{Squaring in $\vvmathbb {F}_{p^4}$ using CVMA}{112}{section*.693}
+\contentsline {subsubsection}{Frobenius mapping in $\vvmathbb {F}_{p^4}$ using CVMA}{113}{section*.696}
+\contentsline {subsubsection}{Inversion in $\vvmathbb {F}_{p^4}$ used in \cite {cvma_sanada}}{113}{section*.698}
+\contentsline {subsubsection}{Optimized $\vvmathbb {F}_{p^4}$ Inversion using CVMA}{114}{section*.700}
+\contentsline {subsubsection}{Calculation over $\vvmathbb {F}_{p^2}$ based on towering Eq.(\ref {towering_2})}{114}{section*.703}
+\contentsline {paragraph}{\bf {Multiplication:} }{114}{section*.704}
+\contentsline {paragraph}{\bf {Squaring:}}{115}{section*.705}
+\contentsline {paragraph}{\bf {Frobenius map:}}{115}{section*.706}
+\contentsline {paragraph}{\bf {Inversion:}}{115}{section*.707}
+\contentsline {subsubsection}{Frobenius mapping in $\vvmathbb {F}_{p^{16}}$ using CVMA}{115}{section*.709}
+\contentsline {subsection}{\numberline {11.3.2}Quartic Twist of KSS-16 Curves}{116}{subsection.711}
+\contentsline {paragraph}{\bf {Rational points: }}{116}{section*.713}
+\contentsline {subsection}{\numberline {11.3.3}Overview: Sparse and Pseudo-Sparse Multiplication}{116}{subsection.716}
+\contentsline {paragraph}{\bf {7-Sparse Multiplication:}}{117}{section*.717}
+\contentsline {subsection}{\numberline {11.3.4}Pseudo 8-sparse Multiplication for KSS-16 Curve using Type-II Towering}{118}{subsection.723}
+\contentsline {subsubsection}{Isomorphic map of $P=(x_P,y_P) \to \bar P=(x_{\bar P},y_{\bar P})$.}{118}{section*.726}
+\contentsline {subsubsection}{Skew Frobenius Map to Compute $[p]\bar {Q'}$}{121}{section*.758}
+\contentsline {subsection}{\numberline {11.3.5}Final Exponentiation}{121}{subsection.759}
+\contentsline {section}{\numberline {11.4}Experimental Result Evaluation}{124}{section.783}
+\contentsline {subsection}{\numberline {11.4.1}Experiment Environment and Assumptions}{124}{subsection.785}
+\contentsline {subsection}{\numberline {11.4.2}Result and Analysis}{125}{subsection.788}
+\contentsline {section}{\numberline {11.5}Conclusion and Future Work}{127}{section.794}
+\contentsline {chapter}{\numberline {12}CSS 2017}{129}{chapter.795}
+\contentsline {section}{\numberline {12.1}Introduction}{129}{section.796}
+\contentsline {section}{\numberline {12.2}Fundamentals}{130}{section.799}
+\contentsline {subsection}{\numberline {12.2.1}BLS-12 curve}{130}{subsection.800}
+\contentsline {subsection}{\numberline {12.2.2}Extension Field Arithmetic and Towering}{131}{subsection.804}
+\contentsline {subsection}{\numberline {12.2.3}Optimal-Ate pairing on BLS-12 Curve}{131}{subsection.808}
+\contentsline {subsection}{\numberline {12.2.4}Sextic Twist of BLS-12 Curve}{132}{subsection.822}
+\contentsline {section}{\numberline {12.3}Proposal Overview}{133}{section.825}
+\contentsline {subsection}{\numberline {12.3.1}Pseudo 8-sparse Multiplication}{134}{subsection.841}
+\contentsline {subsection}{\numberline {12.3.2}Final Exponentiation}{135}{subsection.873}
+\contentsline {section}{\numberline {12.4}Experimental result evaluation}{136}{section.876}
+\contentsline {chapter}{\numberline {13}ITC CSCC 2017}{139}{chapter.881}
+\contentsline {section}{\numberline {13.1}Introduction}{139}{section.882}
+\contentsline {section}{\numberline {13.2}Preliminaries}{139}{section.883}
+\contentsline {subsection}{\numberline {13.2.1}Kachisa-Schaefer-Scott (KSS) curve \cite {EPRINT:KacSchSco07}}{139}{subsection.884}
+\contentsline {subsubsection}{Towering of $\vvmathbb {F}_{p^{16}}$ extension field}{140}{section*.888}
+\contentsline {subsection}{\numberline {13.2.2}Pairings}{140}{subsection.890}
+\contentsline {subsubsection}{Optimal Ate pairing}{140}{section*.891}
+\contentsline {section}{\numberline {13.3}Proposal}{141}{section.896}
+\contentsline {subsection}{\numberline {13.3.1}Frobenius mapping in $E(\vvmathbb {F}_{p^{16}})$}{141}{subsection.897}
+\contentsline {subsection}{\numberline {13.3.2}Skew Frobenius map}{142}{subsection.905}
+\contentsline {subsubsection}{Quartic twisted mapping}{143}{section*.906}
+\contentsline {subsubsection}{SFM calculation}{143}{section*.911}
+\contentsline {section}{\numberline {13.4}Results evaluation}{144}{section.920}
+\contentsline {section}{\numberline {13.5}Conclusion and future work}{145}{section.923}
+\contentsline {chapter}{Bibliography}{147}{chapter*.924}
+\contentsline {chapter}{Biography}{152}{chapter*.924}

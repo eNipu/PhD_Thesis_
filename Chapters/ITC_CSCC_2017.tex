@@ -73,14 +73,14 @@ In pairing-based cryptography, scalar multiplication is often regarded as one of
 
 \section{Introduction}
 Pairing-based cryptography is regarded as the basis of next generation security protocols. From the very beginning, it attracts many researchers which offered us many innovative security protocols till this date. 
-But still there exist several major challenges such as efficiently carry out Miller's algorithm, final exponentiation, efficient scalar multiplication and so on, to practically use pairing in cryptography. Among several optimization techniques,  the Frobenius mapping is well-known for efficient scalar multiplication. Sakemi et al. \cite{sakemi_skew} have shown a technique named as skew Frobenius map in a twisted curve for efficiently calculating scalar multiplication.
+But still there exist several major challenges such as efficiently carry out Miller's algorithm, final exponentiation, efficient scalar multiplication and so on, to practically use pairing in cryptography. Among several optimization techniques,  the Frobenius mapping is well-known for efficient scalar multiplication. Sakemi et al. \cite{CANS:SNOKM08} have shown a technique named as skew Frobenius map in a twisted curve for efficiently calculating scalar multiplication.
 
-The main focus of this paper is to explicitly show the implementation procedure of  Frobenius map and skew Frobenius map for KSS curve of embedding degree 16 (KSS16) in the context of optimal Ate pairing. This paper also gives some comparative study between this two procedures. Recently Ghammam et al. \cite{kss_lub} have proposed that KSS16 curve is a strong candidate to implement pairing-based cryptography at 192-bit security level. Therefore the authors selected KSS16 curve to obtain the skew Frobenius map over the quartic twisted curve. Moreover, to our knowledge, till this date, no work has been proposed for efficiently calculating scalar multiplication over KSS16 curve using skew Frobenius map. This paper will give a clear outline to utilize skew Frobenius map for efficient scalar multiplication.
+The main focus of this paper is to explicitly show the implementation procedure of  Frobenius map and skew Frobenius map for KSS curve of embedding degree 16 (KSS16) in the context of optimal Ate pairing. This paper also gives some comparative study between this two procedures. Recently Ghammam et al. \cite{EPRINT:GhaFou16b} have proposed that KSS16 curve is a strong candidate to implement pairing-based cryptography at 192-bit security level. Therefore the authors selected KSS16 curve to obtain the skew Frobenius map over the quartic twisted curve. Moreover, to our knowledge, till this date, no work has been proposed for efficiently calculating scalar multiplication over KSS16 curve using skew Frobenius map. This paper will give a clear outline to utilize skew Frobenius map for efficient scalar multiplication.
 
 \section{Preliminaries}
 Fundamentals of KSS curve and  optimal Ate pairing are briefly given in this section.
-\subsection{Kachisa-Schaefer-Scott (KSS) curve \cite{kss}}
- In  \cite{kss}, Kachisa, Schaefer, and Scott proposed a family of non super-singular Brezing-Weng pairing friendly elliptic curves using the elements in the cyclotomic field.  In what follows, this papers considers \textit{KSS16} curve of embedding degree $k =16$, defined over $\FPSN$ as follows:
+\subsection{Kachisa-Schaefer-Scott (KSS) curve \cite{EPRINT:KacSchSco07}}
+ In  \cite{EPRINT:KacSchSco07}, Kachisa, Schaefer, and Scott proposed a family of non super-singular Brezing-Weng pairing friendly elliptic curves using the elements in the cyclotomic field.  In what follows, this papers considers \textit{KSS16} curve of embedding degree $k =16$, defined over $\FPSN$ as follows:
 \begin{equation}\label{eq:KSS_16}
 E/\FPSN:Y^2=X^3+aX, \quad \mbox{($a \neq 0 \in \Fp$) },
 \end{equation}
@@ -131,7 +131,7 @@ The optimal Ate pairing over the KSS16 curve is represented as,
 \begin{equation}
 	(Q,P)=((f_{u,Q}\cdot l_{[u]Q,[p]Q})^{p^3}\cdot l_{Q,Q})^{\frac{p^{16}-1}{r}}\label{pairing},
 \end{equation}
-by  Zhang et al. \cite{kss_zan} utilizing $p^8 +1 \equiv 0 \bmod r$, where $u$ is the mother parameter.
+by  Zhang et al. \cite{INDOCRYPT:ZhaLin12} utilizing $p^8 +1 \equiv 0 \bmod r$, where $u$ is the mother parameter.
 In \eqref{pairing}, line evaluation $l_{[u]Q,[p]Q}$ requires scalar multiplication of $Q$ by $p$. The multiplication of the 1st two terms requires exponentiation by $p^3$. This two calculation can be efficiently carried by Frobenius map and skew Frobenius map which is the major focus of this paper.
 
 \section{Proposal}
@@ -287,9 +287,9 @@ Finally, it requires 8 $\Fp$ multiplications by pre-computed values to calculate
 %Also it takes 2 multiplication by the basis element $\alpha$ and $\beta$ which cost 6 times 1-bit left shifting.
 
 \section{Results evaluation}
-This section gives the computational cost comparison of Frobenius map and skew Frobenius map  with respect to operation count and execution time while it has been implemented for calculating optimal Ate pairing over KSS16 curve. Recently, Barbulescu et al. \cite{sulvain_new_param} have presented new parameters for pairing friendly curves. This paper has considered their proposed KSS16 curve as $y^2=x^3+x \in \FPSN$. The mother parameter $ u=2^{35}-2^{32}-2^{18}+2^{8}+1$ and the quadratic non-residue  $c=2$ in $\FP$ of \eqref{eq_bls_towering} is considered accordingly.
+This section gives the computational cost comparison of Frobenius map and skew Frobenius map  with respect to operation count and execution time while it has been implemented for calculating optimal Ate pairing over KSS16 curve. Recently, Barbulescu et al. \cite{EPRINT:BarDuq17} have presented new parameters for pairing friendly curves. This paper has considered their proposed KSS16 curve as $y^2=x^3+x \in \FPSN$. The mother parameter $ u=2^{35}-2^{32}-2^{18}+2^{8}+1$ and the quadratic non-residue  $c=2$ in $\FP$ of \eqref{eq_bls_towering} is considered accordingly.
 
-Table \ref{tab1} shows the experiment environment used to implement the techniques. Table \ref{tab2} shows the execution time for calculating the $p$-th power, FM and SFM for rational point $Q \in \g2 \subset E(\FPSN)$ where $m$ denotes multiplication in $\FP$.  It is apparent that skew Frobenius map over $Q' \in \g2' \subset E'(\FPFR)$ in the twisted curve is about four times faster than Frobenius mapping in  $Q \in \g2$. In \cite{sakemi_skew}, Sakemi et al. have shown an efficient scalar multiplication by applying skew Frobenius mapping in the context of Ate-based pairing in BN curve of embedding degree $k=12$. Such technique can also be applied in KSS16 curve for the same. Moreover, multi-scalar multiplication technique can also be obtained using the proposed skew Frobenius map.
+Table \ref{tab1} shows the experiment environment used to implement the techniques. Table \ref{tab2} shows the execution time for calculating the $p$-th power, FM and SFM for rational point $Q \in \g2 \subset E(\FPSN)$ where $m$ denotes multiplication in $\FP$.  It is apparent that skew Frobenius map over $Q' \in \g2' \subset E'(\FPFR)$ in the twisted curve is about four times faster than Frobenius mapping in  $Q \in \g2$. In \cite{CANS:SNOKM08}, Sakemi et al. have shown an efficient scalar multiplication by applying skew Frobenius mapping in the context of Ate-based pairing in BN curve of embedding degree $k=12$. Such technique can also be applied in KSS16 curve for the same. Moreover, multi-scalar multiplication technique can also be obtained using the proposed skew Frobenius map.
 \renewcommand{\baselinestretch}{1.5}
 \begin{table}[!ht]
 \centering

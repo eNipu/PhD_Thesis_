@@ -1,0 +1,104 @@
+\chapter{Fundamentals}
+This chapter: temoporary for commont intoductions
+\label{Chapter_intros}
+
+\section{ICCE-TW Introduction}
+%Since the inception of elliptic curve cryptography (ECC) it has gained wide acceptance mostly due to its smaller key size and greater security. 
+%The equation of elliptic curve is defined as
+% \begin{equation}\label{eq:eccdef}
+%E:y^2 = x^3 + ax + b,
+% \end{equation}
+% where $4a^3 + 27b^2 \neq 0$. 
+In cryptography research, elliptic curve cryptography (ECC) has gained a wide acceptance due to its smaller key size and greater security. 
+In ECC, scalar multiplication (SM) is carried out at the encryption and decryption phases. SM is the major operation in ECC. Let us denote a scalar and rational point by  $s$ and $P$, respectively. Then, the SM is denoted by $[s]P$. In real cases $s$ is significantly large number less than the order of rational point group. Since SM needs a complicated calculation over the definition field such as prime field, an efficient algorithm for SM is needed. Recently, ECC defined over extension field $\F{q}{2}$ with a large prime number $p$ such as more than $2000$ bits is used in some ECC based protocols. On the other hand, pairing based cryptography realizes some innovative application protocol. Pairing based cryptography requires pairing friendly curve which is difficult to generate. Barreto-Naehrig (BN) \cite{SAC:BarNae05} curve is one of the well known pairing friendly curve\cite{EPRINT:FreScoTes06} whose parameters are able to be systematically given. BN curve is mostly used due to its efficiency to realize pairing based cryptography. Thus, this paper proposes an efficient approach for calculating SM on BN curve particularly defined over extension field $\F{q}{2}$, where $q=p^6$ and $p$ is a prime number by using Frobenious Mapping (FM) for the rational points.
+
+
+\section{WISA - Introduction}
+The intractability of Elliptic Curve Discrete Logarithm Problem (ECDLP) spurs on many innovative pairing based cryptographic protocols.
+Pairing based cryptography is considered to be the basis of next generation security. 
+Recently a number of unique and innovative pairing based cryptographic applications such as identity based encryption scheme \cite{C:BonFra01}, broadcast encryption \cite{C:BonGenWat05} and group signature authentication \cite{C:BonBoySha04} surge the popularity of pairing based cryptography. 
+In such consequence Ate-based pairings such as Ate \cite{DBLP:reference/crc/2005ehcc} and Optimal-ate \cite{DBLP:journals/tit/Vercauteren10}, twisted Ate  \cite{EPRINT:MKHO07} and $\chi$-Ate \cite{PAIRING:NASKM08} pairings has gained much attention. 
+To make such cryptographic applications practical, these pairings need to be computed efficiently and fast. 
+This paper focuses on such  Ate-based pairings. 
+
+Pairing is a bilinear map from two rational point  $\g1$ and $\g2$ to a multiplicative group $\g3$ \cite{Silverman} typically denoted by $\g1 \times \g2 \rightarrow \g3$.
+In the case of Ate-based pairing, $\g1$, $\g2$ and $\g3$ are defined as follows:
+\begin{eqnarray}\label{eq:g_1}
+\g1 & = &  E(\F{p}{k}) [r] \cap \text{Ker}(\pi_p - [1]), \nonumber \\
+\g2 & = &  E(\F{p}{k}) [r] \cap \text{Ker}(\pi_p - [p]), \nonumber \\
+\g3 & = & \mF{p}{k}/(\mF{p}{k})^r, \nonumber
+\end{eqnarray}
+\begin{equation}
+\alpha : \g1 \times \g2 \rightarrow \g3,  \nonumber
+\end{equation}
+where $\alpha$ denotes Ate pairing.
+In general, pairings are only found in certain extension field $\FQK$, where $p$ is the prime number, also know as characteristics  and the minimum extension degree $k$ is called \textit{embedding} degree. 
+The rational points $E(\FQK)$ are defined over a certain pairing friendly curve of embedded extension field of degree $k$.
+Security level of pairing based cryptography depends on the sizes of both $r$ and $p^k$, where $r$ generally denotes the largest prime number that divides the order $\#E(\FQ)$.
+The next generation security of pairing-based cryptography needs $\log_2 r \approx 256$ bits and $\log_2 p^k \approx 3000$ to $5000$ bits. 
+Therefore taking care of $\rho = (\log_2 p)/(\log_2 r)$, $k$ needs to be $12$ to $20$. 
+This paper has considered Kachisa-Schaefer-Scott (KSS) \cite{EPRINT:KacSchSco07} pairing friendly curves of emebdding degree $k=18$ described in \cite{EPRINT:FreScoTes06}. 
+Pairing on KSS curve is considered to be the basis of next generation security as it conforms 192-bit security level. 
+Making the pairing practical over KSS curve depends on several factors such as efficient pairing algorithm, efficient extension field arithmetic and efficiently performing scalar multiplication. 
+Many researches have conducted on efficient pairing algorithms \cite{C:BKLS02} and curves \cite{SCN:BarLynSco02} along with extension field arithmetic \cite{C:BaiPaa98}. 
+This paper focuses on efficiently performing scalar multiplication in $\g2$ by scalar $s$, since scalar multiplication is required repeatedly in cryptographic calculation. Scalar multiplication is also considered to be the one of the most time consuming operation in cryptographic scene. Moreover in asymmetric pairing such as Ate-based pairing, scalar multiplication in $\g2$ is important as no mapping function is explicitly given between $\g1$ to $\g2$.
+By the way, as shown in the definition, $\g1$ is a set of rational points defined over prime field and there are many researches for efficient scalar multiplication in $\g1$.
+
+Scalar multiplication by $s$ means $(s-1)$ times elliptic additions of a given rational point on the elliptic curve. This elliptic addition is not as simple as addition of extension field, but it requires 3 multiplications plus an inversion of the extension field. General approaches to accelerate scalar multiplication are log-step algorithm such as binary and non-adjacent form (NAF) methods, but more efficient approach is to use Frobenius mapping in the case of $\g2$ that is defined over $\F{p}{k}$. Frobenious map $\pi : (x,y) \mapsto  (x^p,y^p)$ is the $p$-th power of the rational point $(x,y)$ defined over $\FQK$. 
+In this paper we also exploited the Frobenious trace $t$, $t = p+1- \#E(\FQ)$ defined over KSS curve. In the previous work on optimal-ate pairing, Aranha et al. \cite{PAIRING:AFKMR12} derived an important relation: $z \equiv -3p + p^4 \bmod {r}$, where $z$ is the mother parameter of KSS curve and $z$ is about six times smaller than the size of order $r$. 
+We have utilized this relation to construct $z$-adic representation of scalar $s$ which is introduced in section 3. 
+In addition with Frobenius mapping and $z$-adic representation of $s$, we applied the multi-scalar multiplication technique to compute elliptic curve addition in parallel in the proposed scalar multiplication.
+We have compared our proposed method with three other well studied methods named binary method, sliding-window method and non-adjacent form method. The comparison shows that our proposed method is at least 3 times or more than 3 times faster than above mentioned methods in execution time. The comparison also reveals that the proposed method requires more than 5 times less elliptic curve doubling than any of the compared methods.
+
+As shown in the previous work of scalar multiplication on sextic twisted BN curve by Nogami et al. \cite{DBLP:journals/ieicet/NogamiSONAM09}, we can consider sub-field sextic twisted curve in the case of KSS curve of embedding degree 18. Let us denote the sub-field sextic twisted curve by $E'$. It will include sextic twisted isomorphic rational point group denoted as $\g2'$ . In KSS curve, $\g2$ is defined over $\FQEN$ whereas its sub-field isomorphic group $\g2'$ is defined over $\FQTH$. Important feature of this sextic twisted isomorphic group is, all the scalar multiplication in $\g2$ is mapped with $\g2'$ and it can be efficiently carried out by applying skew Frobenious map. Then, the resulted points can be re-mapped to $\g2$ in $\FQEN$.  This above mentioned skew Frobenious mapping in sextic twisted isomorphic group will calculate more faster scalar multiplication. However, the main focus of this paper is presenting the process of splitting the scalar into $z$-adic representation and  applying Frobenius map in combination with multi-scalar multiplication technique.
+
+
+\section{IEICE SDM Introduction}
+
+Pairing based cryptography has attracted many researchers since Sakai et al. \cite{EPRINT:SakKas03} and Joux et al. \cite{JC:Joux04} independently proposed a cryptosystem based on elliptic curve pairing. This has encouraged to invent several innovative pairing based cryptographic applications such as broadcast encryption \cite{C:BonGenWat05} and group signature authentication \cite{C:BonBoySha04}, that has increased the popularity of pairing based cryptographic research.
+But using pairing based cryptosytem in industrial state is still restricted by its expensive operational cost with respect to time and computational resources in practical case. 
+In order to make it practical, several pairing techniques such as Ate \cite{DBLP:reference/crc/2005ehcc}, Optimal-ate \cite{DBLP:journals/tit/Vercauteren10}, twisted Ate \cite{EPRINT:MKHO07}, $\chi$-Ate \cite{PAIRING:NASKM08} and \textit{sub-field twisted} Ate \cite{PAIRING:DevScoDah07} pairings have gained much attention since they have achieved quite efficient pairing calculation in certain pairing friendly curve. 
+Researchers still continues on finding efficient way to implement pairing to make it practical enough for industrial standardization. 
+In such consequences, this paper focuses on a peripheral technique of Ate-based pairings  that is scalar multiplication defined over Kachisa-Schaefer-Scott (KSS) curve \cite{EPRINT:KacSchSco07} of embedding degree 18. 
+
+In general, pairing is a bilinear map of two rational point groups $\g1$ and $\g2$ to a multiplicative group $\g3$ \cite{Silverman}.
+The typical notation of pairing is $\g1 \times \g2 \rightarrow \g3$.
+In  Ate-based pairing, $\g1$, $\g2$ and $\g3$ are defined as:
+\begin{eqnarray}\label{eq:g_1}
+\g1 & = &  E(\F{p}{k}) [r] \cap \text{Ker}(\pi_p - [1]), \nonumber \\
+\g2 & = &  E(\F{p}{k}) [r] \cap \text{Ker}(\pi_p - [p]), \nonumber \\
+\g3 & = & \mF{p}{k}/(\mF{p}{k})^r, \nonumber
+\end{eqnarray}
+\begin{equation}
+\alpha : \g1 \times \g2 \rightarrow \g3,  \nonumber
+\end{equation}
+where $\alpha$ denotes Ate pairing.
+Pairings are often defined over certain extension field $\FQK$, where $p$ is the prime number, also know as characteristics  and $k$  is the minimum extension degree for pairing also called \textit{embedding} degree. 
+The set of rational points $E(\FQK)$ are defined over a certain pairing friendly curve of embedded extension field of degree $k$.
+This paper has considered Kachisa-Schaefer-Scott (KSS) \cite{EPRINT:KacSchSco07} pairing friendly curves of emebdding degree $k=18$ described in \cite{EPRINT:FreScoTes06}.
+
+Scalar multiplication is often considered to be  one of the most time consuming operation in cryptographic scene. 
+Efficient scalar multiplication is one of the important factors for making the pairing practical over KSS curve.
+%  depends on several factors such as efficient pairing algorithm, efficient extension field arithmetic and . 
+There are several works \cite{DBLP:journals/ieicet/NogamiSONAM09}\cite{CANS:SNOKM08} on efficiently computing scalar multiplication defined over Barreto-Naehrig\cite{SAC:BarNae05} curve along with efficient extension field arithmetic \cite{C:BaiPaa98}. 
+This paper focuses on efficiently performing scalar multiplication on rational points defined over rational point group $\g2$ by scalar $s$, since scalar multiplication is required repeatedly in cryptographic calculation.
+However in asymmetric pairing such as Ate-based pairing, scalar multiplication of $\g2$ rational points is important as no mapping function is explicitly given between $\g1$ to $\g2$.
+By the way, as shown in the definition, $\g1$ is a set of rational points defined over prime field and there are several researches \cite{CANS:SNOKM08} for efficient scalar multiplication in $\g1$.
+The common approach to accelerate scalar multiplication are log-step algorithm such as binary and non-adjacent form (NAF) methods, but more efficient approach is to use Frobenius mapping in the case of $\g2$ that is defined over $\F{p}{k}$.
+Moreover when sextic twist of the pairing friendly curve exists, then we apply skew Frobenius map on the isomorphic sextic-twisted sub-field rational points. Such technique will reduce the computational cost in a great extent.
+In this paper we have exploited the sextic twisted property of KSS curve and utilized skew Frobenius map to reduce the computational time of scalar multiplication on $\g2$ rational point. 
+Utilizing the relation $z \equiv -3p + p^4 \bmod {r}$,\footnote{$z$ is the mother parameter of KSS curve and $z$ is about six times smaller than the size of order $r$.} derived by Aranha et al,\cite{PAIRING:AFKMR12} and the properties of $\g2$ rational point, the scalar can be expressed as $z$-adic representation.
+Together with skew Frobenius mapping and $z$-adic representation the scalar multiplication can be further accelerated.  
+We have utilized this relation to construct $z$-adic representation of scalar $s$ which is introduced in section 3. 
+In addition with Frobenius mapping and $z$-adic representation of $s$, we applied the multi-scalar multiplication technique to compute elliptic curve addition in parallel in the proposed scalar multiplication.
+We have compared our proposed method with three other well studied methods named binary method, sliding-window method and non-adjacent form method. 
+The comparison shows that our proposed method is about 60 times faster than the plain implementations of above mentioned methods in execution time. The comparison also reveals that the proposed method requires more than 5 times less elliptic curve doubling than any of the compared methods.
+
+The rest of the paper is organized as follows. 
+The fundamentals of elliptic curve arithmetic, scalar multiplication along with KSS curve over $\FQEN$ extension field and \textit{sextic twist} of KSS curve are described in section 2.
+In section 3, this paper describes the proposal in details. The experimental result is presented in section 4 which shows that our scalar multiplication technique on $\g2$ rational points of KSS curve can be accelerated by 60 times than plain implementation of binary, sliding-window and NAF methods. Finally section 5 draws the conclusion with some outline how this work can be enhanced more as a future work.
+
+Throughout this paper, $p$ and $k$ denote characteristic and embedding extension degree, respectively. $\FQK$ denotes $k$-th extension field over prime field $\Fp$ and $\mF{p}{k}$ denotes the multiplicative group in $\FQK$ .
+
+The process of getting $z$-adic representation and using it for scalar multiplication over KSS curve is presented in 17th World Conference on Information Security Applications (WISA 2016), Jeju, Korea. It will be published in the conference proceedings from Springer LNCS.  For the convenience of describing the total procedure, here we will discus $z$-adic representation in section 3.
+

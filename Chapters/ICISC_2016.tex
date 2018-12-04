@@ -7,14 +7,14 @@ Moreover this paper has implemented the proposal with recommended security param
 The simulation result shows that the proposed \textit{pseudo 12-sparse multiplication} gives more efficient Miller's loop calculation of an Optimal Ate pairing operation along with recommended parameters than pairing calculation without sparse multiplication.
 
 \section{Introduction}\label{sec1}
-From the very beginning of the cryptosystems that utilizes elliptic curve pairing; proposed independently by Sakai et al. \cite{EPRINT:SakKas03} and Joux \cite{joux}, has unlocked numerous novel ideas to researchers. 
+From the very beginning of the cryptosystems that utilizes elliptic curve pairing; proposed independently by Sakai et al. \cite{EPRINT:SakKas03} and Joux \cite{JC:Joux04}, has unlocked numerous novel ideas to researchers. 
 Many researchers tried to find out security protocol that exploits pairings to remove the need of certification by a trusted authority. 
-In this consequence, several ingenious pairing based encryption scheme such as ID-based encryption scheme by  Boneh and Franklin \cite{C:BonFra01} and group signature authentication by Nakanishi et al. \cite{group_sign_2} has come into the focus. 
-In such outcome, Ate-based pairings such as Ate \cite{ate}, Optimal-ate \cite{op_ate_p}, twisted Ate \cite{twisted_ate},  R-ate \cite{r_ate}, and $\chi$-Ate \cite{PAIRING:NASKM08} pairings and their applications in cryptosystems have caught much attention since they have achieved quite efficient pairing calculation.
+In this consequence, several ingenious pairing based encryption scheme such as ID-based encryption scheme by  Boneh and Franklin \cite{C:BonFra01} and group signature authentication by Nakanishi et al. \cite{AC:NakFun05} has come into the focus. 
+In such outcome, Ate-based pairings such as Ate \cite{DBLP:reference/crc/2005ehcc}, Optimal-ate \cite{DBLP:journals/tit/Vercauteren10}, twisted Ate \cite{EPRINT:MKHO07},  R-ate \cite{r_ate}, and $\chi$-Ate \cite{PAIRING:NASKM08} pairings and their applications in cryptosystems have caught much attention since they have achieved quite efficient pairing calculation.
 But it has always been a challenge for researchers to make pairing calculation more efficient for being used practically as pairing calculation is regarded as quite time consuming operation. 
 
 Bilinear pairing operation consist of two predominant parts,  named as Miller's loop and final exponentiation. Finding pairing friendly curves \cite{EPRINT:FreScoTes06} and construction of efficient extension field arithmetic are the ground work for any pairing operation.
-Many research  has been conducted for finding pairing friendly curves \cite{ec_ex, JC:DupEngMor05} and efficient extension field arithmetic \cite{JC:BaiPaa01} . Some previous work on optimizing the pairing algorithm on pairing friendly curve such Optimal Ate pairing by Matsuda et al. \cite{twisted_ate} on Barreto-Naehrig (BN) curve \cite{BN} is already carried out.  The previous work of Mori et al. \cite{mori} has showed the \textit{pseudo 8-sparse multiplication} to efficiently calculate Miller's algorithm defined over BN curve. Apart from it, Aranha et al. \cite{PAIRING:AFKMR12} has improved Optimal Ate pairing over KSS curve for 192 bit security level by utilizing the relation $t(\chi) - 1 \equiv \chi + 3p(\chi) \bmod r(\chi)$ where $t(\chi)$ is the Frobenius trace of KSS curve, $\chi$ is an integer also known as \textit{mother parameter}, $p(\chi)$ is the prime number and $r(\chi)$ is the order of the curve. This paper has exclusively focused on efficiently calculating the Miller's loop of Optimal Ate pairing defined over KSS curve \cite{kss} for 192-bit security level by applying\textit{ pseudo 12-sparse multiplication} technique along with other optimization approaches. The parameter settings recommended in \cite{PAIRING:AFKMR12} for 192 bit security on KSS curve is used in the simulation implementation. But in the recent work, Kim et al. \cite{kim_ecdlp} has suggested to update the key sizes associated with pairing-based cryptography due to the new development of discrete logarithm problem over finite field. The parameter settings of \cite{PAIRING:AFKMR12} doesn't end up at the 192 bit security level according to \cite{kim_ecdlp}. However the parameter settings of \cite{PAIRING:AFKMR12}  is primarily adapted in this paper in order to show the resemblance of the proposal with the experimental result.
+Many research  has been conducted for finding pairing friendly curves \cite{ec_ex, JC:DupEngMor05} and efficient extension field arithmetic \cite{JC:BaiPaa01} . Some previous work on optimizing the pairing algorithm on pairing friendly curve such Optimal Ate pairing by Matsuda et al. \cite{EPRINT:MKHO07} on Barreto-Naehrig (BN) curve \cite{SAC:BarNae05} is already carried out.  The previous work of Mori et al. \cite{PAIRING:MANS13} has showed the \textit{pseudo 8-sparse multiplication} to efficiently calculate Miller's algorithm defined over BN curve. Apart from it, Aranha et al. \cite{PAIRING:AFKMR12} has improved Optimal Ate pairing over KSS curve for 192 bit security level by utilizing the relation $t(\chi) - 1 \equiv \chi + 3p(\chi) \bmod r(\chi)$ where $t(\chi)$ is the Frobenius trace of KSS curve, $\chi$ is an integer also known as \textit{mother parameter}, $p(\chi)$ is the prime number and $r(\chi)$ is the order of the curve. This paper has exclusively focused on efficiently calculating the Miller's loop of Optimal Ate pairing defined over KSS curve \cite{EPRINT:KacSchSco07} for 192-bit security level by applying\textit{ pseudo 12-sparse multiplication} technique along with other optimization approaches. The parameter settings recommended in \cite{PAIRING:AFKMR12} for 192 bit security on KSS curve is used in the simulation implementation. But in the recent work, Kim et al. \cite{C:KimBar16} has suggested to update the key sizes associated with pairing-based cryptography due to the new development of discrete logarithm problem over finite field. The parameter settings of \cite{PAIRING:AFKMR12} doesn't end up at the 192 bit security level according to \cite{C:KimBar16}. However the parameter settings of \cite{PAIRING:AFKMR12}  is primarily adapted in this paper in order to show the resemblance of the proposal with the experimental result.
 
 In general, pairing is a bilinear map from two rational point groups $\g1$ and $\g2$ to a multiplicative group $\g3$ \cite{Silverman}. 
 When KSS  pairing-friendly elliptic curve of embedding degree $k=18$ is chosen for Ate-based pairing, then the bilinear map is denoted by $\g1 \times \g2 \rightarrow \g3$ , where $\g1 \subset E(\FQ)$, $\g2 \subset E(\FQEN)$ and $\g3  \subset \mathbb{F}^*_{p^{18}}$ and  $p$ denotes the characteristic and $E$ is the curve defined over corresponding extension field $\FQK$. 
@@ -29,15 +29,15 @@ In order to evaluate the theoretic proposal, this paper shows some experimental 
 
 
 \section{Fundamentals}
-This section briefly reviews the fundamentals of KSS curve \cite{kss}, towering extension field with irreducible binomials \cite{JC:BaiPaa01} , sextic twist, pairings and sparse multiplication \cite{mori}.
+This section briefly reviews the fundamentals of KSS curve \cite{EPRINT:KacSchSco07}, towering extension field with irreducible binomials \cite{JC:BaiPaa01} , sextic twist, pairings and sparse multiplication \cite{PAIRING:MANS13}.
 %-----------------------------------------------------------------------------------------------------------------------------------
 \subsection{KSS curve}
-Kachisa-Schaefer-Scott(KSS) curve\cite{kss} is a non supersingular pairing friendly elliptic curve of embedding degree 18. The equation of KSS curve defined over $\FQEN$ is given as follows: 
+Kachisa-Schaefer-Scott(KSS) curve\cite{EPRINT:KacSchSco07} is a non supersingular pairing friendly elliptic curve of embedding degree 18. The equation of KSS curve defined over $\FQEN$ is given as follows: 
 \begin{equation} \label{KSS}
 	E:y^2=x^3+b,\;\;\;b\in\Fp
 \end{equation}
 together with the following parameter settings,
-\begin{manyeqns} \label{kss_param}
+\begin{manyeqns} \label{IMA:Scott11}
 	p(\chi)\!&=&\!(\chi^8\!\!+\!5\chi^7\!\!+\!7\chi^6\!\!+\!37\chi^5\!\!+\!188\chi^4\!\!+\!259\chi^3\!\!+\!343\chi^2\!\!+\!1763\chi\!\!+\!2401)/21,\\
 	r(\chi)\!&=&\!(\chi^6\!\!+\!37\chi^3\!\!+\!343)/343,\\
 	t(\chi)\!&=&\!(\chi^4\!\!+\!16\chi\!\!+\!7)/7,
@@ -46,7 +46,7 @@ where $b \neq 0$, $x,y \in \FQEN$ and characteristic $p$ (prime number), Frobeni
 %-----------------------------------------------------------------------------------------------------------------------------------
 \subsection{Towering extension field}
 In extension field arithmetic, higher level computations can be improved by towering. In towering, higher degree extension field is  constructed as a polynomial of lower degree extension fields. Since KSS curve is defined over $\FQEN$, this paper has represented extension field  $\FQEN$ as a tower of sub-fields to improve arithmetic operations.
- In some previous works, such as Bailey et al. \cite{JC:BaiPaa01}  explained tower of extension by using irreducible binomials. In what follows, let $(p-1)$ be divisible by 3 and $c$ is a certain quadratic and cubic non residue in $\Fp$. Then for KSS-curve \cite{kss}, where $k=18$, $\FQEN$ is constructed as tower field with irreducible binomial as follows:
+ In some previous works, such as Bailey et al. \cite{JC:BaiPaa01}  explained tower of extension by using irreducible binomials. In what follows, let $(p-1)$ be divisible by 3 and $c$ is a certain quadratic and cubic non residue in $\Fp$. Then for KSS-curve \cite{EPRINT:KacSchSco07}, where $k=18$, $\FQEN$ is constructed as tower field with irreducible binomial as follows:
 \begin{eqnarray}\label{towering}
 	\left\{
 	\begin{array}{ll}
@@ -105,7 +105,7 @@ where $f_{t-1,Q}(P)$ symbolize the output of Miller's algorithm. The bilinearity
 where $\chi$ is the mother parameter. The calculation procedure of Optimal Ate pairing is shown in Alg. \ref{optimal_algo}. In what follows, the calculation steps from 1 to 5 shown in Alg. \ref{optimal_algo} is identified as Miller's loop. Step 3 and 5 are line evaluation along with elliptic curve doubling and addition. These two steps are key steps to accelerate the loop calculation. As an acceleration technique  \textit{pseudo 12-sparse multiplication} is proposed in this paper.
 %-----------------------------------------------------------------------------------------------------------------------------------
 \subsection{Sparse multiplication}
-In the previous work, Mori et al. \cite{mori} has substantiated the pseudo 8-sparse multiplication for BN curve. 
+In the previous work, Mori et al. \cite{PAIRING:MANS13} has substantiated the pseudo 8-sparse multiplication for BN curve. 
 Adapting affine coordinates for representing rational points, we can apply Mori's work in the case of KSS curve. The doubling phase and addition phase in Miller's loop can be carried out efficiently by the following calculations. Let $P=(x_P,y_P)$, $T=(x,y)$ and $Q=(x_2,y_2)\in E'(\Fpiii)$ be given in affine coordinates, and let $T+Q=(x_3,y_3)$ be the sum of $T$ and $Q$.
 \subsubsection{Step 3: Elliptic curve doubling phase \texorpdfstring{($T = Q$)}{}}
 \begin{eqnarray}
@@ -237,7 +237,7 @@ This section shows some experimental results with evaluating the calculation cos
 It is to be noted here that in the following discussions ``Previous method" means Optimal Ate pairing with no use the sparse multiplication, ``11-sparse multiplication" means Optimal Ate pairing with 11-sparse multiplication and ``Proposed method" means Optimal Ate pairing with Pseudo 12-sparse multiplication.
 %----------------------------------------------------------------------------------
 \subsection{Parameter settings and computational environment}
-In the experimental simulation, this paper has considered the 192 bit security level for KSS curve. Table \ref{parameters} shows the  parameters settings suggested in \cite{PAIRING:AFKMR12} for 192 bit security over KSS curve. However this parameter settings does not necessarily comply with the recent suggestion of key size by Kim et al. \cite{kim_ecdlp} for 192 bit security level. The sole purpose to use this parameter settings in this paper is to compare the literature with the experimental result.
+In the experimental simulation, this paper has considered the 192 bit security level for KSS curve. Table \ref{parameters} shows the  parameters settings suggested in \cite{PAIRING:AFKMR12} for 192 bit security over KSS curve. However this parameter settings does not necessarily comply with the recent suggestion of key size by Kim et al. \cite{C:KimBar16} for 192 bit security level. The sole purpose to use this parameter settings in this paper is to compare the literature with the experimental result.
 \renewcommand{\baselinestretch}{1.5}
 \begin{table}[htb]
 	\begin{center}

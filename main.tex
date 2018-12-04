@@ -168,6 +168,7 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 \newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
 \urldef{\footurl}\url{https://github.com/eNipu/candar_glv.git}
 \newtheorem{prop}{Proposition}[section]
+\makeatletter\@addtoreset{chapter}{part}\makeatother%
 
 %%---------------------------------------------_Custom command end---------------------------------
 \makeindex
@@ -365,35 +366,36 @@ To my parents who brought me to this world and to my wife who sacrificed the mos
 \pagestyle{thesis} % Return the page headers back to the "thesis" style
 %\part{ Group Ring Fields}[Hello there...]
 %\extraPartText{Always be friendly to ducks, capybaras and wombats.}
-%\part{Overall Organization}
-%\include{Chapters/Chapter1}
+%part{Mathematical Backgrounds}
+\include{Chapters/Chapter1}
 
 %\extraPartText{Always be friendly to ducks, capybaras and wombats.}
-%% \part{Basic Math}
-%\include{Chapters/Chapter2} 
+%\part{Basic Math}
+\include{Chapters/Chapter2} 
+%\include{Chapters/Chap_intros} 
 %%\part{Works}
-%\chapter{ICCE-TW 2016} 
-%\input{Chapters/ICCE_TW_16}
-%\chapter{WISA 2016} 
-%\input{Chapters/WISA_2016} 
-%\chapter{IEICE 2016} 
-%\input{Chapters/IEICE_2016} 
-%\chapter{CANDAR 2016} 
-%\input{Chapters/CANDAR_2016} 
-%\chapter{IJNC 2016}
-%\input{Chapters/IJNC_2016}
-%\chapter{ICISC 2016} 
-%\input{Chapters/ICISC_2016} 
-%\chapter{ICCIT 2016} 
-%\input{Chapters/ICCIT_2016}
-%\chapter{INDOCRYPT 2017} 
-%\input{Chapters/IndoCrypt_OptAte_2017}
-%\chapter{INDOCRYPT Revisited Journal 2017} 
-%\input{Chapters/CVMA_Indo} 
-%\chapter{CSS 2017} 
-%\input{Chapters/CSS_2017} 
-%\chapter{ITC CSCC 2017} 
-%\input{Chapters/ITC_CSCC_2017} 
+\chapter{ICCE-TW 2016} 
+\input{Chapters/ICCE_TW_16}
+\chapter{WISA 2016} 
+\input{Chapters/WISA_2016} 
+\chapter{IEICE 2016} 
+\input{Chapters/IEICE_2016} 
+\chapter{CANDAR 2016} 
+\input{Chapters/CANDAR_2016} 
+\chapter{IJNC 2016}
+\input{Chapters/IJNC_2016}
+\chapter{ICISC 2016} 
+\input{Chapters/ICISC_2016} 
+\chapter{ICCIT 2016} 
+\input{Chapters/ICCIT_2016}
+\chapter{INDOCRYPT 2017} 
+\input{Chapters/IndoCrypt_OptAte_2017}
+\chapter{INDOCRYPT Revisited Journal 2017} 
+\input{Chapters/CVMA_Indo} 
+\chapter{CSS 2017} 
+\input{Chapters/CSS_2017} 
+\chapter{ITC CSCC 2017} 
+\input{Chapters/ITC_CSCC_2017} 
 
 %\include{Chapters/Chapter5} 
 
@@ -416,6 +418,8 @@ To my parents who brought me to this world and to my wife who sacrificed the mos
 %----------------------------------------------------------------------------------------
 
 \printbibliography[heading=bibintoc]
+%\printbibliography[heading=bibintoc, type=article,]
+%\printbibliography[heading=bibintoc, type=InProceedings]
 \printindex 
 \addcontentsline{toc}{chapter}{Biography}
 \include{Chapters/Biography} 

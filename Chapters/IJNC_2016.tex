@@ -66,12 +66,12 @@ Implementing asynchronous pairing operation on  a certain pairing-friendly non-s
 
 \section{Introduction}
 Pairing-based cryptography is comparatively a new field of cryptographic research which generally deals with a specific algorithm with  some certain characteristics.
-It has emerged at the very begining of the $21^{st}$ century when Sakai et al. \cite{sakai} and Joux et al. \cite{joux} independently proposed a new cryptosystem based on elliptic curve pairing.
+It has emerged at the very begining of the $21^{st}$ century when Sakai et al. \cite{sakai2000cryptosystems} and Joux et al. \cite{JC:Joux04} independently proposed a new cryptosystem based on elliptic curve pairing.
 Since then, pairing-based cryptography has attracted many researchers. 
-As a result,  several innovative pairing-based cryptographic applications such as ID-based encryption \cite{sakai}, attribute base encryption \cite{abe_amit}, broadcast encryption \cite{boradcast} and group signature authentication \cite{group_sign_1} escalated the popularity of pairing-based cryptography.
-In such outcome, Ate-based pairings such as Ate \cite{ate}, Optimal-ate \cite{op_ate_p}, $\chi$-Ate \cite{chibasedBN}, R-ate \cite{r_ate} and  twisted Ate  \cite{twisted_ate} pairings have gained much attention since they have achieved quite efficient pairing calculation. 
+As a result,  several innovative pairing-based cryptographic applications such as ID-based encryption \cite{sakai2000cryptosystems}, attribute base encryption \cite{EPRINT:SahWat04}, broadcast encryption \cite{C:BonGenWat05} and group signature authentication \cite{C:BonBoySha04} escalated the popularity of pairing-based cryptography.
+In such outcome, Ate-based pairings such as Ate \cite{DBLP:reference/crc/2005ehcc}, Optimal-ate \cite{DBLP:journals/tit/Vercauteren10}, $\chi$-Ate \cite{PAIRING:NASKM08}, R-ate \cite{r_ate} and  twisted Ate  \cite{EPRINT:MKHO07} pairings have gained much attention since they have achieved quite efficient pairing calculation. 
 There is no alternative of efficient and fast pairing calculation for deploying pairing-based cryptographic applications in practical case. 
-This paper focuses on a peripheral technique of Ate-based pairings with Kachisa-Schaefer-Scott (KSS) family of pairing-friendly curves \cite{kss}. 
+This paper focuses on a peripheral technique of Ate-based pairings with Kachisa-Schaefer-Scott (KSS) family of pairing-friendly curves \cite{EPRINT:KacSchSco07}. 
 
 In general, pairing is a bilinear map from two additive rational point groups $\g1$ and $\g2$ to a multiplicative group $\g3$ \cite{Silverman}, typically denoted by $\g1 \times \g2 \rightarrow \g3$.
 In the context of Ate-based pairing, $\g1$, $\g2$ and $\g3$ are defined as follows:
@@ -86,8 +86,8 @@ In the context of Ate-based pairing, $\g1$, $\g2$ and $\g3$ are defined as follo
 where $\xi$ denotes Ate pairing. 
 Pairings are often found in certain extension field $\FPK$, where $p$ is the prime number, also know as characteristics of the field and the minimum extension degree $k$ is called \textit{embedding} degree. 
 The rational points $E(\FPK)$ are defined over a certain pairing-friendly curve $E$ of embedded extension field of degree $k$. 
-In \cite{aranha}, Aranha et al. have presented pairing calculation for 192-bit security level where  KSS curve of embedding degree 18 is regarded as one of the good candidates for 192-bit security level.
-Recently Zhang et al. \cite{kss_zan} have shown that the KSS curve of embedding degree 16 are more suitable for 192-bit security level.
+In \cite{PAIRING:AFKMR12}, Aranha et al. have presented pairing calculation for 192-bit security level where  KSS curve of embedding degree 18 is regarded as one of the good candidates for 192-bit security level.
+Recently Zhang et al. \cite{INDOCRYPT:ZhaLin12} have shown that the KSS curve of embedding degree 16 are more suitable for 192-bit security level.
 Therefore this paper has considered KSS pairing-friendly curves of embedding degree $k=16$ and $18$.
 
 %Pairing on KSS curve satisfies 192-bit security level which is considered to be the basis of next generation security. 
@@ -95,9 +95,9 @@ In Ate-based pairing with KSS curve,  pairing computations are done in higher de
 However, KSS curves defined over $\FPEN$ have the sextic twisted isomorphic rational point group defined over $\FPTH$ and KSS curves defined over $\FPSN$ have the quartic twisted  isomorphism over $\FPFR$. 
 Therefore we can execute computations in the subfield $\FPKD$ where $d$ is the twist degree. 
 Exploiting such a property, different arithmetic operations of Ate-based pairing can be efficiently performed in $\g2$.  
-However, performing elliptic curve operations in small extension field brings security issue since they are vulnerable to small subgroup attack \cite{sub_group_attack}. 
-Recently Barreto et al. \cite{sub_sec} have studied the resistance of  KSS18 curves to small subgroup attacks. 
-Such resistible KSS16 curve is also studied by Loubna et al. \cite{kss_lub} at 192-bit security level. 
+However, performing elliptic curve operations in small extension field brings security issue since they are vulnerable to small subgroup attack \cite{C:LimLee97}. 
+Recently Barreto et al. \cite{LC:BCMNPZ15} have studied the resistance of  KSS18 curves to small subgroup attacks. 
+Such resistible KSS16 curve is also studied by Loubna et al. \cite{EPRINT:GhaFou16b} at 192-bit security level. 
 Therefore isomorphic mapping of KSS18 and KSS16 curves and implementing arithmetic operation can be done securely in subfield twisted curves for 192-bit security level.
 This paper has mainly focused on isomorphic mapping of $\g2$ rational points from extension field $\FPK$ to its twisted (sextic and quartic) subfield $\FPKD$ and its reverse procedure for both KSS18 and KSS16 curves. 
 
@@ -111,12 +111,12 @@ After that the scalar multiplication  is performed  in $\g2'$ and then resulted 
 
 The experiment result shows  that efficiency of  scalar multiplication is increased by more than 20 to 10 times in subfield  twisted curve $E'$ than scalar multiplication in $E(\FPEN)$ and $E(\FPSN)$ respectively without applying the proposed mapping. The mapping and remapping for sextic twisted curves requires one bit wise shifting in $\Fp$, one $\FPTH$ inversion which can be pre-computed and one $\Fp$ multiplication; hence the sextic twisted mapping procedure has no expensive arithmetic operation. On the other hand, quartic twisted mapping requires no arithmetic operation rather it needs some attention since elliptic curve doubling in the twisted curve has a tricky part. The experiment also reveals that sextic twist is preferable since it gives better performance than quartic twist. 
 Performance of such isomorphic mapping can be fully realized when it is applied in some pairing-based protocols. 
-It is obvious that efficiency of Ate-based pairing protocols depends not only on improved scalar multiplication but also on efficient Miller's algorithm  and final exponentiation implementation. In our recent work \cite{self_icisc}, presented in ICISC'16 shows the  efficient Miller's algorithm implementation for Ate-based pairings. 
-As a future work, we would also like to apply this isomorphic mapping  in \cite{self_icisc} with real pairing-based protocols implementation and evaluate its advantage. 
+It is obvious that efficiency of Ate-based pairing protocols depends not only on improved scalar multiplication but also on efficient Miller's algorithm  and final exponentiation implementation. In our recent work \cite{ICISC:KONSD16}, presented in ICISC'16 shows the  efficient Miller's algorithm implementation for Ate-based pairings. 
+As a future work, we would also like to apply this isomorphic mapping  in \cite{ICISC:KONSD16} with real pairing-based protocols implementation and evaluate its advantage. 
 
 A part of this work, isomorphic mapping of KSS curve of embedding degree 18, has been presented at CANDAR'16 \cite{self_candar}.
 In this paper, we have additionally considered quartic twist for  KSS16 curve. 
-We have chosen the parameter of KSS16 curve from \cite{kss_lub} for 192-bit security.
+We have chosen the parameter of KSS16 curve from \cite{EPRINT:GhaFou16b} for 192-bit security.
 The quartic twist is also compared with sextic twist of KSS18 curve with detailed implementation procedure. 
 The main focus of this paper is to demonstrate the details implementation procedure of sextic and quartic twist on KSS18 and KSS16 curve respectively at 192-bit security level. 
 
@@ -128,7 +128,7 @@ The paper concludes in section 5  with an outline of future enhancement.
 \section{Fundamentals}
 The brief overview of the fundamental elliptic curve operations, KSS family of pairing-friendly curves and twisted property of KSS curve is discussed concisely in this section.
 
-\subsection{Elliptic curve \cite{ecc_book}}
+\subsection{Elliptic curve \cite{washington2003elliptic}}
 Let $E$ be the elliptic curve defined over the prime field $\Fp$  as follows:
 \begin{equation}\label{ec_curve}
 E/\Fp : y^2=x^3+ax+b,
@@ -139,7 +139,7 @@ The set of rational points including the \textit{point at infinity} $\cal{O}$ on
 \#E(\Fp) = p+1-t,
 \end{equation} 
 where $t$ is called the Frobenius trace of $E(\Fp)$.
-When the definition field is the $k$-th degree extension field $\FPK$, rational points on the curve $E$ also forms an additive Abelian group denoted as $E(\FPK)$. The order of $E(\FPK)$ is denoted as $\#E(\FPK)$ and given by the  Weil’s theorem \cite{ate} as follows:
+When the definition field is the $k$-th degree extension field $\FPK$, rational points on the curve $E$ also forms an additive Abelian group denoted as $E(\FPK)$. The order of $E(\FPK)$ is denoted as $\#E(\FPK)$ and given by the  Weil’s theorem \cite{DBLP:reference/crc/2005ehcc} as follows:
 \begin{equation}
 \#E(\FPK) = p^k +1- t_k,
 \end{equation}
@@ -169,7 +169,7 @@ Let $r$ be the \textit{order} of the target rational point group and $s$ be the 
 If $s = r$, where $r$ is the order of the curve then $[r]M = \mathcal{O}$. When $[s]M = N$, if $s$ is unknown, then the solving $s$ from $M$ and $N$ is known as elliptic curve discrete logarithm problem (ECDLP). The security of elliptic curve cryptography lies on the difficulty of solving ECDLP.
 
 \paragraph{Binary method}
-The binary method is an extensively applied method for calculating the elliptic curve scalar multiplication.  The pseudo code of left-to-right binary scalar multiplication algorithm is shown in Algorithm \ref{alg:bin}. This algorithm scans the bits of scalar $s$ from the  most significant bit to the least significant bit. When $s[i] = 1$, it  performs ECA and ECD otherwise only ECD is calculated.  This method is easy to implement but the important drawback of this method is not resistant to \textit{side channel attack} \cite{sca}.  
+The binary method is an extensively applied method for calculating the elliptic curve scalar multiplication.  The pseudo code of left-to-right binary scalar multiplication algorithm is shown in Algorithm \ref{alg:bin}. This algorithm scans the bits of scalar $s$ from the  most significant bit to the least significant bit. When $s[i] = 1$, it  performs ECA and ECD otherwise only ECD is calculated.  This method is easy to implement but the important drawback of this method is not resistant to \textit{side channel attack} \cite{C:Kocher96}.  
 
  \begin{algorithm}[H]
   \caption{Left-to-right binary algorithm for elliptic curve scalar multiplication}
@@ -214,7 +214,7 @@ Montgomery ladder algorithm is said to be resistant to \textit{side channel atta
 \end{algorithm}
 
 \paragraph{Sliding-window method}
-Sliding-window \cite{ate} algorithm is also resistant to \textit{side channel attack} and at the same  time it is faster than Montgomery ladder. In this method the scalar $s$ is processed in blocks of length $w$, known as window size.  Algorithm \ref{alg:sliding} shows the sliding-window algorithm for scalar multiplication.
+Sliding-window \cite{DBLP:reference/crc/2005ehcc} algorithm is also resistant to \textit{side channel attack} and at the same  time it is faster than Montgomery ladder. In this method the scalar $s$ is processed in blocks of length $w$, known as window size.  Algorithm \ref{alg:sliding} shows the sliding-window algorithm for scalar multiplication.
  \begin{algorithm}
   \caption{Sliding window algorithm for elliptic curve scalar multiplication}
   \label{alg:sliding}
@@ -245,8 +245,8 @@ $j - t+1 \leq w$ and $s_t =1$\;
 
 This paper paper has considered left-to-right binary scalar multiplication for evaluating the efficiency of the proposed mapping operation. From the view point of security binary method is vulnarable to side channel attack. Therefore this paper has also experimented with Montgomery ladder \cite{Silverman} and siding window method for scalar multiplication evaluation.
 
-\subsection{Kachisa-Schaefer-Scott (KSS) curve \cite{kss}}
- In \cite{kss}, Kachisa, Schaefer, and Scott proposed a family of non super-singular Brezing-Weng pairing-friendly elliptic curves of embedding degree $k = \left\lbrace16, 18, 32, 36, 40\right\rbrace$, using elements in the cyclotomic field. Similar to other pairing-friendly curves,  \textit{characteristic} $p$, \textit{Frobenius trace} $t$ and \textit{order} $r$ of these curves are given systematically by using an integer variable also known as mother parameter. In what follows, this papers considers two curves of this family named as \textit{KSS16} of embedding degree $k =16$  and \textit{KSS18} of $k=18$. 
+\subsection{Kachisa-Schaefer-Scott (KSS) curve \cite{EPRINT:KacSchSco07}}
+ In \cite{EPRINT:KacSchSco07}, Kachisa, Schaefer, and Scott proposed a family of non super-singular Brezing-Weng pairing-friendly elliptic curves of embedding degree $k = \left\lbrace16, 18, 32, 36, 40\right\rbrace$, using elements in the cyclotomic field. Similar to other pairing-friendly curves,  \textit{characteristic} $p$, \textit{Frobenius trace} $t$ and \textit{order} $r$ of these curves are given systematically by using an integer variable also known as mother parameter. In what follows, this papers considers two curves of this family named as \textit{KSS16} of embedding degree $k =16$  and \textit{KSS18} of $k=18$. 
 
 KSS18 curve, defined over $\FPEN$, is given by the following equation
 \begin{equation}\label{eq:KSS_curve_18}
@@ -280,13 +280,13 @@ where $u$ is such that $u \equiv 25$ or $45$ (mod $70$) and the $\rho$ value is 
 
 %KSS16 and KSS18 both curves are good candidate for realizing 128-bit security 
 %
-%In the previous work of  Aranha et al. \cite{aranha} and Scott et al. \cite{kss_param} has mentioned that the size of the characteristics $p$ to be 508 to 511-bit with order $r$ of 384-bit  for 192-bit security level.  
-%Therefore this paper used parameter settings according to the suggestion of \cite{aranha} for 192 bit security on KSS curve in the simulation implementation. In the recent work, Kim et al. \cite{kim_ecdlp} has suggested to update the key sizes in pairing-based cryptography due to the  development of new discrete logarithm problem over finite field. The parameter settings used in this paper doesn't completely end up at the 192 bit security level according to \cite{kim_ecdlp}. However, the parameter settings used in this paper in order to show the resemblance of the
+%In the previous work of  Aranha et al. \cite{PAIRING:AFKMR12} and Scott et al. \cite{IMA:Scott11} has mentioned that the size of the characteristics $p$ to be 508 to 511-bit with order $r$ of 384-bit  for 192-bit security level.  
+%Therefore this paper used parameter settings according to the suggestion of \cite{PAIRING:AFKMR12} for 192 bit security on KSS curve in the simulation implementation. In the recent work, Kim et al. \cite{C:KimBar16} has suggested to update the key sizes in pairing-based cryptography due to the  development of new discrete logarithm problem over finite field. The parameter settings used in this paper doesn't completely end up at the 192 bit security level according to \cite{C:KimBar16}. However, the parameter settings used in this paper in order to show the resemblance of the
 
 
 
 \subsection{Extension field arithmetic}
-Pairing-based cryptography requires  performing the arithmetic operation in extension fields of degree $k \geq 6$ \cite{Silverman}. Consequently, such higher extension field needs to be constructed as a tower of extension fields \cite{const_ext} to perform arithmetic operation cost effectively. In the previous works of Bailey et al. \cite{OEF} explained optimal extension field by towering by using irreducible binomials. Since this paper uses two curves of different extension degree, therefore, the construction process of $\FPEN$ and $\FPSN$ are represented in the following as a tower of subfields. 
+Pairing-based cryptography requires  performing the arithmetic operation in extension fields of degree $k \geq 6$ \cite{Silverman}. Consequently, such higher extension field needs to be constructed as a tower of extension fields \cite{EPRINT:BenSco09} to perform arithmetic operation cost effectively. In the previous works of Bailey et al. \cite{JC:BaiPaa01} explained optimal extension field by towering by using irreducible binomials. Since this paper uses two curves of different extension degree, therefore, the construction process of $\FPEN$ and $\FPSN$ are represented in the following as a tower of subfields. 
 
 \subsubsection{Towering of $\FPEN$ extension field}
 Let $3|(p-1)$, where $p$ is the characteristics of KSS18 and $c$ is a quadratic and cubic non residue in $\Fp$. In the context  of KSS18, where $k=18$, $\FPEN$ is constructed as tower field with irreducible binomial as follows:
@@ -312,7 +312,7 @@ Let the characteristics $p$ of KSS16 is such that  $4|(p-1)$  and $z$ is a quadr
 \end{equation}
 Here $z = 11$ is chosen along with the value of mother parameter $u$ as given in Appendix \ref{appendix:KSS16}.
 
-\subsection{\g1, \g2 and \g3 groups} In the context of pairing-based cryptography, especially on KSS curve, two addititive rational point groups $\g1, \g2$ and a multiplicative group $\mathbb{G}_3$ of order $r$ are considered. From \cite{mori},  $\g1$, $\g2$ and $\g3$ are defined as follows:
+\subsection{\g1, \g2 and \g3 groups} In the context of pairing-based cryptography, especially on KSS curve, two addititive rational point groups $\g1, \g2$ and a multiplicative group $\mathbb{G}_3$ of order $r$ are considered. From \cite{PAIRING:MANS13},  $\g1$, $\g2$ and $\g3$ are defined as follows:
 \begin{eqnarray}\label{eq:g1}
 \g1 & = &  E(\F{p}{k}) [r] \cap \text{Ker}(\pi_p - [1]), \nonumber \\
 \g2 & = &  E(\F{p}{k}) [r] \cap \text{Ker}(\pi_p - [p]), \nonumber \\
@@ -329,7 +329,7 @@ Let us consider performing an asynchronous type of pairing operation on KSS curv
 
 Since points on the twisted curve are defined over a smaller field than $\FPK$, therefore ECA and ECD becomes faster. 
 However, when required in the pairing calculation such as  for line evaluation  they can be quickly mapped to a point on $E(\FPK )$. 
-Defining such mapping and re-mapping techniques is the main focus of this  paper. Since the pairing-friendly KSS16 \cite{kss} curve has CM discriminant of $D = 1$ and $4|k$, therefore quartic twist is available. For sextic twist, the curve should have $D = 3$ and $6|k$, which exists in KSS18.
+Defining such mapping and re-mapping techniques is the main focus of this  paper. Since the pairing-friendly KSS16 \cite{EPRINT:KacSchSco07} curve has CM discriminant of $D = 1$ and $4|k$, therefore quartic twist is available. For sextic twist, the curve should have $D = 3$ and $6|k$, which exists in KSS18.
 
 \subsubsection{Sextic twist of KSS18 curve}
 %When the embedding degree $k = 2e$, where $e$ is positive integer, from \eqref{ec_curve} the quadratic twisted elliptic curve $E'_2$ is given as follows:
@@ -461,7 +461,7 @@ This mapping costs one $\FPTH$ inversion of $i$ which can be pre-computed and on
 \subsection{Quartic twisted isomorphic mapping}
 For quartic twisted mapping first we need to obtain certain ration point  $Q \in \g2 \subset E(\FPSN)$ of subgroup order $r$. 
 One necessary condition for obtaining such $Q$ is $r^2 \mid \#E(\FPSN)$, where $\#E(\FPSN)$ is the number of rational points in $E(\FPSN)$.  But it is carefully observed that $\#E(\FPSN)$ is not divisible by $r^2$ when $r$ is given by \eqref{eq:kss_16_degree}.
- Therefore polynomial of $r$, given in \cite{kss} is divided as follows:
+ Therefore polynomial of $r$, given in \cite{EPRINT:KacSchSco07} is divided as follows:
 \begin{equation}
 r(u) =  (u^8 +48u^4 +625)/61250,
 \end{equation}
@@ -516,7 +516,7 @@ The main focus of this proposed mapping is to find out the isomorphic mapping of
 For the experiment first we have applied the proposed mapping technique to map rational point $Q \in \g2 \subset E(\F{p}{k})$ to its isomorphic point $Q' \in \g2' \subset E'(\FPKD)$ in both KSS curves. After that we performed the scalar multiplication of $Q'$. Then the resulted points are re-mapped to $\g2$ in $\FPK$. Lets define this strategy as \textit{\textbf{with mapping}}.
 On the other hand, we have performed scalar multiplication of $Q$ without mapping which is denoted as \textit{\textbf{w/o mapping}}.
 
-In the experiment, after many careful searches, the mother parameter $u$ is selected to find out $\g2$ rational point $Q$ for KSS18 curve. On the other hand, for KSS16 curve, parameters are given by Loubna et al. \cite{kss_lub}.
+In the experiment, after many careful searches, the mother parameter $u$ is selected to find out $\g2$ rational point $Q$ for KSS18 curve. On the other hand, for KSS16 curve, parameters are given by Loubna et al. \cite{EPRINT:GhaFou16b}.
 In pairing-based cryptosystems, both KSS16 and KSS18 are regarded as good candidates for implementing 192-bit security.
 Therefore, while choosing parameters for the experiment, this paper has adapted 192-bit security level. 
 But the main focus of this paper is not to find out efficient parameters for certain security levels. 
@@ -613,14 +613,14 @@ For KSS16 curve, the ratio with no mapping case is more than $0.8$ and for mappi
 Since PC and iPhone has different processor architectures therefore it's frequency ratio has modest relation with the execution time ratio. 
 The ratio may also be effected by the other processes, running in certain environment during the experiment time.
 
-The main focus of this experiment is to evaluate the  acceleration ratio of scalar multiplication by applying the proposed mapping on $\g2$ rational point group of the nominated KSS curves. The experiment does not focus on efficiently implementing scalar multiplication for certain environment. There are other pairing-friendly curves such as BLS-12, BLS-24 \cite{taxonomy} where sextic twist is available. As our future work, we will try to apply the proposed mapping on those curves.
+The main focus of this experiment is to evaluate the  acceleration ratio of scalar multiplication by applying the proposed mapping on $\g2$ rational point group of the nominated KSS curves. The experiment does not focus on efficiently implementing scalar multiplication for certain environment. There are other pairing-friendly curves such as BLS-12, BLS-24 \cite{JC:FreScoTes10} where sextic twist is available. As our future work, we will try to apply the proposed mapping on those curves.
 
 \section{Conclusion and future work}
 In this paper, we have proposed isomorphic mapping procedure of $\g2$ rational point group to its sextic and quartic twisted subfield isomorphic rational point group $\g2'$  and its reverse mapping for KSS18 and KSS16 curves in the context of Ate-based pairing. 
 We have also evaluated the advantage of such mapping by applying binary scalar multiplication, Montgomery ladder, and sliding- window method on twisted isomorphic rational points in $\g2'$. 
 Then result of  scalar multiplication in $\g2'$ can accelerate the scalar multiplication in $\g2 \subset E(\FPEN)$ by   20 to 10 times than scalar multiplication of $\g2$ rational point directly in $\FPEN$ and $\FPSN$. 
-In the previous work of Nogami et al. \cite{nogami}, have showed the procedure to apply skew Frobenius mapping on the twisted elliptic curve for Ate-based pairing. Such technique can also be applied on twisted isomorphic rational point after applying the proposed mapping techniques.
-In \cite{sakemi_skew},  Sakemi et al.  have proposed skew Frobenious map for $\g1$ rational point defined over BN curve.
+In the previous work of Nogami et al. \cite{DBLP:journals/ieicet/NogamiSONAM09}, have showed the procedure to apply skew Frobenius mapping on the twisted elliptic curve for Ate-based pairing. Such technique can also be applied on twisted isomorphic rational point after applying the proposed mapping techniques.
+In \cite{CANS:SNOKM08},  Sakemi et al.  have proposed skew Frobenious map for $\g1$ rational point defined over BN curve.
 As a future work, we would like to apply such approach on $\g1$ rational point defined over KSS curves. Together with the proposed mapping and the skew Frobenius mapping of $\g1$ will remarkably accelerate the scalar multiplication over KSS curves in the context of pairing-based cryptography.  
 
 \ref{AppendixA}

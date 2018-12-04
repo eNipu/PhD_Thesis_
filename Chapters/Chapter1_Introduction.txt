@@ -103,7 +103,7 @@ In order to protect these informations, cryptosystems are indispensable that pro
 In the modern cryptographies, public key cryptography that provides authentication, data integrity, and non-repudiation is one of the most important cryptosystems.
 
 Recently, new cryptographic schemes that relax the restriction on use of the modern public key cryptosystems are proposed.
-Among these innovative cryptographies, pairing-based cryptographies such as ID-based cryptographies \cite{ID} and group signature authentications \cite{BBS}, \cite{nakanisi} have received much attentions.
+Among these innovative cryptographies, pairing-based cryptographies such as ID-based cryptographies \cite{AC:BonLynSha01} and group signature authentications \cite{BBS}, \cite{nakanisi} have received much attentions.
 For example, in ID-based cryptographies, some unique information about the identity of the user such as e-mail address, name and telephone number can be used as the public key of user.
 In addition, group signature authentications allow the service vendor to verify that a signature is signed by a valid user, but they can not know who is the signer.
 Therefore, group signatures can protect user's privacy while preventing illegal accesses.
@@ -121,7 +121,7 @@ Pairing is a bilinear map from two groups $\mathbb{G}_1$ and $\mathbb{G}_2$ to a
 In detail, $\mathbb{G}_1$ and $\mathbb{G}_2$ respectively becomes a subgroup in an elliptic curve group $E(\F{q}{})$ and $E(\F{q}{k})$, and $\mathbb{G}_3$ becomes a subgroup in $\F{q}{k}$, where $q$ is a power of $p$ and an extension degree $k$ is especially called the {\it embedding degree}.
  
 In pairing-based cryptography, not only pairing calculation but also scalar multiplications in $\mathbb{G}_1$ and $\mathbb{G}_2$, and exponentiations in $\mathbb{G}_3$ are carried out.
-Among these operations, since pairing is the highest cost operation, a lot of improvements for pairing such as $\eta_T$ pairing over super singular curves and Ate \cite{Hess}, {\it twisted} Ate\cite{Hess}, {\it optimized} Ate \cite{TAte}, optimized {\it twisted} Ate\cite{TAte}, $R$-ate\cite{Rate}, {\it Optimal}\cite{OptAte}, Xate \cite{Xate} pairings over ordinary curves, have been proposed in the recent years.
+Among these operations, since pairing is the highest cost operation, a lot of improvements for pairing such as $\eta_T$ pairing over super singular curves and Ate \cite{PAIRING:Hess08}, {\it twisted} Ate\cite{PAIRING:Hess08}, {\it optimized} Ate \cite{EPRINT:MKHO07}, optimized {\it twisted} Ate\cite{EPRINT:MKHO07}, $R$-ate\cite{r_ate}, {\it Optimal}\cite{DBLP:journals/tit/Vercauteren10}, Xate \cite{PAIRING:NASKM08} pairings over ordinary curves, have been proposed in the recent years.
 Among these pairings, the fastest pairing is $\eta_T$ pairing.
 However, $\eta_T$ pairing has a disadvantage that supersingular curves are restricted to {\it embedding degree} $k\leq6$. 
 Since the {\it embedding degree} is important parameter that determines the security level of pairing-based cryptographies, efficient pairings on ordinary curves whose {\it embedding degree} are flexibly selectable are required.
@@ -151,7 +151,7 @@ This relation $\phi(P)=[t-1]P$ has been considered optimal because the trace is 
 On the other hand, recent elliptic curves for pairing need one more parameter in addition to parameters such as $p$, $t$, and $r$.  
 Elliptic curves over which pairing can be defined are called pairing-friendly curves.
 In general, it is difficult to generate such pairing-friendly curves because they need to satisfy some strict conditions.
-However, several methods to easily generate pairing-friendly curves are proposed in recent years \cite{Taxo}.
+However, several methods to easily generate pairing-friendly curves are proposed in recent years \cite{JC:FreScoTes10}.
 For example, {\it families} of pairing friendly curves whose parameters such as characteristic $p$, order $r$, and trace $t$ are given by polynomials in terms of integer $\chi$ are easily constructed.
 Especially, since {\it complete families} can generate a lot of elliptic curves, we can select the optimal curve suitable for pairing calculations and scalar multiplications.
 Among {\it families} of pairing friendly curves, there is a curve whose trace $t$ is given by polynomial that has larger degree than or equal to 2.

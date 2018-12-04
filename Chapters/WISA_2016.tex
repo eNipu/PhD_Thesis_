@@ -63,48 +63,10 @@ Our proposed method can achieve 3 times or more than 3 times faster scalar multi
 %\end{abstract}
 
 
-\section{Introduction}
-The intractability of Elliptic Curve Discrete Logarithm Problem (ECDLP) spurs on many innovative pairing based cryptographic protocols.
-Pairing based cryptography is considered to be the basis of next generation security. 
-Recently a number of unique and innovative pairing based cryptographic applications such as identity based encryption scheme \cite{C:BonFra01}, broadcast encryption \cite{boradcast} and group signature authentication \cite{group_sign_1} surge the popularity of pairing based cryptography. 
-In such consequence Ate-based pairings such as Ate \cite{ate} and Optimal-ate \cite{op_ate_p}, twisted Ate  \cite{twisted_ate} and $\chi$-Ate \cite{PAIRING:NASKM08} pairings has gained much attention. 
-To make such cryptographic applications practical, these pairings need to be computed efficiently and fast. 
-This paper focuses on such  Ate-based pairings. 
-
-Pairing is a bilinear map from two rational point  $\g1$ and $\g2$ to a multiplicative group $\g3$ \cite{Silverman} typically denoted by $\g1 \times \g2 \rightarrow \g3$.
-In the case of Ate-based pairing, $\g1$, $\g2$ and $\g3$ are defined as follows:
-\begin{eqnarray}\label{eq:g_1}
-\g1 & = &  E(\F{p}{k}) [r] \cap \text{Ker}(\pi_p - [1]), \nonumber \\
-\g2 & = &  E(\F{p}{k}) [r] \cap \text{Ker}(\pi_p - [p]), \nonumber \\
-\g3 & = & \mF{p}{k}/(\mF{p}{k})^r, \nonumber
-\end{eqnarray}
-\begin{equation}
-\alpha : \g1 \times \g2 \rightarrow \g3,  \nonumber
-\end{equation}
-where $\alpha$ denotes Ate pairing.
-In general, pairings are only found in certain extension field $\FQK$, where $p$ is the prime number, also know as characteristics  and the minimum extension degree $k$ is called \textit{embedding} degree. 
-The rational points $E(\FQK)$ are defined over a certain pairing friendly curve of embedded extension field of degree $k$.
-Security level of pairing based cryptography depends on the sizes of both $r$ and $p^k$, where $r$ generally denotes the largest prime number that divides the order $\#E(\FQ)$.
-The next generation security of pairing-based cryptography needs $\log_2 r \approx 256$ bits and $\log_2 p^k \approx 3000$ to $5000$ bits. 
-Therefore taking care of $\rho = (\log_2 p)/(\log_2 r)$, $k$ needs to be $12$ to $20$. 
-This paper has considered Kachisa-Schaefer-Scott (KSS) \cite{kss} pairing friendly curves of emebdding degree $k=18$ described in \cite{EPRINT:FreScoTes06}. 
-Pairing on KSS curve is considered to be the basis of next generation security as it conforms 192-bit security level. 
-Making the pairing practical over KSS curve depends on several factors such as efficient pairing algorithm, efficient extension field arithmetic and efficiently performing scalar multiplication. 
-Many researches have conducted on efficient pairing algorithms \cite{pr_ex} and curves \cite{ec_ex} along with extension field arithmetic \cite{ef_ex}. 
-This paper focuses on efficiently performing scalar multiplication in $\g2$ by scalar $s$, since scalar multiplication is required repeatedly in cryptographic calculation. Scalar multiplication is also considered to be the one of the most time consuming operation in cryptographic scene. Moreover in asymmetric pairing such as Ate-based pairing, scalar multiplication in $\g2$ is important as no mapping function is explicitly given between $\g1$ to $\g2$.
-By the way, as shown in the definition, $\g1$ is a set of rational points defined over prime field and there are many researches for efficient scalar multiplication in $\g1$.
-
-Scalar multiplication by $s$ means $(s-1)$ times elliptic additions of a given rational point on the elliptic curve. This elliptic addition is not as simple as addition of extension field, but it requires 3 multiplications plus an inversion of the extension field. General approaches to accelerate scalar multiplication are log-step algorithm such as binary and non-adjacent form (NAF) methods, but more efficient approach is to use Frobenius mapping in the case of $\g2$ that is defined over $\F{p}{k}$. Frobenious map $\pi : (x,y) \mapsto  (x^p,y^p)$ is the $p$-th power of the rational point $(x,y)$ defined over $\FQK$. 
-In this paper we also exploited the Frobenious trace $t$, $t = p+1- \#E(\FQ)$ defined over KSS curve. In the previous work on optimal-ate pairing, Aranha et al. \cite{PAIRING:AFKMR12} derived an important relation: $z \equiv -3p + p^4 \bmod {r}$, where $z$ is the mother parameter of KSS curve and $z$ is about six times smaller than the size of order $r$. 
-We have utilized this relation to construct $z$-adic representation of scalar $s$ which is introduced in section 3. 
-In addition with Frobenius mapping and $z$-adic representation of $s$, we applied the multi-scalar multiplication technique to compute elliptic curve addition in parallel in the proposed scalar multiplication.
-We have compared our proposed method with three other well studied methods named binary method, sliding-window method and non-adjacent form method. The comparison shows that our proposed method is at least 3 times or more than 3 times faster than above mentioned methods in execution time. The comparison also reveals that the proposed method requires more than 5 times less elliptic curve doubling than any of the compared methods.
-
-As shown in the previous work of scalar multiplication on sextic twisted BN curve by Nogami et al. \cite{nogami_scm_ate}, we can consider sub-field sextic twisted curve in the case of KSS curve of embedding degree 18. Let us denote the sub-field sextic twisted curve by $E'$. It will include sextic twisted isomorphic rational point group denoted as $\g2'$ . In KSS curve, $\g2$ is defined over $\FQEN$ whereas its sub-field isomorphic group $\g2'$ is defined over $\FQTH$. Important feature of this sextic twisted isomorphic group is, all the scalar multiplication in $\g2$ is mapped with $\g2'$ and it can be efficiently carried out by applying skew Frobenious map. Then, the resulted points can be re-mapped to $\g2$ in $\FQEN$.  This above mentioned skew Frobenious mapping in sextic twisted isomorphic group will calculate more faster scalar multiplication. However, the main focus of this paper is presenting the process of splitting the scalar into $z$-adic representation and  applying Frobenius map in combination with multi-scalar multiplication technique.
 
 \section{Preliminaries}
 In this section we will go through the fundamental background of elliptic curves and its operations. We will briefly review elliptic curve scalar multiplication. After that pairing friendly curve of embedding degree $k=18$, i.e., KSS curve and its properties will be introduced briefly.
-\subsection{Elliptic curve \cite{ecc_book}}
+\subsection{Elliptic curve \cite{washington2003elliptic}}
 Let $\Fp$ be a prime field. Elliptic curve over $\Fp$ is defined as,
 \begin{equation}\label{ec_curve}
 E/\Fp : y^2=x^3+ax+b,
@@ -138,7 +100,7 @@ If $s = r$, where $r$ is the order of the curve then $[r]M = \mathcal{O}$. When 
 
 
 \subsection{KSS curve}
-KSS curve is a non super-singular pairing friendly elliptic curve of embedding degree 18 \cite{kss}. The equation of KSS curve defined over $\FQEN$ is given by 
+KSS curve is a non super-singular pairing friendly elliptic curve of embedding degree 18 \cite{EPRINT:KacSchSco07}. The equation of KSS curve defined over $\FQEN$ is given by 
 \begin{equation}\label{eq:KSS_curve}
 E:Y^2=X^3+b, \quad \mbox{($b \in \Fp$)},
 \end{equation}
@@ -157,16 +119,16 @@ The order of rational points $\#E(\FQEN)$ on KSS curve can be obtained by the fo
 \#E(\FQEN) = p^{18}+1-t_{18},
 \end{equation}
 where $t_{18} = \alpha^{18}+\beta^{18}$ and $\alpha$, $\beta$ are complex numbers such that $\alpha+\beta = t$ and $\alpha\beta=p$.
-Since Aranha et al. \cite{PAIRING:AFKMR12} and Scott et al. \cite{kss_param} has proposed the size of the characteristics $p$ to be 508 to 511-bit with order $r$ of 384-bit  for 192-bit security level, therefore this paper considered $p=511$-bit.
+Since Aranha et al. \cite{PAIRING:AFKMR12} and Scott et al. \cite{IMA:Scott11} has proposed the size of the characteristics $p$ to be 508 to 511-bit with order $r$ of 384-bit  for 192-bit security level, therefore this paper considered $p=511$-bit.
 
 \subsubsection{Frobenius mapping of rational point in  $E(\FQEN)$.}
 Let $(x,y)$ be the rational point in $E(\FQEN)$. 
-Frobenious map $\pi_p : (x,y) \mapsto  (x^p,y^p)$ is the $p$-th power of the rational point defined over $\FQEN$. Some previous work \cite{fm_previous} has been done on constructing Frobenius mapping and utilizing it to calculate scalar multiplication. Nogami et al. \cite{nogami_scm_ate} showed efficient scalar multiplication in the context of Ate-based pairing in BN curve of embedding degree $k=12$.  This paper has exploited Frobenius mapping for efficient scalar multiplication for the case of KSS curve.
+Frobenious map $\pi_p : (x,y) \mapsto  (x^p,y^p)$ is the $p$-th power of the rational point defined over $\FQEN$. Some previous work \cite{fm_previous} has been done on constructing Frobenius mapping and utilizing it to calculate scalar multiplication. Nogami et al. \cite{DBLP:journals/ieicet/NogamiSONAM09} showed efficient scalar multiplication in the context of Ate-based pairing in BN curve of embedding degree $k=12$.  This paper has exploited Frobenius mapping for efficient scalar multiplication for the case of KSS curve.
 
 \subsection{$\FQEN$ extension field arithmetic}
-In context of pairing, it is required to perform arithmetic in higher extension fields, such as $\FQK$  for moderate value of $k$ \cite{Silverman}. Therefore it is important to construct the field as a tower of extension fields \cite{const_ext} to perform arithmetic operation efficiently. Higher level computations can be calculated as a function of lower level computations. Because of that an efficient implementation of lower level arithmetic results in the good performance of arithmetic in higher degree fields.
+In context of pairing, it is required to perform arithmetic in higher extension fields, such as $\FQK$  for moderate value of $k$ \cite{Silverman}. Therefore it is important to construct the field as a tower of extension fields \cite{EPRINT:BenSco09} to perform arithmetic operation efficiently. Higher level computations can be calculated as a function of lower level computations. Because of that an efficient implementation of lower level arithmetic results in the good performance of arithmetic in higher degree fields.
 
-In this paper extension field  $\FQEN$ is represented as a tower of sub field to improve arithmetic operations. In some previous works, shuch as Bailey et al. \cite{JC:BaiPaa01}  explained tower of extension by using irreducible binomials. In what follows, let $(p-1)$ is divisible by 3 and $\theta$ is a quadratic and cubic non residue in $\Fp$. Then for case of KSS-curve \cite{kss}, where $k=18$, $\FQEN$ is constructed as tower field with irreducible binomial as follows:
+In this paper extension field  $\FQEN$ is represented as a tower of sub field to improve arithmetic operations. In some previous works, shuch as Bailey et al. \cite{JC:BaiPaa01}  explained tower of extension by using irreducible binomials. In what follows, let $(p-1)$ is divisible by 3 and $\theta$ is a quadratic and cubic non residue in $\Fp$. Then for case of KSS-curve \cite{EPRINT:KacSchSco07}, where $k=18$, $\FQEN$ is constructed as tower field with irreducible binomial as follows:
 \begin{equation}\label{eq:KSS_towering}
 \begin{cases}
 \F{p}{3} = \F{p}{}[i]/(i^3-\theta),  \text{where $\theta = 2$ is the best choice,}\nonumber \\ 
@@ -206,7 +168,7 @@ Figure \ref{fig:z_sml} shows, an example of multi-scalar multiplication process,
 \label{fig:z_sml}
 \end{figure}
 
-\subsubsection{\g1, \g2 and \g3 groups.} In the context of pairing-based cryptography, especially on KSS curve, three groups $\g1, \g2$, and $\mathbb{G}_3$ are considered. From \cite{mori}, we define $\g1$, $\g2$ and $\g3$ as follows:
+\subsubsection{\g1, \g2 and \g3 groups.} In the context of pairing-based cryptography, especially on KSS curve, three groups $\g1, \g2$, and $\mathbb{G}_3$ are considered. From \cite{PAIRING:MANS13}, we define $\g1$, $\g2$ and $\g3$ as follows:
 \begin{eqnarray}\label{eq:g1}
 \g1 & = &  E(\F{p}{k}) [r] \cap \text{Ker}(\pi_p - [1]), \nonumber \\
 \g2 & = &  E(\F{p}{k}) [r] \cap \text{Ker}(\pi_p - [p]), \nonumber \\

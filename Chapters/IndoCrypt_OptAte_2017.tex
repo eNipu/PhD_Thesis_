@@ -1,7 +1,7 @@
 Efficient Optimal Ate Pairing at 128-bit Security Level.
 
-Following the emergence of Kim and Barbulescu's new number field sieve (exTNFS) algorithm at CRYPTO'16 \cite{kim_ecdlp} for solving discrete logarithm problem (DLP) over the finite field; pairing-based cryptography researchers are intrigued to find new parameters that confirm standard security levels against exTNFS. 
-Recently, Barbulescu and Duquesne have suggested new parameters \cite{sylvain_new_param} for well-studied pairing-friendly curves i.e., Barreto-Naehrig (BN) \cite{BN}, Barreto-Lynn-Scott (BLS-12) \cite{ec_ex} and Kachisa-Schaefer-Scott (KSS-16) \cite{kss} curves at 128-bit security level (twist and sub-group attack secure). 
+Following the emergence of Kim and Barbulescu's new number field sieve (exTNFS) algorithm at CRYPTO'16 \cite{C:KimBar16} for solving discrete logarithm problem (DLP) over the finite field; pairing-based cryptography researchers are intrigued to find new parameters that confirm standard security levels against exTNFS. 
+Recently, Barbulescu and Duquesne have suggested new parameters \cite{sylvain_new_param} for well-studied pairing-friendly curves i.e., Barreto-Naehrig (BN) \cite{SAC:BarNae05}, Barreto-Lynn-Scott (BLS-12) \cite{SCN:BarLynSco02} and Kachisa-Schaefer-Scott (KSS-16) \cite{EPRINT:KacSchSco07} curves at 128-bit security level (twist and sub-group attack secure). 
 They have also concluded that in the context of Optimal-Ate pairing with their suggested parameters, BLS-12 and KSS-16 curves are more efficient choices than BN curves. 
 Therefore, this paper selects the atypical and less studied pairing-friendly curve in literature, i.e., KSS-16 which offers quartic twist, while BN and BLS-12 curves have sextic twist.
 In this paper, the authors optimize Miller's algorithm of Optimal-Ate pairing for the KSS-16 curve by deriving efficient sparse multiplication and implement them.
@@ -21,7 +21,7 @@ Let $E(\Fp)$ be the set of rational points over the prime field $\Fp$ which form
  \item bilinearity is such that $\forall P_i \in \g1$ and $\forall Q_i \in \g2$, where $i= 1, 2$, then $e(Q_1+Q_2,P_1) = e(Q_1,P_1). e(Q_2,P_1)$ and $e(Q_1,P_1+P_2) = e(Q_1,P_1). e(Q_1,P_2)$,
  \item and $e$ is non-degenerate means $\forall P \in \g1$ there is a $Q \in \g2$ such that  $e(Q,P) \neq 1$ and $\forall Q \in \g2$ there is a $P \in \g1$ such that $e(P,Q) \neq 1$.
  \end{itemize}
-Such properties allows researchers to come up with various cryptographic applications including ID-based encryption \cite{C:BonFra01}, group signature authentication \cite{group_sign_1}, and functional encryption \cite{okamoto2010fully}.  However, the security of pairing-based cryptosystems depends  on 
+Such properties allows researchers to come up with various cryptographic applications including ID-based encryption \cite{C:BonFra01}, group signature authentication \cite{C:BonBoySha04}, and functional encryption \cite{C:OkaTak10}.  However, the security of pairing-based cryptosystems depends  on 
 \begin{itemize}
 \item  the difficulty of solving elliptic curve discrete logarithm problem (ECDLP) in the groups of order $r$ over $\Fp$,
 \item  the infeasibility of solving the discrete logarithm problem (DLP) in the multiplicative group $\g3 \in \mF{p}{k}$,
@@ -35,17 +35,17 @@ Galbraith et al. \cite{galbraith2008pairings} have classified pairings as three 
 \item Type 2, where $\g1 \neq \g2$, known as asymmetric pairing. There exists an efficiently computable isomorphism $\psi : \g2 \to \g1$ but none in reverse direction.
 \item Type 3, which is also asymmetric pairing, i.e., $\g1 \neq \g2$. But no efficiently computable isomorphism is known in either direction  between $\g1$ and $\g2$.
 \end{itemize}
-This paper chooses one of the Type 3 variants of pairing named as Optimal-Ate \cite{op_ate_p} with Kachisa-Schaefer-Scott (KSS) \cite{kss} pairing-friendly curve of embedding degree $k=16$. 
+This paper chooses one of the Type 3 variants of pairing named as Optimal-Ate \cite{DBLP:journals/tit/Vercauteren10} with Kachisa-Schaefer-Scott (KSS) \cite{EPRINT:KacSchSco07} pairing-friendly curve of embedding degree $k=16$. 
 Few previous works have been done on this  curve. 
-Zhang et al. \cite{zhang_L12} have shown the computational estimation of the Miller's loop and proposed efficient final exponentiation for 192-bit security level in the context of Optimal-Ate pairing over KSS-16 curve. 
-A few years later Ghammam et al. \cite{loubna_kss16} have shown that KSS-16 is the best suited for multi-pairing (i.e., the product and/or the quotient) when the number of pairing is more than two. 
-Ghammam et al. \cite{loubna_kss16} also corrected the flaws of proposed final exponentiation algorithm by Zhang et al. \cite{zhang_L12} and proposed a new one and showed the vulnerability of Zhang's parameter settings against small subgroup attack. 
-The recent development of NFS by Kim and Barbulescu \cite{kim_ecdlp} requires updating the parameter selection for all the existing pairings over the well known pairing-friendly curve families such as BN \cite{BN}, BLS \cite{EPRINT:FreScoTes06} and KSS \cite{kss}.
+Zhang et al. \cite{INDOCRYPT:ZhaLin12} have shown the computational estimation of the Miller's loop and proposed efficient final exponentiation for 192-bit security level in the context of Optimal-Ate pairing over KSS-16 curve. 
+A few years later Ghammam et al. \cite{EPRINT:GhaFou16b} have shown that KSS-16 is the best suited for multi-pairing (i.e., the product and/or the quotient) when the number of pairing is more than two. 
+Ghammam et al. \cite{EPRINT:GhaFou16b} also corrected the flaws of proposed final exponentiation algorithm by Zhang et al. \cite{INDOCRYPT:ZhaLin12} and proposed a new one and showed the vulnerability of Zhang's parameter settings against small subgroup attack. 
+The recent development of NFS by Kim and Barbulescu \cite{C:KimBar16} requires updating the parameter selection for all the existing pairings over the well known pairing-friendly curve families such as BN \cite{SAC:BarNae05}, BLS \cite{EPRINT:FreScoTes06} and KSS \cite{EPRINT:KacSchSco07}.
 The most recent study by Barbulescu et al. \cite{sylvain_new_param} have shown the security estimation of the current parameter settings used in well-studied curves and proposed new parameters, resistant to small subgroup attack.
 
 Barbulescu and Duquesne's study finds that the current parameter settings for 128-bit security level on BN-curve studied in literature can withstand for 100-bit security. 
 Moreover, they proposed that BLS-12 and surprisingly KSS-16 are the most efficient choice for Optimal-Ate pairing at the 128-bit security level. Therefore, the authors focus on the efficient implementation of the less studied KSS-16 curve for Optimal-Ate pairing by applying the most recent parameters.
-Mori et al. \cite{mori} and Khandaker et al. \cite{self_ICISC} have shown a specific type of sparse multiplication for BN and KSS-18 curve respectively where both of the curves supports sextic twist. 
+Mori et al. \cite{PAIRING:MANS13} and Khandaker et al. \cite{ICISC:KONSD16} have shown a specific type of sparse multiplication for BN and KSS-18 curve respectively where both of the curves supports sextic twist. 
 The authors have extended the previous works for quartic twisted KSS-16 curve and derived pseudo-8 sparse multiplication for line evaluation step in the Miller's algorithm. 
 As a consequence, the authors made the choice to concentrate on Miller's algorithm's execution time and computational complexity to verify the claim of \cite{sylvain_new_param}.
 The implementation shows that Miller's algorithm time has a tiny difference between KSS-16 and BLS-12 curves. However, they both are more efficient and faster than BN curve. 
@@ -54,7 +54,7 @@ The implementation shows that Miller's algorithm time has a tiny difference betw
 
 \section{Fundamentals of Elliptic Curve and Pairing}
 \subsection{Kachisa-Schaefer-Scott (KSS) Curve}
-In \cite{kss}, Kachisa, Schaefer, and Scott proposed a family of non super-singular pairing-friendly elliptic curves of embedding degree $k = \left\lbrace16, 18, 32, 36, 40\right\rbrace$, using elements in the cyclotomic field. 
+In \cite{EPRINT:KacSchSco07}, Kachisa, Schaefer, and Scott proposed a family of non super-singular pairing-friendly elliptic curves of embedding degree $k = \left\lbrace16, 18, 32, 36, 40\right\rbrace$, using elements in the cyclotomic field. 
  In what follows, this paper considers  the curve of embedding degree $k =16$, named as \textit{KSS-16}, defined over extension field $\FPSN$ as follows:
 \begin{equation}\label{eq:KSS_16}
 E/\FPSN:Y^2=X^3+aX, \quad \mbox{($a \in \Fp$) and  $a \neq 0$},
@@ -76,7 +76,7 @@ $\#E(\FPK) = p^k +1- t_k$, where $t_k =  \alpha^k + \beta^k$.  $\alpha$ and $\be
 
 \subsection{Extension Field Arithmetic and Towering}
 Pairing-based cryptography requires  performing the arithmetic operation in extension fields of degree $k \geq 6$ \cite{Silverman}.
-Consequently, such higher degree extension field needs to be constructed as a tower of  sub-fields \cite{const_ext} to perform arithmetic operation cost efficiently. Bailey et al. \cite{OEF} have explained optimal extension field by towering by using irreducible binomials.
+Consequently, such higher degree extension field needs to be constructed as a tower of  sub-fields \cite{EPRINT:BenSco09} to perform arithmetic operation cost efficiently. Bailey et al. \cite{JC:BaiPaa01} have explained optimal extension field by towering by using irreducible binomials.
 \subsubsection{Towering of $\FPSN$ extension field:}
  For KSS-16 curve, $\FPSN$ construction process given as follows using tower of sub-fields. 
 \begin{equation}\label{towering}
@@ -118,9 +118,9 @@ $M_{p^{16}} = 3M_{p^8}+5A_{p^8}+1m_\omega \rightarrow 81M_p $ &  $S_{p^{16}} = 3
 \end{tabular} 
 }
 \end{table*}
-However, squaring is more optimized by using Devegili et al.'s \cite{devegili2006multiplication} complex squaring technique which cost $2M_p+4A_p+2m_\alpha$ for one squaring operation in $\FPT$. In total it costs $54M_p$ for one squaring in $\FPSN$. Table \ref{tab_ffoperation} shows the operation estimation for $\FPSN$.
+However, squaring is more optimized by using Devegili et al.'s \cite{EPRINT:DOSD06} complex squaring technique which cost $2M_p+4A_p+2m_\alpha$ for one squaring operation in $\FPT$. In total it costs $54M_p$ for one squaring in $\FPSN$. Table \ref{tab_ffoperation} shows the operation estimation for $\FPSN$.
 
-Table \ref{tab_f12_op_count} shows the operation estimation for $\FPTV$ according to the towering shown in \eqref{BN_towering}. The algorithms for $\FPT$ and $\FPTH$ multiplication and squaring given in \cite{sylvain_bn} have be used in this paper to construct the $\FPTV$ extension field arithmetic. 
+Table \ref{tab_f12_op_count} shows the operation estimation for $\FPTV$ according to the towering shown in \eqref{BN_towering}. The algorithms for $\FPT$ and $\FPTH$ multiplication and squaring given in \cite{EPRINT:DEHR1} have be used in this paper to construct the $\FPTV$ extension field arithmetic. 
 
 \begin{table*}[t]
 \caption{Number of arithmetic operations in $\FPTV$ based on \eqref{BN_towering}}
@@ -147,7 +147,7 @@ $\g1$, $\g2$ and $\g3$ are defined as follows:
 \g3 & = & \mF{p}{k}/(\mF{p}{k})^r, \nonumber \\
  e & : &\g1 \times \g2 \rightarrow \g3,
 \end{eqnarray}
-where $e$ denotes Ate pairing \cite{ate}. $E(\F{p}{k})[r]$ denotes rational points of order $r$ and $[n]$ denotes $n$ times scalar multiplication for a rational point. 
+where $e$ denotes Ate pairing \cite{DBLP:reference/crc/2005ehcc}. $E(\F{p}{k})[r]$ denotes rational points of order $r$ and $[n]$ denotes $n$ times scalar multiplication for a rational point. 
 $\pi_p$ denotes the Frobenius endomorphism given as $\pi_p: (x,y) \mapsto (x^p,y^p)$.
 
 \subsubsection*{KSS-16 Curve:}
@@ -158,8 +158,8 @@ Ate pairing $e(Q,P)$ is given as follows:
 \end{equation}
 where $f_{t-1,Q}(P)$ symbolizes the output of Miller's algorithm and $\lfloor \log_2 (t-1) \rfloor$ is the loop length. The bilinearity of Ate pairing is satisfied after calculating the final exponentiation $(p^k-1)/r$.
 
-Vercauteren proposed more efficient variant of Ate pairing named as Optimal-Ate pairing \cite{op_ate_p} where the Miller's loop length reduced to $\lfloor \log_2 u \rfloor$.
-The previous work of Zhang et al. \cite{zhang_L12} has derived the optimal Ate pairing on the KSS-16 curve which is defined as follows with $f_{u,Q}(P)$ is the Miller function evaluated on $P$:
+Vercauteren proposed more efficient variant of Ate pairing named as Optimal-Ate pairing \cite{DBLP:journals/tit/Vercauteren10} where the Miller's loop length reduced to $\lfloor \log_2 u \rfloor$.
+The previous work of Zhang et al. \cite{INDOCRYPT:ZhaLin12} has derived the optimal Ate pairing on the KSS-16 curve which is defined as follows with $f_{u,Q}(P)$ is the Miller function evaluated on $P$:
 \begin{equation}
 	e_{opt}(Q,P)=((f_{u,Q}(P)\cdot l_{[u]Q,[p]Q}(P))^{p^3}\cdot l_{Q,Q}(P))^{\frac{p^{16}-1}{r}}\label{pairing}.
 \end{equation}
@@ -184,9 +184,9 @@ In what follows, the calculation steps from 1 to 11, shown in Alg.\ref{optimal_a
 Steps 2-7 are specially named as Miller's loop.
 Steps 3, 5, 7 are the line evaluation together with elliptic curve doubling (ECD) and addition (ECA) inside the Miller's loop and steps 9, 11 are the line evaluation outside the loop.
 These line evaluation steps are the key steps to accelerate the loop calculation. 
-The authors extended the work of \cite{mori},\cite{self_ICISC} for KSS-16 curve to calculate \textit{pseudo 8-sparse multiplication} described in Sect. 3. The ECA and ECD are also calculated efficiently in the twisted curve. 
+The authors extended the work of \cite{PAIRING:MANS13},\cite{ICISC:KONSD16} for KSS-16 curve to calculate \textit{pseudo 8-sparse multiplication} described in Sect. 3. The ECA and ECD are also calculated efficiently in the twisted curve. 
 The $Q_2 \leftarrow [p]Q$ term of step 8 is calculated by applying one skew Frobenius map over $\FPFR$ and $f_1\leftarrow f^{p^3}$ of step 10 is calculated by applying one Frobenius map in $\FPSN$. 
-Step 12, FE is calculated by applying Ghammam et al.'s work for KSS-16 curve \cite{loubna_kss16}.
+Step 12, FE is calculated by applying Ghammam et al.'s work for KSS-16 curve \cite{EPRINT:GhaFou16b}.
 
 \begin{algorithm}[H]
 	\caption{Optimal Ate pairing on KSS-16 curve}
@@ -222,7 +222,7 @@ In the context of  Type 3 pairing, there exists a \textit{twisted curve} with a 
 
 Since points on the twisted curve are defined over a smaller field than $\FPK$, therefore ECA and ECD become faster. 
 However, when required in the Miller's algorithm's line evaluation, the points can be quickly mapped to points on $E(\FPK )$. 
-Since the pairing-friendly KSS-16 \cite{kss} curve has CM discriminant of $D = 1$ and $4|k$; therefore, quartic twist is available.
+Since the pairing-friendly KSS-16 \cite{EPRINT:KacSchSco07} curve has CM discriminant of $D = 1$ and $4|k$; therefore, quartic twist is available.
 \subsubsection{Quartic twist} \label{Quartic_twist}
 Let $\beta$ be a certain quadratic non-residue in $\FPFR$.  The quartic twisted curve $E'$ of KSS-16  curve $E$ defined in \eqref{eq:KSS_16} and  their isomorphic mapping $\psi_4$ are given as follows:
 \begin{eqnarray}
@@ -254,8 +254,8 @@ $y_Q$ & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & $b_{12}$ & $b_{13}$ & $b
 %-----------------------------------------------------------------------------------------------------------------------------------
 \section{Proposal}
 \subsection{Overview: Sparse and Pseudo-Sparse Multiplication}
-Aranha et al. \cite[Section 4]{aranha2011faster} and Costello et al. \cite{costello2010faster} have  well optimized the Miller's algorithm in Jacobian coordinates by 6-sparse multiplication \footnote{\label{6sparse}{6-Sparse refers the state when in a vector (multiplier/multiplicand), among the 12 coefficients 6 of them are zero.}} for BN curve. 
-Mori et al. \cite{mori} have  shown the pseudo  8-sparse multiplication \footnote{\label{pseudo8sparse}{Pseudo 8-sparse refers to a certain length of vector's coefficients where instead of 8 zero coefficients, there are seven  0's and one 1 as coefficients.}} for BN curve by adapting affine coordinates where the sextic twist is available. 
+Aranha et al. \cite[Section 4]{EC:AKLGL11} and Costello et al. \cite{PKC:CosLanNae10} have  well optimized the Miller's algorithm in Jacobian coordinates by 6-sparse multiplication \footnote{\label{6sparse}{6-Sparse refers the state when in a vector (multiplier/multiplicand), among the 12 coefficients 6 of them are zero.}} for BN curve. 
+Mori et al. \cite{PAIRING:MANS13} have  shown the pseudo  8-sparse multiplication \footnote{\label{pseudo8sparse}{Pseudo 8-sparse refers to a certain length of vector's coefficients where instead of 8 zero coefficients, there are seven  0's and one 1 as coefficients.}} for BN curve by adapting affine coordinates where the sextic twist is available. 
 It is found that pseudo 8-sparse was efficient than 7-sparse and 6-sparse in Jacobian coordinates. 
 
 Let us consider  $T=(\gamma x_{T'},\gamma \omega y_{T'})$, $Q=(\gamma x_{Q'}, \gamma \omega y_{Q'})$  and  $P=(x_P,y_P) $, where $x_p, y_p \in \Fp$ given in affine coordinates on the curve $E(\FPSN)$ such that $T'=(x_{T'},y_{T'})$, $Q'=(x_{Q'},y_{Q'})$ are in the twisted curve $E'$ defined over $\FPFR$.
@@ -301,7 +301,7 @@ Therefore,  among the 16 coefficients of  $l_{T,T}(P)$ and $l_{T,Q}(P)\in \FPSN$
 
 
 \subsection{Pseudo 8-Sparse Multiplication for BN and BLS-12 Curve}
-Here we have followed Mori et al.'s \cite{mori} procedure to derive pseudo 8-sparse multiplication for the parameter settings of \cite{sylvain_new_param} for BN and BLS-12 curves. 
+Here we have followed Mori et al.'s \cite{PAIRING:MANS13} procedure to derive pseudo 8-sparse multiplication for the parameter settings of \cite{sylvain_new_param} for BN and BLS-12 curves. 
 For the new parameter settings, the towering is given as \eqref{BN_towering} for both BN and BLS-12 curve.
 However, the curve form $E:y^2=x^3+b, ~b \in \Fp$ is identical for both BN and BLS-12 curve.
 The sextic twist obtained for these curves are also identical.
@@ -383,7 +383,7 @@ Using \eqref{P_hat} and \eqref{Q_hat} the line evaluation of \eqref{sparse_dbl_b
 		\label{psparse_dbl_bn_2} 
 	\end{eqnarray}
 \end{subequations}
-The \eqref{sparse_add_bn_2} becomes similar to \eqref{psparse_dbl_bn_2}. The calculation overhead can be reduced by pre-computation of $(\alpha+1)^{-1}$, $y_{\hat{P}}^{-1}$ and $\hat{P}$, $\hat{Q'}$ mapping using $x_{P}^{-1}$ and $y_{P}^{-1}$ as shown by Mori et al. \cite{mori}. 
+The \eqref{sparse_add_bn_2} becomes similar to \eqref{psparse_dbl_bn_2}. The calculation overhead can be reduced by pre-computation of $(\alpha+1)^{-1}$, $y_{\hat{P}}^{-1}$ and $\hat{P}$, $\hat{Q'}$ mapping using $x_{P}^{-1}$ and $y_{P}^{-1}$ as shown by Mori et al. \cite{PAIRING:MANS13}. 
 
 Finally, pseudo 8-sparse multiplication for BN and BLS-12 is given in 
 
@@ -563,7 +563,7 @@ Finally the Alg.\ref{algo_sparse_mul_kss16} shows the derived pseudo 8-sparse mu
 \vspace{-0.6em}
 
 \subsection{Final Exponentiation}
-Scott et al. \cite{PAIRING:SBCDK09} show the process of efficient final exponentiation (FE) $f^{p^k-1/r}$ by decomposing the exponent using cyclotomic polynomial $\Phi_{k}$ as 
+Scott et al. \cite{PAIRING:SBCDK09a} show the process of efficient final exponentiation (FE) $f^{p^k-1/r}$ by decomposing the exponent using cyclotomic polynomial $\Phi_{k}$ as 
 \begin{equation}\label{scott_dec}
 (p^k-1)/r = (p^{k/2}-1) \cdot(p^{k/2}+1)/\Phi_{k}(p)\cdot \Phi_{k}(p)/r.
 \end{equation}
@@ -589,8 +589,8 @@ BN, BLS-12 \quad \quad &  \quad $\frac{p^{12}-1}{r}$ \quad & \quad $(p^6-1)(p^2+
 \end{table}
 \renewcommand{\baselinestretch}{1.0}
 
-This paper carefully concentrates on Miller's algorithm for comparison and making pairing efficient. However, to verify the correctness of the bilinearity property,  the authors made a ``not state-of-art" implementation of  Fuentes et al.'s work \cite{FuentesBN} for  BN curve case and  Ghammam's et al.'s works \cite{loubna_kss16,loubna_bls12} for KSS-16 and BLS-12 curves.
-For scalar multiplication by prime $p$, i.e., $p[Q]$ or $[p^2]Q$, skew Frobenius map technique by Sakemi et al. \cite{sakemi_skew} is adapted.
+This paper carefully concentrates on Miller's algorithm for comparison and making pairing efficient. However, to verify the correctness of the bilinearity property,  the authors made a ``not state-of-art" implementation of  Fuentes et al.'s work \cite{SAC:FueKnaRod11} for  BN curve case and  Ghammam's et al.'s works \cite{EPRINT:GhaFou16b,loubna_bls12} for KSS-16 and BLS-12 curves.
+For scalar multiplication by prime $p$, i.e., $p[Q]$ or $[p^2]Q$, skew Frobenius map technique by Sakemi et al. \cite{CANS:SNOKM08} is adapted.
 
 
 
@@ -650,7 +650,7 @@ From the result, we find that Miller's algorithm took the least time for  KSS-16
 And the time is almost closer to BLS-12.
 The Miller's algorithm is about 1.7 times faster in KSS-16 than BN curve. 
 Table \ref{com_com} shows that the complexity of this implementation concerning the number of $\Fp$ multiplication and squaring and the estimation of \cite{sylvain_new_param} are almost coherent for Miller's algorithm. 
-Table \ref{com_com} also show that our derived pseudo 8-sparse multiplication for KSS-16 takes fewer $\Fp$ multiplication than Zhang et al.'s estimation \cite{zhang_L12}.
+Table \ref{com_com} also show that our derived pseudo 8-sparse multiplication for KSS-16 takes fewer $\Fp$ multiplication than Zhang et al.'s estimation \cite{INDOCRYPT:ZhaLin12}.
 The execution time of Miller's algorithm also goes with this estimation \cite{sylvain_new_param}, that means KSS-16 and BLS-12 are more efficient than BN curve.
 Table \ref{operation_count} shows the complexity of Miller's algorithm for the target curves in$\Fp$ operations count.
 
@@ -677,11 +677,11 @@ Basis multiplication refers to the vector multiplication such as $(a_o+a_1\alpha
 \renewcommand{\baselinestretch}{1.0}
 
 
-As said before, this work is focused on Miller's algorithm. However, the authors made a ``not state-of-art" implementation of some  final exponentiation algorithms \cite{loubna_kss16,FuentesBN,loubna_bls12}. 
+As said before, this work is focused on Miller's algorithm. However, the authors made a ``not state-of-art" implementation of some  final exponentiation algorithms \cite{EPRINT:GhaFou16b,SAC:FueKnaRod11,loubna_bls12}. 
 Table \ref{com_fe} shows the total final exponentiation time in [ms].
 Here final exponentiation of KSS-16 is slower than BN and BLS-12.  
 We have applied square and multiply technique for exponentiation by integer $u$ in the hard part since the integer $u$ given in the sparse form.
-However, Barbulescu et al. \cite{sylvain_new_param} mentioned that availability of compressed squaring \cite{aranha2011faster} for KSS-16 will lead a fair comparison using final exponentiation.
+However, Barbulescu et al. \cite{sylvain_new_param} mentioned that availability of compressed squaring \cite{EC:AKLGL11} for KSS-16 will lead a fair comparison using final exponentiation.
 \renewcommand{\baselinestretch}{1.5}
 \begin{table}[!h]
 \centering
@@ -712,7 +712,7 @@ However, Barbulescu et al. \cite{sylvain_new_param} mentioned that availability 
 \section{Conclusion and Future Work}
 This paper has presented two major ideas.
 \begin{itemize}
-\item Finding efficient Miller's algorithm implementation technique for Optimal-Ate pairing for the less studied KSS-16 curve. The author's presented pseudo 8-sparse multiplication technique for KSS-16. They also extended such multiplication for BN and BLS-12 according to \cite{mori} for the new parameter. 
+\item Finding efficient Miller's algorithm implementation technique for Optimal-Ate pairing for the less studied KSS-16 curve. The author's presented pseudo 8-sparse multiplication technique for KSS-16. They also extended such multiplication for BN and BLS-12 according to \cite{PAIRING:MANS13} for the new parameter. 
 \item Verifying Barbulescu and Duquesne's conclusion \cite{sylvain_new_param} for calculating Optimal-Ate pairing at 128-bit security level; that is, BLS-12 and less studied KSS-16 curves are more efficient choices than well studied BN curves for new parameters. 
 This paper finds that Barbulescu and Duquesne's conclusion on BLS-12 is correct as it takes the less time for Miller's algorithm.
 Applying the derived pseudo 8-sparse multiplication, Miller's algorithm in KSS-16 is also more efficient than BN.

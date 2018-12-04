@@ -3,16 +3,7 @@ In elliptic curve cryptography (ECC), a scalar multiplication for rational point
 
 %Scalar multiplication of rational points on elliptic curve (EC) is the most time costly operation carried out in elliptic curve cryptography (ECC). In this paper an efficient way to calculate the scalar multiplication is proposed by applying Frobenious Mapping (FM) on the rational points on Barreto - Naehrig (BN) curve. This paper considers the BN curve to be defined over extension field $\F{q}{2}$ for a very large value of $p$.
 
-\section{Introduction}
-%Since the inception of elliptic curve cryptography (ECC) it has gained wide acceptance mostly due to its smaller key size and greater security. 
-%The equation of elliptic curve is defined as
-% \begin{equation}\label{eq:eccdef}
-%E:y^2 = x^3 + ax + b,
-% \end{equation}
-% where $4a^3 + 27b^2 \neq 0$. 
-In cryptography research, elliptic curve cryptography (ECC) has gained a wide acceptance due to its smaller key size and greater security. 
-In ECC, scalar multiplication (SM) is carried out at the encryption and decryption phases. SM is the major operation in ECC. Let us denote a scalar and rational point by  $s$ and $P$, respectively. Then, the SM is denoted by $[s]P$. In real cases $s$ is significantly large number less than the order of rational point group. Since SM needs a complicated calculation over the definition field such as prime field, an efficient algorithm for SM is needed. Recently, ECC defined over extension field $\F{q}{2}$ with a large prime number $p$ such as more than $2000$ bits is used in some ECC based protocols. On the other hand, pairing based cryptography realizes some innovative application protocol. Pairing based cryptography requires pairing friendly curve which is difficult to generate. Barreto-Naehrig (BN) \cite{SAC:BarNae05} curve is one of the well known pairing friendly curve\cite{EPRINT:FreScoTes06} whose parameters are able to be systematically given. BN curve is mostly used due to its efficiency to realize pairing based cryptography. Thus, this paper proposes an efficient approach for calculating SM on BN curve particularly defined over extension field $\F{q}{2}$, where $q=p^6$ and $p$ is a prime number by using Frobenious Mapping (FM) for the rational points.
- 
+
 \section{Preliminaries}
 This section briefly discusses the fundamental arithmetic operations required for elliptic curve cryptography defined over prime field $\Fp$ and its extension field $\F{q}{2}$. In addition, this paper focuses on BN curve defined over $\F{q}{2}$, $q=p^6$.
 

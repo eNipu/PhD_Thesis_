@@ -1,168 +1,309 @@
 
 \chapter{Fundamental Mathematics and Notation}
+\label{Chapter_fundamentals} 
 It is necessary to recall some fundamental mathematical concept to understand the subsequent chapters and introduce the notations used in the thesis.
-This chapter introduces the essential mathematical backgrounds that are directly relevant to the contents of this thesis to help readers to a clear understanding.
-The theoretical discussion will often appear with minimal definition and citation of the details works since the details discussion is beyond the scope of this thesis.
+This chapter introduces the essential mathematical backgrounds that are directly relevant to the contents of this thesis to help readers to a clear understanding of the subsequent chapters.
+The theoretical discussion will often appear with minimal definition and citation of the details works since details discussion is beyond the scope of this thesis.
+For more details of the topics discussed in this chapter we refer to \cite{lidl_niederreiter_1996, book_HFFMullen2013}.
 As an additional purpose, this chapter specifies most of the notations that will appear in the upcoming chapters.
-\label{Ch_fundamentals} % For referencing the chapter elsewhere, use \ref{Chapter1} 
+% For referencing the chapter elsewhere, use \ref{Chapter1} 
 
 Cryptography deals with numbers mostly integers.
-To understand modern cryptography  it is necessary to have a good understanding of the  underlying mathematical concepts. 
+To understand modern cryptography  it is essential to have a good understanding of the  underlying mathematical concepts. 
 The following concepts is the basic for the discussion of the subsequent chapters.
 
-%\section{Finite Field}
-
-\section{Groups}\label{group}
-
-A group \index{group} is an algebraic system defined as follows.
-\begin{definition}[Group\index{group}]
-A group\index{group} $\langle\mathbb{G}\index{group},\circ\rangle$ is a nonempty set with a binary operations $\circ$ that satisfies the following group\index{group} axioms:
-\begin{quote}\begin{description}
-\item[G1 : (Closure)] For all $a, b \in\mathbb{G}\index{group}$, the result of $a\circ b$ is also in $\mathbb{G}\index{group}$.
-\item[G2 : (Associativity)] $(a\circ b)\circ c=a\circ (b\circ c)$\hspace{2em}$a,b,c\in\mathbb{G}\index{group}$.
-\item[G3 : (Unit Element)] For $\forall a \in\mathbb{G}\index{group}$, there exists an element $e\in\mathbb{G}\index{group}$ such that $a\circ e=e\circ a=a$, where $e$ is called unit element.
-\item[G4 : (Inverse Element)] For ${\forall}a \in\mathbb{G}\index{group}$, there exists an element $x\in\mathbb{G}\index{group}$ such that $a\circ x=x\circ a=e$, where $x$ is called inverse element of $a$.
-\end{description}\end{quote}
-\qed
+\section{Modular Arithmetic}
+ Modular arithmetic is the fundamental tool for modern cryptography specially public key cryptosystems.
+\begin{definition}[Modular Arithmetic\index{modulus}]
+	Let  $p$ be a positive integer named as the modulus \index{modulus} and  $a$ and $b$  are two arbitrary integers. 
+	If  $p$ divides $b-a$  then we can write
+	 $$ a \equiv b ~(\bmod ~p)$$
+	 and express as $a$ and $b$ are congruent modulo $p$.
 \end{definition}
-
-\begin{definition}[Commutative Group\index{group}]\hspace{0em}
-
-\begin{quote}\begin{description}
-\item[AG5 : (Commutativity)] A group\index{group} $\mathbb{G}\index{group}$ is said to be commutative (or abelian), if $a\circ b=b\circ a$ for $^{\forall}a,b \in\mathbb{G}\index{group}$.
-\end{description}\end{quote}
-\qed
-\end{definition}
-
-For example, the algebraic system $\langle\mathbb{Z},+\rangle$ is an infinite commutative group\index{group}, where $\mathbb Z$ is the integer set and $+$ means the ordinary addition for integers. For a finite group\index{group}, its order\index{order} is defined as follows.
-
-\begin{definition}[Order of Group\index{group}]\hspace{0em}
-The order\index{order} $\#\mathbb{G}\index{group}$ is the number of elements in finite group\index{group} $\mathbb{G}\index{group}$.
-\\\qed
-\end{definition}
-
-Let us consider an example of finite groups\index{group}. An algebraic system $\langle\mathbb{Z}_{n}=\{0,1,2,3,\cdots,n-1\},+\rangle$ is not a group\index{group} because it does not satisfy the group\index{group} axioms. Therefore, in order\index{order} to construct a group\index{group} from $\mathbb{Z}_n$, it is necessary to modify the addition. We will define a new sum as
-\begin{equation}
-a+b\equiv c\ \ \bmod n\hspace{3em}a,b\in \mathbb{Z}_{n},\label{Sum Definition}\\
-\end{equation}
-where the notation ``$\bmod\ n$'' means that $c$ is assigned to a remainder on division by $n$ when $a+b=c\notin\mathbb{Z}_{n}$. Therefore, $c$ certainly belongs to $\mathbb{Z}_{n}$ and then $\langle \mathbb{Z}_{n},+\rangle$ forms a group\index{group}.
-
-There is a convenient way of presenting a finite group\index{group}. A table displaying the group\index{group} operation is referred to as {\em Cayley table\index{Cayley!Cayley table}}. For example, the group\index{group} $\mathbb{Z}_4$ is presented as follows.
-
-\begin{example}The Cayley table\index{Cayley!Cayley table} for the group\index{group} $\mathbb{Z}_4$ is:
-\begin{center}
-\begin{tabular}{c|cccc}
-        $+$&\em 0&\em 1&\em 2&\em 3       \\
-\hline
-        \em 0&\em 0&\em 1&\em 2&\em 3       \\
-        \em 1&\em 1&\em 2&\em 3&\em 0       \\
-        \em 2&\em 2&\em 3&\em 0&\em 1       \\
-        \em 3&\em 3&\em 0&\em 1&\em 2       \\
-\end{tabular}
-\end{center}
+\begin{example}
+	Let, $p =7$, $a=19$ and $b=5$ then 
+	$19  \equiv  5 ~(\bmod ~7) $.
 \end{example}
 
-In what follows, we will use the notation of ordinary addition such that $a+a=2a$ and $a+a+a=3a$ (in multiplicative notation, these are denoted by $a^2$,$a^3$).
+\begin{example}
+	Let, $p =7$, $a=-17$  and $b=11$. Then $-17  ~(\bmod ~7)  = 4$ and $11 ~(\bmod ~7) = 4$. 
+	We can write 
+	$$-17  \equiv  11 ~(\bmod ~7) $$ 
+	and usually express $-17$ and $11$ are congruent modulo $7$.
+\end{example}
 
-\begin{definition}[Cyclic Group\index{group}]
-A group\index{group} $\mathbb{G}\index{group}$ is said to be {\em cyclic} if there is an element $g\in\mathbb{G}\index{group}$ such that for any $a\in\mathbb{G}\index{group}$ there is some integer $j$ with $a=g^{j}$. Such an element $g$ is called a generator\index{generator} of the cyclic group\index{cyclic group}\index{group}. \qed
+\section{Group, Ring, Field}\label{group}
+\subsection{Group}
+The concept of group \index{group} is very fundamental for understanding cryptography. It is an algebraic system defined as follows.
+\begin{definition}[Group\index{group}]
+A group \index{group} is a non empty set $\mathbb{G}$ with a binary operation $\circ$ on its elements denoted as  $\langle\mathbb{G}\index{group},\circ\rangle$,  sometimes denoted by   $\mathbb{G}$ only, which satisfies the following axioms.
+\begin{quote}
+	\begin{description}
+		\item[Closure] The group is closed under the operation $\circ$, i.e.  $\forall a \in\mathbb{G}$, and $\forall b \in\mathbb{G}$ the result of $ (a\circ b) = c \in \mathbb{G}$. \footnote{$\forall$ symbol bears is usual notation \textit{"for all"} }
+		
+		\item[Identity element] There exist an \textbf{identity element \index{Identity element}} $e$ also know as \textit{neutral element} or \textit{unit element} in $\mathbb{G}$ such that $\forall a \in\mathbb{G} \index{group}$,  $a\circ e = e\circ a = a$.
+		
+		\item[Inverse element] For ${\forall}a \in\mathbb{G}\index{group}$, there exists an element $b\in\mathbb{G}\index{group}$ such that $a\circ b=e=b\circ a$, where $b$ is called inverse element of $a$.
+		
+		\item[Associativity] Elements in  group $\mathbb{G}$ should follow associativity. i.e. $(a\circ b)\circ c=a\circ (b\circ c)$ for all $ a,b,c\in\mathbb{G}\index{group}$.
+		
+\end{description}
+\end{quote}
 \end{definition}
 
-From the definition, we can see that any elements in cyclic group\index{cyclic group} are generated with iterative operations of generator\index{generator} $g$. \fgref{Cyclic group} shows it schematically.
+\begin{definition}[Commutative Group\index{group}] \hspace{0em}
+\begin{quote}\begin{description}
+A group \index{group} $\mathbb{G}\index{group}$ will be commutative if $a\circ b=b\circ a$ for all $a,b \in\mathbb{G}\index{group}$.
+\end{description}\end{quote}
+\qed
+\end{definition}
+A commutative group is also called \textit{abelian} group.
 
-\begin{figure}[h]
-\begin{center}
-\special{pn 10}%
-\special{ar 3150 950 700 700 0.1200000 0.14959965}
-\special{ar 3150 950 700 700 0.2991993 0.44879895}
-\special{ar 3150 950 700 700 0.5983986 0.74799825}
-\special{ar 3150 950 700 700 0.8975979 1.04719755}
-\special{ar 3150 950 700 700 1.1967972 1.34639685}
-\special{ar 3150 950 700 700 1.4959965 1.64559615}
-\special{ar 3150 950 700 700 1.7951958 1.94479545}
-\special{ar 3150 950 700 700 2.0943951 2.24399475}
-\special{ar 3150 950 700 700 2.3935944 2.54319405}
-\special{ar 3150 950 700 700 2.6927937 2.84239335}
-\special{ar 3150 950 700 700 2.9919930 3.02159265}
-\special{ar 3850 950 80 80 0.000000000 6.283185304}
-\special{ar 2450 950 80 80 0.000000000 6.283185304}
-\special{ar 3150 250 80 80 0.000000000 6.283185304}
-\special{ar 3500 355 80 80 0.000000000 6.283185304}
-\special{ar 3745 600 80 80 0.000000000 6.283185304}
-\special{ar 2555 600 80 80 0.000000000 6.283185304}
-\special{ar 2800 355 80 80 0.000000000 6.283185304}
-\special{ar 3150 950 700 700 3.261 3.555}
-\special{ar 3150 950 700 700 3.79 4.065}
-\special{ar 3150 950 700 700 4.3 4.591}
-\special{ar 3150 950 700 700 4.83 5.122}
-\special{ar 3150 950 700 700 5.365 5.63}
-\special{ar 3150 950 700 700 5.87 6.165}
-\begin{picture}(150,120)%
-\put(58,109){$g^{m}=e$}
-\put(110,100){$g$}
-\put(128,80){$g^{2}$}
-\put(136,54){$g^{3}$}
-\put(0,54){$g^{m-3}$}
-\put(9,80){$g^{m-2}$}
-\put(32,98){$g^{m-1}$}
-\end{picture}%
-\end{center}
-\caption{Cyclic group\index{cyclic group}\index{group}}
-\label{Cyclic group}
-\end{figure}
+\begin{example} \label{example_group}
+ The set of integers $\mathbb{Z}$ forms a group under the group operation of addition $+$ denoted as $(\mathbb{Z},+)$. $0$ is the identity element of the group.
+\end{example}
+\begin{example}\label{example_notgroup}
+	 The set of positive integers $\mathbb{N}$ under addition does not form a group since elements have not inverse.
+\end{example}
+%For example, the algebraic system $\langle\mathbb{Z},+\rangle$ is an infinite commutative group\index{group}, where $\mathbb Z$ is the integer set and $+$ means the ordinary addition for integers. For a finite group\index{group}, its order\index{group order} is defined as follows.
+\begin{definition}[Order of a Group\index{group}]\hspace{0em}
+The order of a group $\mathbb{G}$ \index{group order} often denoted as $\#\mathbb{G}\index{group}$ is the number of elements in the group\index{group} $\mathbb{G}\index{group}$.
+\qed
+\end{definition}
 
-In general, for an element $a\in\mathbb{G}\index{group}$, the least positive integer $m$ such that $a^{m}=e$ is called the order\index{order} of $a$, where $e$ is the unit element in $\mathbb{G}\index{group}$.
+\begin{remark}
+	 Groups order can be finite and infinite. In example \ref{example_group}, $(\mathbb{Z},+)$ has infinite order.
+\end{remark}
 
-
-%--------------------------------------
-\subsection{Field}
-%--------------------------------------
-Field is an algebraic system defined as follows.
-\begin{definition}[Field]
-	A field $\langle\f{},+,\cdot\rangle$ has two binary operations denoted by $+$ and $\cdot$, such that:
-	\begin{quote}\begin{description}
-			\item[F1 : (Additive Group)] $\f{}$ is a commutative group with respect to $+$.
-			\item[F2 : (Multiplicative Group)] ${\f{\,}}^{\ast}\!\!$ is a group with respect to $\cdot$, where ${\f{\,}}^{\ast}\!\!$ is the set that consists of every element distinct from the unit element (zero element) with respect to $+$.
-			\item[F3 : (Distributive law)] For all $a,b,c \in\f{}$ we have $a\cdot(b+c)=a\cdot b+a\cdot c$ and $(b+c)\cdot a=b\cdot a +c\cdot a$.
-	\end{description}\end{quote}
+\begin{definition}[Order of group element\index{order of element}]
+	For an element $a\in\mathbb{G}\index{group}$, the smallest positive integer $m$ such that $a^{m}=e$ is called the order\index{order} of $a$, where $e$ is the identity element in $\mathbb{G}\index{group}$.
 	\qed
 \end{definition}
-In general, the elements $0$ and $1$ denote the unit elements regarding to addition $+$ and multiplication $\cdot$, respectively.
-\begin{definition}[Order of Finite Field]\hspace{0em}
-	The order is the number of elements in $\f{}$. If the order of $\f{}$ is finite, $\f{}$ is called finite field. \qed
-\end{definition}
-\begin{definition}[Characteristic of Finite Field]\hspace{0em}
-	The least positive number $n$ such that $na=0$ for every $a\in \f{}$ is called characteristic. \qed
+
+\begin{example}{Finite group:  \index{finite group} } \label{definition_finite_group}
+As shown in example \ref{example_notgroup}, the set $\mathbb{N}$ under addition does not form a group 
+since it does not satisfy the group\index{group} axioms. 
+Let us consider a set $\mathbb{N}_{n}$ under the operation $\mod n$  such that 
+$$ \mathbb{N}_{n} = \{0,1,2,3, \cdots, n-1\}$$
+where $n \in \mathbb{N}$.
+It means $\mathbb{N}_{n}$ is the set of remainders under ``$\bmod\ n$''.
+Recall the modular arithmetic that 
+$$a+b\equiv c\ \ \bmod n\hspace{3em}a,b\in \mathbb{N}_{n},\label{Sum Definition}$$
+ means $c$ is  associated to a remainder on division by $n$ when $a+b=c\notin\mathbb{N}_{n}$. 
+It makes $c$ belongs to $\mathbb{N}_{n}$ making $( \mathbb{N}_{n},+)$ forming a group\index{group}.
+In also includes element $0$ which acts as an identity element.
+\end{example}
+
+\begin{definition}[Group generator\index{group}]
+	For a given group\index{group} $\mathbb{G}\index{group}$ if there is an element $g\in\mathbb{G}\index{group}$ such that for any $a\in\mathbb{G}\index{group}$ there exist an unique integer $i$ with $a=g^{i}$ then $g$ will be called a   generator\index{generator} of  $\mathbb{G}\index{group}$
+\qed
 \end{definition}
 
-This paper treats only finite fields. Finite fields have the following property, which is often used in cryptographic area.
-\begin{theorem}\label{Cyclic Group in Finite Field}
-	For every finite field $\f{}$, the multiplicative group ${\f{\,}}^{\ast}\!\!$ is cyclic. \qed
-\end{theorem}
-For example, ElGamal encryption \cite{C:ElGamal84} can be defined over multiplicative group of $\f{}$. Its security depends on the difficulty of a problem in $\f{}$ related to computing {\em discrete logarithms}.
-A subset $\mathbb K$ of a field $\f{}$ that is itself a field under the operations of $\f{}$ will be called a {\em subfield} of $\f{}$. In this case, $\f{}$ is called an {\em extension (field)} of $\mathbb K$. If $\mathbb K\neq \f{}$, we say that $\mathbb K$ is a {\em proper subfield} of $\f{}$. Then, {\em prime field} is defined as follows.
-\begin{definition}[Prime Field]
-	
-	
-	
-	A field containing no proper subfield is called prime field. \qed
+\begin{definition}[Cyclic Group\index{group}]
+A group\index{group} $\mathbb{G}\index{group}$ will be {\em cyclic} if there exist at least one generator $g \in \mathbb{G}$. Cyclic group usually expressed as $\mathbb{G} = \langle g \rangle$
+ \qed 
 \end{definition}
-Moreover, the following theorem is given.
+
+\begin{remark}
+	The number of generator in a group $\mathbb{G}\index{group}$ of order $n$ is defined by Euler's totient function $\phi(n)$\footnote{When $n$ is a positive integer, Euler's totient function $\phi(n)=$ number of positive integers less than or equal to $n$ that are co-prime to $n$}.
+	If $n$ is a prime $p$ then the  group $\mathbb{G}$ will be called prime order group and it will have $\phi(p) = p-1$ generators.
+\end{remark}
+
+\begin{definition}[Cyclic Group\index{group}]
+	A group\index{group} $\mathbb{G}\index{group}$ will be {\em cyclic} if there exist at least one generator $g \in \mathbb{G}$. Cyclic group usually expressed as $\mathbb{G} = \langle g \rangle$ 
+	\qed 
+\end{definition}
+
+In this case we use the notation $\langle\mathbb{G}\index{group},\circ\rangle$,  there exists some ambiguity which operation we consider.
+Therefore, the following two types of group nations are very common in literature.
+
+\begin{definition}[Additive group\index{additive group}]
+A cyclic group is called \textit{additive} if we tend to write its group operation in the same way we do additions, that is 
+$$f = g + x$$ 
+can also appear as $[x]g$ meaning applying $x -1$ times addition operator $+$ on $g$.
+It is also common to write as $x \cdot g$.
+For example, $1$ is one of generators in group $(\mathbb{Z}_5, + )$ under addition modular $5$, then $1 \cdot 4$ can be written as $$ 4 = 1+ 1+ 1+1.$$
+\qed
+ \end{definition}
+
+\begin{definition}[Multiplicative group\index{multiplicative group}]
+	A cyclic group is called \textit{multiplicative} if we tend to write its group operation in the same way we do multiplication, that is 
+	$$f =  g \cdot x ~\text{or}~ f = g^x$$ 
+	\qed
+\end{definition}
+
+\begin{remark}
+	In both notation the $x$  is an integer called the \textit{discrete logarithm} of $h$ to the base $g$.
+\end{remark}
+\begin{remark}
+	Unless otherwise stated, through out this thesis we will use the $xg$ notation for ordinary addition e.g. $a+a=2a$ and $a+a+a=3a$ and for multiplicative notation, these will denoted by $a^2$, $a^3$.
+\end{remark}
+
+From the definition cyclic group, it can be see visualized that any elements in cyclic a group\index{cyclic group} are generated with iterative operations of generator\index{generator} $g$. 
+\fgref{Cyclic group} shows this schematically.
+\begin{figure}[h]
+\begin{center}
+	\includegraphics[width=.6\linewidth, height=.67\textheight, keepaspectratio]{Figures/cyclicgroup}
+\caption{Cyclic group\index{cyclic group}\index{group}}
+\label{Cyclic group}
+\end{center}
+\end{figure}
+
+A a well known practice of presenting a finite group's\index{group} operation is {\em Cayley table\index{Cayley table}} as shown in example \ref{example_Cayleytable}.
+Cayley table\index{Cayley table} shows all possible group operation that can be performed in a finite group.
+
+\begin{example} \label{example_Cayleytable}
+	The Cayley table\index{Cayley!Cayley table} for the group\index{group} $\mathbb{Z}_4$ is:
+	\begin{center}
+		\begin{tabular}{c|cccc}
+			$\oplus_4$&\em 0&\em 1&\em 2&\em 3       \\
+			\hline
+			\em 0&\em 0&\em 1&\em 2&\em 3       \\
+			\em 1&\em 1&\em 2&\em 3&\em 0       \\
+			\em 2&\em 2&\em 3&\em 0&\em 1       \\
+			\em 3&\em 3&\em 0&\em 1&\em 2       \\
+		\end{tabular}
+	\end{center}
+\end{example}
+In the above example of group $(\mathbb{Z}_4,+)$, there are $\phi(4)=2$ generators, $3$ and $1$.
+
+\begin{definition}[Subgroup\index{subgroup}]
+	Let $\mathbb{H}$ be  a non-empty subset  fo group $\mathbb{G}$, $\mathbb{H}$  will be called subgroup of $\mathbb{G}$ if  $\mathbb{H}$  itself follows group axioms and $\mathbb{H}$ has the same identity element of group $\mathbb{G}$. 
+	\qed
+\end{definition}
+
+\begin{theorem}[Lagrange's Theorem:]
+	Let $\mathbb{G}$ be a finite abelian group and $\mathbb{H}$ is a subgroup of $\mathbb{G}$.  The order of $\mathbb{G}$, $\#\mathbb{G}$ is divisible by the order of subgroup $\mathbb{H}$, $\#\mathbb{H}$ i.e.   $\#\mathbb{H} | \#\mathbb{G}$.
+\qed
+\end{theorem}
+
+\begin{theorem}[Fermat’s Little Theorem:]
+	Let $p$ is a prime and $a \in \mathbb{Z}$, then $$a^p = a ~(\bmod ~p)$$
+	\qed
+\end{theorem}
+Fermat’s \textit{little theorem} is a special case of Lagrange’s theorem.
+
+
+\subsection{Homomorphism in groups \index{homomorphism}}
+Morphisms in groups is often used the research of cryptography and inseparable to for pairing-based cryptography research.
+\begin{definition}[Homomorphism\index{rings}]
+	Let $(\mathbb{G},\circ)$ and $(\mathbb{G}^{'},\star)$ be two groups with identity elements $e$ and $e'$ respectively.
+	A homomorphism  is a map $f$ which preserves the group structure while the elements are mapped from $(\mathbb{G},\circ)$ to $(\mathbb{G}^{'},\star)$.
+	\qed
+\end{definition}
+	A homomorphic map obeys the following conditions:
+	\begin{itemize}
+		\item $\forall a,b \in \mathbb{G}$, $f(a \circ b) = f(a) \star f(b)$.
+		\item  For every $a \in \mathbb{G}$, the inverse map is $f(a^{-1}) = f(a)^{-1}$.
+		\item  Identity element mapping also preserves the structure i.e. $f(e) =e'$.
+	\end{itemize}
+
+\subsubsection*{Types of Homomorphism}
+\begin{quote}
+	\begin{description}
+				\item[Isomorphism \index{Isomorphism}] If element from $\mathbb{G}$  and $\mathbb{G}^{'}$ have bijective relation then $\mathbb{G}$ and $\mathbb{G}^{'}$ are isomorphic to each other.
+					
+			\item[Endomorphism  \index{Endomorphism}]  If elements from group $(\mathbb{G},\circ)$ is mapped to itself then it is called endomorphism. 
+			A frequently used endomorphism in cryptographic algorithms is Frobenius endomorphism. 
+			
+			\item[Authomorphism  \index{Authomorphism}] If element of a group has both endomorphism and isomorphism then it is called automorphism.
+	\end{description}
+\end{quote}
+
+\begin{definition}[Kernel\index{kernel}]
+	Let $(\mathbb{G},\circ)$ and $(\mathbb{G}^{'},\star)$ be two groups with identity elements $e$ and $e'$ respectively and $f$ is homomorphism from $(\mathbb{G},\circ)$ to $(\mathbb{G}^{'},\star)$.
+	The kernel of $f$ is denoted as $\text{Ker}\{f\}$, defined by 
+	$$\text{Ker}(f) = \{ a \in \mathbb{G}: f(a) = e'\}$$.
+	\qed
+\end{definition}
+
+%--------------------------------------
+%--------------------------------------
+\subsection{Ring}
+The concept of \textit{Ring} will not come as frequently as group and field in the subsequent chapters. 
+However, it is relevant to define ring to understand the related concept.
+\begin{definition}[Ring \index{ring}]
+	A \textbf{ring} $\mathbb{R}$ is an algebraic structure with two operations, i.e. addition  $+$ and  multiplication $\cdot$  usually denote as $\mathbb{R},+,\cdot$.
+	\begin{itemize}
+		\item $\mathbb{R}$ is abelian group under addition operation.
+		\item Under multiplication, $\mathbb{R}$ is closed and associative with identity element is $1$.
+		\item  Multiplication is distributive over addition: $ \forall a, b, c \in \mathbb{R}: a\cdot (b+c) = a\cdot b + a\cdot c$.
+	\end{itemize}
+\qed
+\end{definition}
+If multiplication operation is commutative, $\mathbb{R}$  forms a commutative ring.
+%\begin{example}
+%	TODO
+%\end{example}
+\begin{definition}[Multiplicative Inverse Modulo $n$ \index{multiplicative inverse}]
+	Let $\mathbb{Z}_n$ be a set under modulo $n$ and $a \in \mathbb{Z}_n$. 
+	The multiplicative inverse modulo $n$ of $a$ can be written as  follows:
+	$$a\cdot x \equiv  1 \bmod n.$$
+The value $x$ is the multiplicative inverse modulo $n$ of $a$, often written as $a^{-1}$.
+\qed
+\end{definition}
+Such value of $x$ only exists if $\text{gcd}(x,n)=1$.
+If $n=p$ is a prime then every non-zero element in the set $\mathbb{Z}_p$ will have multiplicative inverse.
+Such $(\mathbb{Z}_p,+,\cdot)$ will be a ring and having the above property it will form a field.
+
+\subsection{Field}
+\begin{definition}[Field]
+	A field $(\f{},+,\cdot)$ is a set that obeys two binary operations denoted by $+$ and $\cdot$, such that:
+	\begin{itemize}
+%		\begin{itemize}
+			\item $\f{}$ is a commutative group with respect to $+$ having identity element $0$.
+			
+			\item Let ${\f{\,}}^{\ast}\!\!$ is a subset of $\f{}$ having only not-zero element of $\f{}$ i.e. ${\f{}}^{\ast}  = {\f{} ~\backslash \{0\}}$. 
+			Then ${\f{\,}}^{\ast}\!\!$ will be called a commutative group respect to multiplication$\cdot$  where every element should have multiplicative inverse in  ${\f{\,}}^{\ast}\!\!$.
+			\item For all $a,b,c \in\f{}$  the distributive law will be followed, e.g. $a\cdot(b+c)=a\cdot b+a\cdot c$ and $(b+c)\cdot a=b\cdot a +c\cdot a$.
+	\end{itemize}
+%\end{itemize}
+	\qed
+\end{definition}
+%In general, the elements $0$ and $1$ denote the unit elements regarding to addition $+$ and multiplication $\cdot$, respectively.
+\begin{definition}[Subfield \index{subfield}]\hspace{0em} \label{definition_subfielf}
+	Let $\f{1}$ is a subset of field $\f{}$. $\f{1}$ will be called a subfeld if $\f{1}$ itself obeys the laws of field with respect to the field operation inherited from  $\f{}$.
+	\qed
+\end{definition}
+\begin{remark}
+	 In Definition \ref{definition_subfielf}, $\f{}$ is called an {\em extension field} of $\f{1}$.
+	  If $\f{1}\neq \f{}$, then $\f{1}$ is a {\em proper subfield} of $\f{}$.
+ \end{remark}
+
+\begin{definition}[Order of Finite Field \index{order of field}]\hspace{0em}
+	The order is the number of elements in $\f{}$. If the order of $\f{}$ is finite, $\f{}$ is called finite field. 
+	\qed
+\end{definition}
+\begin{definition}[Characteristic of Finite Field \index{field characteristics}]\hspace{0em}
+	Let $\f{}$ be a field and smallest positive number $n$ such that $n \cdot a= 0$ for every $a\in \f{}$. Such $n$ is called characteristic. If there is no such $n$ in  $\f{}$ then $\f{}$ has characteristics $0$.
+	\qed
+\end{definition}
+
+Most of the works presented in this dissertation deals with  finite fields only. 
+A common property of finite fields often used in cryptographic is fllows:
+\begin{theorem}\label{Cyclic Group in Finite Field}
+	For every finite field $\f{}$, the multiplicative group $({\f{\,}}^{\ast}\!\!, \cdot)$ is cyclic. 
+	\qed
+\end{theorem}
+%For example, ElGamal encryption \cite{C:ElGamal84} can be defined over multiplicative group of $\f{}$. Its security depends on the difficulty of a problem in $\f{}$ related to computing {\em discrete logarithms}.
+%A subset $\mathbb K$ of a field $\f{}$ that is itself a field under the operations of $\f{}$ will be called a {\em subfield} of $\f{}$. In this case, $\f{}$ is called an {\em extension (field)} of $\mathbb K$. If $\mathbb K\neq \f{}$, we say that $\mathbb K$ is a {\em proper subfield} of $\f{}$. Then, {\em prime field} is defined as follows.
+\begin{definition}[Prime Field \index{prime field}]
+	Let $p$ be a prime. The ring of integers modulo $p$ is  a finite field of characteristics $p$ having field order $p$ denoted as $\f{p}$ is called a prime field.
+	 \qed
+\end{definition}
+\begin{remark}
+		A prime field contains no proper subfield.
+\end{remark}
+
 \begin{theorem}
 	Every finite field has a prime field as a subfield. \qed
 \end{theorem}
 
-Therefore, finite fields are classified into two types, which are prime field and its extension field. Prime field $\Fp$ has a prime number $p$ as the order and characteristic. In the same way as \eqref{Sum Definition}, we can define fundamental operations of $\Fp=\{0,1,2\cdots,p-1\}$ by using remainder of integer as follows,
-\begin{subequations}
-	\label{Operation Definition}
-	\begin{eqnarray}
-	a+b\equiv c&&\ \bmod\ p,\\
-	a\cdot b\equiv c&&\ \bmod\ p\hspace{3em}a,b\in\Fp.
-	\end{eqnarray}
-\end{subequations}
-
-In order to understand it easily, following examples are shown.
-
+In this work we classified finite fields into two types, i.e.  prime field $\f{p}$ and its extension field. 
+Defined \ref{label_extenion_field} explains more of extension field.
+The prime field $\Fp$ has  the order and characteristic as $p$.
+Using the modular arithmetic in the same way as Definition \ref{label_extenion_field}, we can define fundamental operations of prime field $\Fp=\{0,1,2\cdots,p-1\}$.
+The Cayley table will de
 \begin{example}The Cayley table for the two operations $+$ and $\cdot$ for elements in $\f{5}$ are as follows:
 	\begin{center}
 		\begin{tabular}{c|ccccc}
@@ -188,7 +329,7 @@ In order to understand it easily, following examples are shown.
 As described above, we can define arithmetic operations in $\Fp$ by modular operations ($\bmod\ p$) for integers. However, it does not work in an extension field $\F{p}{m}$. In the next section, arithmetic operations in extension field $\F{p}{m}$ is described in detail.
 
 
-\subsection{Extension Field}
+\subsection{Extension Field} \label{label_extenion_field}
 %--------------------------------------
 A subset $\F{0}{}$ of a field $\F{}{}$ that is itself a field under the operations of $\F{}{}$ will be called a {\it subfield} of $\F{}{}$.
 In this case, $\F{}{}$ is called an {\it extension field} of $\F{0}{}$.
@@ -216,7 +357,7 @@ where $a_1,\;a_2,\;a_3,\cdots,\;a_m \in \F{q}{}$.
 
 Arithmetic operations in $\F{q}{m}$ are carried out with ordinary addition and multiplication for polynomial and modular reduction by irreducible polynomial.
 
-\subsection{Frobenius Map}\label{secFrob}
+\section{Frobenius Map}\label{secFrob}
 %--------------------------------------
 
 For any element $\alpha \in \F{q}{m}$, let us consider the following map $\pi_q:\alpha \rightarrow \alpha^q$. 
@@ -314,7 +455,7 @@ Let $[s]P$ denote the $(s-1)$-times addition of a rational point $P$ as,
 \end{equation}
 This operation is called a scalar multiplication.
 As a general approach for accelerating a scalar multiplication, the binary method is the most widely used.
-\algref{2.1} shows the binary method.
+\algref{TODO} shows the binary method.
 The binary method iterates elliptic curve doublings and elliptic curve additions using binary representation of scalar.
 A scalar multiplication needs $\lfloor \log_2 s\rfloor$ elliptic curve doublings and $\lfloor \log_2 s\rfloor/2$ elliptic curve additions on average.
 
@@ -334,6 +475,123 @@ A scalar multiplication needs $\lfloor \log_2 s\rfloor$ elliptic curve doublings
 		\end{tabular}
 	\end{center}
 \end{figure*}
+
+\subsection{Elliptic curve \cite{washington2003elliptic}}
+Let $E$ be the elliptic curve defined over the prime field $\Fp$  as follows:
+\begin{equation}\label{ec_curve}
+E/\Fp : y^2=x^3+ax+b,
+\end{equation}
+where $ 4a^3+27b^2 \neq 0$ and $a,b \in \Fp$. Points satisfying \eqref{ec_curve} are known as rational points on the curve.
+The set of rational points including the \textit{point at infinity} $\cal{O}$ on the curve forms an additive Abelian group denoted by $E(\FP)$ whose  order is denoted as $\#E(\Fp)$, can be obtained as,
+\begin{equation}\label{order}
+\#E(\Fp) = p+1-t,
+\end{equation} 
+where $t$ is called the Frobenius trace of $E(\Fp)$.
+When the definition field is the $k$-th degree extension field $\FPK$, rational points on the curve $E$ also forms an additive Abelian group denoted as $E(\FPK)$. The order of $E(\FPK)$ is denoted as $\#E(\FPK)$ and given by the  Weil’s theorem \cite{DBLP:reference/crc/2005ehcc} as follows:
+\begin{equation}
+\#E(\FPK) = p^k +1- t_k,
+\end{equation}
+where $t_k =  \alpha^k + \beta^k$.  $\alpha$ and $\beta$ are  complex conjugate numbers that confirm the relation $f(\alpha) = f(\beta) = 0$,  where $f(\pi)$ is a polynomial such that $f(\pi) = \pi^2 -t\pi + p$ and $\pi$ is the Frobenius map. In practice, $t_k$ is determined recursively with $p = \alpha\beta$ and $t_1 = \alpha + \beta$. Moreover, the  $\#E(\FPK)$ is such that $\#E(\FP)\mid \#E(\FPK)$, which confirms that  $E(\FP)$ is a subgroup of $E(\FPK)$.
+
+\subsubsection{Point addition}
+Let's consider two rational points $L = (x_l, y_l)$, $M = (x_m, y_m)$, and their addition $N = L + M$, where $\textit{N} = (x_n, y_n)$ and $L, M, N\in E(\Fp)$. Then, the $x$ and $y$ coordinates of $N$ are obtained as follows:
+\begin{subequations}
+	\begin{eqnarray}\label{eq:point_add}
+	(x_n ,y_n) & = & ((\lambda^2-x_l-x_m ),  (x_l-x_n)\lambda - y_l), 
+	\end{eqnarray}
+	where \mbox{$\lambda$} is given as follows:
+	\begin{equation}\label{eq:point_solpe}
+	\textstyle \lambda = 
+	\begin{cases}
+	\textstyle (y_m - y_l)(x_m -x_l)^{-1} \quad \mbox{($L \neq M$)},\\\\
+	\textstyle  (3x_l^2+a)(2y_l)^{-1} \quad  \mbox{($L = M$)}.
+	\end{cases}
+	\end{equation}
+\end{subequations}
+Here $\lambda$ is the tangent at the point on the curve and $\cal O$ it the additive unity in $E(\f{p})$. When $L \neq M$ then $L+M$ is called elliptic curve addition (ECA). If $L=M$ then $L+M=2L$, which is known as elliptic curve doubling (ECD). 
+\subsubsection{Scalar multiplication}
+Let $r$ be the \textit{order} of the target rational point group and $s$ be the scalar such that $0 \leq s < r$. Scalar multiplication of rational point $M$, typically denoted as $[s]M$ can be calculated by $(s-1)$-times additions of $M$ as,
+\begin{equation}
+[s]M = \underbrace{M+M+ \cdots +M}_{s-1 \quad \mbox{times additions}}.
+\end{equation}
+If $s = r$, where $r$ is the order of the curve then $[r]M = \mathcal{O}$. When $[s]M = N$, if $s$ is unknown, then the solving $s$ from $M$ and $N$ is known as elliptic curve discrete logarithm problem (ECDLP). The security of elliptic curve cryptography lies on the difficulty of solving ECDLP.
+
+\paragraph{Binary method}
+The binary method is an extensively applied method for calculating the elliptic curve scalar multiplication.  The pseudo code of left-to-right binary scalar multiplication algorithm is shown in Algorithm \ref{alg:bin}. This algorithm scans the bits of scalar $s$ from the  most significant bit to the least significant bit. When $s[i] = 1$, it  performs ECA and ECD otherwise only ECD is calculated.  This method is easy to implement but the important drawback of this method is not resistant to \textit{side channel attack} \cite{C:Kocher96}.  
+
+\begin{algorithm}[H]
+	\caption{Left-to-right binary algorithm for elliptic curve scalar multiplication}
+	\label{alg:bin}
+	\DontPrintSemicolon
+	\hspace{-3ex}
+	\KwIn{ $P$, $s$}\;
+	\hspace{-3ex}
+	\KwOut{$[s]P$} \;%output
+	\nl $T$ $ \leftarrow$ $0$ \;
+	\nl \For{$i = \lfloor \log_2 s \rfloor$ {\bf to} $0$} {\;
+		\nl		$T \leftarrow T  + T$\;
+		\nl    \If{ $s[i] = 1$}{
+			\nl      $ T \leftarrow T + P$\;
+	} }\;
+	\nl \text{return} $T$\;
+\end{algorithm}
+
+\paragraph{Montgomery ladder method}
+Montgomery ladder algorithm is said to be resistant to \textit{side channel attack}. Such resistance comes by paying tolls as calculation overhead which slows down this method than binary method. Algorithm \ref{alg:mont} shows the Montgomery ladder algorithm for scalar multiplication. Montgomery ladder has some similarity with binary method except in each iteration it performs ECA and ECD. 
+
+\begin{algorithm}[H]
+	\caption{Montgomery ladder algorithm for elliptic curve scalar multiplication}
+	\label{alg:mont}
+	\DontPrintSemicolon
+	\hspace{-3ex}
+	\KwIn{ A point $P$,  an integer $s $}\;
+	\hspace{-3ex}
+	\KwOut{$[s]P$} \;%output
+	\nl $T_0$ $ \leftarrow$ $0$, $T_1$ $\leftarrow$ $P$ \;
+	\nl \For{$i = \lfloor \log_2 s \rfloor$ {\bf to} $0$} {\;
+		\nl  \If{ $s[i] =1$}{
+			\nl         $ T_0 \leftarrow T_0 + T_1$\;
+			\nl     $T_1 \leftarrow T_1 + T_1$\;
+		}
+		\nl        {\ElseIf{$s[i] = 0$}{ 
+				\nl      $T_1 \leftarrow T_0 + T_1$\;
+				\nl  		 $T_0 \leftarrow T_0 + T_0$\;}
+		}
+	}\;
+	\nl \text{return} $T_0$\;
+\end{algorithm}
+
+\paragraph{Sliding-window method}
+Sliding-window \cite{DBLP:reference/crc/2005ehcc} algorithm is also resistant to \textit{side channel attack} and at the same  time it is faster than Montgomery ladder. In this method the scalar $s$ is processed in blocks of length $w$, known as window size.  Algorithm \ref{alg:sliding} shows the sliding-window algorithm for scalar multiplication.
+\begin{algorithm}
+	\caption{Sliding window algorithm for elliptic curve scalar multiplication}
+	\label{alg:sliding}
+	\DontPrintSemicolon
+	\hspace{-3ex}
+	\KwIn{ A point $P$,  an integer $s = \sum_{j=0}^{l-1} s_j2^{j} $, $s_j \in \left\lbrace 0,1 \right\rbrace$, window size $w \geq 1$} \;
+	\hspace{-3ex}
+	\KwOut{Q = $[s]P$} \;
+	\textit{Pre-computation.} \; 
+	\nl $P_1\leftarrow P$, $P_2 \leftarrow [2]P$ \;
+	\nl \For{$i = 1$ {\bf to} $2^{w-1}-1$} { $P_{2i+1} \leftarrow P_{2i-1} + P_2$}\;
+	\nl $j \leftarrow l-1$, $Q \leftarrow \cal{O}.$\;
+	\textit{Main loop.}\;
+	\nl \While{$j \geq 0$} {\;
+		\nl \If{ $s_j =0$}{
+			$Q \leftarrow [2]Q$, $j \leftarrow j-1$\;
+		}
+		\nl            \Else{\;
+			\nl Let $t$ be the least ineger such that \;
+			$j - t+1 \leq w$ and $s_t =1$\;
+			\nl $h_j \leftarrow (s_js_{j-1} \cdots s_t)_2$\;
+			\nl $Q \leftarrow [2^{j-t+1}]Q +P_{h_j}$      \;      
+			\nl $j \leftarrow t-1$ \;
+		}
+	}
+	\nl return $Q$
+\end{algorithm}
+
+
 
 %In this paper, the set of rational points $P\in E(\F{q}{})$ satisfying $[r]P=\mathcal{O}$ is denoted by $E(\F{q}{})[r]$.
 %For two points $P$ and $R$ such that $[s]P=R$, the problem of solving $s$ is called elliptic curve discrete logarithm problem (ECDLP) and the security of ECC relies on the difficulty of ECDLP.

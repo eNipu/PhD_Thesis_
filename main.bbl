@@ -17,103 +17,6 @@
 \endgroup
 
 \datalist[entry]{anyt/global//global/global}
-  \entry{Ade:2015xua}{article}{}
-    \true{moreauthor}
-    \name{author}{1}{}{%
-      {{hash=APAR}{%
-         family={Ade},
-         familyi={A\bibinitperiod},
-         given={P.\bibnamedelima A.\bibnamedelima R.},
-         giveni={P\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim
-  R\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{APAR+1}
-    \strng{fullhash}{APAR+1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{Ade+16}
-    \field{sortinit}{A}
-    \field{sortinithash}{A}
-    \verb{doi}
-    \verb 10.1051/0004-6361/201525830
-    \endverb
-    \verb{eprint}
-    \verb 1502.01589
-    \endverb
-    \field{pages}{A13}
-    \field{title}{{Planck 2015 results. XIII. Cosmological parameters}}
-    \field{volume}{594}
-    \field{journaltitle}{Astron. Astrophys.}
-    \field{eprinttype}{arXiv}
-    \field{eprintclass}{astro-ph.CO}
-    \field{year}{2016}
-  \endentry
-
-  \entry{EC:AKLGL11}{inproceedings}{}
-    \name{author}{5}{}{%
-      {{hash=ADF}{%
-         family={Aranha},
-         familyi={A\bibinitperiod},
-         given={Diego\bibnamedelima F.},
-         giveni={D\bibinitperiod\bibinitdelim F\bibinitperiod},
-      }}%
-      {{hash=KK}{%
-         family={Karabina},
-         familyi={K\bibinitperiod},
-         given={Koray},
-         giveni={K\bibinitperiod},
-      }}%
-      {{hash=LP}{%
-         family={Longa},
-         familyi={L\bibinitperiod},
-         given={Patrick},
-         giveni={P\bibinitperiod},
-      }}%
-      {{hash=GCH}{%
-         family={Gebotys},
-         familyi={G\bibinitperiod},
-         given={Catherine\bibnamedelima H.},
-         giveni={C\bibinitperiod\bibinitdelim H\bibinitperiod},
-      }}%
-      {{hash=LJ}{%
-         family={L{\'o}pez},
-         familyi={L\bibinitperiod},
-         given={Julio},
-         giveni={J\bibinitperiod},
-      }}%
-    }
-    \name{editor}{1}{}{%
-      {{hash=PKG}{%
-         family={Paterson},
-         familyi={P\bibinitperiod},
-         given={Kenneth\bibnamedelima G.},
-         giveni={K\bibinitperiod\bibinitdelim G\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {Springer, Heidelberg}%
-    }
-    \strng{namehash}{ADF+1}
-    \strng{fullhash}{ADFKKLPGCHLJ1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{Ara+11}
-    \field{sortinit}{A}
-    \field{sortinithash}{A}
-    \field{booktitle}{EUROCRYPT~2011}
-    \verb{doi}
-    \verb 10.1007/978-3-642-20465-4_5
-    \endverb
-    \field{pages}{48\bibrangedash 68}
-    \field{series}{{LNCS}}
-    \field{title}{Faster Explicit Formulas for Computing Pairings over Ordinary
-  Curves}
-    \field{volume}{6632}
-    \field{month}{05}
-    \field{year}{2011}
-  \endentry
-
   \entry{PAIRING:AFKMR12}{inproceedings}{}
     \name{author}{5}{}{%
       {{hash=ADF}{%
@@ -311,66 +214,6 @@
     \field{year}{2004}
   \endentry
 
-  \entry{EPRINT:BarDuq17}{misc}{}
-    \name{author}{2}{}{%
-      {{hash=BR}{%
-         family={Barbulescu},
-         familyi={B\bibinitperiod},
-         given={Razvan},
-         giveni={R\bibinitperiod},
-      }}%
-      {{hash=DS}{%
-         family={Duquesne},
-         familyi={D\bibinitperiod},
-         given={Sylvain},
-         giveni={S\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{BRDS1}
-    \strng{fullhash}{BRDS1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{BD17}
-    \field{sortinit}{B}
-    \field{sortinithash}{B}
-    \field{howpublished}{Cryptology ePrint Archive, Report 2017/334}
-    \field{note}{\url{http://eprint.iacr.org/2017/334}}
-    \field{title}{Updating key size estimations for pairings}
-    \field{year}{2017}
-  \endentry
-
-  \entry{sylvain_new_param}{article}{}
-    \name{author}{2}{}{%
-      {{hash=BR}{%
-         family={Barbulescu},
-         familyi={B\bibinitperiod},
-         given={Razvan},
-         giveni={R\bibinitperiod},
-      }}%
-      {{hash=DS}{%
-         family={Duquesne},
-         familyi={D\bibinitperiod},
-         given={Sylvain},
-         giveni={S\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{BRDS1}
-    \strng{fullhash}{BRDS1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{BD18}
-    \field{sortinit}{B}
-    \field{sortinithash}{B}
-    \field{issn}{1432-1378}
-    \field{title}{Updating Key Size Estimations for Pairings}
-    \verb{url}
-    \verb https://doi.org/10.1007/s00145-018-9280-5
-    \endverb
-    \field{journaltitle}{Journal of Cryptology}
-    \field{year}{2018}
-    \warn{\item Invalid format of field 'month'}
-  \endentry
-
   \entry{C:BonFra01}{inproceedings}{}
     \name{author}{2}{}{%
       {{hash=BD}{%
@@ -466,57 +309,6 @@
     \field{volume}{3621}
     \field{month}{08}
     \field{year}{2005}
-  \endentry
-
-  \entry{AC:BonLynSha01}{inproceedings}{}
-    \name{author}{3}{}{%
-      {{hash=BD}{%
-         family={Boneh},
-         familyi={B\bibinitperiod},
-         given={Dan},
-         giveni={D\bibinitperiod},
-      }}%
-      {{hash=LB}{%
-         family={Lynn},
-         familyi={L\bibinitperiod},
-         given={Ben},
-         giveni={B\bibinitperiod},
-      }}%
-      {{hash=SH}{%
-         family={Shacham},
-         familyi={S\bibinitperiod},
-         given={Hovav},
-         giveni={H\bibinitperiod},
-      }}%
-    }
-    \name{editor}{1}{}{%
-      {{hash=BC}{%
-         family={Boyd},
-         familyi={B\bibinitperiod},
-         given={Colin},
-         giveni={C\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {Springer, Heidelberg}%
-    }
-    \strng{namehash}{BDLBSH1}
-    \strng{fullhash}{BDLBSH1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{BLS01}
-    \field{sortinit}{B}
-    \field{sortinithash}{B}
-    \field{booktitle}{ASIACRYPT~2001}
-    \verb{doi}
-    \verb 10.1007/3-540-45682-1_30
-    \endverb
-    \field{pages}{514\bibrangedash 532}
-    \field{series}{{LNCS}}
-    \field{title}{Short Signatures from the {Weil} Pairing}
-    \field{volume}{2248}
-    \field{month}{12}
-    \field{year}{2001}
   \endentry
 
   \entry{SCN:BarLynSco02}{inproceedings}{}
@@ -674,6 +466,52 @@
     \field{year}{2001}
   \endentry
 
+  \entry{C:BaiPaa98}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=BDV}{%
+         family={Bailey},
+         familyi={B\bibinitperiod},
+         given={Daniel\bibnamedelima V.},
+         giveni={D\bibinitperiod\bibinitdelim V\bibinitperiod},
+      }}%
+      {{hash=PC}{%
+         family={Paar},
+         familyi={P\bibinitperiod},
+         given={Christof},
+         giveni={C\bibinitperiod},
+      }}%
+    }
+    \name{editor}{1}{}{%
+      {{hash=KH}{%
+         family={Krawczyk},
+         familyi={K\bibinitperiod},
+         given={Hugo},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer, Heidelberg}%
+    }
+    \strng{namehash}{BDVPC1}
+    \strng{fullhash}{BDVPC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{BP98}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{booktitle}{CRYPTO'98}
+    \verb{doi}
+    \verb 10.1007/BFb0055748
+    \endverb
+    \field{pages}{472\bibrangedash 485}
+    \field{series}{{LNCS}}
+    \field{title}{Optimal Extension Fields for Fast Arithmetic in Public-Key
+  Algorithms}
+    \field{volume}{1462}
+    \field{month}{08}
+    \field{year}{1998}
+  \endentry
+
   \entry{EPRINT:BenSco09}{misc}{}
     \name{author}{2}{}{%
       {{hash=BN}{%
@@ -733,64 +571,6 @@
     \field{pages}{113\bibrangedash 122}
     \field{title}{Asymmetric squaring formulae}
     \field{year}{2007}
-  \endentry
-
-  \entry{PKC:CosLanNae10}{inproceedings}{}
-    \name{author}{3}{}{%
-      {{hash=CC}{%
-         family={Costello},
-         familyi={C\bibinitperiod},
-         given={Craig},
-         giveni={C\bibinitperiod},
-      }}%
-      {{hash=LT}{%
-         family={Lange},
-         familyi={L\bibinitperiod},
-         given={Tanja},
-         giveni={T\bibinitperiod},
-      }}%
-      {{hash=NM}{%
-         family={Naehrig},
-         familyi={N\bibinitperiod},
-         given={Michael},
-         giveni={M\bibinitperiod},
-      }}%
-    }
-    \name{editor}{2}{}{%
-      {{hash=NPQ}{%
-         family={Nguyen},
-         familyi={N\bibinitperiod},
-         given={Phong\bibnamedelima Q.},
-         giveni={P\bibinitperiod\bibinitdelim Q\bibinitperiod},
-      }}%
-      {{hash=PD}{%
-         family={Pointcheval},
-         familyi={P\bibinitperiod},
-         given={David},
-         giveni={D\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {Springer, Heidelberg}%
-    }
-    \strng{namehash}{CCLTNM1}
-    \strng{fullhash}{CCLTNM1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{CLN10}
-    \field{sortinit}{C}
-    \field{sortinithash}{C}
-    \field{booktitle}{PKC~2010}
-    \verb{doi}
-    \verb 10.1007/978-3-642-13013-7_14
-    \endverb
-    \field{pages}{224\bibrangedash 242}
-    \field{series}{{LNCS}}
-    \field{title}{Faster Pairing Computations on Curves with High-Degree
-  Twists}
-    \field{volume}{6056}
-    \field{month}{05}
-    \field{year}{2010}
   \endentry
 
   \entry{DBLP:reference/crc/2005ehcc}{book}{}
@@ -901,19 +681,13 @@
     \field{year}{2005}
   \endentry
 
-  \entry{EPRINT:DOSD06}{misc}{}
-    \name{author}{4}{}{%
+  \entry{PAIRING:DevScoDah07}{inproceedings}{}
+    \name{author}{3}{}{%
       {{hash=DAJ}{%
          family={Devegili},
          familyi={D\bibinitperiod},
          given={Augusto\bibnamedelima Jun},
          giveni={A\bibinitperiod\bibinitdelim J\bibinitperiod},
-      }}%
-      {{hash=OC}{%
-         family={{{\'O}\bibnamedelima h{\'E}igeartaigh}},
-         familyi={{\'O}\bibinitperiod},
-         given={Colm},
-         giveni={C\bibinitperiod},
       }}%
       {{hash=SM}{%
          family={Scott},
@@ -928,185 +702,53 @@
          giveni={R\bibinitperiod},
       }}%
     }
-    \strng{namehash}{DAJ+1}
-    \strng{fullhash}{DAJOCSMDR1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{Dev+06}
-    \field{sortinit}{D}
-    \field{sortinithash}{D}
-    \field{howpublished}{Cryptology ePrint Archive, Report 2006/471}
-    \field{note}{\url{http://eprint.iacr.org/2006/471}}
-    \field{title}{Multiplication and Squaring on Pairing-Friendly Fields}
-    \field{year}{2006}
-  \endentry
-
-  \entry{diffie1976new}{article}{}
-    \name{author}{2}{}{%
-      {{hash=DW}{%
-         family={Diffie},
-         familyi={D\bibinitperiod},
-         given={Whitfield},
-         giveni={W\bibinitperiod},
+    \name{editor}{4}{}{%
+      {{hash=TT}{%
+         family={Takagi},
+         familyi={T\bibinitperiod},
+         given={Tsuyoshi},
+         giveni={T\bibinitperiod},
       }}%
-      {{hash=HME}{%
-         family={Hellman},
-         familyi={H\bibinitperiod},
-         given={Martin\bibnamedelima E.},
-         giveni={M\bibinitperiod\bibinitdelim E\bibinitperiod},
+      {{hash=OT}{%
+         family={Okamoto},
+         familyi={O\bibinitperiod},
+         given={Tatsuaki},
+         giveni={T\bibinitperiod},
       }}%
-    }
-    \strng{namehash}{DWHME1}
-    \strng{fullhash}{DWHME1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{DH76}
-    \field{sortinit}{D}
-    \field{sortinithash}{D}
-    \verb{doi}
-    \verb 10.1109/TIT.1976.1055638
-    \endverb
-    \field{number}{6}
-    \field{pages}{644\bibrangedash 654}
-    \field{title}{New directions in cryptography}
-    \field{volume}{22}
-    \field{journaltitle}{{IEEE} Trans. Information Theory}
-    \field{year}{1976}
-  \endentry
-
-  \entry{AES_DaemenR02}{book}{}
-    \name{author}{2}{}{%
-      {{hash=DJ}{%
-         family={Daemen},
-         familyi={D\bibinitperiod},
-         given={Joan},
-         giveni={J\bibinitperiod},
+      {{hash=OE}{%
+         family={Okamoto},
+         familyi={O\bibinitperiod},
+         given={Eiji},
+         giveni={E\bibinitperiod},
       }}%
-      {{hash=RV}{%
-         family={Rijmen},
-         familyi={R\bibinitperiod},
-         given={Vincent},
-         giveni={V\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {Springer}%
-    }
-    \strng{namehash}{DJRV1}
-    \strng{fullhash}{DJRV1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{DR02}
-    \field{sortinit}{D}
-    \field{sortinithash}{D}
-    \verb{doi}
-    \verb 10.1007/978-3-662-04722-4
-    \endverb
-    \field{isbn}{3-540-42580-2}
-    \field{series}{Information Security and Cryptography}
-    \field{title}{The Design of Rijndael: {AES} - The Advanced Encryption
-  Standard}
-    \field{year}{2002}
-  \endentry
-
-  \entry{C:ElGamal84}{inproceedings}{}
-    \name{author}{1}{}{%
-      {{hash=ET}{%
-         family={{ElGamal}},
-         familyi={E\bibinitperiod},
-         given={Taher},
+      {{hash=OT}{%
+         family={Okamoto},
+         familyi={O\bibinitperiod},
+         given={Takeshi},
          giveni={T\bibinitperiod},
       }}%
     }
-    \name{editor}{2}{}{%
-      {{hash=BGR}{%
-         family={Blakley},
-         familyi={B\bibinitperiod},
-         given={G.\bibnamedelima R.},
-         giveni={G\bibinitperiod\bibinitdelim R\bibinitperiod},
-      }}%
-      {{hash=CD}{%
-         family={Chaum},
-         familyi={C\bibinitperiod},
-         given={David},
-         giveni={D\bibinitperiod},
-      }}%
-    }
     \list{publisher}{1}{%
       {Springer, Heidelberg}%
     }
-    \strng{namehash}{ET1}
-    \strng{fullhash}{ET1}
+    \strng{namehash}{DAJSMDR1}
+    \strng{fullhash}{DAJSMDR1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelalpha}{{ElG}84}
-    \field{sortinit}{E}
-    \field{sortinithash}{E}
-    \field{booktitle}{CRYPTO'84}
-    \field{pages}{10\bibrangedash 18}
-    \field{series}{{LNCS}}
-    \field{title}{A Public Key Cryptosystem and a Signature Scheme Based on
-  Discrete Logarithms}
-    \field{volume}{196}
-    \field{month}{08}
-    \field{year}{1984}
-  \endentry
-
-  \entry{SAC:FueKnaRod11}{inproceedings}{}
-    \name{author}{3}{}{%
-      {{hash=FL}{%
-         family={{Fuentes-Casta{\~n}eda}},
-         familyi={F\bibinitperiod},
-         given={Laura},
-         giveni={L\bibinitperiod},
-      }}%
-      {{hash=KE}{%
-         family={Knapp},
-         familyi={K\bibinitperiod},
-         given={Edward},
-         giveni={E\bibinitperiod},
-      }}%
-      {{hash=RF}{%
-         family={{Rodr{\'\i}guez-Henr{\'\i}quez}},
-         familyi={R\bibinitperiod},
-         given={Francisco},
-         giveni={F\bibinitperiod},
-      }}%
-    }
-    \name{editor}{2}{}{%
-      {{hash=MA}{%
-         family={Miri},
-         familyi={M\bibinitperiod},
-         given={Ali},
-         giveni={A\bibinitperiod},
-      }}%
-      {{hash=VS}{%
-         family={Vaudenay},
-         familyi={V\bibinitperiod},
-         given={Serge},
-         giveni={S\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {Springer, Heidelberg}%
-    }
-    \strng{namehash}{FLKERF1}
-    \strng{fullhash}{FLKERF1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{FKR12}
-    \field{sortinit}{F}
-    \field{sortinithash}{F}
-    \field{booktitle}{SAC 2011}
+    \field{labelalpha}{DSD07}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{booktitle}{PAIRING 2007}
     \verb{doi}
-    \verb 10.1007/978-3-642-28496-0_25
+    \verb 10.1007/978-3-540-73489-5_10
     \endverb
-    \field{pages}{412\bibrangedash 430}
+    \field{pages}{197\bibrangedash 207}
     \field{series}{{LNCS}}
-    \field{title}{Faster Hashing to {$\mathbb{G}_2$}}
-    \field{volume}{7118}
-    \field{month}{08}
-    \field{year}{2012}
+    \field{title}{Implementing Cryptographic Pairings over {Barreto}-{Naehrig}
+  Curves (Invited Talk)}
+    \field{volume}{4575}
+    \field{month}{07}
+    \field{year}{2007}
   \endentry
 
   \entry{EPRINT:FreScoTes06}{misc}{}
@@ -1206,7 +848,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelalpha}{GF16}
-    \field{extraalpha}{1}
     \field{sortinit}{G}
     \field{sortinithash}{G}
     \field{howpublished}{Cryptology ePrint Archive, Report 2016/472}
@@ -1214,197 +855,6 @@
     \field{title}{Adequate Elliptic Curve for Computing the Product of n
   Pairings}
     \field{year}{2016}
-  \endentry
-
-  \entry{EPRINT:GhaFou16a}{misc}{}
-    \name{author}{2}{}{%
-      {{hash=GL}{%
-         family={Ghammam},
-         familyi={G\bibinitperiod},
-         given={Loubna},
-         giveni={L\bibinitperiod},
-      }}%
-      {{hash=FE}{%
-         family={Fouotsa},
-         familyi={F\bibinitperiod},
-         given={Emmanuel},
-         giveni={E\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{GLFE1}
-    \strng{fullhash}{GLFE1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{GF16}
-    \field{extraalpha}{2}
-    \field{sortinit}{G}
-    \field{sortinithash}{G}
-    \field{howpublished}{Cryptology ePrint Archive, Report 2016/130}
-    \field{note}{\url{http://eprint.iacr.org/2016/130}}
-    \field{title}{On the Computation of the Optimal Ate Pairing at the 192-bit
-  Security Level}
-    \field{year}{2016}
-  \endentry
-
-  \entry{galbraith2008pairings}{article}{}
-    \name{author}{3}{}{%
-      {{hash=GSD}{%
-         family={Galbraith},
-         familyi={G\bibinitperiod},
-         given={Steven\bibnamedelima D.},
-         giveni={S\bibinitperiod\bibinitdelim D\bibinitperiod},
-      }}%
-      {{hash=PKG}{%
-         family={Paterson},
-         familyi={P\bibinitperiod},
-         given={Kenneth\bibnamedelima G.},
-         giveni={K\bibinitperiod\bibinitdelim G\bibinitperiod},
-      }}%
-      {{hash=SNP}{%
-         family={Smart},
-         familyi={S\bibinitperiod},
-         given={Nigel\bibnamedelima P.},
-         giveni={N\bibinitperiod\bibinitdelim P\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{GSDPKGSNP1}
-    \strng{fullhash}{GSDPKGSNP1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{GPS08}
-    \field{sortinit}{G}
-    \field{sortinithash}{G}
-    \verb{doi}
-    \verb 10.1016/j.dam.2007.12.010
-    \endverb
-    \field{number}{16}
-    \field{pages}{3113\bibrangedash 3121}
-    \field{title}{Pairings for cryptographers}
-    \field{volume}{156}
-    \field{journaltitle}{Discrete Applied Mathematics}
-    \field{year}{2008}
-  \endentry
-
-  \entry{SAC:GALHJ12}{inproceedings}{}
-    \name{author}{5}{}{%
-      {{hash=GG}{%
-         family={Grewal},
-         familyi={G\bibinitperiod},
-         given={Gurleen},
-         giveni={G\bibinitperiod},
-      }}%
-      {{hash=AR}{%
-         family={Azarderakhsh},
-         familyi={A\bibinitperiod},
-         given={Reza},
-         giveni={R\bibinitperiod},
-      }}%
-      {{hash=LP}{%
-         family={Longa},
-         familyi={L\bibinitperiod},
-         given={Patrick},
-         giveni={P\bibinitperiod},
-      }}%
-      {{hash=HS}{%
-         family={Hu},
-         familyi={H\bibinitperiod},
-         given={Shi},
-         giveni={S\bibinitperiod},
-      }}%
-      {{hash=JD}{%
-         family={Jao},
-         familyi={J\bibinitperiod},
-         given={David},
-         giveni={D\bibinitperiod},
-      }}%
-    }
-    \name{editor}{2}{}{%
-      {{hash=KLR}{%
-         family={Knudsen},
-         familyi={K\bibinitperiod},
-         given={Lars\bibnamedelima R.},
-         giveni={L\bibinitperiod\bibinitdelim R\bibinitperiod},
-      }}%
-      {{hash=WH}{%
-         family={Wu},
-         familyi={W\bibinitperiod},
-         given={Huapeng},
-         giveni={H\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {Springer, Heidelberg}%
-    }
-    \strng{namehash}{GG+1}
-    \strng{fullhash}{GGARLPHSJD1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{Gre+13}
-    \field{sortinit}{G}
-    \field{sortinithash}{G}
-    \field{booktitle}{SAC 2012}
-    \verb{doi}
-    \verb 10.1007/978-3-642-35999-6_11
-    \endverb
-    \field{pages}{149\bibrangedash 165}
-    \field{series}{{LNCS}}
-    \field{title}{Efficient Implementation of Bilinear Pairings on {ARM}
-  Processors}
-    \field{volume}{7707}
-    \field{month}{08}
-    \field{year}{2013}
-  \endentry
-
-  \entry{PKC:GraSco10}{inproceedings}{}
-    \name{author}{2}{}{%
-      {{hash=GR}{%
-         family={Granger},
-         familyi={G\bibinitperiod},
-         given={Robert},
-         giveni={R\bibinitperiod},
-      }}%
-      {{hash=SM}{%
-         family={Scott},
-         familyi={S\bibinitperiod},
-         given={Michael},
-         giveni={M\bibinitperiod},
-      }}%
-    }
-    \name{editor}{2}{}{%
-      {{hash=NPQ}{%
-         family={Nguyen},
-         familyi={N\bibinitperiod},
-         given={Phong\bibnamedelima Q.},
-         giveni={P\bibinitperiod\bibinitdelim Q\bibinitperiod},
-      }}%
-      {{hash=PD}{%
-         family={Pointcheval},
-         familyi={P\bibinitperiod},
-         given={David},
-         giveni={D\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {Springer, Heidelberg}%
-    }
-    \strng{namehash}{GRSM1}
-    \strng{fullhash}{GRSM1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{GS10}
-    \field{sortinit}{G}
-    \field{sortinithash}{G}
-    \field{booktitle}{PKC~2010}
-    \verb{doi}
-    \verb 10.1007/978-3-642-13013-7_13
-    \endverb
-    \field{pages}{209\bibrangedash 223}
-    \field{series}{{LNCS}}
-    \field{title}{Faster Squaring in the Cyclotomic Subgroup of Sixth Degree
-  Extensions}
-    \field{volume}{6056}
-    \field{month}{05}
-    \field{year}{2010}
   \endentry
 
   \entry{gmp}{manual}{}
@@ -1432,51 +882,6 @@
     \field{title}{{GNU MP}: {T}he {GNU} {M}ultiple {P}recision {A}rithmetic
   {L}ibrary}
     \field{year}{2015}
-  \endentry
-
-  \entry{PAIRING:Hess08}{inproceedings}{}
-    \name{author}{1}{}{%
-      {{hash=HF}{%
-         family={Hess},
-         familyi={H\bibinitperiod},
-         given={Florian},
-         giveni={F\bibinitperiod},
-      }}%
-    }
-    \name{editor}{2}{}{%
-      {{hash=GSD}{%
-         family={Galbraith},
-         familyi={G\bibinitperiod},
-         given={Steven\bibnamedelima D.},
-         giveni={S\bibinitperiod\bibinitdelim D\bibinitperiod},
-      }}%
-      {{hash=PKG}{%
-         family={Paterson},
-         familyi={P\bibinitperiod},
-         given={Kenneth\bibnamedelima G.},
-         giveni={K\bibinitperiod\bibinitdelim G\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {Springer, Heidelberg}%
-    }
-    \strng{namehash}{HF1}
-    \strng{fullhash}{HF1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{Hes08}
-    \field{sortinit}{H}
-    \field{sortinithash}{H}
-    \field{booktitle}{PAIRING 2008}
-    \verb{doi}
-    \verb 10.1007/978-3-540-85538-5_2
-    \endverb
-    \field{pages}{18\bibrangedash 38}
-    \field{series}{{LNCS}}
-    \field{title}{Pairing Lattices (Invited Talk)}
-    \field{volume}{5209}
-    \field{month}{09}
-    \field{year}{2008}
   \endentry
 
   \entry{IEEETIT:HesSmaVer06}{article}{}
@@ -1525,47 +930,6 @@
     \warn{\item Invalid format of field 'month'}
   \endentry
 
-  \entry{fm_previous}{inproceedings}{}
-    \name{author}{4}{}{%
-      {{hash=IT}{%
-         family={Iijima},
-         familyi={I\bibinitperiod},
-         given={Tsutomu},
-         giveni={T\bibinitperiod},
-      }}%
-      {{hash=MK}{%
-         family={Matsuo},
-         familyi={M\bibinitperiod},
-         given={Kazuto},
-         giveni={K\bibinitperiod},
-      }}%
-      {{hash=CJ}{%
-         family={Chao},
-         familyi={C\bibinitperiod},
-         given={Jinhui},
-         giveni={J\bibinitperiod},
-      }}%
-      {{hash=TS}{%
-         family={Tsujii},
-         familyi={T\bibinitperiod},
-         given={Shigeo},
-         giveni={S\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{IT+1}
-    \strng{fullhash}{ITMKCJTS1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{Iij+02}
-    \field{sortinit}{I}
-    \field{sortinithash}{I}
-    \field{booktitle}{Proc. of SCIS}
-    \field{pages}{699\bibrangedash 702}
-    \field{title}{Construction of Frobenius maps of twists elliptic curves and
-  its application to elliptic scalar multiplication}
-    \field{year}{2002}
-  \endentry
-
   \entry{JC:Joux04}{article}{}
     \name{author}{1}{}{%
       {{hash=JA}{%
@@ -1595,108 +959,6 @@
     \field{journaltitle}{Journal of Cryptology}
     \field{month}{09}
     \field{year}{2004}
-  \endentry
-
-  \entry{DBLP:journals/moc/Karabina13}{article}{}
-    \name{author}{1}{}{%
-      {{hash=KK}{%
-         family={Karabina},
-         familyi={K\bibinitperiod},
-         given={Koray},
-         giveni={K\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{KK1}
-    \strng{fullhash}{KK1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{Kar13}
-    \field{extraalpha}{1}
-    \field{sortinit}{K}
-    \field{sortinithash}{K}
-    \verb{doi}
-    \verb 10.1090/S0025-5718-2012-02625-1
-    \endverb
-    \field{number}{281}
-    \field{pages}{555\bibrangedash 579}
-    \field{title}{Squaring in cyclotomic subgroups}
-    \field{volume}{82}
-    \field{journaltitle}{Math. Comput.}
-    \field{year}{2013}
-  \endentry
-
-  \entry{Karabina13Squaring}{article}{}
-    \name{author}{1}{}{%
-      {{hash=KK}{%
-         family={Karabina},
-         familyi={K\bibinitperiod},
-         given={Koray},
-         giveni={K\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{KK1}
-    \strng{fullhash}{KK1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{Kar13}
-    \field{extraalpha}{2}
-    \field{sortinit}{K}
-    \field{sortinithash}{K}
-    \verb{doi}
-    \verb 10.1090/S0025-5718-2012-02625-1
-    \endverb
-    \field{number}{281}
-    \field{pages}{555\bibrangedash 579}
-    \field{title}{Squaring in cyclotomic subgroups}
-    \field{volume}{82}
-    \field{journaltitle}{Math. Comput.}
-    \field{year}{2013}
-  \endentry
-
-  \entry{cvma_kato}{article}{}
-    \name{author}{4}{}{%
-      {{hash=KH}{%
-         family={Kato},
-         familyi={K\bibinitperiod},
-         given={Hidehiro},
-         giveni={H\bibinitperiod},
-      }}%
-      {{hash=NY}{%
-         family={Nogami},
-         familyi={N\bibinitperiod},
-         given={Yasuyuki},
-         giveni={Y\bibinitperiod},
-      }}%
-      {{hash=YT}{%
-         family={Yoshida},
-         familyi={Y\bibinitperiod},
-         given={Tomoki},
-         giveni={T\bibinitperiod},
-      }}%
-      {{hash=MY}{%
-         family={Morikawa},
-         familyi={M\bibinitperiod},
-         given={Yoshitaka},
-         giveni={Y\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{KH+1}
-    \strng{fullhash}{KHNYYTMY1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{Kat+07}
-    \field{sortinit}{K}
-    \field{sortinithash}{K}
-    \verb{doi}
-    \verb 10.4218/etrij.07.0107.0040
-    \endverb
-    \field{number}{6}
-    \field{pages}{769\bibrangedash 778}
-    \field{title}{Cyclic Vector Multiplication Algorithm Based on a Special
-  Class of Gauss Period Normal Basis}
-    \field{volume}{29}
-    \field{journaltitle}{ETRI Journal}
-    \field{year}{2007}
   \endentry
 
   \entry{C:KimBar16}{inproceedings}{}
@@ -1807,7 +1069,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelalpha}{Kha+17}
-    \field{extraalpha}{1}
     \field{sortinit}{K}
     \field{sortinithash}{K}
     \field{booktitle}{ICISC 16}
@@ -1821,80 +1082,6 @@
     \field{volume}{10157}
     \field{year}{2017}
     \warn{\item Invalid format of field 'month'}
-  \endentry
-
-  \entry{INDOCRYPT:KNGDNK17}{inproceedings}{}
-    \name{author}{6}{}{%
-      {{hash=KMAA}{%
-         family={Khandaker},
-         familyi={K\bibinitperiod},
-         given={Md. Al-Amin},
-         giveni={M\bibinitperiod\bibinitdelim A\bibinithyphendelim
-  A\bibinitperiod},
-      }}%
-      {{hash=NY}{%
-         family={Nanjo},
-         familyi={N\bibinitperiod},
-         given={Yuki},
-         giveni={Y\bibinitperiod},
-      }}%
-      {{hash=GL}{%
-         family={Ghammam},
-         familyi={G\bibinitperiod},
-         given={Loubna},
-         giveni={L\bibinitperiod},
-      }}%
-      {{hash=DS}{%
-         family={Duquesne},
-         familyi={D\bibinitperiod},
-         given={Sylvain},
-         giveni={S\bibinitperiod},
-      }}%
-      {{hash=NY}{%
-         family={Nogami},
-         familyi={N\bibinitperiod},
-         given={Yasuyuki},
-         giveni={Y\bibinitperiod},
-      }}%
-      {{hash=KY}{%
-         family={Kodera},
-         familyi={K\bibinitperiod},
-         given={Yuta},
-         giveni={Y\bibinitperiod},
-      }}%
-    }
-    \name{editor}{2}{}{%
-      {{hash=PA}{%
-         family={Patra},
-         familyi={P\bibinitperiod},
-         given={Arpita},
-         giveni={A\bibinitperiod},
-      }}%
-      {{hash=SNP}{%
-         family={Smart},
-         familyi={S\bibinitperiod},
-         given={Nigel\bibnamedelima P.},
-         giveni={N\bibinitperiod\bibinitdelim P\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {Springer, Heidelberg}%
-    }
-    \strng{namehash}{KMAA+1}
-    \strng{fullhash}{KMAANYGLDSNYKY1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{Kha+17}
-    \field{extraalpha}{2}
-    \field{sortinit}{K}
-    \field{sortinithash}{K}
-    \field{booktitle}{INDOCRYPT~2017}
-    \field{pages}{186\bibrangedash 205}
-    \field{series}{{LNCS}}
-    \field{title}{Efficient Optimal Ate Pairing at 128-Bit Security Level}
-    \field{volume}{10698}
-    \field{month}{12}
-    \field{year}{2017}
   \endentry
 
   \entry{self_candar}{inproceedings}{}
@@ -1993,45 +1180,6 @@
     \field{volume}{48}
     \field{journaltitle}{Mathematics of computation}
     \field{year}{1987}
-  \endentry
-
-  \entry{C:Koblitz91}{inproceedings}{}
-    \name{author}{1}{}{%
-      {{hash=KN}{%
-         family={Koblitz},
-         familyi={K\bibinitperiod},
-         given={Neal},
-         giveni={N\bibinitperiod},
-      }}%
-    }
-    \name{editor}{1}{}{%
-      {{hash=FJ}{%
-         family={Feigenbaum},
-         familyi={F\bibinitperiod},
-         given={Joan},
-         giveni={J\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {Springer, Heidelberg}%
-    }
-    \strng{namehash}{KN1}
-    \strng{fullhash}{KN1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{Kob92}
-    \field{sortinit}{K}
-    \field{sortinithash}{K}
-    \field{booktitle}{CRYPTO'91}
-    \verb{doi}
-    \verb 10.1007/3-540-46766-1_22
-    \endverb
-    \field{pages}{279\bibrangedash 287}
-    \field{series}{{LNCS}}
-    \field{title}{{CM}-Curves with Good Cryptographic Properties}
-    \field{volume}{576}
-    \field{month}{08}
-    \field{year}{1992}
   \endentry
 
   \entry{C:Kocher96}{inproceedings}{}
@@ -2257,74 +1405,6 @@
     \field{note}{\url{http://eprint.iacr.org/2007/013}}
     \field{title}{Optimised versions of the Ate and Twisted Ate Pairings}
     \field{year}{2007}
-  \endentry
-
-  \entry{C:Miller85}{inproceedings}{}
-    \name{author}{1}{}{%
-      {{hash=MVS}{%
-         family={Miller},
-         familyi={M\bibinitperiod},
-         given={Victor\bibnamedelima S.},
-         giveni={V\bibinitperiod\bibinitdelim S\bibinitperiod},
-      }}%
-    }
-    \name{editor}{1}{}{%
-      {{hash=WHC}{%
-         family={Williams},
-         familyi={W\bibinitperiod},
-         given={Hugh\bibnamedelima C.},
-         giveni={H\bibinitperiod\bibinitdelim C\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {Springer, Heidelberg}%
-    }
-    \strng{namehash}{MVS1}
-    \strng{fullhash}{MVS1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{Mil86}
-    \field{sortinit}{M}
-    \field{sortinithash}{M}
-    \field{booktitle}{CRYPTO'85}
-    \verb{doi}
-    \verb 10.1007/3-540-39799-X_31
-    \endverb
-    \field{pages}{417\bibrangedash 426}
-    \field{series}{{LNCS}}
-    \field{title}{Use of Elliptic Curves in Cryptography}
-    \field{volume}{218}
-    \field{month}{08}
-    \field{year}{1986}
-  \endentry
-
-  \entry{mont_trick}{article}{}
-    \name{author}{1}{}{%
-      {{hash=MPL}{%
-         family={Montgomery},
-         familyi={M\bibinitperiod},
-         given={Peter\bibnamedelima L.},
-         giveni={P\bibinitperiod\bibinitdelim L\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{MPL1}
-    \strng{fullhash}{MPL1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{Mon87}
-    \field{sortinit}{M}
-    \field{sortinithash}{M}
-    \verb{doi}
-    \verb 10.2307/2007888
-    \endverb
-    \field{issn}{0025-5718}
-    \field{number}{177}
-    \field{pages}{243\bibrangedash 264}
-    \field{title}{Speeding the {P}ollard and elliptic curve methods of
-  factorization}
-    \field{volume}{48}
-    \field{journaltitle}{Math. Comp.}
-    \field{year}{1987}
   \endentry
 
   \entry{PAIRING:MANS13}{inproceedings}{}
@@ -2564,92 +1644,6 @@
     \field{year}{2009}
   \endentry
 
-  \entry{C:OkaTak10}{inproceedings}{}
-    \name{author}{2}{}{%
-      {{hash=OT}{%
-         family={Okamoto},
-         familyi={O\bibinitperiod},
-         given={Tatsuaki},
-         giveni={T\bibinitperiod},
-      }}%
-      {{hash=TK}{%
-         family={Takashima},
-         familyi={T\bibinitperiod},
-         given={Katsuyuki},
-         giveni={K\bibinitperiod},
-      }}%
-    }
-    \name{editor}{1}{}{%
-      {{hash=RT}{%
-         family={Rabin},
-         familyi={R\bibinitperiod},
-         given={Tal},
-         giveni={T\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {Springer, Heidelberg}%
-    }
-    \strng{namehash}{OTTK1}
-    \strng{fullhash}{OTTK1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{OT10}
-    \field{sortinit}{O}
-    \field{sortinithash}{O}
-    \field{booktitle}{CRYPTO~2010}
-    \verb{doi}
-    \verb 10.1007/978-3-642-14623-7_11
-    \endverb
-    \field{pages}{191\bibrangedash 208}
-    \field{series}{{LNCS}}
-    \field{title}{Fully Secure Functional Encryption with General Relations
-  from the Decisional Linear Assumption}
-    \field{volume}{6223}
-    \field{month}{08}
-    \field{year}{2010}
-  \endentry
-
-  \entry{rivest1978method}{article}{}
-    \name{author}{3}{}{%
-      {{hash=RRL}{%
-         family={Rivest},
-         familyi={R\bibinitperiod},
-         given={Ronald\bibnamedelima L.},
-         giveni={R\bibinitperiod\bibinitdelim L\bibinitperiod},
-      }}%
-      {{hash=SA}{%
-         family={Shamir},
-         familyi={S\bibinitperiod},
-         given={Adi},
-         giveni={A\bibinitperiod},
-      }}%
-      {{hash=ALM}{%
-         family={Adleman},
-         familyi={A\bibinitperiod},
-         given={Leonard\bibnamedelima M.},
-         giveni={L\bibinitperiod\bibinitdelim M\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{RRLSAALM1}
-    \strng{fullhash}{RRLSAALM1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{RSA78}
-    \field{sortinit}{R}
-    \field{sortinithash}{R}
-    \verb{doi}
-    \verb 10.1145/359340.359342
-    \endverb
-    \field{number}{2}
-    \field{pages}{120\bibrangedash 126}
-    \field{title}{A Method for Obtaining Digital Signatures and Public-Key
-  Cryptosystems}
-    \field{volume}{21}
-    \field{journaltitle}{Commun. {ACM}}
-    \field{year}{1978}
-  \endentry
-
   \entry{sakai2000cryptosystems}{inproceedings}{}
     \name{author}{1}{}{%
       {{hash=SR}{%
@@ -2747,98 +1741,6 @@
     \field{year}{2008}
   \endentry
 
-  \entry{cvma_sanada}{misc}{}
-    \name{author}{4}{}{%
-      {{hash=SA}{%
-         family={Sanada},
-         familyi={S\bibinitperiod},
-         given={Akihito},
-         giveni={A\bibinitperiod},
-      }}%
-      {{hash=SD}{%
-         family={Sylvain},
-         familyi={S\bibinitperiod},
-         given={Duquesne},
-         giveni={D\bibinitperiod},
-      }}%
-      {{hash=SM}{%
-         family={Shirase},
-         familyi={S\bibinitperiod},
-         given={Masaaki},
-         giveni={M\bibinitperiod},
-      }}%
-      {{hash=NY}{%
-         family={Nogami},
-         familyi={N\bibinitperiod},
-         given={Yasuyuki},
-         giveni={Y\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{SA+1}
-    \strng{fullhash}{SASDSMNY1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{San+16}
-    \field{sortinit}{S}
-    \field{sortinithash}{S}
-    \field{number}{163}
-    \field{pages}{45\bibrangedash 50}
-    \field{title}{A Consideration of an Efficient Calculation over the
-  Extension Field of Degree 4 for Elliptic Curve Pairing Cryptography}
-    \verb{url}
-    \verb http://www.ieice.org/ken/paper/20160729yb97/eng/
-    \endverb
-    \field{volume}{116}
-    \field{journaltitle}{IEICE Tech. Rep.}
-    \field{year}{2016}
-  \endentry
-
-  \entry{C:ScoBar04}{inproceedings}{}
-    \name{author}{2}{}{%
-      {{hash=SM}{%
-         family={Scott},
-         familyi={S\bibinitperiod},
-         given={Michael},
-         giveni={M\bibinitperiod},
-      }}%
-      {{hash=BPSLM}{%
-         family={Barreto},
-         familyi={B\bibinitperiod},
-         given={Paulo S. L.\bibnamedelima M.},
-         giveni={P\bibinitperiod\bibinitdelim S\bibinitperiod\bibinitdelim
-  L\bibinitperiod\bibinitdelim M\bibinitperiod},
-      }}%
-    }
-    \name{editor}{1}{}{%
-      {{hash=FM}{%
-         family={Franklin},
-         familyi={F\bibinitperiod},
-         given={Matthew},
-         giveni={M\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {Springer, Heidelberg}%
-    }
-    \strng{namehash}{SMBPSLM1}
-    \strng{fullhash}{SMBPSLM1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{SB04}
-    \field{sortinit}{S}
-    \field{sortinithash}{S}
-    \field{booktitle}{CRYPTO~2004}
-    \verb{doi}
-    \verb 10.1007/978-3-540-28628-8_9
-    \endverb
-    \field{pages}{140\bibrangedash 156}
-    \field{series}{{LNCS}}
-    \field{title}{Compressed Pairings}
-    \field{volume}{3152}
-    \field{month}{08}
-    \field{year}{2004}
-  \endentry
-
   \entry{Silverman}{book}{}
     \name{author}{3}{}{%
       {{hash=SJH}{%
@@ -2872,33 +1774,6 @@
     \field{sortinithash}{S}
     \field{title}{Arithmetic geometry}
     \field{year}{1986}
-  \endentry
-
-  \entry{DBLP:journals/moc/Schirokauer10}{article}{}
-    \name{author}{1}{}{%
-      {{hash=SO}{%
-         family={Schirokauer},
-         familyi={S\bibinitperiod},
-         given={Oliver},
-         giveni={O\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{SO1}
-    \strng{fullhash}{SO1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{Sch10}
-    \field{sortinit}{S}
-    \field{sortinithash}{S}
-    \verb{doi}
-    \verb 10.1090/S0025-5718-09-02198-X
-    \endverb
-    \field{number}{269}
-    \field{pages}{583\bibrangedash 602}
-    \field{title}{The number field sieve for integers of low weight}
-    \field{volume}{79}
-    \field{journaltitle}{Math. Comput.}
-    \field{year}{2010}
   \endentry
 
   \entry{PAIRING:SBCDK09a}{inproceedings}{}
@@ -3008,48 +1883,6 @@
     \field{year}{2011}
   \endentry
 
-  \entry{C:Shamir84}{inproceedings}{}
-    \name{author}{1}{}{%
-      {{hash=SA}{%
-         family={Shamir},
-         familyi={S\bibinitperiod},
-         given={Adi},
-         giveni={A\bibinitperiod},
-      }}%
-    }
-    \name{editor}{2}{}{%
-      {{hash=BGR}{%
-         family={Blakley},
-         familyi={B\bibinitperiod},
-         given={G.\bibnamedelima R.},
-         giveni={G\bibinitperiod\bibinitdelim R\bibinitperiod},
-      }}%
-      {{hash=CD}{%
-         family={Chaum},
-         familyi={C\bibinitperiod},
-         given={David},
-         giveni={D\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {Springer, Heidelberg}%
-    }
-    \strng{namehash}{SA1}
-    \strng{fullhash}{SA1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{Sha84}
-    \field{sortinit}{S}
-    \field{sortinithash}{S}
-    \field{booktitle}{CRYPTO'84}
-    \field{pages}{47\bibrangedash 53}
-    \field{series}{{LNCS}}
-    \field{title}{Identity-Based Cryptosystems and Signature Schemes}
-    \field{volume}{196}
-    \field{month}{08}
-    \field{year}{1984}
-  \endentry
-
   \entry{EPRINT:SakKas03}{misc}{}
     \name{author}{2}{}{%
       {{hash=SR}{%
@@ -3075,64 +1908,6 @@
     \field{howpublished}{Cryptology ePrint Archive, Report 2003/054}
     \field{note}{\url{http://eprint.iacr.org/2003/054}}
     \field{title}{{ID} based Cryptosystems with Pairing on Elliptic Curve}
-    \field{year}{2003}
-  \endentry
-
-  \entry{CHES:StaLen02}{inproceedings}{}
-    \name{author}{2}{}{%
-      {{hash=SM}{%
-         family={Stam},
-         familyi={S\bibinitperiod},
-         given={Martijn},
-         giveni={M\bibinitperiod},
-      }}%
-      {{hash=LAK}{%
-         family={Lenstra},
-         familyi={L\bibinitperiod},
-         given={Arjen\bibnamedelima K.},
-         giveni={A\bibinitperiod\bibinitdelim K\bibinitperiod},
-      }}%
-    }
-    \name{editor}{3}{}{%
-      {{hash=KBS}{%
-         family={{Kaliski Jr.}},
-         familyi={K\bibinitperiod},
-         given={Burton\bibnamedelima S.},
-         giveni={B\bibinitperiod\bibinitdelim S\bibinitperiod},
-      }}%
-      {{hash=KCetinKaya}{%
-         family={Ko\c{c}},
-         familyi={K\bibinitperiod},
-         given={{\c{C}etin Kaya}},
-         giveni={{\c{C}etin Kaya}},
-      }}%
-      {{hash=PC}{%
-         family={Paar},
-         familyi={P\bibinitperiod},
-         given={Christof},
-         giveni={C\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {Springer, Heidelberg}%
-    }
-    \strng{namehash}{SMLAK1}
-    \strng{fullhash}{SMLAK1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{SL03}
-    \field{sortinit}{S}
-    \field{sortinithash}{S}
-    \field{booktitle}{CHES~2002}
-    \verb{doi}
-    \verb 10.1007/3-540-36400-5_24
-    \endverb
-    \field{pages}{318\bibrangedash 332}
-    \field{series}{{LNCS}}
-    \field{title}{Efficient Subgroup Exponentiation in Quadratic and Sixth
-  Degree Extensions}
-    \field{volume}{2523}
-    \field{month}{08}
     \field{year}{2003}
   \endentry
 
@@ -3167,7 +1942,7 @@
     \field{howpublished}{Cryptology ePrint Archive, Report 2006/431}
     \field{note}{\url{http://eprint.iacr.org/2006/431}}
     \field{title}{Some Efficient Algorithms for the Final Exponentiation of
-  $\eta_T$ Pairing}
+  {$\eta_T$} Pairing}
     \field{year}{2006}
   \endentry
 
@@ -3248,31 +2023,6 @@
     \field{isbn}{9780203484029}
     \field{title}{Elliptic curves : number theory and cryptography}
     \field{year}{2003}
-  \endentry
-
-  \entry{weil1949numbers}{article}{}
-    \true{moreauthor}
-    \name{author}{1}{}{%
-      {{hash=WA}{%
-         family={Weil},
-         familyi={W\bibinitperiod},
-         given={Andr{\'e}},
-         giveni={A\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{WA+1}
-    \strng{fullhash}{WA+1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{Wei+49}
-    \field{sortinit}{W}
-    \field{sortinithash}{W}
-    \field{number}{5}
-    \field{pages}{497\bibrangedash 508}
-    \field{title}{Numbers of solutions of equations in finite fields}
-    \field{volume}{55}
-    \field{journaltitle}{Bull. Amer. Math. Soc}
-    \field{year}{1949}
   \endentry
 
   \entry{INDOCRYPT:ZhaLin12}{inproceedings}{}

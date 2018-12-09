@@ -3,13 +3,13 @@
         %In Ate-based pairing, efficient arithmetic operation over the higher degree rational point groups reflects on the efficiency of the pairing calculation. Arithmetic over higher degree takes more time than arithmetic over lower degree groups. 
         However, there exists isomorphic rational point group defined over relatively lower degree extension field.
         %The important part of this process is mapping from higher degree group to lower degree isomorphic group and its reverse mapping. 
-        Exploiting such property, this paper has showed a mapping technique between isomorphic rational point groups in the context of Ate-based pairing with Kachisa-Schaefer-Scott (KSS) pairing friendly curve of embedding degree $k = 18$. In the case of KSS curve, there exists sub-field sextic twisted curve that includes sextic twisted isomorphic rational point group defined over $\FQTH$. This paper has showed the mapping procedure from  certain $\FQEN$ rational point group to its sub-field isomorphic rational point group in $\FQTH$ and vice versa. This paper has also showed that scalar multiplication is about 20 times faster after applying the proposed mapping  which in-turns resembles that the impact of this mapping will greatly enhance the pairing operation in KSS curve.
+        Exploiting such property, this thesis has showed a mapping technique between isomorphic rational point groups in the context of Ate-based pairing with Kachisa-Schaefer-Scott (KSS) pairing friendly curve of embedding degree $k = 18$. In the case of KSS curve, there exists subfield sextic twisted curve that includes sextic twisted isomorphic rational point group defined over $\FQTH$. This thesis has showed the mapping procedure from  certain $\FQEN$ rational point group to its subfield isomorphic rational point group in $\FQTH$ and vice versa. This thesis has also showed that scalar multiplication is about 20 times faster after applying the proposed mapping  which in-turns resembles that the impact of this mapping will greatly enhance the pairing operation in KSS curve.
         
         \section{Introduction}
          At the advent of this century, Sakai et al. \cite{EPRINT:SakKas03} and Joux et al. \cite{JC:Joux04} independently proposed a cryptosystem based on elliptic curve pairing. Since then, pairing based cryptography has attracted many researchers and it has been considered as the basis of next generation security. Many researchers have proposed several innovative pairing based cryptographic applications such as ID-based encryption \cite{EPRINT:SakKas03}, broadcast encryption \cite{C:BonGenWat05} and group signature authentication \cite{C:BonBoySha04} that upsurge the popularity of pairing based cryptography.
         In such outcome, Ate-based pairings such as Ate \cite{DBLP:reference/crc/2005ehcc}, R-ate \cite{r_ate}, Optimal-ate \cite{DBLP:journals/tit/Vercauteren10}, twisted Ate  \cite{EPRINT:MKHO07} and $\chi$-Ate \cite{PAIRING:NASKM08} pairings have gained much attention since they have achieved quite efficient pairing calculation. 
         There is no alternative of efficient and fast pairing calculation for deploying pairing-based cryptographic applications in practical case. 
-        This paper focuses on a peripheral technique of Ate-based pairings with Kachisa-Schaefer-Scott (KSS) curve \cite{EPRINT:KacSchSco07}. 
+        This thesis focuses on a peripheral technique of Ate-based pairings with Kachisa-Schaefer-Scott (KSS) curve \cite{EPRINT:KacSchSco07}. 
         
         In general, pairing is a bilinear map from two rational point group $\g1$ and $\g2$ to a multiplicative group $\g3$ \cite{Silverman}, typically denoted by $\g1 \times \g2 \rightarrow \g3$.
         In the context of Ate-based pairing, $\g1$, $\g2$ and $\g3$ are defined as follows:
@@ -23,21 +23,21 @@
         \end{equation}
         where $\alpha$ denotes Ate pairing. Pairings are often found in certain extension field $\FQK$, where $p$ is the prime number, also know as characteristics  and the minimum extension degree $k$ is called \textit{embedding} degree. 
         The rational points $E(\FQK)$ are defined over a certain pairing friendly curve $E$ of embedded extension field of degree $k$.
-        This paper has considered Kachisa-Schaefer-Scott (KSS) \cite{EPRINT:KacSchSco07} pairing friendly curves of emebdding degree $k=18$ described in \cite{EPRINT:FreScoTes06}. 
+        This thesis has considered Kachisa-Schaefer-Scott (KSS) \cite{EPRINT:KacSchSco07} pairing friendly curves of emebdding degree $k=18$ described in \cite{EPRINT:FreScoTes06}. 
         
         %Pairing on KSS curve satisfies 192-bit security level which is considered to be the basis of next generation security. 
-        In Ate-based pairing with KSS curve, where $k = 18$,  pairing computations are done in higher degree extension field $\FQEN$. However, KSS curves defined over $\FQEN$ have the sextic twisted isomorphism over $\FQTH$. Therefore we can execute computations in the sub-field $\FQTH$. Exploiting such a property, different arithmetic operation of Ate-based pairing can be efficiently performed in $\g2$. In this paper we have mainly focused on mapping $\g2$ rational point from extension field $\FQEN$ to its sextic twisted sub-field $\FQTH$ and its reverse procedure. 
+        In Ate-based pairing with KSS curve, where $k = 18$,  pairing computations are done in higher degree extension field $\FQEN$. However, KSS curves defined over $\FQEN$ have the sextic twisted isomorphism over $\FQTH$. Therefore we can execute computations in the subfield $\FQTH$. Exploiting such a property, different arithmetic operation of Ate-based pairing can be efficiently performed in $\g2$. In this thesis we have mainly focused on mapping $\g2$ rational point from extension field $\FQEN$ to its sextic twisted subfield $\FQTH$ and its reverse procedure. 
         
         The advantage of such mapping is examined by performing scalar multiplication on $\g2 \subset E(\FQEN)$ rational point, since scalar multiplication is required repeatedly in cryptographic calculation. 
-        We have considered sub-field sextic twisted curve of KSS curve, denoted as $E'$. It includes sextic twisted isomorphic rational point group denoted as $\g2' \subset E(\FQTH)$. In KSS curve, $\g2$ is defined over $\FQEN$ whereas its sub-field isomorphic group $\g2'$ is defined over $\FQTH$. Then the proposed mapping technique is applied to map rational points of $\g2$ to its isomorphic $\g2'$. After that the scalar multiplication in $\g2'$ performed and the resulted points are re-mapped to $\g2$ in $\FQEN$.
-        The experiment result shows  that efficiency of binary scalar multiplication is increased by more than 20 times in sub-field sextic twisted curve than scalar multiplication in $\FQEN$ without applying proposed mapping. The mapping and remapping requires one bit wise shifting in $\Fp$, one $\FQTH$ inversion which can be pre-computed and one $\Fp$ multiplication; hence the mapping procedure has no expensive arithmetic operation.
+        We have considered subfield sextic twisted curve of KSS curve, denoted as $E'$. It includes sextic twisted isomorphic rational point group denoted as $\g2' \subset E(\FQTH)$. In KSS curve, $\g2$ is defined over $\FQEN$ whereas its subfield isomorphic group $\g2'$ is defined over $\FQTH$. Then the proposed mapping technique is applied to map rational points of $\g2$ to its isomorphic $\g2'$. After that the scalar multiplication in $\g2'$ performed and the resulted points are re-mapped to $\g2$ in $\FQEN$.
+        The experiment result shows  that efficiency of binary scalar multiplication is increased by more than 20 times in subfield sextic twisted curve than scalar multiplication in $\FQEN$ without applying proposed mapping. The mapping and remapping requires one bit wise shifting in $\Fp$, one $\FQTH$ inversion which can be pre-computed and one $\Fp$ multiplication; hence the mapping procedure has no expensive arithmetic operation.
         
-        The rest of the paper is organized as follows. 
+        The rest of the thesis is organized as follows. 
         The fundamentals of elliptic curve arithmetic, scalar multiplication along with KSS curve over $\FQEN$ extension field and \textit{sextic twist} of KSS curve are described in section \Romannum{2}.
-        In section \Romannum{3}, this paper describes the isomorphic mapping between the rational point $Q$ and $Q'$ in details. The experimental result is presented in section \Romannum{4} which shows that our scalar multiplication on $\g2$ point can be accelerated by 20 times by applying the proposed mapping technique in KSS curve. Finally section \Romannum{5} draws the conclusion with some outline how this work can be enhanced more as a future work.
+        In section \Romannum{3}, this thesis describes the isomorphic mapping between the rational point $Q$ and $Q'$ in details. The experimental result is presented in section \Romannum{4} which shows that our scalar multiplication on $\g2$ point can be accelerated by 20 times by applying the proposed mapping technique in KSS curve. Finally section \Romannum{5} draws the conclusion with some outline how this work can be enhanced more as a future work.
         
         \section{Preliminaries}
-        In this section this paper briefly overviews the fundamentals of elliptic curve operations. Elliptic curve scalar multiplication is reviewed briefly. Pairing friendly curve of embedded degree $k=18$, i.e., KSS curve and its properties are introduced in combination  with its construction procedure by towering.
+        In this section this thesis briefly overviews the fundamentals of elliptic curve operations. Elliptic curve scalar multiplication is reviewed briefly. Pairing friendly curve of embedded degree $k=18$, i.e., KSS curve and its properties are introduced in combination  with its construction procedure by towering.
         % Rational point groups for Ate-based pairing is introduced briefly. 
         \subsection{Elliptic curve}
         Let $\Fp$ be a prime field and $\Fq$ be its extension field. An elliptic curve \cite{washington2003elliptic} defined over $\Fp$ is generally represented by \textit{affine coordinates} \cite{Silverman} as follows;
@@ -124,7 +124,7 @@
           }\;
           \nl \text{return} $T_0$\;
         \end{algorithm}
-        This paper has considered left-to-right binary scalar multiplication for evaluating the efficiency of the proposed mapping operation. But from the view point of security binary method is vulnarable to side channel attack. Therefore this paper has also experimented with Montgomery ladder \cite{Silverman} for scalar multiplication evaluation.
+        This thesis has considered left-to-right binary scalar multiplication for evaluating the efficiency of the proposed mapping operation. But from the view point of security binary method is vulnarable to side channel attack. Therefore this thesis has also experimented with Montgomery ladder \cite{Silverman} for scalar multiplication evaluation.
         
         \subsection{KSS curve}
         Kachisa-Schaefer-Scott (KSS) curve \cite{EPRINT:KacSchSco07} is a non super-singular pairing friendly elliptic curve of embedding degree 18, defined over $\FQEN$ as follows: 
@@ -153,7 +153,7 @@
         \subsection{$\FQEN$ extension field arithmetic}
         In pairing, arithmetic  operations are performed in higher degree extension fields, such as $\FQK$  for moderate value of $k$ \cite{Silverman}. Concequently, such higher extension field needs to be constructed as tower of extension fields \cite{EPRINT:BenSco09} to perform arithmetic operation cost effectively.
         
-        This paper has  represented extension field $\FQEN$ as a tower of sub-field to improve arithmetic operations. It has also used irreducible binomials introduced by Bailey et al. \cite{JC:BaiPaa01}. In what follows, this paper considers $3|(p-1)$ and $c$ is a quadratic and cubic non residue in $\Fp$. In context  of KSS-curve \cite{EPRINT:KacSchSco07}, where $k=18$, $\FQEN$ is constructed as tower field with irreducible binomial as follows:
+        This thesis has  represented extension field $\FQEN$ as a tower of subfield to improve arithmetic operations. It has also used irreducible binomials introduced by Bailey et al. \cite{JC:BaiPaa01}. In what follows, this thesis considers $3|(p-1)$ and $c$ is a quadratic and cubic non residue in $\Fp$. In context  of KSS-curve \cite{EPRINT:KacSchSco07}, where $k=18$, $\FQEN$ is constructed as tower field with irreducible binomial as follows:
         \begin{equation}\label{eq:KSS_towering}
         \begin{cases}
         \F{p}{3} = \F{p}{}[i]/(i^3-c),  \\ 
@@ -202,7 +202,7 @@
         (x,y) \quad \mapsto (xz^{1/2},yz^{1/2}).
         \end{cases}
         \end{eqnarray}
-        In context of Ate-based pairing for KSS curve of embedding degree 18, sextic twist is considered to be the most efficient. This papers considers mapping of sextic twisted sub-field isomorphic group of $\FQEN$. 
+        In context of Ate-based pairing for KSS curve of embedding degree 18, sextic twist is considered to be the most efficient. This papers considers mapping of sextic twisted subfield isomorphic group of $\FQEN$. 
         
         \section{Isomorphic mapping between $Q$ and $Q'$}
         This section introduces our proposal of mapping procedure of $\g2$ rational point group to its sextic twisted isomorphic group $\g2'$ for Ate-based pairing with KSS curve. 
@@ -233,9 +233,9 @@
         Among 18 elements, there are 3 continuous nonzero $\Fp$ elements. The others are zero.
         However the set of these nonzero elements belongs to $\FQTH$. 
         
-        This paper considers the mother parameter of KSS curve $u=65$-bit and characteristics $p=511$-bit. In such consideration, $Q$ is given as $Q = (Av\theta, Bv)$,  showed in Figure \ref{fig:Q_structure}, where $A, B \in \FQTH$ and $v$ and $\theta$ are the basis elements of $\F{p}{6}$ and $\FQEN$ respectively. 
+        This thesis considers the mother parameter of KSS curve $u=65$-bit and characteristics $p=511$-bit. In such consideration, $Q$ is given as $Q = (Av\theta, Bv)$,  showed in Figure \ref{fig:Q_structure}, where $A, B \in \FQTH$ and $v$ and $\theta$ are the basis elements of $\F{p}{6}$ and $\FQEN$ respectively. 
         
-        Let us consider the sextic twisted isomorphic sub-field rational point of $Q$ as $Q' \in \g2' \subset E'(\F{p}{3})$.
+        Let us consider the sextic twisted isomorphic subfield rational point of $Q$ as $Q' \in \g2' \subset E'(\F{p}{3})$.
         Considering $x'$ and $y'$ as the coordinates of $Q'$, we can map the rational point $Q = (Av\theta, Bv)$  to the rational point  $Q' = (x',y')$ as follows.
         
         Multiplying both side of \eqref{eq:KSS_Twist} with $\theta^{-6}$, where $i=\theta^6$ and $v = \theta^3$.
@@ -357,11 +357,11 @@
         The main focus of this experiment is to evaluate the  acceleration ratio of scalar multiplication by applying the proposed mapping on $\g2$ rational point group of  KSS curve of embedding degree 18. The experiment does not focus on efficiently implementing scalar multiplication for certain environment. There are other pairing friendly curves such as BLS-12, BLS-24 \cite{EPRINT:FreScoTes06} where sextic twist is available. We will try to apply the proposed mapping on those curves as our future work.
         
         \section{Conclusion and future work}
-        In this paper we have proposed mapping procedure of $\g2$ rational point group to its sextic twisted sub-field isomorphic rational point group $\g2'$  and its reverse mapping on KSS curve in context of Ate based pairing. 
+        In this thesis we have proposed mapping procedure of $\g2$ rational point group to its sextic twisted subfield isomorphic rational point group $\g2'$  and its reverse mapping on KSS curve in context of Ate based pairing. 
         We have also presented the advantages of such mapping by applying binary scalar multiplication and Montgomery ladder on sextic twisted isomorphic rational points in $\g2'$. 
         Then result of  scalar multiplication in $\g2'$ can accelerate the scalar multiplication in $\g2 \subset E(\FQEN)$ by more than 20 times than scalar multiplication of $\g2$ rational point directly in $\FQEN$. In the previous work of Sakemi et al. \cite{CANS:SNOKM08} has proposed skew Frobenious map for $\g1$ rational point defined over BN curve. As a future work we would like to apply such approach on $\g1$ rational point defined over KSS curve. Together with the proposed mapping and the skew Frobenius mapping of $\g1$ will remarkably accelerate scalar multiplication over KSS curve in the context of pairing based cryptography.  
         
-        %As a future work we would like to enhance the scalar multiplication in  sub-field isomorphic rational point group by applying Frobenius mapping and some multi-scalar multiplication technique.  
+        %As a future work we would like to enhance the scalar multiplication in  subfield isomorphic rational point group by applying Frobenius mapping and some multi-scalar multiplication technique.  
         
         
         \section*{Acknowledgment}

@@ -1,6 +1,6 @@
 %Efficiently computable underlying finite field arithmetic is considered as one of the major bottlenecks for faster pairing operation.
 Finding efficiently computable underlying finite field arithmetic is one of the major bottlenecks for faster pairing operation.
-In this paper, the authors exhibit efficiently computable extension field operation for optimal-ate pairing in Kachisa-Schaefer-Scott curve of embedding degree 16. 
+In this thesis, the authors exhibit efficiently computable extension field operation for Optimal-Ate pairing in Kachisa-Schaefer-Scott curve of embedding degree 16. 
 The recent suggestion of escalating parameter's size by Barbulescu and Duquesne due to improved Kim and Barbulescu's new number field sieve (exTNFS) have taken into account while selecting the parameter for 128-bit  level AES security.
 The authors revisited their idea of $\PESM$ for line evaluation in Miller's algorithm presented in IndoCrypt'2017, with more efficient base field arithmetic by applying cyclic vector multiplication algorithm (CVMA) in the $\FPFR$ extension field.
 To compare the complexity of this work with the previous one,
@@ -15,8 +15,8 @@ The inception of  pairing-based cryptography by the independent work of Sakai et
 A major breakthrough came when the parameterized pairing-friendly curves are given as polynomial formulas by Barreto et al. \cite{SAC:BarNae05}. 
 Over the years, distinct families of pairing-friendly elliptic curves are introduced e.g. Barreto-Lynn-Scott (BLS) \cite{SCN:BarLynSco02} and Kachisa-Schaefer-Scott (KSS) \cite{EPRINT:KacSchSco07} curves. 
 At the same time, the pairing has also evolved towards a more methodical direction bringing several variants of Weil's pairing i.e. Ate \cite{DBLP:reference/crc/2005ehcc}, R-ate\cite{r_ate}, $\chi$-ate \cite{PAIRING:NASKM08} pairings. 
-In 2010 Vercauteren proposed the optimal-ate pairing \cite{DBLP:journals/tit/Vercauteren10} as the best pairing in terms of efficiently. 
-In this work, we are interested in improving the optimal-ate pairing for the KSS-16 elliptic curve. 
+In 2010 Vercauteren proposed the Optimal-Ate pairing \cite{DBLP:journals/tit/Vercauteren10} as the best pairing in terms of efficiently. 
+In this work, we are interested in improving the Optimal-Ate pairing for the KSS-16 elliptic curve. 
 
 Let $\g1$ and $\g2$ be two additive cyclic sub-groups and $\g3$ is a multiplicative cyclic group of prime order $r$.
 Also assuming that a large set of points of an elliptic curve $E$ of order $r$ is defined over a finite extension field $\FPK$, where, $p$ is the base field characteristic and $k$ is called the embedding degree.
@@ -34,7 +34,7 @@ For a security level $\lambda$, $\g1$ should have order of size $\log_2 r \geq 2
 In the case of parameterized curves, to balance the security and efficiency of pairing implementation a ratio index denoted as $\rho = \log_2 p/ \log_2 r$ is often used.
 It's value ranges $1\leq  \rho  \leq 2$, yet $\rho=1$ is sought after for efficiency purpose. 
 In practice, elliptic curves with small embedding degrees $k$ and highest twist degree $d$ are desired.
-For the case of a KSS-16 elliptic curve, the curve that we study in this paper, $\rho$ is equal to  $ \approx 1.25$. \\
+For the case of a KSS-16 elliptic curve, the curve that we study in this thesis, $\rho$ is equal to  $ \approx 1.25$. \\
 In general, to obtain 128-bit AES level security it is expected that the order $r$ of $\g1$ should be equal to $2\lambda $ ($256$-bit prime).
 Then the field size  of  $\g1$ should be at least $\rho*256 = 320$-bit and the lower limit of extension field size of $\g3$ should be about $\rho*k*256= 5120$-bit.
 Since,  $d=4$ is the maximum twist degree for KSS-16, hence the field size of $\g2 \subset E'(\mathbb{F}_{p^{k/d}})$ after twist is  equal to $5120/d=1280$-bit, where, $E'$ is the twist curve of $E$.
@@ -45,28 +45,28 @@ At CRYPTO'16, Kim and Barbulescu proposed extended tower number field sieve (Sex
 Their optimization on resolving the discrete logarithm problem in $\mathbb{F}_{p^k}$ is based on the fact that the base field characteristic is presented as a polynomial.
 Their results intrigued researchers to find new parameters for pairing-friendly elliptic curves since the security level has changed.
 In response, Barbulescu and Duquesne have analyzed the security of popular pairing-friendly curve families against the NFS variants and suggested new parameters \cite{sylvain_new_param} holding twist security and immune to sub-group attack for standard security levels. 
-In the context of optimal-ate pairing, they concluded that holding existing parameters, BN curve, that is the most used in practice, can endure at most 100-bit security against the exTNFS.  
+In the context of Optimal-Ate pairing, they concluded that holding existing parameters, BN curve, that is the most used in practice, can endure at most 100-bit security against the exTNFS.  
 Using their recommended new parameters, they found BLS-12 and KSS-16 curves are efficient choices over BN curve.
 As both BLS-12 and BN curves have the same embedding degree and both support sextic twist; therefore competitiveness between these two can be determinable from the length of integer parameter.
 However, the KSS-16 seems an atypical choice since the highest embedding degree supported is 4 and hasn't studied much as BN or BLS curves.
 
 In \cite{INDOCRYPT:KNGDNK17} the authors showed that Miller's loop for KSS-16 with the suggested parameter proposed in \cite{sylvain_new_param} is faster than for BN and BLS-12 with their proposed pseudo 8-sparse multiplication in Karatsuba based implementation \cite{INDOCRYPT:KNGDNK17}.
-In this paper, we explored to find a more efficient implementation of optimal-ate pairing. 
+In this thesis, we explored to find a more efficient implementation of Optimal-Ate pairing. 
 Therefore, we revisited the pseudo 8-sparse multiplication with cyclic vector multiplication algorithm (CVMA) \cite{cvma_kato}.
-This paper adopts two different approaches of towering to construct $\FPSN$ extension field. 
+This thesis adopts two different approaches of towering to construct $\FPSN$ extension field. 
 In what follows let's denote them as Type-I $\FPTTTT$ and Type-II  $\FPFRTT$.
 The Type-I is also characterized as optimal extension field (OEF) \cite{JC:BaiPaa01}.
 Since OEF uses Karatsuba based polynomial multiplication and irreducible binomial as the modular polynomial;  multiplications are efficiently carried out in OEF. 
 In Type-II,  the base extension field $\FPFR$ is constructed with the optimal normal basis to employ cyclic vector multiplication where the modular polynomial is a degree 5 cyclotomic polynomial.
 We also applied Ghammam et al's \cite{EPRINT:GhaFou16b} final exponentiation algorithm with cyclotomic squaring \cite{DBLP:journals/moc/Karabina13} for a fair comparison.
-We found that optimal-ate in KSS-16 curve pairing using CVMA is about 30\% faster than Karatsuba based implementation.
+We found that Optimal-Ate in KSS-16 curve pairing using CVMA is about 30\% faster than Karatsuba based implementation.
 
-The paper is organized into 5 sections with relevant subsections.
+The thesis is organized into 5 sections with relevant subsections.
 Section \ref{intro} surveys the pairing in brief with related background works.
 Section \ref{sec:1} overviews the related fundamentals.
 In section \ref{sec:3} we present the main contribution.
 Section \ref{sec:4} and \ref{sec:5} gives the result evaluation and final words respectively. \\
-In the rest of this paper, we use the following notations.
+In the rest of this thesis, we use the following notations.
  \begin{itemize}
    \item $M_{p^k}$ is a multiplication in  $\mathbb{F}_{p^{k}}$.
    \item $S_{p^k}$ is a squaring in  $\mathbb{F}_{p^{k}}$.
@@ -87,7 +87,7 @@ the $m$ with lower case Greek suffix denotes multiplication with basis element.
 \subsection{Kachisa-Schaefer-Scott (KSS) Curve \cite{EPRINT:KacSchSco07}}
 Kachisa, Schaefer, and Scott proposed a new family of  parameterized non super-singular pairing-friendly elliptic curves of embedding degree $k = \left\lbrace 16, 18, 32, 36, 40\right\rbrace$.
 Unlike BN and BLS pairing-friendly curve families, usually embraced with the sextic twist, the KSS family  holds the quartic twist. 
-In what follows, this paper considers  the KSS curve of embedding degree $k =16$, denoted as \textit{KSS-16}, defined over extension field $\FPSN$ as follows:
+In what follows, this thesis considers  the KSS curve of embedding degree $k =16$, denoted as \textit{KSS-16}, defined over extension field $\FPSN$ as follows:
 \begin{equation}\label{eq:KSS_16}
 E/\FPSN:Y^2=X^3+aX, \quad \mbox{($a \in \Fp$) and  $a \neq 0$},
 \end{equation}
@@ -122,7 +122,7 @@ For such construction, in addition with $4|p-1$, $p$ satisfies $p \equiv 3, 5 \b
 \end{cases}
 \end{equation}
 where  $c_0$ is a quadratic non-residue  ($\QNR$) in $\Fp$. 
-This paper considers  $c_0 = 2$ , where $X^{16}-2$ is irreducible in $\FPSN$.
+This thesis considers  $c_0 = 2$ , where $X^{16}-2$ is irreducible in $\FPSN$.
 
 \subsubsection{Type-II towering}
 An additional condition $p \equiv 2, 3 \bmod 5$ is required to construct this towering. 
@@ -177,19 +177,19 @@ $\g1$, $\g2$ and $\g3$ are defined as follows:
 where $E(\F{p}{k})[r]$ denotes rational points of order $r$ and $[n]$ is scalar multiplication for a rational point. 
 Let $\pi_p$ denotes the Frobenius endomorphism given as $\pi_p: (x,y) \mapsto (x^p,y^p)$.
 
-Unless otherwise stated, rest of the paper considers $P \in \g1 \subset E(\FP)$ and  $Q \in \g2 \subset  E(\FPSN)$. The map $e$ involves two major steps named Miller's loop followed by the final exponentiation.
-The optimal-ate pairing \cite{DBLP:journals/tit/Vercauteren10} proposed by Vercauteren reduces the Miller's loop length  to $\lfloor \log_2 u \rfloor = \frac{\lfloor \log_2 r \rfloor }{\varphi(k)} $, where $\varphi$ is the Euler's totient function.
+Unless otherwise stated, rest of the thesis considers $P \in \g1 \subset E(\FP)$ and  $Q \in \g2 \subset  E(\FPSN)$. The map $e$ involves two major steps named Miller's loop followed by the final exponentiation.
+The Optimal-Ate pairing \cite{DBLP:journals/tit/Vercauteren10} proposed by Vercauteren reduces the Miller's loop length  to $\lfloor \log_2 u \rfloor = \frac{\lfloor \log_2 r \rfloor }{\varphi(k)} $, where $\varphi$ is the Euler's totient function.
 The choice of the parameter $u$ is an important factor for efficient Miller's algorithm since the smaller hamming weight of $u$ adds advantage by reducing elliptic curve doubling (ECD) inside the loop.
 
-The optimal-ate pairing on KSS-16 elliptic curve is given by Zhang et al. \cite{INDOCRYPT:ZhaLin12} and presented by the following map.
+The Optimal-Ate pairing on KSS-16 elliptic curve is given by Zhang et al. \cite{INDOCRYPT:ZhaLin12} and presented by the following map.
 \begin{eqnarray*}
   e_{opt}: \g1\times \g2 &\rightarrow & \g3 \\
   (P,Q) &\longmapsto &\left(( f_{u,Q}(P)l_{[u]Q,[p]Q}(P))^{p^3}l_{Q,Q}(P)\right)^{\frac{p^{16}-1}{r}}
 \end{eqnarray*}
-The rational function $f_{u,Q}(P)$ is computed thanks to Miller algorithm which is included in the first step of computing the optimal-ate pairing. Then, we have the second step which is the computation of the exponent $\frac{p^{16}-1}{r}$ named the Final Exponentiation.\\
-The calculation of the optimal-ate pairing in KSS-16 elliptic curve is given by the following algorithm \ref{optimal_algo}.
+The rational function $f_{u,Q}(P)$ is computed thanks to Miller algorithm which is included in the first step of computing the Optimal-Ate pairing. Then, we have the second step which is the computation of the exponent $\frac{p^{16}-1}{r}$ named the Final Exponentiation.\\
+The calculation of the Optimal-Ate pairing in KSS-16 elliptic curve is given by the following algorithm \ref{optimal_algo}.
 \begin{algorithm}[!h]
-	\caption{The optimal-ate pairing algorithm for KSS-16 curve}
+	\caption{The Optimal-Ate pairing algorithm for KSS-16 curve}
 	\label{optimal_algo}
 	\DontPrintSemicolon
 	\hspace{-3ex}
@@ -214,7 +214,7 @@ The calculation of the optimal-ate pairing in KSS-16 elliptic curve is given by 
 %\vspace{6mm}
 
 Steps between  1 to 11 are identified as Miller's algorithm and step 12 is the FE.
-Optimization scopes of the paper are the line evaluation of steps 3, 5, 7, 9, 11 together with ECD and ECA.
+Optimization scopes of the thesis are the line evaluation of steps 3, 5, 7, 9, 11 together with ECD and ECA.
 These line evaluation steps are the key steps to accelerate the Miller loop calculation. \\
 In \cite{INDOCRYPT:KNGDNK17}, the authors showed an efficient technique for the above steps by \textit{pseudo 8-sparse multiplication} in the optimal extension field. 
 The calculations were carried out in affine coordinates using Karatsuba based multiplications in Type-I towering. \\
@@ -226,7 +226,7 @@ In addition authors also optimize the step 12 calculation: the final exponentiat
 \label{sec:3}
 This section describes the main idea of obtaining efficient line evaluation for the proposed towering \eqref{towering_2} with the combination of $\PESM$.
 In \cite{INDOCRYPT:KNGDNK17}, the authors showed the $\PESM$ for towering \eqref{towering_1}. 
-In this paper, the parameter and consequently the settings of KSS-16 curve is different than \cite{INDOCRYPT:KNGDNK17}. 
+In this thesis, the parameter and consequently the settings of KSS-16 curve is different than \cite{INDOCRYPT:KNGDNK17}. 
 Most importantly the basis representation and underlying finite field arithmetic are also changed. 
 Therefore, in this section, the authors will revisit \cite{INDOCRYPT:KNGDNK17} by using CVMA.
 The overall process is as follows:
@@ -253,7 +253,7 @@ In \cite{cvma_sanada} (Japanese), Sanada et al. primarily focus on the $\FPFR$ f
 They reduced 5 and 3 prime field additions for a single $\FPFR$ multiplication and squaring respectively than Karatsuba method.
 However, $\FPFR$ inversion in \cite{cvma_sanada} requires $(31 M_p +66A_p+1I_p)$.
 In contrast, the authors applied Karatsuba based $\FPFR$ inversion in \cite{INDOCRYPT:KNGDNK17} which costs $(14 M_p +29A_p+1I_p)$.
-In this paper, the authors derived a better $\FPFR$ inversion than \cite{cvma_sanada} that reduces the cost to $(16M_p+26A_p+1I_p)$. 
+In this thesis, the authors derived a better $\FPFR$ inversion than \cite{cvma_sanada} that reduces the cost to $(16M_p+26A_p+1I_p)$. 
 The comparative operation count is shown in Table \ref{tab_fp4_operation}.
 \renewcommand{\baselinestretch}{1.5}
 \begin{table*}[!h]
@@ -409,7 +409,7 @@ The calculation cost becomes $((9M_p+22A_p)\times3M_p)+4M_p+I_p=31M_p+66A_p+I_p$
 %---------------------------------------------------------------------------------------------
 \subsubsection{Optimized  $\FPFR$ Inversion using CVMA}
 Let $A=(a_0,a_1,a_2,a_3)$ be an element in $\mathbb{F}_{p^4}$.
-The proposed optimized method applies sub-field calculation in $\FPT$ as 
+The proposed optimized method applies subfield calculation in $\FPT$ as 
 \begin{eqnarray}
 B&=&AA^{p^2} \in \mathbb{F}_{p^2}, \nonumber \\
 A^{-1}&=&B^{-1}A^{p^2}, \nonumber
@@ -441,7 +441,7 @@ a'_2 &= (b'_0-b'_1)(a_1-a_0)-b'_1a_2, \nonumber \\
 a'_3 &=(b'_0-b'_1)(a_1-a_0)-b'_0a_3+(b'_0-b'_1)(a_2-a_1). \nonumber
 \end{alignat}
 Then, by applying this method, inversion cost over $\mathbb{F}_{p^4}$ becomes $14M_p+2S_p+26A_p+I_p$. 
-In what follows, this paper considers the cost of one $\FP$ squaring, as a similar cost of one $\FP$ multiplication.
+In what follows, this thesis considers the cost of one $\FP$ squaring, as a similar cost of one $\FP$ multiplication.
 The details of CVMA based operations in $\FPT$ for the above inversion is described in following sections.
 
 %-------------------------------------------------------------------------------------------------------
@@ -632,11 +632,11 @@ We get the following equations.
 	\end{eqnarray}
 \end{subequations}
 Although the \eqref{ps_8_dbl} and \eqref{ps_8_add} do not get more sparse, but 1st coefficient becomes 1. 
-Such vector is defined as \textit{pseudo sparse form} in this paper. 
+Such vector is defined as \textit{pseudo sparse form} in this thesis. 
 This form realizes more efficient $\FPSN$ vectors  multiplication in Miller's loop.  
 However, it is clear that the \eqref{ps_8_add} creates computation overhead than \eqref{sparse_add}. We have to compute $y_{P}^{-1}l_{T,Q}(P)$ in the left side and $x_Py_{P}^{-1}$, $Ey_P^{-1}$ on the right. 
 The same goes between \eqref{ps_8_dbl} and \eqref{sparse_dbl}. 
-Since the computation of \eqref{ps_8_dbl} and \eqref{ps_8_add} are almost identical, therefore the rest of the paper shows the optimization technique for \eqref{ps_8_dbl}.
+Since the computation of \eqref{ps_8_dbl} and \eqref{ps_8_add} are almost identical, therefore the rest of the thesis shows the optimization technique for \eqref{ps_8_dbl}.
 To overcome these overhead computations, the following techniques can be applied.
 \begin{itemize}
 	\item $x_{P}y_{P}^{-1}$ is omitted by applying further isomorphic mapping of $P \in \g1$.
@@ -648,7 +648,7 @@ To obtain $x_{P}y_{P}^{-1} = 1$, the following isomorphic mapping of $P=(x_P,y_P
 
 %----------------------------------------------------------------------------------------------
 \subsubsection{Isomorphic map of $P=(x_P,y_P) \to \bar P=(x_{\bar P},y_{\bar P})$.}
-Although the KSS-16 curve is typically defined over $\FPSN$ as $E(\FPSN)$, for efficient implementation of optimal-ate pairing, certain operations are carried out in a quartic twisted isomorphic curve $E'$ defined over $\FPFR$ as shown in Sec. \ref{Quartic_twist}. 
+Although the KSS-16 curve is typically defined over $\FPSN$ as $E(\FPSN)$, for efficient implementation of Optimal-Ate pairing, certain operations are carried out in a quartic twisted isomorphic curve $E'$ defined over $\FPFR$ as shown in Sec. \ref{Quartic_twist}. 
 For the same, let us consider $\bar{E}(\FPFR)$ is isomorphic to $E(\FPFR)$ and certain $z \in \Fp$ as a quadratic residue (QR) in $\FPFR$. 
 A generalized mapping between $E(\FPFR)$ and $\bar{E}(\FPFR)$ can be given as follows:
 \begin{eqnarray}
@@ -799,7 +799,7 @@ However, it has an important consequence for the computation of the second part 
 Indeed, powering $f$, the result of Miller loop,  to the ${p^8-1}$ makes the result unitary \cite{C:ScoBar04}. So during the hard part of the final exponentiation, which consists on computing $f^{\frac{p^8+1}{r}}$), all the elements involved are unitary.
 This  simplifies computations, for example, any future inversion can be implemented as a Frobenius operator, more precisely $f^{-1}=f^{p^8}$ which is just a conjugation \cite{C:ScoBar04}, \cite{CHES:StaLen02}. \\
 The hard part $\frac{(p^8+1)}{r}$ can be efficiently calculated using Ghammam's et al.'s works \cite{EPRINT:GhaFou16b} addition chain algorithm.\\
-In this paper, we  reduce the number of temporary variables used in the  \cite{EPRINT:GhaFou16b} to calculate $f_1^{857500{\frac{(p^8+1)}{r}}}$, where   $f_1 $ is the result of computing the first part of the final exponentiation. 
+In this thesis, we  reduce the number of temporary variables used in the  \cite{EPRINT:GhaFou16b} to calculate $f_1^{857500{\frac{(p^8+1)}{r}}}$, where   $f_1 $ is the result of computing the first part of the final exponentiation. 
 The  number $d=857500$, chosen in  \cite{EPRINT:GhaFou16b}  results efficient addition chain calculation  that ultimately helps efficient hard part evaluation.
 Alg. \ref{algo_final}  shows the space-optimized final exponentiation. \\
 The squaring during hard part computation is the most operation used, it can be efficiently carried out using Granger et Scott  \cite{PKC:GraSco10} cyclotomic squaring. Their method consists of:
@@ -884,8 +884,8 @@ Here, only two squaring in $\FPET$ where in normal $\FPSN$ squaring requires 2 m
 
 
 Instead of computing the cyclotomic squaring, Karabina has proposed in \cite{Karabina13Squaring} a new method for computing the squaring in the cyclotomic subgroup. This method is called the compressed squaring. It contains two steps, compression where we compute the squaring of the compressed form of an element in the cyclotomic subgroup of $\mathbb{F}_{p^k}$. Then, before performing another operation except the squaring, we have to use the decompression form of the element in question.
-In his paper, Karabina proved that his method is applicable when the extension degree $k=2^a3^b$ with $a, b \in \mathbb{N}$ and  $a, b>0$ and he presented the example of computing the compressed squaring in the cyclotomic subgroup of $\mathbb{F}_{p^{12}}$.
-In this paper, we are interested in generalizing Karabina's method for  $k=2^a$ and $k=3^b$. In this context, we find the following result.
+In his thesis, Karabina proved that his method is applicable when the extension degree $k=2^a3^b$ with $a, b \in \mathbb{N}$ and  $a, b>0$ and he presented the example of computing the compressed squaring in the cyclotomic subgroup of $\mathbb{F}_{p^{12}}$.
+In this thesis, we are interested in generalizing Karabina's method for  $k=2^a$ and $k=3^b$. In this context, we find the following result.
 \begin{prop}
 For the case of $k=16$, it is not possible to compute the compressed squaring in the cyclotomic subgroup of $\mathbb{F}_{p^{16}}$. Then, this result is generalized when the extension degree $k=2^a$ and $k=3^b$.
 \end{prop}
@@ -898,12 +898,12 @@ For this reason, in our work, we consider only the cyclotomic squaring.
 The overall optimizations can be seen as the following Alg. \ref{optimal_algo_improved}.
 
 \begin{algorithm}[!h]
-	\caption{The improved optimal-ate pairing algorithm for KSS-16 curve using CVMA}
+	\caption{The improved Optimal-Ate pairing algorithm for KSS-16 curve using CVMA}
 	\label{optimal_algo_improved}
 	\DontPrintSemicolon
-	\hspace{-3ex}
+%	\hspace{-3ex}
 	\KwIn{$u,P\in \g1 \subset E(\FPFR),Q'\in \g2'  \subset E'(\FPFR)$}%input
-	\hspace{-3ex}
+%	\hspace{-3ex}
 	\KwOut{$e(\bar{Q'},\bar{P})$} %output
 
 	\nl Pre-compute $\bar{Q'},\bar{P},y_{P}^{-1}, z^{-2}, z^{-2}\delta$ \Comment*[r]{see Alg. \ref{pre_calc_Algo}}
@@ -933,7 +933,7 @@ The overall optimizations can be seen as the following Alg. \ref{optimal_algo_im
 This section gives details of the experimental implementation. 
 The source code can be found in Github\footnote{\label{source}https://github.com/alaminkhandaker/KSS16-opt-ate}. 
 The implemented code is not optimized for any specific platform, rather it is written keeping in mind of scalability with the change of parameters.
-The sole purpose of the piece of code is to compare the optimal-ate pairing operations between CVMA (this work) and Karatsuba based implementations \cite{INDOCRYPT:KNGDNK17} while applying state-of-art algorithms.
+The sole purpose of the piece of code is to compare the Optimal-Ate pairing operations between CVMA (this work) and Karatsuba based implementations \cite{INDOCRYPT:KNGDNK17} while applying state-of-art algorithms.
 
 \subsection{Experiment Environment and Assumptions}
 Table \ref{exp_tab} shows the implementation environment used to evaluate the proposal.  
@@ -1066,7 +1066,7 @@ However, such advantage is overtaken by the number of reduced addition in CVMA~\
 The $3.4\%$ improvement is seemingly very insignificant in terms of 1 pairing. 
  \textcolor{red}{However, a real pairing-based protocol requiring multiple pairings can be benefited from it. \textbf{WHY?? Explain}}
 
-Table \ref{time_com_pairing} shows  execution time in millisecond (rounded 2 decimal places) and cycle counts for optimal-ate pairing implementation for the Table \ref{exp_tab} settings. 
+Table \ref{time_com_pairing} shows  execution time in millisecond (rounded 2 decimal places) and cycle counts for Optimal-Ate pairing implementation for the Table \ref{exp_tab} settings. 
 The main purpose of this execution time comparison is to show that the theoretic optimization also reflects in the real implementation.
 However, the implementation doesn't guarantee constant time operation which is crucial in the context of the side-channel attack.
 The negative value refers to CVMA's efficiency over Karatsuba based implementation. 
@@ -1113,14 +1113,14 @@ The further time-profile investigation finds that  the number of times GMP libra
 	\multicolumn{1}{|l|}{FE {[}hard{]}} & 7.13 & 22765766 & 10.18 & 32507719 & -30.0 & -30.0 \\ \hline
 	\multicolumn{1}{|l|}{Total} & 9.53 & 30429204 & 13.81 & 44088125 & -31.0 & -31.0 \\ \hline
 \end{tabular}
-\caption{Time comparison in  millisecond [ms] of CVMA vs Karatsuba based implementation of Pseudo 8-sparse optimal-ate}
+\caption{Time comparison in  millisecond [ms] of CVMA vs Karatsuba based implementation of Pseudo 8-sparse Optimal-Ate}
 \label{time_com_pairing}
 \end{table}
 \renewcommand{\baselinestretch}{1.0}
 
 %-----------------------------------------------------------------------------
 \section{Conclusion and Future Work}\label{sec:5}
-This paper shows several improvement ideas for optimal-ate pairing in the less studied KSS-16 curve while revisiting \cite{INDOCRYPT:KNGDNK17} to find more efficient Miller's algorithm implementation technique for optimal-ate pairing
+This thesis shows several improvement ideas for Optimal-Ate pairing in the less studied KSS-16 curve while revisiting \cite{INDOCRYPT:KNGDNK17} to find more efficient Miller's algorithm implementation technique for Optimal-Ate pairing
 \begin{itemize}
 	\item applied combination of normal basis  and polynomial basis for $\FPSN$ extension field operation.
 %	\item for $\FPFR$ extension field to adapt CVMA and polynomial basis for rest of the extension field operations. 

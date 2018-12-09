@@ -1,0 +1,34 @@
+\documentclass[10pt]{article}
+\usepackage{pgf,tikz,pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\begin{document}
+	\definecolor{wrwrwr}{rgb}{0.3803921568627451,0.3803921568627451,0.3803921568627451}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+	\clip(-9.595421913545833,-9.283739477634496) rectangle (19.88147703547164,7.622129037243219);
+	\draw [shift={(-1.0496750122267544,0.6403970660157374)},line width=2pt,color=wrwrwr]  plot[domain=-0.005816267869075631:3.135776385720717,variable=\t]({1*3.3703819958914925*cos(\t r)+0*3.3703819958914925*sin(\t r)},{0*3.3703819958914925*cos(\t r)+1*3.3703819958914925*sin(\t r)});
+	\draw [shift={(-1.0496750122267544,0.6403970660157374)},line width=1.6pt,dash pattern=on 1pt off 1pt,color=wrwrwr]  plot[domain=3.135776385720717:6.277369039310511,variable=\t]({1*3.3703819958914925*cos(\t r)+0*3.3703819958914925*sin(\t r)},{0*3.3703819958914925*cos(\t r)+1*3.3703819958914925*sin(\t r)});
+	\draw (-1.431476861489523,5.21388565905551) node[anchor=north west] {$g^x=e$};
+	\draw (0.7359421788794088,4.611824814508583) node[anchor=north west] {$g$};
+	\draw (1.7474043977182439,3.9134342348341473) node[anchor=north west] {$g^2$};
+	\draw (2.229053073355784,2.757477413304047) node[anchor=north west] {$g^3$};
+	\draw (2.4698774111745543,1.6737678931195779) node[anchor=north west] {$g^4$};
+	\draw (-3.574813468076578,4.587742380726706) node[anchor=north west] {$g^{x-1}$};
+	\draw (-4.803017590952306,3.6726098970153767) node[anchor=north west] {$g^{x-2}$};
+	\draw (-5.429160869281109,2.6611476781765386) node[anchor=north west] {$g^{x-3}$};
+	\draw (-5.573655471972371,1.5051908566464383) node[anchor=north west] {$g^{x-4}$};
+	\begin{scriptsize}
+	\draw [fill=wrwrwr] (-4.42,0.66) circle (2.5pt);
+	\draw [fill=wrwrwr] (2.320649975546491,0.6207941320314747) circle (2.5pt);
+	\draw [fill=wrwrwr] (-1.0301893844736323,4.010722734039613) circle (2.5pt);
+	\draw [fill=wrwrwr] (0.5307568389628012,3.6172595018657843) circle (2.5pt);
+	\draw [fill=wrwrwr] (1.556769277025452,2.777199107678483) circle (2.5pt);
+	\draw [fill=wrwrwr] (2.1075636980549475,1.6864783917339685) circle (2.5pt);
+	\draw [fill=wrwrwr] (-4.209729221050736,1.812374964921412) circle (2.5pt);
+	\draw [fill=wrwrwr] (-3.674772066307143,2.7542419645094722) circle (2.5pt);
+	\draw [fill=wrwrwr] (-2.535302405869841,3.6656881339109852) circle (2.5pt);
+	\end{scriptsize}
+	\end{tikzpicture}
+\end{document}

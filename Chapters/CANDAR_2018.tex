@@ -19,7 +19,7 @@
 % \usepackage{float}
 
 %-----------------------CUSTOM COMMAND-------------------------------
-% paper title
+% thesis title
 % Titles are generally capitalized except for words such as a, an, and, as,
 % at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
 % not capitalized unless they are the first or last word of the title.
@@ -31,7 +31,7 @@ Pairing-based protocols are getting popular in many cryptographic applications.
 Pairing algorithms involve computations on elements in all three pairing groups, $\mathbb{G}_1$, $\mathbb{G}_2$ and $\mathbb{G}_3$; however, most protocols usually require additional scalar multiplication and exponentiation in any of these three groups. 
 The Gallant-Lambert-Vanstone (GLV) method is an elegant technique to accelerate the scalar multiplication which can reduce the number of elliptic curve doubling by using Straus-Shamir simultaneous multi-scalar multiplication technique.
 However, efficiently computable endomorphisms are required to apply GLV for the elliptic curves. 
-This paper shows the GLV technique by deriving efficiently computable endomorphism for Kachisa-Schaefer-Scott (KSS) curve defined over degree 16 extension field.
+This thesis shows the GLV technique by deriving efficiently computable endomorphism for Kachisa-Schaefer-Scott (KSS) curve defined over degree 16 extension field.
 In addition, the authors show explicit formulas to compute the GLV method together with Straus-Shamir simultaneous multi-scalar multiplication technique for 2, 4 and 8 dimensions in $\g2$ group. 
 The comparative implementation shows that dimension 4 gives faster computational time than dimension 8 and 2. 
 
@@ -60,7 +60,7 @@ Pairings are often defined over a certain extension field $\FPK$, where $p$ is t
 More importantly, pairing is performed over the special form of elliptic curves typically known as pairing-friendly curves.
 There are several widely studied pairing-friendly curve families i.e. Barreto-Naehrig (BN), Barreto-Lynn-Scott (BLS) curves\cite{JC:FreScoTes10}. 
 The set of rational points $E(\FPK)$ are defined over a certain pairing-friendly curve of embedded extension field of degree $k$.
-This paper has considered Kachisa-Schaefer-Scott (KSS) \cite{EPRINT:KacSchSco07} pairing-friendly curves of embedding degree $k=16$ (KSS-16) in the context of Optimal-ate pairing.
+This thesis has considered Kachisa-Schaefer-Scott (KSS) \cite{EPRINT:KacSchSco07} pairing-friendly curves of embedding degree $k=16$ (KSS-16) in the context of Optimal-ate pairing.
 The motivation to work on KSS-16 curve came from the recent work of Barbulescu et al. \cite{sylvain_new_param} and Khandaker et al. \cite{INDOCRYPT:KNGDNK17}, where they concluded that with the recent parameters for pairing-based protocols, KSS-16 curve is a better choice for Optimal-ate pairing over BN curve.
 
 Scalar multiplication dominates the execution time of any elliptic curve cryptography (ECC) algorithms.
@@ -76,22 +76,22 @@ There is a vast literature on GLV decomposition in pairing-friendly curves i.e. 
 The common fact of in such literature is, they all applied GLV on sextic twisted curves. 
 However, in our knowledge till date, there is no literature on GLV decomposition for  KSS curve of embedding degree 16 where at most degree 4 twist is available.
 
-The major contributions of this paper are (\RNum{1}) obtaining the endomorphism to enable GLV decomposition for $\g2$ rational point in KSS-16 curve. 
+The major contributions of this thesis are (\RNum{1}) obtaining the endomorphism to enable GLV decomposition for $\g2$ rational point in KSS-16 curve. 
 (\RNum{2}) Deriving the dimension 2, 4 and 8 GLV decomposition along with finding efficiently computable Frobenius maps. (\RNum{3}) Implementation of the derived techniques and their comparison. 
-This paper shows that increasing the dimension of decomposition not necessarily accelerate the scalar multiplication. 
+This thesis shows that increasing the dimension of decomposition not necessarily accelerate the scalar multiplication. 
 In the case of $\g2$ points of KSS-16 curve, our experiment finds that dimension 4 is the fastest. 
 %On the other hand, dimension 8 is faster than dimension 2 but close to dimension 2 with joint sparse form. 
 
-Throughout this paper, $p$ and $k$ denote characteristic and embedding extension degree respectively. $\F{p}{k}$ denotes $k$-th extension field over prime field $\Fp$ and $\mF{p}{k}$ denotes the multiplicative group in $\F{p}{k}$.
+Throughout this thesis, $p$ and $k$ denote characteristic and embedding extension degree respectively. $\F{p}{k}$ denotes $k$-th extension field over prime field $\Fp$ and $\mF{p}{k}$ denotes the multiplicative group in $\F{p}{k}$.
 
 %%-----------------------FUNDAMENTAL-------------------------------------------------------
 \section{Fundamentals of Elliptic Curve and Pairing}\label{sec:1}
 \subsection{Kachisa-Schaefer-Scott (KSS) Curve \cite{EPRINT:KacSchSco07}}
 Kachisa, Schaefer, and Scott proposed a new family of  parameterized non super-singular pairing-friendly elliptic curves of embedding degree $k = \left\lbrace 16, 18, 32, 36, 40\right\rbrace$.
-In this paper, we are interested in the KSS curve whose embedding degree is 16. 
+In this thesis, we are interested in the KSS curve whose embedding degree is 16. 
 Unlike mostly used degree 6 twist, this curve offers at most degree 4 twist often named as the \textit{quartic twist}.
 
-In what follows, this paper considers  the KSS curve of embedding degree $k =16$, denoted as \textit{KSS-16}, defined over extension field $\FPSN$ as follows:
+In what follows, this thesis considers  the KSS curve of embedding degree $k =16$, denoted as \textit{KSS-16}, defined over extension field $\FPSN$ as follows:
 \begin{equation}\label{eq:KSS_16}
 E/\FPSN:y^2=x^3+ax, \quad \mbox{$a \neq 0$},
 \end{equation}
@@ -151,7 +151,7 @@ For such construction, in addition with $4|p-1$, $p$ satisfies $p \equiv 3, 5 \b
 \end{cases}
 \end{equation}
 where  $c$ is a quadratic non-residue  ($\QNR$) in $\Fp$. 
-This paper considers  $c = 2$ , where $X^{16}-2$ is irreducible in $\FPSN$.
+This thesis considers  $c = 2$ , where $X^{16}-2$ is irreducible in $\FPSN$.
 
 \subsection{Extension Field Arithmetic of $\FPSN$}
 % For any platform, multiplication, squaring and inversion are regarded as computationally expensive than addition or subtraction. 
@@ -193,9 +193,9 @@ $\G1$, $\g2$ and $\g3$ are defined as follows:
 where $E(\F{p}{k})[r]$ denotes rational points of order $r$ and $[n]$ is scalar multiplication for a rational point. 
 Let $\pi_p$ denotes the Frobenius endomorphism given as $\pi_p: (x,y) \mapsto (x^p,y^p)$.
 
-Unless otherwise stated, the rest of the paper considers $P \in \G1 \subset E(\FP)$ and  $Q \in \g2 \subset  E(\FPSN)$, where, $Q$ satisfies $[\pi_p -p]Q = \cal O$.
+Unless otherwise stated, the rest of the thesis considers $P \in \G1 \subset E(\FP)$ and  $Q \in \g2 \subset  E(\FPSN)$, where, $Q$ satisfies $[\pi_p -p]Q = \cal O$.
 The map $e$ involves two major steps named Miller's loop followed by the final exponentiation.
-%The optimal-ate pairing \cite{DBLP:journals/tit/Vercauteren10} proposed by Vercauteren reduces the Miller's loop length  to $\lfloor \log_2 u \rfloor = \frac{\lfloor \log_2 r \rfloor }{\varphi(k)} $, where $\varphi$ is the Euler's totient function.
+%The Optimal-Ate pairing \cite{DBLP:journals/tit/Vercauteren10} proposed by Vercauteren reduces the Miller's loop length  to $\lfloor \log_2 u \rfloor = \frac{\lfloor \log_2 r \rfloor }{\varphi(k)} $, where $\varphi$ is the Euler's totient function.
 %The choice of the parameter $u$ is an important factor for efficient Miller's algorithm since the smaller hamming weight of $u$ adds advantage by reducing elliptic curve doubling (ECD) inside the loop.
 The Optimal-ate pairing \cite{DBLP:journals/tit/Vercauteren10} on KSS-16 elliptic curve is given by Zhang et al. \cite{INDOCRYPT:ZhaLin12} and presented by the following map.
 \begin{align}
@@ -214,7 +214,7 @@ where $max{|s_1|,|s_2|}  ~\leq C_1 \sqrt{r}$ for some explicit constant $C_1 > 0
 The main idea of the GLV trick is it exists essentially in an algorithm that finds a decomposition of an arbitrary scalar multiplication $[s]$ for $s \in  [1,r]$ into two scalar multiplications, while the new scalars having only about half the bit length of the original scalar.
 This immediately enables the elimination of half the doubling by employing the Straus-Shamir simultaneous multi-scalar point multiplication. 
 Later on Galbraith-Lin-Scott (GLS) have shown that over $\FPT$. 
-This paper focuses on such a trick for the KSS-16 curve in the context of Optimal-ate pairing. 
+This thesis focuses on such a trick for the KSS-16 curve in the context of Optimal-ate pairing. 
 
 %%---------------------------------------------------PROPOSAL----------------
 \section{GLV technique for $\g2$ Rational Point on  KSS-16 Curve} \label{Proposal}
@@ -644,7 +644,7 @@ Moreover, the total number of pre-computation also increases the other overhead 
 
 
 \section{Conclusion}
-This paper shows the detailed formula to apply the GLV decomposition together with Straus-Shamir multi-scalar multiplication technique for efficient $\g2$ scalar multiplication which is a major operation in many pairing-based protocols.
+This thesis shows the detailed formula to apply the GLV decomposition together with Straus-Shamir multi-scalar multiplication technique for efficient $\g2$ scalar multiplication which is a major operation in many pairing-based protocols.
 The experimental implementation confirms the correctness of the derived technique.
 The comparative implementations show that dimension 4 is faster than 8 and 2. 
 There is still scope to make the technique better by optimizing the pre-computation which will reduce the number of ECA and ECD.

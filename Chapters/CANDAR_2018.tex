@@ -1,209 +1,57 @@
-% \usepackage[hyphens,spaces,obeyspaces]{url}
-% \usepackage{algorithm}
-% \usepackage{algorithmic}
-% \usepackage[dvips]{graphicx}
-% \usepackage{latexsym}
-% \usepackage{color}
-% \usepackage{amsmath}
-% \usepackage{amssymb}
-% \usepackage{amsfonts}
-% \usepackage{enumerate}
-% \usepackage{bm}
-% \usepackage{cases}
-% \usepackage{latexsym}
-% \usepackage{comment}
-% \usepackage{listings}
-% \usepackage{longtable}
-% \usepackage{nogamacro}
-% \usepackage{multirow}
-% \usepackage{float}
+\chapter{Efficient \texorpdfstring{$\g{2}$}{G2} Scalar Multiplican in KSS-16 Curve} 
+\label{ch:candar2018}
 
-%-----------------------CUSTOM COMMAND-------------------------------
-% thesis title
-% Titles are generally capitalized except for words such as a, an, and, as,
-% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
-% not capitalized unless they are the first or last word of the title.
-% Linebreaks \\ can be used within to get better formatting as desired.
-% Do not put math or special symbols in the title.
-\title{A Comparative Implementation of GLV Technique on KSS-16 Curve}
 
-Pairing-based protocols are getting popular in many cryptographic applications. 
-Pairing algorithms involve computations on elements in all three pairing groups, $\mathbb{G}_1$, $\mathbb{G}_2$ and $\mathbb{G}_3$; however, most protocols usually require additional scalar multiplication and exponentiation in any of these three groups. 
-The Gallant-Lambert-Vanstone (GLV) method is an elegant technique to accelerate the scalar multiplication which can reduce the number of elliptic curve doubling by using Straus-Shamir simultaneous multi-scalar multiplication technique.
-However, efficiently computable endomorphisms are required to apply GLV for the elliptic curves. 
-This thesis shows the GLV technique by deriving efficiently computable endomorphism for Kachisa-Schaefer-Scott (KSS) curve defined over degree 16 extension field.
-In addition, the authors show explicit formulas to compute the GLV method together with Straus-Shamir simultaneous multi-scalar multiplication technique for 2, 4 and 8 dimensions in $\g2$ group. 
-The comparative implementation shows that dimension 4 gives faster computational time than dimension 8 and 2. 
 
 \section{Introduction}
-% The authors in \cite{INDOCRYPT:KNGDNK17}  that KSS-16 is a better alternative for Optimal-Ate pairing than widely studied BN curve.
+\subsection{Background and Motivation}
+Pairing-based protocols are getting popular in many cryptographic applications. 
+In general, pairing is a bilinear map of two rational point groups $\g{1}$ and $\g2$ to a multiplicative group $\g3$ \cite{Silverman}.
+The typical notation of pairing is $\g{1} \times \g2 \rightarrow \g3$.
+Pairing algorithms involve computations on elements in all three pairing groups, $\mathbb{G}_1$, $\mathbb{G}_2$ and $\mathbb{G}_3$.
+However, most of the protocols usually require additional scalar multiplication and exponentiation in any of these three groups. 
+The Gallant-Lambert-Vanstone (GLV) method is an elegant technique to accelerate the scalar multiplication which can reduce the number of elliptic curve doubling by using Straus-Shamir simultaneous multi-scalar multiplication technique.
+However, efficiently computable endomorphisms are required to apply GLV for the elliptic curves. 
+This chapter shows the GLV technique by deriving efficiently computable endomorphism for Kachisa-Schaefer-Scott (KSS)  \cite{EPRINT:KacSchSco07} pairing-friendly curves of embedding degree $k=16$ (KSS-16) in the context of Optimal-ate pairing.
+%In addition, the authors show explicit formulas to compute the GLV method together with Straus-Shamir simultaneous multi-scalar multiplication technique for 2, 4 and 8 dimensions in $\g2$ group. 
+%The comparative implementation shows that dimension 4 gives faster computational time than dimension 8 and 2. 
 
-The independent works of  Sakai et al. \cite{sakai2000cryptosystems} and Joux et al. \cite{JC:Joux04} set up a new type of public key cryptography based on bilinear pairing over the elliptic curve.
-Since then it has encouraged to invent several innovative pairing-based cryptographic applications such as Boneh et al.'s short signature \cite{AC:BonLynSha01} and short group signature authentication \cite{C:BonBoySha04}, those have increased the popularity of pairing-based cryptographic research.
-However, most pairing-based protocols require additional scalar multiplication (SCM) or exponentiation in the pairing groups beside the pairing.
-Moreover, some protocols \cite{AC:Groth10a} require only a single pairing and several scalar multiplications. 
-Therefore, we are interested in such peripheral operation that is the scalar multiplication of pairing-based protocols.
 
-In general, pairing is a bilinear map of two rational point groups $\G1$ and $\g2$ to a multiplicative group $\g3$ \cite{Silverman}.
-The typical notation of pairing is $\G1 \times \g2 \rightarrow \g3$.
-% In  Ate-based pairing, $\G1$, $\g2$ and $\g3$ are defined as:
-% \begin{eqnarray}\label{eq:g_1}
-% \G1 & = &  E(\F{p}{k}) [r] \cap \text{Ker}(\pi_p - [1]), \nonumber \\
-% \g2 & = &  E(\F{p}{k}) [r] \cap \text{Ker}(\pi_p - [p]), \nonumber \\
-% \g3 & = & \mF{p}{k}/(\mF{p}{k})^r, \nonumber
-% \end{eqnarray}
-% \begin{equation}
-% \alpha : \G1 \times \g2 \rightarrow \g3,  \nonumber
-% \end{equation}
-% where $\alpha$ denotes Ate pairing.
-Pairings are often defined over a certain extension field $\FPK$, where $p$ is the prime number, also known as characteristics  and $k$  is the minimum extension degree for pairing also called \textit{embedding} degree. 
-More importantly, pairing is performed over the special form of elliptic curves typically known as pairing-friendly curves.
-There are several widely studied pairing-friendly curve families i.e. Barreto-Naehrig (BN), Barreto-Lynn-Scott (BLS) curves\cite{JC:FreScoTes10}. 
-The set of rational points $E(\FPK)$ are defined over a certain pairing-friendly curve of embedded extension field of degree $k$.
-This thesis has considered Kachisa-Schaefer-Scott (KSS) \cite{EPRINT:KacSchSco07} pairing-friendly curves of embedding degree $k=16$ (KSS-16) in the context of Optimal-ate pairing.
-The motivation to work on KSS-16 curve came from the recent work of Barbulescu et al. \cite{sylvain_new_param} and Khandaker et al. \cite{INDOCRYPT:KNGDNK17}, where they concluded that with the recent parameters for pairing-based protocols, KSS-16 curve is a better choice for Optimal-ate pairing over BN curve.
+The motivation to work on KSS-16 curve came from the recent work of Barbulescu et al. \cite{EPRINT:BarDuq17} and Khandaker et al. \cite{INDOCRYPT:KNGDNK17}, where they concluded that with the recent parameters for pairing-based protocols, KSS-16 curve is a better choice for Optimal-ate pairing over BN curve.
 
 Scalar multiplication dominates the execution time of any elliptic curve cryptography (ECC) algorithms.
 The common approach to accelerate scalar multiplication are log-step algorithm such as binary and non-adjacent form (NAF) methods.
-However, in the context of asymmetric pairing where there exists no efficiently computable isomorphism between $\G1$ and $\g2$, more efficient approach is to use GLV \cite{CANS:SNOKM08, khandaker2017improvement}.
+However, in the context of asymmetric pairing where there exists no efficiently computable isomorphism between $\g{1}$ and $\g2$, more efficient approach is to use GLV \cite{CANS:SNOKM08, khandaker2017improvement}.
 In order to accelerate scalar multiplication, Gallant-Lambert-Vanstone \cite{C:GalLamVan01} proposed a technique for rational points of prime order known as GLV method.
 Fundamentally, it divides the scalar into half of the bit length of the original one that reduces the number of doubling.
 The critical point of this technique is, there should have to be an efficiently computable endomorphism. 
 Otherwise, the advantage obtained from reduced doubling will have no effect on the acceleration. 
 
-
+\subsection{Literature Review}
 There is a vast literature on GLV decomposition in pairing-friendly curves i.e.  Barreto-Naehrig \cite{SAC:BarNae05}, Kachisa-Schaefer-Scott (KSS) curve of embedding degree 18,  \cite{CANS:SNOKM08, khandaker2017improvement, DBLP:journals/ieicet/NogamiSONAM09, faz2015efficient, JC:GalLinSco11}. 
 The common fact of in such literature is, they all applied GLV on sextic twisted curves. 
 However, in our knowledge till date, there is no literature on GLV decomposition for  KSS curve of embedding degree 16 where at most degree 4 twist is available.
 
-The major contributions of this thesis are (\RNum{1}) obtaining the endomorphism to enable GLV decomposition for $\g2$ rational point in KSS-16 curve. 
+\subsection{Contribution Outline}
+The major contributions of this chapter are (\RNum{1}) obtaining the endomorphism to enable GLV decomposition for $\g2$ rational point in KSS-16 curve. 
 (\RNum{2}) Deriving the dimension 2, 4 and 8 GLV decomposition along with finding efficiently computable Frobenius maps. (\RNum{3}) Implementation of the derived techniques and their comparison. 
-This thesis shows that increasing the dimension of decomposition not necessarily accelerate the scalar multiplication. 
+This chapter shows that increasing the dimension of decomposition not necessarily accelerate the scalar multiplication. 
 In the case of $\g2$ points of KSS-16 curve, our experiment finds that dimension 4 is the fastest. 
-%On the other hand, dimension 8 is faster than dimension 2 but close to dimension 2 with joint sparse form. 
-
-Throughout this thesis, $p$ and $k$ denote characteristic and embedding extension degree respectively. $\F{p}{k}$ denotes $k$-th extension field over prime field $\Fp$ and $\mF{p}{k}$ denotes the multiplicative group in $\F{p}{k}$.
 
 %%-----------------------FUNDAMENTAL-------------------------------------------------------
-\section{Fundamentals of Elliptic Curve and Pairing}\label{sec:1}
-\subsection{Kachisa-Schaefer-Scott (KSS) Curve \cite{EPRINT:KacSchSco07}}
-Kachisa, Schaefer, and Scott proposed a new family of  parameterized non super-singular pairing-friendly elliptic curves of embedding degree $k = \left\lbrace 16, 18, 32, 36, 40\right\rbrace$.
-In this thesis, we are interested in the KSS curve whose embedding degree is 16. 
-Unlike mostly used degree 6 twist, this curve offers at most degree 4 twist often named as the \textit{quartic twist}.
+\section{Fundamentals}
+\label{sec:ch:candar18:fundamental}
 
-In what follows, this thesis considers  the KSS curve of embedding degree $k =16$, denoted as \textit{KSS-16}, defined over extension field $\FPSN$ as follows:
-\begin{equation}\label{eq:KSS_16}
-E/\FPSN:y^2=x^3+ax, \quad \mbox{$a \neq 0$},
-\end{equation}
-where $x,y \in \FPSN$. 
-As a typical feature, its properties are parameterized by the polynomial formulas of integer $u$ as follows:
-\begin{subequations}
-	\begin{eqnarray}
-	p(u) &= & (u^{10} +2u^9 +5u^8 +48u^6 +152u^5 +240u^4   \nonumber \\ 
-	&& +625u^2 +2398u +3125)/980,  \\\label{eq:kss_16_char}
-	r(u) &= & (u^8 +48u^4 +625)/61255, \label{eq:kss_16_degree}  \\
-	t(u) &=& (2u^5 +41u+35)/35, \label{eq:kss_16_trace} 
-	\end{eqnarray}
-\end{subequations} 
-where the tuple $(p,r,t)$ are \textit{characteristic}, \textit{group order} and \textit{Frobenius trace} respectively.
-The integer  $u$  denotes the pairing parameter conform to the condition $u \equiv 25$ or $45$ (mod $70$). 
-
-\subsection{Point Addition and Doubling}
-Let $E(\f{p^k})$ be the set of all rational points on the curve $E$ including the point at infinity $\mathcal{O}$.
-$\#E(\f{p^k})$ denotes the total number of point in $E(\f{p^k})$.
-Let us consider two rational points using the affine coordinates as $P_1= (x_1, y_1)$, $P_2 = (x_2, y_2)$, and their addition $R = P_1 + P_2$, where $\textit{R} = (x_3, y_3)$ and $P_1, P_2, R \in E(\FPK)$. Then the $x$ and $y$ coordinates of $R$ are calculated as follows:
-
-\begin{subequations}
-\begin{eqnarray}\label{eq:point_add}
-x_3 & = & \lambda^2-x_1-x_2 ,\\
- y_3 & = &(x_1-x_3)\lambda - y_1, 
-\end{eqnarray}
-where $\lambda$ is the tangent at the point on the curve given as follows:
-\begin{equation}\label{eq:point_solpe}
-\textstyle \lambda = 
-\begin{cases}
- \textstyle \frac{y_2 - y_1}{ x_2 -x_1}; \quad \mbox{$P_1 \neq P_2$},\\
- \textstyle \frac{3x_1^2+a}{2y_1}; \quad  \mbox{$P_1 = P_2$},\\
-\end{cases}
-\end{equation}
-\end{subequations}
-and $\cal O$ is the additive unity in $E(\f{p^k})$. If $P_1 \neq P_2$ then $P_1+P_2$ is called elliptic curve addition (ECA). If $P_1=P_2$ then $P_1+P_2=2P_1$, which is known as elliptic curve doubling (ECD). 
-
-\subsection{Elliptic Curve Scalar Multiplication}
-Let scalar $s$ is $0 \leq s < r$, where $r$ is the order of the target rational point group. Scalar multiplication of rational points $P_1$, denoted as $[s]P_1$ is calculated by $(s-1)$-times additions of $P_1$ as,
-\begin{equation}\label{scalar_mul}
-[s]P_1 = \sum_{i = 0}^{ s-1 } P_1, \quad \text{$0 \leq s < r$}.
-\end{equation}
-When $s = r$, then $[r]P_1 = \mathcal{O}$, where $r$ is the order of the curve. Let $[s]P_1 = P_2$, and value of $s$ is not obtained, then the solving $s$ from $P_1$ and $P_2$ is known as the elliptic curve discrete logarithm problem (ECDLP). 
-The difficulty level of solving ECDLP defines the security strength of elliptic curve cryptography.
-
-\subsection{Extension Field Arithmetic for Pairing}
-While implementing pairing-based protocols, a major speedup comes from the efficient finite field implementation.
-Therefore, it is common to apply the towering technique to efficiently carry out the extension field operations.
-In what follows, the $\FPSN$ extension field is constructed using the following towering with help of the irreducible binomials given in \eqref{towering_1}.
-For such construction, in addition with $4|p-1$, $p$ satisfies $p \equiv 3, 5 \bmod 8$.  
-\begin{equation}\label{towering_1}
-\begin{cases}
-\F{p}{2} = \F{p}{}[\alpha]/(\alpha^2-c),  \\ 
-\F{p}{4} = \F{p}{2}[\beta]/(\beta^2-\alpha),  \\ 
-\F{p}{8} = \F{p}{4}[\gamma]/(\gamma^2-\beta), \\ 
-\F{p}{16} = \F{p}{8}[\omega]/(\omega^2-\gamma), \\ 
-\end{cases}
-\end{equation}
-where  $c$ is a quadratic non-residue  ($\QNR$) in $\Fp$. 
-This thesis considers  $c = 2$ , where $X^{16}-2$ is irreducible in $\FPSN$.
-
-\subsection{Extension Field Arithmetic of $\FPSN$}
-% For any platform, multiplication, squaring and inversion are regarded as computationally expensive than addition or subtraction. 
-%For convenient estimation of the total pairing cost, we count operations in $\Fp$ for extension field arithmetic.
-Towering allows to efficiently carry out multiplication and squaring operation in the extension fields.
-\tbref{tab_fpoperation} shows operation count for Karatsuba based multiplication and Devegili et al.'s \cite{EPRINT:DOSD06} complex squaring technique for squaring. 
-\renewcommand{\baselinestretch}{1.5}
-\begin{table}[t]
-\caption{Number of arithmetic operations in  $\FPSN$ based on Type-I towering \eqref{towering_1}.}
-\label{tab_fpoperation}
-	%\caption{Number of arithmetic operations in  $\FPSN$ based on Type-I towering \eqref{towering_1}.}
-	\centering
-	\resizebox{\columnwidth}{!}{
-		\begin{tabular}{|l|l|}
-			\hline 
-			Multiplication & Squaring \\
-			\hline 
-			$M_{2} = 3M_p + 5A_p+1m_\alpha \rightarrow 3M_p $ &  $S_{2} = 2M_p+6A_p+ \rightarrow 2M_p $\\ 
-			$M_{4} = 2M_{2}+5A_{2}+1m_\beta \rightarrow 9M_p $ &  $S_{4} = 2M_{2}+5A_{2}+2m_\beta \rightarrow 6M_p $\\ 
-			$M_{8} = 3M_{4}+5A_{4}+1m_\gamma \rightarrow 27M_p $ &  $S_{8} = 2M_{4}+5A_{4}+2m_\gamma \rightarrow 18M_p $\\ 
-			$M_{{16}} = 3M_{8}+5A_{8}+1m_\omega \rightarrow 81M_p $ &  $S_{{16}} = 2M_{8}+5A_{8}+2m_\omega \rightarrow 54M_p $\\ 
-			\hline 
-		\end{tabular} }
-\end{table}
-\renewcommand{\baselinestretch}{1.0}
-The arithmetic operations in $\Fp$ are denoted as $M_p$ for a multiplication, $S_p$ for a squaring, $I_p$ for an inversion.
-The $m$ with Greek alphabet and $M$ with numeric suffix denote multiplication with basis element and multiplication in extension field respectively.
-Since, $c=2$ in \eqref{towering_1}, therefore, the multiplication by the basis element $\alpha$ is carried out by 1 addition in $\Fp$.
-
-\subsection{Optimal-Ate Pairing on KSS-16 Curve}
-In the context of pairing on the KSS-16 curves, the valid bilinear map $e:\G1 \times \g2 \rightarrow \g3$ takes input from two additive rational point groups $\G1, \g2$ 
-and output an element in the multiplicative group $\g3$ of order $r$. 
-$\G1$, $\g2$ and $\g3$ are defined as follows:
-\begin{eqnarray}\label{eq:g1}
-\G1 & = &  E(\FP) [r] \cap \text{Ker}(\pi_p - [1]), \nonumber \\
-\g2 & = &  E(\F{p}{k}) [r] \cap \text{Ker}(\pi_p - [p]), \nonumber \\
-\g3 & = & \mF{p}{k}/(\mF{p}{k})^r, \nonumber
-\end{eqnarray}
-where $E(\F{p}{k})[r]$ denotes rational points of order $r$ and $[n]$ is scalar multiplication for a rational point. 
-Let $\pi_p$ denotes the Frobenius endomorphism given as $\pi_p: (x,y) \mapsto (x^p,y^p)$.
-
-Unless otherwise stated, the rest of the thesis considers $P \in \G1 \subset E(\FP)$ and  $Q \in \g2 \subset  E(\FPSN)$, where, $Q$ satisfies $[\pi_p -p]Q = \cal O$.
-The map $e$ involves two major steps named Miller's loop followed by the final exponentiation.
-%The Optimal-Ate pairing \cite{DBLP:journals/tit/Vercauteren10} proposed by Vercauteren reduces the Miller's loop length  to $\lfloor \log_2 u \rfloor = \frac{\lfloor \log_2 r \rfloor }{\varphi(k)} $, where $\varphi$ is the Euler's totient function.
-%The choice of the parameter $u$ is an important factor for efficient Miller's algorithm since the smaller hamming weight of $u$ adds advantage by reducing elliptic curve doubling (ECD) inside the loop.
-The Optimal-ate pairing \cite{DBLP:journals/tit/Vercauteren10} on KSS-16 elliptic curve is given by Zhang et al. \cite{INDOCRYPT:ZhaLin12} and presented by the following map.
-\begin{align}
- & e_{opt}: \G1\times \g2 \rightarrow  \g3, \\
-&  (P,Q) \longmapsto \left(( f_{u,Q}(P)l_{[u]Q,[p]Q}(P))^{3}l_{Q,Q}(P)\right)^{\frac{{16}-1}{r}}.
-\end{align}
-The rational function $f_{u,Q}(P)$, line evaluation $l_{[u]Q,[p]Q}$ have computed thanks to the Miller algorithm. 
-Then, we have the second step which is the computation of the exponent $\frac{{16}-1}{r}$ named the final exponentiation.
+We refer to the following :
+\begin{itemize}
+	\item Kachisa-Schaefer-Scott curve of embedding degree $k=16$ defined in  \secref{sec:ch:indo:kss16curve} of \chref{ch:indocrypt}.
+	\item Elliptic curve point addition and doubling from \secref{sec:chap:fund:ecc} in \chref{chap:fundamentals}.
+	\item $\FPSN$ towering from \secref{eq_KSS16_towering_towering_chap_ijnc2017} from \chref{ch:ijnc2017}.
+	\item $\FPSN$ extension field arithmetic from \secref{sec:ch:indo:ext_field_arith_ksss16} in \chref{ch:indocrypt}.
+	\item Optimal-Ate pairing on KSS-16 curve from \secref{sec:ch:indo:optate_ksss16} in \chref{ch:indocrypt}.
+\end{itemize}
+for the related fundamentals to understand the proposal this chapter.
+The fundamental of GLV is summarized as in the following section.
 
 \subsection{Gallant, Lambert, and Vanstone (GLV) Decomposition}
 In CRYPTO 2001 \cite{C:GalLamVan01}, Gallant, Lambert, and Vanstone found that any multiple $[s]Q$ of a point $Q$ of prime order $r$ lying on an elliptic curve with a low-degree endomorphism $\Phi$ over $\FP$ can be calculated as follows:
@@ -214,14 +62,15 @@ where $max{|s_1|,|s_2|}  ~\leq C_1 \sqrt{r}$ for some explicit constant $C_1 > 0
 The main idea of the GLV trick is it exists essentially in an algorithm that finds a decomposition of an arbitrary scalar multiplication $[s]$ for $s \in  [1,r]$ into two scalar multiplications, while the new scalars having only about half the bit length of the original scalar.
 This immediately enables the elimination of half the doubling by employing the Straus-Shamir simultaneous multi-scalar point multiplication. 
 Later on Galbraith-Lin-Scott (GLS) have shown that over $\FPT$. 
-This thesis focuses on such a trick for the KSS-16 curve in the context of Optimal-ate pairing. 
+This chapter focuses on such a trick for the KSS-16 curve in the context of Optimal-ate pairing. 
 
 %%---------------------------------------------------PROPOSAL----------------
-\section{GLV technique for $\g2$ Rational Point on  KSS-16 Curve} \label{Proposal}
+\section{Proposed GLV technique for \texorpdfstring{$\g2$}{} Rational Point on  KSS-16 Curve} \label{Proposal}
 As aforementioned, Optimal-ate pairing is computed over a twisted curve. 
 Therefore, the following sections will describe the twist property of KSS-16 curve and the procedure to obtain GLV decomposition in the $\g2$ group of a KSS-16 curve.
 
-\subsection{Quartic Twist of KSS-16 Curves} \label{Quartic_twist}
+\subsection{Quartic Twist of KSS-16 Curves} 
+\label{eq:quartic_twist_candar18_kss16}
 There exists a \textit{twisted curve} with a group of rational points of order $r$ for a KSS-16 curve. 
 This isomorphic rational point group includes a twisted isomorphic point of $Q \in \g2 \subset E(\FPK)$, typically denoted as $Q' \in E'(\FPKD)$, where $k$ is the embedding degree and $d$ is the twist degree.  
 Since the pairing-friendly KSS-16 \cite{EPRINT:KacSchSco07} curve has CM discriminant of $D = 1$ and $4|k$; therefore, a quartic twist is available.
@@ -230,36 +79,17 @@ Let $\beta$ be a certain quadratic non-residue in $\FPFR$.  The quartic twisted 
 \begin{eqnarray} 
 	E'&:&y^2=x^3+ax\beta^{-1},\;\;\;a\in\Fp, \label{twisted_E} \\ 
 	\psi_4&:&E'(\FPFR)[r] \longmapsto E(\FPSN)[r]\cap {\rm Ker}(\pi_p-[p]),\nonumber\\
-	&& \quad \quad (x,y)\longmapsto (\beta^{1/2}x,\beta^{3/4}y),\label{map1}
+	&& \quad \quad (x,y)\longmapsto (\beta^{1/2}x,\beta^{3/4}y),
 \end{eqnarray}
 where Ker($\cdot$) denotes the kernel of the mapping and $\pi_p$ denotes Frobenius mapping  for rational point.
 
-%\tbref{tab_Q} shows the vector representation of $Q = (x_{Q},y_Q) = (\beta^{1/2}x_{Q'},\beta^{3/4}y_{Q'}) \in \FPSN$ according to the given towering in \eqref{towering_1}.
-%For the above mapping, the vector representation of Q ∈ G2 is Q = (xQ, yQ) = (β1/2xQ′ , β3/4yQ′ ) ∈ E(Fp16 ) according to the given towering in Eq.(5).
 For the above mapping, the vector representation of $Q = (x_{Q},y_Q) = (\beta^{1/2}x_{Q'},\beta^{3/4}y_{Q'}) \in \FPSN$ is obtained according to the given towering in \eqref{towering_1}.
 Here, $x_{Q'}$ and $y_{Q'}$ are the coordinates of rational point $Q'$ on quartic twisted curve $E'$. 
 
 
-% \renewcommand{\baselinestretch}{1.5}
-% \begin{table*}[t]
-% \caption{Vector representation of $Q = (x_Q,y_Q) \in \g2 \subset E(\mathbb{F}_{{16}})$}
-% \label{tab_Q}
-% \centering
-% % \resizebox{2\columnwidth}{!}{
-% \begin{tabular}{|*{17}{c|}}
-% \hline 
-%  & 1 & $\alpha$ & $\beta$ & $\alpha \beta$ & $\gamma$ & $\alpha \gamma$ & $\beta \gamma$ & $\alpha \beta \gamma$ & $\omega$ & $\alpha \omega$ & $ \beta \omega$ & $\alpha \beta \omega$ & $\gamma \omega$ & $\alpha \gamma \omega$ &$ \beta \gamma \omega$ & $\alpha \beta \gamma \omega$\\
-%   \hline 
-% $x_Q$ & 0 & 0 & 0 & 0 & $b_4$ & $b_5$ &$ b_6$ & $b_7$ & 0 & 0 & 0 & 0 & 0 & 0 & 0& 0\\
-%  \hline 
-% $y_Q$ & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & $b_{12}$ & $b_{13}$ & $b_{14}$ & $b_{15}$\\
-% \hline 
-% \end{tabular}
-% % }
-% \end{table*}
-% \renewcommand{\baselinestretch}{1.0}
 
-\subsection{Elliptic Curve Operation in Twisted Curve $E'$}
+
+\subsection{Elliptic Curve Operation in Twisted Curve\texorpdfstring{$E'$}{}}
  Since $E'$ in \eqref{twisted_E} is different from $E$, therefore, the elliptic curve addition and doubling operation slightly changed.
 Let us consider  $T=(\gamma x_{T'},\gamma \omega y_{T'})$, $Q=(\gamma x_{Q'}, \gamma \omega y_{Q'})$  and  $P=(x_P,y_P) $, where $x_p, y_p \in \Fp$ given in affine coordinates on the curve $E(\FPSN)$ such that $T'=(x_{T'},y_{T'})$, $Q'=(x_{Q'},y_{Q'})$ are in the twisted curve $E'$ defined over $\FPFR$.
 Let the elliptic curve doubling of $T+T = R(x_R, y_R)$. 
@@ -283,7 +113,7 @@ x_{R} & = & ((\lambda')^2  \ - x_{T'} -x_{Q'})\gamma, \nonumber \\
  y_{R} & = &  (x_{T'}\lambda' -x_{R'}\lambda'-y_{T'})\gamma \omega \nonumber.
 \end{eqnarray}
 %-------
-\subsection{Finding  Endomorphism between $p$ and $u$}
+\subsection{Finding  Endomorphism between \texorpdfstring{$p$}{} and \texorpdfstring{$u$}{}}
 Let us find an endomorphism between the prime $p$ and the integer $u$ from using the Hasse's theorem
 \begin{eqnarray}
 p+1 - t \equiv 0 \bmod r, \nonumber
@@ -363,7 +193,7 @@ Finally, $u^4 \equiv -7p^4-24 \bmod r$ is the endomorphism we are interested in.
 Since the relation is obtained for $u^4$, therefore, we can apply it for 2 dimension GLV decomposition.
 The reason can be anticipated clearly as the order $r$ is a polynomial of degree 8 of the integer $u$.
 
-\subsection{GLV for the Group Having Order $r(u)$}
+\subsection{GLV for the Group Having Order \texorpdfstring{$r(u)$}{}}
 We can apply at most $\varphi(16)= 8$ dimension GLV decomposition for $\g2$ rational point group; since the KSS-16 is a curve defined over an extension field of degree 16.
 Here $\varphi$ is the Euler's totient function.
 However, as discussed in the introduction, there is always a trade-off between the number of pre-computation and the dimension of GLV for any curve. 
@@ -441,8 +271,8 @@ Therefore, we combined 2-dimensional GLV with JSF to make the scalar multiplicat
 \subsection{Applying Straus-Shamir Simultaneous Multi-scalar Multiplication Technique}
 In what follows let us denote the 2-dimension as 2-Split, 4-dimension as 4-Split
 and 8-dimension as 8-Split scalar multiplication.
-In our experimental implementation, we adopted the parameter suggested in \cite{sylvain_new_param}. 
-Using \cite{sylvain_new_param}'s settings the integer  $u$ is obtained as $35$-bit and order $r$ as $263$-bit. 
+In our experimental implementation, we adopted the parameter suggested in \cite{EPRINT:BarDuq17}. 
+Using \cite{EPRINT:BarDuq17}'s settings the integer  $u$ is obtained as $35$-bit and order $r$ as $263$-bit. 
 Therefore, the maximum bit length of an $s$ is $\leq 263$-bit.
 \subsubsection{2-Split and 4-Split scalar multiplication}
 The 2-Split scalar multiplication can be expressed as
@@ -484,10 +314,10 @@ As a result we can save $2^8-32 = 224$ pre-computation.
 
 To obtain the pre-computed rational points we need to calculate $[p]Q, [p^2]Q, \cdots, [p^7]Q$ as shown in \fgref{precom_figure}(a).
 Thanks to Frobenius map which can be calculated with a few multiplications in $\Fp$.
-Moreover, since rational points in $\g2$ have isomorphic twisted points in $\g2'\subset E'(\FPFR)$, therefore, skew Frobenius map \cite{CANS:SNOKM08} can be applied as shown in the \secref{sec_tskew_fm}.
+Moreover, since rational points in $\g2$ have isomorphic twisted points in $\g2'\subset E'(\FPFR)$, therefore, skew Frobenius map \cite{CANS:SNOKM08} can be applied as shown in the \secref{sec:skew_fm_candar18}.
 
-\subsection{Skew Frobenius Map to Compute $[p]\bar{Q'}$}
-\label{sec_tskew_fm}
+\subsection{Skew Frobenius Map to Compute \texorpdfstring{$[p]\bar{Q'}$}{}}
+\label{sec:skew_fm_candar18}
 From the definition of $Q \in \g2$, we recall that $Q$ satisfies $[\pi_p -p]Q = \cal O$ or $\pi_p(Q) = [p]Q$, which is also applicable for $\bar{Q'}$.
 Applying skew Frobenius map we can optimize $[p]\bar{Q'}$ calculation.
 The detailed procedure to obtain the skew Frobenius map of $Q' = (x_{Q'}, y_{Q'}) \in \g2' \subset E'(\FPFR)$ is given bellow:
@@ -562,7 +392,7 @@ In the experiment, 100 randomly generated scalars of size $\leq r$ (263-bit) are
 Average value of execution time presented in the millisecond is considered for comparison.
 The source of the experimental implementation can be found in Github \footnote{\footurl}.
 
-In the experiment, KSS-16 curve over $\FPSN$ is obtained as $y^2 = x^3 + 1$ by applying the parameters  of Barbulescu et al. \cite{sylvain_new_param}  for 128-bit security level.
+In the experiment, KSS-16 curve over $\FPSN$ is obtained as $y^2 = x^3 + 1$ by applying the parameters  of Barbulescu et al. \cite{EPRINT:BarDuq17}  for 128-bit security level.
 \tbref{environment} shows the experiment environment used for comparative evaluation. 
 No optimization is done to execute the program in multithreading.
 \renewcommand{\baselinestretch}{1.5}
@@ -644,7 +474,7 @@ Moreover, the total number of pre-computation also increases the other overhead 
 
 
 \section{Conclusion}
-This thesis shows the detailed formula to apply the GLV decomposition together with Straus-Shamir multi-scalar multiplication technique for efficient $\g2$ scalar multiplication which is a major operation in many pairing-based protocols.
+This chapter shows the detailed formula to apply the GLV decomposition together with Straus-Shamir multi-scalar multiplication technique for efficient $\g2$ scalar multiplication which is a major operation in many pairing-based protocols.
 The experimental implementation confirms the correctness of the derived technique.
 The comparative implementations show that dimension 4 is faster than 8 and 2. 
 There is still scope to make the technique better by optimizing the pre-computation which will reduce the number of ECA and ECD.

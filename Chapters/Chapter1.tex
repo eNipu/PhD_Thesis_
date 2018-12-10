@@ -1,8 +1,5 @@
 \chapter{Introduction}
-\label{chapter1}
-
-
-
+\label{chap:Introduction}
 This chapter introduces the related literature review, motivation and goals of the undertaken research.
 The chapter begins with a brief preface of cryptology and its importance in the era Internet of Things (IoT) and Big Data.
 In \secref{ch1_subsec_pkc} we present how Public-Key Cryptography (PKC) is shaping the security of our every day life.
@@ -11,7 +8,7 @@ We introduce the importance of Pairing-Based Cryptography(PBC) in \secref{ch1_su
 \secref{ch1_sec_outline} outlines the overall organization of this thesis.
 
 \section{Cryptology}
-\label{ch1_sec_crypto}
+\label{chap:sec:crypto}
 Cryptography is the science of communicating with the authentic receiver through an insecure channel in secret. 
 Cryptanalysis is the techniques of breaking the secret communications.
 Cryptology is the combination of these two domains.
@@ -45,8 +42,6 @@ Then it will take about $3.4 \times 10^{38}/((122.3 \times 10^{12})(365 \times 2
 According to the standard model of physical cosmology \cite{Ade:2015xua} the age of our universe is $13.8 \time 10^9$ or 13.8 billion years. 
 It means finding a key using brute force search will require $6.3$ million years more than the age of the universe.
 We can imagine how big the number $2^{128}$ is from this comparison.
-
-
 
 Cryptography became more important as individuals and business increasingly depend on the Internet as a channel for communication. Therefore, the following four properties are the basis of a cryptosystem.
 
@@ -128,7 +123,7 @@ The mathematical details of this problem appears in Chapter 2. %TODO
 ECC provides shorter key length for the same level of security than RSA which makes ECC  popular among the researchers. 
 Compared to RSA, ECC has other advantages. 
 While RSA provides encryption and digital signature; ECC has a family of algorithms for encryption, signature, key agreement and some advanced high-level cryptographic protocols such as ID-based encryption \cite{AC:BonLynSha01} where user's unique ID e.g. email address can be used as a public key. 
-The high level cryptographic functionalities are provided by paring over elliptic curves \cite{TODO} which brings a new paradigm in cryptography called pairing-based cryptography.
+The high level cryptographic functionalities are provided by paring over elliptic curves \cite{book_GPCMrabet2016} which brings a new paradigm in cryptography called pairing-based cryptography.
 
 \subsection{Pairing-Based Cryptography}
 \label{ch1_subsec_pbc}
@@ -147,7 +142,7 @@ Such properties allows researchers to come up with various cryptographic applica
 	\item  the infeasibility of solving the discrete logarithm problem (DLP) in the multiplicative group $\g3 \in \mF{p}{k}$,
 	\item and the difficulty of pairing inversion.
 \end{itemize}
-To maintain the same security level in both groups, the size of the order $r$ and extension field $p^k$ is chosen accordingly. If the desired security level is $\delta$ then $\log_2 r  \geq 2\delta$ is desirable due to Pollard's rho algorithm \cite{TODO}.  For efficient pairing, the ratio $\rho = \log_2 p^k/ \log_2 r \approx 1$,   is expected (usually  $1\leq  \rho  \leq 2$). In practice, elliptic curves with small embedding degrees $k$ and large $r$ are selected and commonly are knows as ``pairing-friendly" elliptic curves.
+To maintain the same security level in both groups, the size of the order $r$ and extension field $p^k$ is chosen accordingly. If the desired security level is $\delta$ then $\log_2 r  \geq 2\delta$ is desirable due to Pollard's rho algorithm \cite{1978-pollard-kangaroo}.  For efficient pairing, the ratio $\rho = \log_2 p^k/ \log_2 r \approx 1$,   is expected (usually  $1\leq  \rho  \leq 2$). In practice, elliptic curves with small embedding degrees $k$ and large $r$ are selected and commonly are knows as ``pairing-friendly" elliptic curves.
 
 Galbraith et al. \cite{galbraith2008pairings} have classified pairings as three major categories based on the underlying group's structure as 
 \begin{itemize}
@@ -165,13 +160,13 @@ Galbraith et al. \cite{galbraith2008pairings} have classified pairings as three 
 %A few years later Ghammam et al. \cite{EPRINT:GhaFou16b} have shown that KSS-16 is the best suited for multi-pairing (i.e., the product and/or the quotient) when the number of pairing is more than two. 
 %Ghammam et al. \cite{EPRINT:GhaFou16b} also corrected the flaws of proposed final exponentiation algorithm by Zhang et al. \cite{INDOCRYPT:ZhaLin12} and proposed a new one and showed the vulnerability of Zhang's parameter settings against small subgroup attack. 
 %The recent development of NFS by Kim and Barbulescu \cite{C:KimBar16} requires updating the parameter selection for all the existing pairings over the well known pairing-friendly curve families such as BN \cite{SAC:BarNae05}, BLS \cite{EPRINT:FreScoTes06} and KSS \cite{EPRINT:KacSchSco07}.
-%The most recent study by Barbulescu et al. \cite{sylvain_new_param} have shown the security estimation of the current parameter settings used in well-studied curves and proposed new parameters, resistant to small subgroup attack.
+%The most recent study by Barbulescu et al. \cite{EPRINT:BarDuq17} have shown the security estimation of the current parameter settings used in well-studied curves and proposed new parameters, resistant to small subgroup attack.
 %
 %Barbulescu and Duquesne's study finds that the current parameter settings for 128-bit security level on BN-curve studied in literature can withstand for 100-bit security. 
 %Moreover, they proposed that BLS-12 and surprisingly KSS-16 are the most efficient choice for Optimal-Ate pairing at the 128-bit security level. Therefore, the authors focus on the efficient implementation of the less studied KSS-16 curve for Optimal-Ate pairing by applying the most recent parameters.
 %Mori et al. \cite{PAIRING:MANS13} and Khandaker et al. \cite{ICISC:KONSD16} have shown a specific type of sparse multiplication for BN and KSS-18 curve respectively where both of the curves supports sextic twist. 
 %The authors have extended the previous works for quartic twisted KSS-16 curve and derived pseudo-8 sparse multiplication for line evaluation step in the Miller's algorithm. 
-%As a consequence, the authors made the choice to concentrate on Miller's algorithm's execution time and computational complexity to verify the claim of \cite{sylvain_new_param}.
+%As a consequence, the authors made the choice to concentrate on Miller's algorithm's execution time and computational complexity to verify the claim of \cite{EPRINT:BarDuq17}.
 %The implementation shows that Miller's algorithm time has a tiny difference between KSS-16 and BLS-12 curves. However, they both are more efficient and faster than BN curve. 
 
 

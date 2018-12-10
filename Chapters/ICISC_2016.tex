@@ -1,6 +1,11 @@
-%An Improvement of Optimal-Ate Pairing on KSS-18 curve with Pseudo 12-sparse Multiplication
-\section{Introduction}\label{ch3_section_1}
+\chapter{Improved Optimal-Ate Pairing for KSS-18 Curve} 
+\label{ch:optate_kss18_icisc2016}
+
+\section{Introduction}
+\label{ch:icisc2016:intro}
+
 \subsection{Background and Motivation}
+\label{sec:ch:icisc:bac_motivation}
 From the very beginning of the cryptosystems that utilizes elliptic curve pairing; proposed independently by Sakai et al. \cite{EPRINT:SakKas03} and Joux \cite{JC:Joux04}, has unlocked numerous novel ideas to researchers. 
 Many researchers tried to find out security protocol that exploits pairings to remove the need of certification by a trusted authority. 
 In this consequence, several ingenious pairing based encryption scheme such as ID-based encryption scheme by  Boneh and Franklin \cite{C:BonFra01} and group signature authentication by Nakanishi et al. \cite{AC:NakFun05} have come into the focus. 
@@ -8,6 +13,7 @@ In such outcome, Ate-based pairings such as Ate \cite{DBLP:reference/crc/2005ehc
 But it has always been a challenge for researchers to make pairing calculation more efficient for being used practically as pairing calculation is regarded as quite time consuming operation. 
 
 \subsection{General Notation}
+\label{sec:ch:icisc:notation}
 As aforementioned, pairing is a bilinear map from two rational point groups $\g1$ and $\g2$ to a multiplicative group $\g3$ \cite{Silverman}.
 Bilinear pairing operation consist of two predominant parts,  named as Miller's algorithm and final exponentiation.
 In  the case of  Ate-based pairing using KSS-18 pairing-friendly elliptic curve of embedding degree $k=18$,  the bilinear map is denoted by $\g1 \times \g2 \rightarrow \g3$,
@@ -17,6 +23,7 @@ The rational point in $\g2 \subset E(\FQEN)$ has  a special vector representatio
 By utilizing such representation along with the sextic twist and isomorphic mapping in subfield of $\FQEN$, this chapter has computed the elliptic curve doubling and elliptic curve addition in the Miller's algorithm as $\FQTH$ arithmetic without any explicit mapping from $\FQEN$ to $\FQTH$.
 
 \subsection{Contribution Outline}
+\label{sec:ch:icisc:contriv_outline}
  This chapter proposes \textit{pseudo 12-sparse multiplication} in affine coordinates for line evaluation in the Miller's algorithm by considering the fact that multiplying or dividing the result of Miller's loop calculation by an arbitrary non-zero $\Fp$ element does not change the result as the following final exponentiation cancels the effect of multiplication or division. 
 Following the division by a non-zero $\Fp$ element, one of the 7 non-zero $\Fp$ coefficients (which is a combination of 1 $\Fp$ and 2 $\FQTH$ coefficients) becomes 1 that yields calculation efficiency.
 The calculation overhead caused from the division is canceled by isomorphic mapping with a quadratic and cubic residue in $\Fp$.
@@ -24,15 +31,18 @@ This chapter does not end by giving only the theoretic proposal of improvement o
 In order to evaluate the theoretic proposal, this chapter shows some experimental results with recommended parameter settings. 
 
 \subsection{Related Works}
+\label{sec:ch:icisc:related_works}
 Finding pairing friendly curves \cite{EPRINT:FreScoTes06} and construction of efficient extension field arithmetic are the ground work for any pairing operation.
 Many research  has been conducted for finding pairing friendly curves \cite{SCN:BarLynSco02, JC:DupEngMor05} and efficient extension field arithmetic \cite{JC:BaiPaa01}.
 Some previous work on optimizing the pairing algorithm on pairing friendly curve such Optimal-Ate pairing by Matsuda et al. \cite{EPRINT:MKHO07} on Barreto-Naehrig (BN) curve \cite{SAC:BarNae05} is already carried out.
 The previous work of Mori et al. \cite{PAIRING:MANS13} has showed the \textit{pseudo 8-sparse multiplication} to efficiently calculate Miller's algorithm defined over BN curve. Apart from it, Aranha et al. \cite{PAIRING:AFKMR12} has improved Optimal-Ate pairing over KSS-18 curve for 192 bit security level by utilizing the relation $t(u) - 1 \equiv u + 3p(u) \bmod r(u)$ where $t(u)$ is the Frobenius trace of KSS-18 curve, $u$ is an integer also known as \textit{mother parameter}, $p(u)$ is the prime number and $r(u)$ is the order of the curve. This chapter has exclusively focused on efficiently calculating the Miller's loop of Optimal-Ate pairing defined over KSS-18 curve \cite{EPRINT:KacSchSco07} for 192-bit security level by applying\textit{ pseudo 12-sparse multiplication} technique along with other optimization approaches. The parameter settings recommended in \cite{PAIRING:AFKMR12} for 192 bit security on KSS-18 curve is used in the simulation implementation. But in the recent work, Kim et al. \cite{C:KimBar16} has suggested to update the key sizes associated with pairing-based cryptography due to the development new algorithm to solve discrete logarithm problem over finite field. The parameter settings of \cite{PAIRING:AFKMR12} does not end up at the 192 bit security level according to \cite{C:KimBar16}. However the parameter settings of \cite{PAIRING:AFKMR12}  is primarily adapted in this chapter in order to show the resemblance of the proposal with the experimental result.
 
-\section{Fundamentals}
+\section{Preliminaries}
+\label{sec:ch:icisc:preliminaries}
 This section briefly reviews the fundamentals of towering extension field with irreducible binomials \cite{JC:BaiPaa01}, sextic twist, pairings and sparse multiplication \cite{PAIRING:MANS13} with respect to KSS-18 curve \cite{EPRINT:KacSchSco07}.
 %-----------------------------------------------------------------------------------------------------------------------------------
-\subsection{KSS Curve \index{KSS Curve}}
+\subsection{KSS Curve \index{KSS Curve} of Embedding Degree \texorpdfstring{$k=18$}{k=18}}
+\label{sec:ch:icisc:kss18curve}
 Kachisa-Schaefer-Scott (KSS) curve \cite{EPRINT:KacSchSco07} is a non supersingular pairing friendly elliptic curve of embedding degrees $k = \left\lbrace16, 18, 32, 36, 40\right\rbrace$. 
 This chapter considers KSS curve of embedding degree $k=18$, in short KSS-18 curve.
  The equation of KSS-18  \index{KSS-18} curve defined over $\FQEN$ is given as follows: 
@@ -47,7 +57,8 @@ together with the following parameter settings,
 \end{manyeqns}
 where $b \neq 0$, $x,y \in \FQEN$ and characteristic $p$ (prime number), Frobenius trace $t$ and order $r$ are obtained systematically by using the integer variable $u$, such that $u \equiv 14$ (mod $42$).
 %-----------------------------------------------------------------------------------------------------------------------------------
-\subsection{Towering Extension Field  \index{KSS-18: towering} \index{KSS-18: extension field}} \label{towering_optate_KSS18}
+\subsection{Towering Extension Field  \index{KSS-18: towering} \index{KSS-18: extension field}} 
+\label{sec:ch:icisc:towering_optate_KSS18}
 In extension field arithmetic, higher level computations can be improved by towering. In towering, higher degree extension field is  constructed as a polynomial of lower degree extension fields. Since KSS-18 curve is defined over $\FQEN$, this chapter has represented extension field  $\FQEN$ as a tower of sub-fields to improve arithmetic operations.
  In some previous works, such as Bailey et al. \cite{JC:BaiPaa01}  explained tower of extension by using irreducible binomials. In what follows, let $(p-1)$ be divisible by 3 and $c$ is a certain quadratic and cubic non residue in $\Fp$. Then for KSS-18-curve \cite{EPRINT:KacSchSco07}, where $k=18$, $\FQEN$ is constructed as tower field with irreducible binomial as follows:
 \begin{eqnarray}\label{eqn_towering_kss18}
@@ -62,18 +73,19 @@ In extension field arithmetic, higher level computations can be improved by towe
 Here isomorphic sextic twist of KSS-18 curve is available in the base extension field  $\FQTH$ where the original curve is defined over $\FQEN$ 
 %-----------------------------------------------------------------------------------------------------------------------------------
 \subsection{Sextic Twist of KSS-18 Curve \index{KSS-18: sextic twist}}
+\label{sec:ch:icisc:sextictwist_KSS18}
 Let $z$ be a certain quadratic and cubic non residue in  $\Fpiii$. 
 The sextic twisted curve $E'$ of KSS-18 curve $E$ (\eqref{eqn_KSS_18}) and  their isomorphic mapping $\psi_6$ are given as follows:
 \begin{eqnarray}
 	E'&:&y^2=x^3+bz,\;\;\;b\in\Fp\nonumber\\
 	\psi_6&:&E'(\Fpiii)[r] \longmapsto E(\Fpxviii)[r]\cap {\rm Ker}(\pi_p-[p]),\nonumber\\
-	&&(x,y)\longmapsto (z^{-1/3}x,z^{-1/2}y)\label{map1}
+	&&(x,y)\longmapsto (z^{-1/3}x,z^{-1/2}y)\label{kss18_twisted_map1}
 \end{eqnarray}
 where Ker($\cdot$) denotes the kernel of the mapping. Frobenius mapping $\pi_p$ for rational point is given as
 \begin{equation}
 	\pi_p : (x,y) \longmapsto (x^p,y^p).
 \end{equation}
-The order of the sextic twisted isomorphic curve $\#E'(\FQTH)$  is also divisible by the order of KSS-18 curve $E$ defined over $\Fp$ denoted as $r$. Extension field arithmetic by utilizing the sextic twisted subfield curve $E'(\Fpiii)$ based on the isomorphic twist can improve pairing calculation. In this chapter, $E'(\Fpiii)[r]$ shown in Eq. (\ref{map1}) is denoted as $\mathbb{G}_2'$.
+The order of the sextic twisted isomorphic curve $\#E'(\FQTH)$  is also divisible by the order of KSS-18 curve $E$ defined over $\Fp$ denoted as $r$. Extension field arithmetic by utilizing the sextic twisted subfield curve $E'(\Fpiii)$ based on the isomorphic twist can improve pairing calculation. In this chapter, $E'(\Fpiii)[r]$ shown in \eqref{kss18_twisted_map1} is denoted as $\mathbb{G}_2'$.
 
 \subsection{Isomorphic Mapping  between \texorpdfstring{$E(\Fp)$ and $\hat{E}(\Fp)$} {}} \index{KSS-18: isomorphic mapping }
 %\subsection{Isomorphic Mapping  between $E(\Fp)$ and $\hat{E}(\Fp)$}
@@ -83,7 +95,7 @@ Let us consider $\hat{E}(\Fp)$  is isomorphic to $E(\Fp)$ and $\hat{z}$ as a qua
 	&&\hat{E}(\Fp)[r]\longmapsto E(\Fp)[r],\nonumber\\
 	&&(x,y)\longmapsto (\hat{z}^{-1/3}x,\hat{z}^{-1/2}y),\nonumber
 \end{eqnarray}
-where $$\hat{z}, \hat{z}^{-1/2},\hat{z}^{-1/3} \in \Fp$$ \label{map2}.
+where $$\hat{z}, \hat{z}^{-1/2},\hat{z}^{-1/3} \in \Fp$$ \label{isisc16_kss18_isomap}.
 %-----------------------------------------------------------------------------------------------------------------------------------
 \subsection{Pairing over KSS-18 Curve \index{KSS-18: pairing}}
 As described earlier bilinear pairing requires two rational point groups to be mapped to a multiplicative group. In what follows,  Optimal-Ate pairing over KSS-18 curve of embedding degree $k = 18$ is described as follows.
@@ -107,7 +119,7 @@ where $f_{t-1,Q}(P)$ symbolize the output of Miller's algorithm. The bilinearity
 \subsubsection{Optimal-Ate Pairing \index{KSS-18: Optimal-Ate}}
  The previous work of Aranha et al. \cite{PAIRING:AFKMR12} has mentioned about the relation  $t(u) - 1 \equiv u + 3p(u) \bmod r(u)$ for Optimal-Ate pairing. Exploiting the relation, Optimal-Ate pairing on the KSS-18 curve is defined by the following representation.
 \begin{equation}
-	(Q,P)=(f_{u,Q}\cdot f_{3,Q}^p\cdot l_{[u]Q,[3p]Q})^{\frac{p^{18}-1}{r}}\label{pairing},
+	(Q,P)=(f_{u,Q}\cdot f_{3,Q}^p\cdot l_{[u]Q,[3p]Q})^{\frac{p^{18}-1}{r}},
 \end{equation}
 where $u$ is the mother parameter. The calculation procedure of Optimal-Ate pairing is shown in \algref{ch3_optimalalgo_kss18}. In what follows, the calculation steps from 1 to 5 shown in \algref{ch3_optimalalgo_kss18} is identified as Miller's loop. Step 3 and 5 are line evaluation along with elliptic curve doubling and addition. These two steps are key steps to accelerate the loop calculation. As an acceleration technique  \textit{pseudo 12-sparse multiplication} is proposed in this chapter.
 %-----------------------------------------------------------------------------------------------------------------------------------
@@ -118,22 +130,22 @@ Adapting affine coordinates for representing rational points, we can apply Mori'
 \begin{eqnarray}
 &A=\frac{1}{2y}, B=3x^2, C=AB, D=2x, x_3=C^2-D,\nonumber\\
 &E=Cx-y, y_3=E-Cx_3, F=C\overline{x}_P,\nonumber\\
-&l_{T,T}(P)=y_P+Ev+F\theta=y_P+Ev-Cx_P\theta,\label{sparse_dbl}
+&l_{T,T}(P)=y_P+Ev+F\theta=y_P+Ev-Cx_P\theta,\label{icisc16_kss18_sparse_dbl}
 \end{eqnarray}
 where $\overline{x}_P=-x_P$ will be pre-computed. Here $l_{T,T}(P)$ denotes the tangent line at the point $T$.
 \subsubsection{Step 5: Elliptic curve addition phase \texorpdfstring{($T\neq Q$)}{}}
 \begin{eqnarray}
 &A=\frac{1}{x_2-x}, B=y_2-y, C=AB, D=x+x_2, x_3=C^2-D,\nonumber\\
 &E=Cx-y, y_3=E-Cx_3, F=C\overline{x}_P,\nonumber\\
-&l_{T,Q}(P)=y_P+Ev+F\theta=y_P+Ev-Cx_P\theta,\label{sparse_add}
+&l_{T,Q}(P)=y_P+Ev+F\theta=y_P+Ev-Cx_P\theta,\label{icisc16_kss18_sparse_add}
 \end{eqnarray}
 where $\overline{x}_P=-x_P$ will be pre-computed. Here $l_{T,Q}(P)$ denotes the tangent line between the point $T$ and $Q$.
 
-Analyzing \eqref{sparse_dbl} and \eqref{sparse_add}, we get that  $E$ and $Cx_P$ are calculated in $\FQTH$. After that, the basis element 1, $v$ and $\theta$ identifies the position of $y_P$, $E$ and $Cx_P$ in $\Fpxviii$ vector representation. Therefore vector representation of $l_{\psi_6(T),\psi_6(T)}(P)\in \Fpxviii$ consists of 18 coefficients. Among them at least 11 coefficients are equal to zero. In the other words, only 7 coefficients $y_P\in \Fp$, $Cx_P\in \Fpiii$ and $E\in \Fpiii$ are perhaps to be non-zero.
+Analyzing \eqref{icisc16_kss18_sparse_dbl} and \eqref{icisc16_kss18_sparse_add}, we get that  $E$ and $Cx_P$ are calculated in $\FQTH$. After that, the basis element 1, $v$ and $\theta$ identifies the position of $y_P$, $E$ and $Cx_P$ in $\Fpxviii$ vector representation. Therefore vector representation of $l_{\psi_6(T),\psi_6(T)}(P)\in \Fpxviii$ consists of 18 coefficients. Among them at least 11 coefficients are equal to zero. In the other words, only 7 coefficients $y_P\in \Fp$, $Cx_P\in \Fpiii$ and $E\in \Fpiii$ are perhaps to be non-zero.
 $l_{\psi_6(T),\psi_6(Q)}(P)\in \Fpxviii$ also has the same vector structure. Thus, the calculation of multiplying $l_{\psi_6(T),\psi_6(T)}(P)\in \Fpxviii$ or $l_{\psi_6(T),\psi_6(Q)}(P)\in \Fpxviii$ is called sparse multiplication. In the above mentioned instance especially called 11-sparse multiplication. This sparse multiplication accelerates Miller's loop calculation as shown in  \textbf{Algorithm}.\ref{ch3_optimalalgo_kss18}. This chapter comes up with pseudo 12-sparse multiplication.
 %
 %
-\begin{algorithm}[htbp]  \index{ KSS-18: Optimal-Ate}
+\begin{algorithm}[ht]  \index{ KSS-18: Optimal-Ate}
 	\caption{Optimal-Ate pairing on KSS-18 curve}
 	\label{ch3_optimalalgo_kss18}
 	\DontPrintSemicolon
@@ -163,18 +175,18 @@ $l_{\psi_6(T),\psi_6(Q)}(P)\in \Fpxviii$ also has the same vector structure. Thu
 \section{Improved Optimal-Ate Pairing for KSS-18 Curve} \index{KSS-18: Optimal-Ate}
 In this section we describe the main proposal. Before going to the details, at first we give an overview of the improvement procedure of Optimal-Ate pairing in KSS-18 curve. The following two ideas are proposed in order to efficiently apply 12-sparse multiplication on Optimal-Ate pairing on KSS-18 curve. 
 \begin{enumerate}
-	\item In \eqref{sparse_dbl} and \eqref{sparse_add} among the 7 non-zero coefficients, one of the non-zero coefficients is $y_P \in \Fp$. And $y_P$ remains uniform through Miller's loop calculation. Thereby dividing both sides of those \eqref{sparse_dbl} and \eqref{sparse_add} by $y_P$, the coefficient becomes 1 which results in a more efficient sparse multiplication by $l_{\psi_6(T),\psi_6(T)}(P)$ or $l_{\psi_6(T),\psi_6(Q)}(P)$. This chapter calls it \textit{pseudo 12-sparse multiplication}.
-	\item Division by $y_P$ in \eqref{sparse_dbl} and \eqref{sparse_add} causes a calculation overhead for the other non-zero coefficients in the Miller's loop. To cancel this  additional cost in Miller's loop, the map introduced in \eqref{map2} is applied.
+	\item In \eqref{icisc16_kss18_sparse_dbl} and \eqref{icisc16_kss18_sparse_add} among the 7 non-zero coefficients, one of the non-zero coefficients is $y_P \in \Fp$. And $y_P$ remains uniform through Miller's loop calculation. Thereby dividing both sides of those \eqref{icisc16_kss18_sparse_dbl} and \eqref{icisc16_kss18_sparse_add} by $y_P$, the coefficient becomes 1 which results in a more efficient sparse multiplication by $l_{\psi_6(T),\psi_6(T)}(P)$ or $l_{\psi_6(T),\psi_6(Q)}(P)$. This chapter calls it \textit{pseudo 12-sparse multiplication}.
+	\item Division by $y_P$ in \eqref{icisc16_kss18_sparse_dbl} and \eqref{icisc16_kss18_sparse_add} causes a calculation overhead for the other non-zero coefficients in the Miller's loop. To cancel this  additional cost in Miller's loop, the map introduced in \eqref{isisc16_kss18_isomap} is applied.
 \end{enumerate}
 It is to be noted that this chapter doesn't focus on making final exponentiation efficient in Miller's algorithm since many efficient algorithms are available.
-From \eqref{sparse_dbl} and \eqref{sparse_add} the above mentioned ideas are introduced in details.
+From \eqref{icisc16_kss18_sparse_dbl} and \eqref{icisc16_kss18_sparse_add} the above mentioned ideas are introduced in details.
 \subsection{Pseudo 12-sparse Multiplication}
-As said before $y_P$ shown in \eqref{sparse_dbl} is a non-zero elements in $\Fp$. Thereby, dividing both sides of \eqref{sparse_dbl} by $y_P$ we obtain as follows:
+As said before $y_P$ shown in \eqref{icisc16_kss18_sparse_dbl} is a non-zero elements in $\Fp$. Thereby, dividing both sides of \eqref{icisc16_kss18_sparse_dbl} by $y_P$ we obtain as follows:
 \begin{equation}\label{line_2}
 	y_P^{-1}l_{T,T}(P)=1+Ey_P^{-1}v-C(x_Py_P^{-1})\theta.
 \end{equation}
 Replacing $l_{T,T}(P)$ by the above $y_P^{-1}l_{T,T}(P)$, the calculation result of the pairing does not change, since  $final\;exponentiation$ cancels $y_P^{-1}\in \Fp$. One of the non-zero coefficients becomes 1 after the division by $y_P$, which results in more efficient vector multiplications in Miller's loop. This chapter calls it $pseudo\;12-sparse\;multiplication$. \algref{algokss18sparsemul}  introduces the detailed calculation procedure of pseudo 12-sparse multiplication.
-\begin{algorithm}[htbp]
+\begin{algorithm}[ht]
 	\caption{Pseudo 12-sparse multiplication}
 	\label{algokss18sparsemul}
 	\DontPrintSemicolon
@@ -201,12 +213,12 @@ Replacing $l_{T,T}(P)$ by the above $y_P^{-1}l_{T,T}(P)$, the calculation result
 \vspace{-0.6em}
 
 \subsection{Line Calculation in Miller's Loop} \index{KSS-18: line-evaluation}
-The comparison of \eqref{sparse_dbl} and \eqref{line_2} shows that the calculation cost of \eqref{line_2} is little bit higher than \eqref{sparse_dbl} for $Ey_P^{-1}$. The  cancellation process of $x_Py_P^{-1}$ terms by utilizing isomorphic mapping is introduced next. The $x_Py_P^{-1}$ and $y_P^{-1}$ terms are pre-computed to reduce execution time complexity.
-The map introduced in \eqref{map2} can find a certain isomorphic rational point $\hat{P}(x_{\hat{P}},y_{\hat{P}})\in \hat{E}(\Fp)$ such that
+The comparison of \eqref{icisc16_kss18_sparse_dbl} and \eqref{line_2} shows that the calculation cost of \eqref{line_2} is little bit higher than \eqref{icisc16_kss18_sparse_dbl} for $Ey_P^{-1}$. The  cancellation process of $x_Py_P^{-1}$ terms by utilizing isomorphic mapping is introduced next. The $x_Py_P^{-1}$ and $y_P^{-1}$ terms are pre-computed to reduce execution time complexity.
+The map introduced in \eqref{isisc16_kss18_isomap} can find a certain isomorphic rational point $\hat{P}(x_{\hat{P}},y_{\hat{P}})\in \hat{E}(\Fp)$ such that
 \begin{equation}
 	x_{\hat{P}}y_{\hat{P}}^{-1}=1.
 \end{equation}
-Here the twist parameter $z$ of  \eqref{map1} is considered to be $\hat{z}=(x_Py_P^{-1})^6$ of \eqref{map2}, where $\hat{z}$ is a quadratic and cubic residue in $\Fp$ and $\hat{E}$ denotes the KSS-18 curve defined by  \eqref{map2}. From the isomorphic mapping \eqref{map1}, such $z$ is obtained by solving the following equation considering the input $P(x_P,y_P)$.
+Here the twist parameter $z$ of  \eqref{kss18_twisted_map1} is considered to be $\hat{z}=(x_Py_P^{-1})^6$ of \eqref{isisc16_kss18_isomap}, where $\hat{z}$ is a quadratic and cubic residue in $\Fp$ and $\hat{E}$ denotes the KSS-18 curve defined by  \eqref{isisc16_kss18_isomap}. From the isomorphic mapping \eqref{kss18_twisted_map1}, such $z$ is obtained by solving the following equation considering the input $P(x_P,y_P)$.
 \begin{equation}
 	z^{1/3}x_P=z^{1/2}y_P,
 \end{equation}
@@ -214,11 +226,11 @@ Afterwards the $\hat{P}(x_{\hat{P}},y_{\hat{P}})\in \hat{E}(\Fp)$ is given as
 \begin{equation}
 	\hat{P}(x_{\hat{P}},y_{\hat{P}})=(x_P^3y_P^{-2},x_P^3y_P^{-2}).
 \end{equation}
-As the $x$ and $y$ coordinates of $\hat{P}$ are the same, $x_{\hat{P}}y_{\hat{P}}^{-1}=1$. Therefore, corresponding to the map introduced in \eqref{map2}, first mapping not only $P$ to $\hat{P}$ shown above but also $Q$ to $\hat{Q}$ shown below.
+As the $x$ and $y$ coordinates of $\hat{P}$ are the same, $x_{\hat{P}}y_{\hat{P}}^{-1}=1$. Therefore, corresponding to the map introduced in \eqref{isisc16_kss18_isomap}, first mapping not only $P$ to $\hat{P}$ shown above but also $Q$ to $\hat{Q}$ shown below.
 \begin{equation}
 	\hat{Q}(x_{\hat{Q}},y_{\hat{Q}})=(x_P^2y_P^{-2}x_Q,x_P^3y_P^{-3}y_Q).
 \end{equation}
-When we define a new variable $L=(x_P^{-3}y_P^2)=y_{\hat{P}}^{-1}$, the line evaluations, \eqref{sparse_dbl} and \eqref{sparse_add} become the following calculations.
+When we define a new variable $L=(x_P^{-3}y_P^2)=y_{\hat{P}}^{-1}$, the line evaluations, \eqref{icisc16_kss18_sparse_dbl} and \eqref{icisc16_kss18_sparse_add} become the following calculations.
 In what follows, let $\hat{P}=(x_{\hat{P}},y_{\hat{P}})\in E(\Fp)$, $T=(x,y)$ and $Q=(x_2,y_2)\in E'(\Fpiii)$ be given in affine coordinates and let $T+Q=(x_3,y_3)$ be the sum of $T$ and $Q$.
 \subsubsection{Step 3: Doubling Phase \texorpdfstring{($T=Q$)}{}}
 \begin{eqnarray}
@@ -235,7 +247,7 @@ where $L=y_{\hat{P}}^{-1}$ will be pre-computed.
 \end{eqnarray}
 where $L=y_{\hat{P}}^{-1}$ will be pre-computed.
 
-As we compare the above equation with to \eqref{sparse_dbl} and \eqref{sparse_add}, the third term of the right-hand side becomes simple since $x_{\hat{P}}y_{\hat{P}}^{-1}=1$.\\
+As we compare the above equation with to \eqref{icisc16_kss18_sparse_dbl} and \eqref{icisc16_kss18_sparse_add}, the third term of the right-hand side becomes simple since $x_{\hat{P}}y_{\hat{P}}^{-1}=1$.\\
 In the above procedure, calculating $\hat{P}$, $\hat{Q}$ and $L$ by utilizing $x_P^{-1}$ and $y_P^{-1}$ will create some computational overhead. In spite of that, calculation becomes efficient as it is performed in isomorphic group together with pseudo 12-sparse multiplication in the Miller's loop. Improvement of Miller's loop calculation is presented by experimental results in the next section. 
 
 
@@ -265,7 +277,7 @@ In the experimental simulation, this chapter has considered the 192 bit security
 
 To evaluate the operational cost and to compare the execution time of the proposal based on the recommended parameter settings, the following computational environment is considered. Table \ref{table_environment_KSS18} shows the computational environment.
 \renewcommand{\baselinestretch}{1.5}
-\begin{table}[h]
+\begin{table}[ht]
 	\begin{center}
 		\caption{Computing environment of Optimal-Ate pairing over KSS-18 curve.}
 		\begin{tabular}{|c|c|}
@@ -286,7 +298,7 @@ To evaluate the operational cost and to compare the execution time of the propos
 Let us consider $m, s, a$ and $i$ to denote the times of multiplication, squaring, addition and inversion $\in \Fp$. Similarly, $\tilde{m},\tilde{s},\tilde{a}$ and $\tilde{i}$ denote the number of multiplication, squaring, addition and inversion $\in \Fpiii$ and $\hat{m},\hat{s},\hat{a}$ and $\hat{i}$ to denote the count of multiplication, squaring, addition and inversion $\in \Fpxviii$ respectively.
 Table \ref{table_cost_line_KSS18} and Table \ref{cost_mul} show the calculation costs with respect to operation count.
 \renewcommand{\arraystretch}{1.5}{
-\begin{table}[h]
+\begin{table}[ht]
 	\begin{center}
 		\caption{Operation count of line evaluation.}
 		\resizebox{\columnwidth}{!}{
@@ -304,7 +316,7 @@ Table \ref{table_cost_line_KSS18} and Table \ref{cost_mul} show the calculation 
 }
 
 \renewcommand{\arraystretch}{1.5}{
-\begin{table}[h]
+\begin{table}[ht]
 	\begin{center}
 		\caption{Operation count of multiplication.}
 		\resizebox{\columnwidth}{!}{
@@ -324,7 +336,7 @@ By analyzing the Table \ref{cost_mul} we can find that  11-sparse multiplication
 \subsection{Experimental Result}
 Table \ref{result_192} shows the calculation times of Optimal-Ate pairing respectively. In this execution time count, the time required for final exponentiation is excluded. The results (time count) are the averages of 10000 iterations on PC respectively. According to the experimental results, pseudo 12-sparse contributes to a few percent acceleration of 11-sparse.
 \renewcommand{\baselinestretch}{1.5}
-\begin{table}[h]
+\begin{table}[ht]
 	\begin{center}
 		\caption{Calculation time of Optimal-Ate pairing at the 192-bit security level.}
 		\resizebox{\textwidth}{!}{

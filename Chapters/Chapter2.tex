@@ -1,6 +1,6 @@
 
 \chapter{Fundamental Mathematics and Notation}
-\label{Chapter_fundamentals} 
+\label{chap:fundamentals} 
 It is necessary to recall some fundamental mathematical concept to understand the subsequent chapters and introduce the notations used in the thesis.
 This chapter introduces the essential mathematical backgrounds that are directly relevant to the contents of this thesis to help readers to a clear understanding of the subsequent chapters.
 The theoretical discussion will often appear with minimal definition and citation of the details works since details discussion is beyond the scope of this thesis.
@@ -13,6 +13,7 @@ To understand modern cryptography  it is essential to have a good understanding 
 The following concepts is the basic for the discussion of the subsequent chapters.
 
 \section{Modular Arithmetic}
+\label{sec:chap:fund:modular_arithm} 
  Modular arithmetic is the fundamental tool for modern cryptography specially public key cryptosystems.
 \begin{definition}[Modular Arithmetic\index{modulus}]
 	Let  $p$ be a positive integer named as the modulus \index{modulus} and  $a$ and $b$  are two arbitrary integers. 
@@ -32,7 +33,8 @@ The following concepts is the basic for the discussion of the subsequent chapter
 	and usually express $-17$ and $11$ are congruent modulo $7$.
 \end{example}
 
-\section{Group, Ring, Field}\label{group}
+\section{Group, Ring, Field}
+\label{sec:chap:fund:group}
 \subsection{Group}
 The concept of group \index{group} is very fundamental for understanding cryptography. It is an algebraic system defined as follows.
 \begin{definition}[Group\index{group}]
@@ -141,7 +143,7 @@ For example, $1$ is one of generators in group $(\mathbb{Z}_5, + )$ under additi
 
 From the definition cyclic group, it can be see visualized that any elements in cyclic a group\index{cyclic group} are generated with iterative operations of generator\index{generator} $g$. 
 \fgref{Cyclic group} shows this schematically.
-\begin{figure}[h]
+\begin{figure}[ht]
 \begin{center}
 	\includegraphics[width=.6\linewidth, height=.67\textheight, keepaspectratio]{Figures/cyclicgroup}
 \caption{Cyclic group\index{cyclic group}\index{group}}
@@ -198,7 +200,7 @@ Morphisms in groups is often used the research of cryptography and inseparable t
 		\item  Identity element mapping also preserves the structure i.e. $f(e) =e'$.
 	\end{itemize}
 
-\subsubsection*{Types of Homomorphism}
+\subsubsection{Types of Homomorphism}
 \begin{quote}
 	\begin{description}
 				\item[Isomorphism \index{Isomorphism}] If element from $\mathbb{G}$  and $\mathbb{G}^{'}$ have bijective relation then $\mathbb{G}$ and $\mathbb{G}^{'}$ are isomorphic to each other.
@@ -300,9 +302,9 @@ A common property of finite fields often used in cryptographic is fllows:
 \end{theorem}
 
 In this work we classified finite fields into two types, i.e.  prime field $\f{p}$ and its extension field. 
-Defined \ref{label_extenion_field} explains more of extension field.
+Defined \ref{sec:chap:fund:extenion_field} explains more of extension field.
 The prime field $\Fp$ has  the order and characteristic as $p$.
-Using the modular arithmetic in the same way as Definition \ref{label_extenion_field}, we can define fundamental operations of prime field $\Fp=\{0,1,2\cdots,p-1\}$.
+Using the modular arithmetic in the same way as Definition \ref{sec:chap:fund:extenion_field}, we can define fundamental operations of prime field $\Fp=\{0,1,2\cdots,p-1\}$.
 The Cayley table will de
 \begin{example}The Cayley table for the two operations $+$ and $\cdot$ for elements in $\f{5}$ are as follows:
 	\begin{center}
@@ -329,7 +331,9 @@ The Cayley table will de
 As described above, we can define arithmetic operations in $\Fp$ by modular operations ($\bmod\ p$) for integers. However, it does not work in an extension field $\F{p}{m}$. In the next section, arithmetic operations in extension field $\F{p}{m}$ is described in detail.
 
 
-\subsection{Extension Field} \label{label_extenion_field}
+\section{Extension Field} 
+%\label{sec:chap:fund:extenion_field}
+\label{sec:chap:fund:extenion_field}
 %--------------------------------------
 A subset $\F{0}{}$ of a field $\F{}{}$ that is itself a field under the operations of $\F{}{}$ will be called a {\it subfield} of $\F{}{}$.
 In this case, $\F{}{}$ is called an {\it extension field} of $\F{0}{}$.
@@ -357,7 +361,8 @@ where $a_1,\;a_2,\;a_3,\cdots,\;a_m \in \F{q}{}$.
 
 Arithmetic operations in $\F{q}{m}$ are carried out with ordinary addition and multiplication for polynomial and modular reduction by irreducible polynomial.
 
-\section{Frobenius Map}\label{secFrob}
+\section{Frobenius Map}
+\label{sec:chap:fund:frobeniusmap}
 %--------------------------------------
 
 For any element $\alpha \in \F{q}{m}$, let us consider the following map $\pi_q:\alpha \rightarrow \alpha^q$. 
@@ -378,7 +383,8 @@ In ElGamal Encryption, many exponentiations are executed in encryption and decry
 When the exponent is equal to $p$, its calculation cost can be reduced by using Frobenius map.
 Therefore, Frobenius map is widely used in the cryptographic application.     
 
-\subsection{Quadratic Residue/Quadratic Non-residue, \\and Cubic Residue/Cubic Non-residue}
+\section{Quadratic Residue/Quadratic Non-residue, \\and Cubic Residue/Cubic Non-residue}
+\label{sec:chap:fund:qrqnr}
 %--------------------------------------
 
 For any non-zero element $d\in\F{q}{}$, $d$ is called a Quadratic Residue (QR) when $x$ such that $x^2=d$ exists in $\F{q}{}$.
@@ -400,7 +406,7 @@ On the other hand, quadratic non-residues also become QNR in $\F{q}{i}$, where $
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Elliptic Curve}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:chap:fund:ecc}
 In this section, we review elliptic curves and pairings. 
 
 %--------------------------------------
@@ -430,16 +436,20 @@ For rational points $P_1(x_1,y_1)$, $P_2(x_2,y_2)$ $\in E(\F{q}{})$, the ellipti
 	x_3 &=& \lambda^3-x_1-x_2\\
 	y_3 &=& (x_1-x_3)\lambda-y_1
 \end{eqnarray*} 
-
-In the case of $P_1=P_2$, the addition is especially called elliptic curve doubling. 
+%In the case of $P_1=P_2$, the addition is especially called elliptic curve doubling. 
+$\lambda$ is the tangent at the point on the curve and $\cal O$ is the additive unity in $E(\f{p})$.
+In what follows, If $P_1 \neq P_2$ then $P_1+P_2$ is called elliptic curve addition (ECA). 
+If $P_1=P_2$ then $P_1+P_2=2P_1$, which is known as elliptic curve doubling (ECD). 
 %Let $\#E(\F{p}{})$ be its order, consider a large prime $r$ that divides $\#E(\F{p}{})$. %The smallest positive integer $k$ such that $r$ divides $p^k-1$ is called {\it embedding degree}. One can consider pairings such as Tate and Ate pairings by using $E(\F{p}{k})$. 
 
 Let a rational point $P(x,y)$, an inverse point $-P$ is given by $-P(x, -y)$. 
 Elliptic curve cryptographies is constructed on elliptic curve groups $E(\F{q}{})$.
 
+
+
 Let $\#E(\F{p}{})$ be the order of $E(\F{p}{})$, it is given as
 \begin{equation}
-\#E(\F{p}{})=p+1-t, %\Nlabel{order}
+\#E(\F{p}{})=p+1-t, %abel{order}
 \end{equation}
 where $t$ is the Frobenius trace of $E(\F{p}{})$. 
 
@@ -448,147 +458,97 @@ From Hasse's theorem, $t$ satisfies
 |t| \leq 2\sqrt{p}.
 \end{equation}
 
-
+\subsection{Scalar Multiplication in Elliptic Curve}
+\label{sec:chap:fund:scm}
 Let $[s]P$ denote the $(s-1)$-times addition of a rational point $P$ as, 
 \begin{equation}
 [s]P = \sum_{i = 0}^{s-1}{P}.
 \end{equation}
 This operation is called a scalar multiplication.
 As a general approach for accelerating a scalar multiplication, the binary method is the most widely used.
-\algref{TODO} shows the binary method.
-The binary method iterates elliptic curve doublings and elliptic curve additions using binary representation of scalar.
-A scalar multiplication needs $\lfloor \log_2 s\rfloor$ elliptic curve doublings and $\lfloor \log_2 s\rfloor/2$ elliptic curve additions on average.
-
-%TODO: Change Algo
-
-\begin{figure*}[ht]
-	\begin{center}
-		\noindent {{\bf Algorithm 2.1} : Binary method }
-		\begin{tabular}{ll}\hline \hline
-			Input : & $P$, $n$-bit integer $s=\sum^{\ell-1}_{i=0}s_i2^i$, $s_i \in \{0,1\}$ \\ 
-			Output : & $R=[s]P$ \\ \hline
-			\es 1. &$R \leftarrow \Inf$ \\
-			\es 2. &For $i=\ell-1$ to 0 by $-1$ do: \\
-			\es 3. &\es $R \leftarrow$ $R+R$ \\
-			\es 4. &\es If $s_i=1$ then $R \leftarrow$ $R+P$\\
-			\es 5. &Return $R$  \\ \hline
-		\end{tabular}
-	\end{center}
-\end{figure*}
-
-\subsection{Elliptic curve \cite{washington2003elliptic}}
-Let $E$ be the elliptic curve defined over the prime field $\Fp$  as follows:
-\begin{equation}\label{ec_curve}
-E/\Fp : y^2=x^3+ax+b,
-\end{equation}
-where $ 4a^3+27b^2 \neq 0$ and $a,b \in \Fp$. Points satisfying \eqref{ec_curve} are known as rational points on the curve.
-The set of rational points including the \textit{point at infinity} $\cal{O}$ on the curve forms an additive Abelian group denoted by $E(\FP)$ whose  order is denoted as $\#E(\Fp)$, can be obtained as,
-\begin{equation}\label{order}
-\#E(\Fp) = p+1-t,
-\end{equation} 
-where $t$ is called the Frobenius trace of $E(\Fp)$.
-When the definition field is the $k$-th degree extension field $\FPK$, rational points on the curve $E$ also forms an additive Abelian group denoted as $E(\FPK)$. The order of $E(\FPK)$ is denoted as $\#E(\FPK)$ and given by the  Weil’s theorem \cite{DBLP:reference/crc/2005ehcc} as follows:
-\begin{equation}
-\#E(\FPK) = p^k +1- t_k,
-\end{equation}
-where $t_k =  \alpha^k + \beta^k$.  $\alpha$ and $\beta$ are  complex conjugate numbers that confirm the relation $f(\alpha) = f(\beta) = 0$,  where $f(\pi)$ is a polynomial such that $f(\pi) = \pi^2 -t\pi + p$ and $\pi$ is the Frobenius map. In practice, $t_k$ is determined recursively with $p = \alpha\beta$ and $t_1 = \alpha + \beta$. Moreover, the  $\#E(\FPK)$ is such that $\#E(\FP)\mid \#E(\FPK)$, which confirms that  $E(\FP)$ is a subgroup of $E(\FPK)$.
-
-\subsubsection{Point addition}
-Let's consider two rational points $L = (x_l, y_l)$, $M = (x_m, y_m)$, and their addition $N = L + M$, where $\textit{N} = (x_n, y_n)$ and $L, M, N\in E(\Fp)$. Then, the $x$ and $y$ coordinates of $N$ are obtained as follows:
-\begin{subequations}
-	\begin{eqnarray}\label{eq:point_add}
-	(x_n ,y_n) & = & ((\lambda^2-x_l-x_m ),  (x_l-x_n)\lambda - y_l), 
-	\end{eqnarray}
-	where \mbox{$\lambda$} is given as follows:
-	\begin{equation}\label{eq:point_solpe}
-	\textstyle \lambda = 
-	\begin{cases}
-	\textstyle (y_m - y_l)(x_m -x_l)^{-1} \quad \mbox{($L \neq M$)},\\\\
-	\textstyle  (3x_l^2+a)(2y_l)^{-1} \quad  \mbox{($L = M$)}.
-	\end{cases}
-	\end{equation}
-\end{subequations}
-Here $\lambda$ is the tangent at the point on the curve and $\cal O$ it the additive unity in $E(\f{p})$. When $L \neq M$ then $L+M$ is called elliptic curve addition (ECA). If $L=M$ then $L+M=2L$, which is known as elliptic curve doubling (ECD). 
-\subsubsection{Scalar multiplication}
-Let $r$ be the \textit{order} of the target rational point group and $s$ be the scalar such that $0 \leq s < r$. Scalar multiplication of rational point $M$, typically denoted as $[s]M$ can be calculated by $(s-1)$-times additions of $M$ as,
-\begin{equation}
-[s]M = \underbrace{M+M+ \cdots +M}_{s-1 \quad \mbox{times additions}}.
-\end{equation}
-If $s = r$, where $r$ is the order of the curve then $[r]M = \mathcal{O}$. When $[s]M = N$, if $s$ is unknown, then the solving $s$ from $M$ and $N$ is known as elliptic curve discrete logarithm problem (ECDLP). The security of elliptic curve cryptography lies on the difficulty of solving ECDLP.
 
 \paragraph{Binary method}
-The binary method is an extensively applied method for calculating the elliptic curve scalar multiplication.  The pseudo code of left-to-right binary scalar multiplication algorithm is shown in Algorithm \ref{alg:bin}. This algorithm scans the bits of scalar $s$ from the  most significant bit to the least significant bit. When $s[i] = 1$, it  performs ECA and ECD otherwise only ECD is calculated.  This method is easy to implement but the important drawback of this method is not resistant to \textit{side channel attack} \cite{C:Kocher96}.  
+\label{sec:chap:fund:binscm}
+The binary method is an extensively applied method for calculating the elliptic curve scalar multiplication. 
+ The pseudo code of left-to-right binary scalar multiplication algorithm is shown in \algref{alg:binary_scm_chap_fundamental}. 
+ This algorithm scans the bits of scalar $s$ from the  most significant bit to the least significant bit. When $s[i] = 1$, it  performs ECA and ECD otherwise only ECD is calculated. 
+ The binary method iterates elliptic curve doublings and elliptic curve additions using binary representation of scalar.
+ A scalar multiplication needs $\lfloor \log_2 s\rfloor$ elliptic curve doublings and $\lfloor \log_2 s\rfloor/2$ elliptic curve additions on average.
+  This method is easy to implement but the important drawback of this method is not resistant to \textit{side channel attack} \cite{C:Kocher96}.  
 
-\begin{algorithm}[H]
+\begin{algorithm}[ht]
 	\caption{Left-to-right binary algorithm for elliptic curve scalar multiplication}
-	\label{alg:bin}
+	\label{alg:binary_scm_chap_fundamental}
 	\DontPrintSemicolon
-	\hspace{-3ex}
-	\KwIn{ $P$, $s$}\;
-	\hspace{-3ex}
-	\KwOut{$[s]P$} \;%output
-	\nl $T$ $ \leftarrow$ $0$ \;
-	\nl \For{$i = \lfloor \log_2 s \rfloor$ {\bf to} $0$} {\;
-		\nl		$T \leftarrow T  + T$\;
-		\nl    \If{ $s[i] = 1$}{
-			\nl      $ T \leftarrow T + P$\;
-	} }\;
-	\nl \text{return} $T$\;
+%	\hspace{-3ex}
+	\KwIn{ $P$, $s$}
+%	\hspace{-3ex}
+	\KwOut{$[s]P$} %output
+	 $T$ $ \leftarrow$ $0$ \;
+	 \For{$i = \lfloor \log_2 s \rfloor$ {\bf to} $0$} {\;
+				$T \leftarrow T  + T$\;
+		    \If{ $s[i] = 1$}{
+			      $ T \leftarrow T + P$\;
+	} }
+	 \text{return} $T$\;
 \end{algorithm}
 
 \paragraph{Montgomery ladder method}
-Montgomery ladder algorithm is said to be resistant to \textit{side channel attack}. Such resistance comes by paying tolls as calculation overhead which slows down this method than binary method. Algorithm \ref{alg:mont} shows the Montgomery ladder algorithm for scalar multiplication. Montgomery ladder has some similarity with binary method except in each iteration it performs ECA and ECD. 
+\label{sec:chap:fund:montscm}
+Montgomery ladder algorithm is said to be resistant to \textit{side channel attack}. Such resistance comes by paying tolls as calculation overhead which slows down this method than binary method.  \algref{alg:mont_scm_chap_fundamental} shows the Montgomery ladder algorithm for scalar multiplication. Montgomery ladder has some similarity with binary method except in each iteration it performs ECA and ECD. 
 
-\begin{algorithm}[H]
+\begin{algorithm}[ht]
 	\caption{Montgomery ladder algorithm for elliptic curve scalar multiplication}
-	\label{alg:mont}
+	\label{alg:mont_scm_chap_fundamental}
 	\DontPrintSemicolon
-	\hspace{-3ex}
-	\KwIn{ A point $P$,  an integer $s $}\;
-	\hspace{-3ex}
-	\KwOut{$[s]P$} \;%output
-	\nl $T_0$ $ \leftarrow$ $0$, $T_1$ $\leftarrow$ $P$ \;
-	\nl \For{$i = \lfloor \log_2 s \rfloor$ {\bf to} $0$} {\;
-		\nl  \If{ $s[i] =1$}{
-			\nl         $ T_0 \leftarrow T_0 + T_1$\;
-			\nl     $T_1 \leftarrow T_1 + T_1$\;
+%	\hspace{-3ex}
+	\KwIn{ A point $P$,  an integer $s $}
+%	\hspace{-3ex}
+	\KwOut{$[s]P$} %output
+	 $T_0$ $ \leftarrow$ $0$, $T_1$ $\leftarrow$ $P$ \;
+	 \For{$i = \lfloor \log_2 s \rfloor$ {\bf to} $0$} {\;
+		  \If{ $s[i] =1$}{
+			         $ T_0 \leftarrow T_0 + T_1$\;
+			     $T_1 \leftarrow T_1 + T_1$\;
 		}
-		\nl        {\ElseIf{$s[i] = 0$}{ 
-				\nl      $T_1 \leftarrow T_0 + T_1$\;
-				\nl  		 $T_0 \leftarrow T_0 + T_0$\;}
-		}
-	}\;
-	\nl \text{return} $T_0$\;
-\end{algorithm}
-
-\paragraph{Sliding-window method}
-Sliding-window \cite{DBLP:reference/crc/2005ehcc} algorithm is also resistant to \textit{side channel attack} and at the same  time it is faster than Montgomery ladder. In this method the scalar $s$ is processed in blocks of length $w$, known as window size.  Algorithm \ref{alg:sliding} shows the sliding-window algorithm for scalar multiplication.
-\begin{algorithm}
-	\caption{Sliding window algorithm for elliptic curve scalar multiplication}
-	\label{alg:sliding}
-	\DontPrintSemicolon
-	\hspace{-3ex}
-	\KwIn{ A point $P$,  an integer $s = \sum_{j=0}^{l-1} s_j2^{j} $, $s_j \in \left\lbrace 0,1 \right\rbrace$, window size $w \geq 1$} \;
-	\hspace{-3ex}
-	\KwOut{Q = $[s]P$} \;
-	\textit{Pre-computation.} \; 
-	\nl $P_1\leftarrow P$, $P_2 \leftarrow [2]P$ \;
-	\nl \For{$i = 1$ {\bf to} $2^{w-1}-1$} { $P_{2i+1} \leftarrow P_{2i-1} + P_2$}\;
-	\nl $j \leftarrow l-1$, $Q \leftarrow \cal{O}.$\;
-	\textit{Main loop.}\;
-	\nl \While{$j \geq 0$} {\;
-		\nl \If{ $s_j =0$}{
-			$Q \leftarrow [2]Q$, $j \leftarrow j-1$\;
-		}
-		\nl            \Else{\;
-			\nl Let $t$ be the least ineger such that \;
-			$j - t+1 \leq w$ and $s_t =1$\;
-			\nl $h_j \leftarrow (s_js_{j-1} \cdots s_t)_2$\;
-			\nl $Q \leftarrow [2^{j-t+1}]Q +P_{h_j}$      \;      
-			\nl $j \leftarrow t-1$ \;
+		        {\ElseIf{$s[i] = 0$}{ 
+				      $T_1 \leftarrow T_0 + T_1$\;
+				  		 $T_0 \leftarrow T_0 + T_0$\;}
 		}
 	}
-	\nl return $Q$
+	 \text{return} $T_0$\;
+\end{algorithm}
+
+\paragraph{Sliding-window Method}
+\label{sec:chap:fund:swscm}
+Sliding-window \cite{DBLP:reference/crc/2005ehcc} algorithm is also resistant to \textit{side channel attack} and at the same  time it is faster than Montgomery ladder. In this method the scalar $s$ is processed in blocks of length $w$, known as window size. \algref{alg:sw_scm_chap_fundamental} shows the sliding-window algorithm for scalar multiplication.
+
+\begin{algorithm}[ht]
+	\caption{Sliding window algorithm for elliptic curve scalar multiplication}
+	\label{alg:sw_scm_chap_fundamental}
+	\DontPrintSemicolon
+%	\hspace{-3ex}
+	\KwIn{ A point $P$,  an integer $s = \sum_{j=0}^{l-1} s_j2^{j} $, $s_j \in \left\lbrace 0,1 \right\rbrace$, window size $w \geq 1$} 
+%	\hspace{-3ex}
+	\KwOut{Q = $[s]P$} 
+	\textit{Pre-computation.} \; 
+	 $P_1\leftarrow P$, $P_2 \leftarrow [2]P$ \;
+	 \For{$i = 1$ {\bf to} $2^{w-1}-1$} { $P_{2i+1} \leftarrow P_{2i-1} + P_2$}\;
+	 $j \leftarrow l-1$, $Q \leftarrow \cal{O}.$\;
+	\textit{Main loop.}\;
+	 \While{$j \geq 0$} {\;
+		 \If{ $s_j =0$}{
+			$Q \leftarrow [2]Q$, $j \leftarrow j-1$\;
+		}
+		            \Else{\;
+			 Let $t$ be the least ineger such that \;
+			$j - t+1 \leq w$ and $s_t =1$\;
+			 $h_j \leftarrow (s_js_{j-1} \cdots s_t)_2$\;
+			 $Q \leftarrow [2^{j-t+1}]Q +P_{h_j}$      \;      
+			 $j \leftarrow t-1$ \;
+		}
+	}
+	 return $Q$
 \end{algorithm}
 
 
@@ -596,46 +556,46 @@ Sliding-window \cite{DBLP:reference/crc/2005ehcc} algorithm is also resistant to
 %In this paper, the set of rational points $P\in E(\F{q}{})$ satisfying $[r]P=\mathcal{O}$ is denoted by $E(\F{q}{})[r]$.
 %For two points $P$ and $R$ such that $[s]P=R$, the problem of solving $s$ is called elliptic curve discrete logarithm problem (ECDLP) and the security of ECC relies on the difficulty of ECDLP.
 
-\begin{figure}[h]
-	\begin{center}
-		\special{pn 10}%
-		\special{ar 3150 950 700 700 0.1200000 0.14959965}
-		\special{ar 3150 950 700 700 0.2991993 0.44879895}
-		\special{ar 3150 950 700 700 0.5983986 0.74799825}
-		\special{ar 3150 950 700 700 0.8975979 1.04719755}
-		\special{ar 3150 950 700 700 1.1967972 1.34639685}
-		\special{ar 3150 950 700 700 1.4959965 1.64559615}
-		\special{ar 3150 950 700 700 1.7951958 1.94479545}
-		\special{ar 3150 950 700 700 2.0943951 2.24399475}
-		\special{ar 3150 950 700 700 2.3935944 2.54319405}
-		\special{ar 3150 950 700 700 2.6927937 2.84239335}
-		\special{ar 3150 950 700 700 2.9919930 3.02159265}
-		\special{ar 3850 950 80 80 0.000000000 6.283185304}
-		\special{ar 2450 950 80 80 0.000000000 6.283185304}
-		\special{ar 3150 250 80 80 0.000000000 6.283185304}
-		\special{ar 3500 355 80 80 0.000000000 6.283185304}
-		\special{ar 3745 600 80 80 0.000000000 6.283185304}
-		\special{ar 2555 600 80 80 0.000000000 6.283185304}
-		\special{ar 2800 355 80 80 0.000000000 6.283185304}
-		\special{ar 3150 950 700 700 3.261 3.555}
-		\special{ar 3150 950 700 700 3.79 4.065}
-		\special{ar 3150 950 700 700 4.3 4.591}
-		\special{ar 3150 950 700 700 4.83 5.122}
-		\special{ar 3150 950 700 700 5.365 5.63}
-		\special{ar 3150 950 700 700 5.87 6.165}
-		\begin{picture}(150,120)%
-		\put(50,115){$[\#E]P=\Inf$}
-		\put(110,100){$P$}
-		\put(128,80){$[2]P$}
-		\put(136,54){$[3]P$}
-		\put(-40,54){$[\#E-3]P$}
-		\put(-30,80){$[\#E-2]P$}
-		\put(-10,98){$[\#E-1]P$}
-		\end{picture}%
-	\end{center}
-	\caption{An image of elliptic curve group\index{cyclic group}\index{group}}
-	\label{fig:ECG}
-\end{figure}
+%\begin{figure}[ht]
+%	\begin{center}
+%		\special{pn 10}%
+%		\special{ar 3150 950 700 700 0.1200000 0.14959965}
+%		\special{ar 3150 950 700 700 0.2991993 0.44879895}
+%		\special{ar 3150 950 700 700 0.5983986 0.74799825}
+%		\special{ar 3150 950 700 700 0.8975979 1.04719755}
+%		\special{ar 3150 950 700 700 1.1967972 1.34639685}
+%		\special{ar 3150 950 700 700 1.4959965 1.64559615}
+%		\special{ar 3150 950 700 700 1.7951958 1.94479545}
+%		\special{ar 3150 950 700 700 2.0943951 2.24399475}
+%		\special{ar 3150 950 700 700 2.3935944 2.54319405}
+%		\special{ar 3150 950 700 700 2.6927937 2.84239335}
+%		\special{ar 3150 950 700 700 2.9919930 3.02159265}
+%		\special{ar 3850 950 80 80 0.000000000 6.283185304}
+%		\special{ar 2450 950 80 80 0.000000000 6.283185304}
+%		\special{ar 3150 250 80 80 0.000000000 6.283185304}
+%		\special{ar 3500 355 80 80 0.000000000 6.283185304}
+%		\special{ar 3745 600 80 80 0.000000000 6.283185304}
+%		\special{ar 2555 600 80 80 0.000000000 6.283185304}
+%		\special{ar 2800 355 80 80 0.000000000 6.283185304}
+%		\special{ar 3150 950 700 700 3.261 3.555}
+%		\special{ar 3150 950 700 700 3.79 4.065}
+%		\special{ar 3150 950 700 700 4.3 4.591}
+%		\special{ar 3150 950 700 700 4.83 5.122}
+%		\special{ar 3150 950 700 700 5.365 5.63}
+%		\special{ar 3150 950 700 700 5.87 6.165}
+%		\begin{picture}(150,120)%
+%		\put(50,115){$[\#E]P=\Inf$}
+%		\put(110,100){$P$}
+%		\put(128,80){$[2]P$}
+%		\put(136,54){$[3]P$}
+%		\put(-40,54){$[\#E-3]P$}
+%		\put(-30,80){$[\#E-2]P$}
+%		\put(-10,98){$[\#E-1]P$}
+%		\end{picture}%
+%	\end{center}
+%	\caption{An image of elliptic curve group\index{cyclic group}\index{group}}
+%	\label{fig:ECG}
+%\end{figure}
 
 %--------------------------------------
 \subsection{Frobenius Map on Elliptic Curve Groups}

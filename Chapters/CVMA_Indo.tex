@@ -1,4 +1,5 @@
-%Efficiently computable underlying finite field arithmetic is considered as one of the major bottlenecks for faster pairing operation.
+\chapter{Improved Optimal-Ate Pairing Using CVMA over KSS-16 Curve} 
+\label{ch:cvma_indocrypt}
 Finding efficiently computable underlying finite field arithmetic is one of the major bottlenecks for faster pairing operation.
 In this thesis, the authors exhibit efficiently computable extension field operation for Optimal-Ate pairing in Kachisa-Schaefer-Scott curve of embedding degree 16. 
 The recent suggestion of escalating parameter's size by Barbulescu and Duquesne due to improved Kim and Barbulescu's new number field sieve (exTNFS) have taken into account while selecting the parameter for 128-bit  level AES security.
@@ -44,13 +45,13 @@ In \cite{DBLP:journals/moc/Schirokauer10}, Schirokauer mentioned that the Number
 At CRYPTO'16, Kim and Barbulescu proposed extended tower number field sieve (SexTNFS) algorithm\cite{C:KimBar16}.
 Their optimization on resolving the discrete logarithm problem in $\mathbb{F}_{p^k}$ is based on the fact that the base field characteristic is presented as a polynomial.
 Their results intrigued researchers to find new parameters for pairing-friendly elliptic curves since the security level has changed.
-In response, Barbulescu and Duquesne have analyzed the security of popular pairing-friendly curve families against the NFS variants and suggested new parameters \cite{sylvain_new_param} holding twist security and immune to sub-group attack for standard security levels. 
+In response, Barbulescu and Duquesne have analyzed the security of popular pairing-friendly curve families against the NFS variants and suggested new parameters \cite{EPRINT:BarDuq17} holding twist security and immune to sub-group attack for standard security levels. 
 In the context of Optimal-Ate pairing, they concluded that holding existing parameters, BN curve, that is the most used in practice, can endure at most 100-bit security against the exTNFS.  
 Using their recommended new parameters, they found BLS-12 and KSS-16 curves are efficient choices over BN curve.
 As both BLS-12 and BN curves have the same embedding degree and both support sextic twist; therefore competitiveness between these two can be determinable from the length of integer parameter.
 However, the KSS-16 seems an atypical choice since the highest embedding degree supported is 4 and hasn't studied much as BN or BLS curves.
 
-In \cite{INDOCRYPT:KNGDNK17} the authors showed that Miller's loop for KSS-16 with the suggested parameter proposed in \cite{sylvain_new_param} is faster than for BN and BLS-12 with their proposed pseudo 8-sparse multiplication in Karatsuba based implementation \cite{INDOCRYPT:KNGDNK17}.
+In \cite{INDOCRYPT:KNGDNK17} the authors showed that Miller's loop for KSS-16 with the suggested parameter proposed in \cite{EPRINT:BarDuq17} is faster than for BN and BLS-12 with their proposed pseudo 8-sparse multiplication in Karatsuba based implementation \cite{INDOCRYPT:KNGDNK17}.
 In this thesis, we explored to find a more efficient implementation of Optimal-Ate pairing. 
 Therefore, we revisited the pseudo 8-sparse multiplication with cyclic vector multiplication algorithm (CVMA) \cite{cvma_kato}.
 This thesis adopts two different approaches of towering to construct $\FPSN$ extension field. 
@@ -84,26 +85,6 @@ the $m$ with lower case Greek suffix denotes multiplication with basis element.
 
 %-----------------------------------------------------------------
 \section{Fundamentals of Elliptic Curve and Pairing}\label{sec:1}
-\subsection{Kachisa-Schaefer-Scott (KSS) Curve \cite{EPRINT:KacSchSco07}}
-Kachisa, Schaefer, and Scott proposed a new family of  parameterized non super-singular pairing-friendly elliptic curves of embedding degree $k = \left\lbrace 16, 18, 32, 36, 40\right\rbrace$.
-Unlike BN and BLS pairing-friendly curve families, usually embraced with the sextic twist, the KSS family  holds the quartic twist. 
-In what follows, this thesis considers  the KSS curve of embedding degree $k =16$, denoted as \textit{KSS-16}, defined over extension field $\FPSN$ as follows:
-\begin{equation}\label{eq:KSS_16}
-E/\FPSN:Y^2=X^3+aX, \quad \mbox{($a \in \Fp$) and  $a \neq 0$},
-\end{equation}
-where $X,Y \in \FPSN$. 
-As a typical feature of pairing-friendly curves, it's properties are given by the polynomial formulas of integer $u$ as follows:
-\begin{subequations}
-	\begin{eqnarray}
-	p(u) &= & (u^{10} +2u^9 +5u^8 +48u^6 +152u^5 +240u^4   \nonumber \\ 
-	&& +625u^2 +2398u +3125)/980,  \\\label{eq:kss_16_char}
-	r(u) &= & (u^8 +48u^4 +625)/61255, \label{eq:kss_16_degree}  \\
-	t(u) &=& (2u^5 +41u+35)/35, \label{eq:kss_16_trace} 
-	\end{eqnarray}
-\end{subequations} 
-where the tuple $(p,r,t)$ are \textit{characteristic}, \textit{group order} and \textit{Frobenius trace} respectively.
-The integer  $u$, denoted the pairing parameter, is abide by the condition $u \equiv 25$ or $45$ (mod $70$). 
-
 \subsection{Extension Field Arithmetic for Pairing}
 While implementing pairing, a major speedup comes from the efficient finite field implementation. 
 Calculation of pairing requires executing the arithmetic operation in the extension field {of degree greater than 6}\cite{EPRINT:BenSco09}.
@@ -138,12 +119,12 @@ Here the $\Phi_{5}(x) = (x^{5}-1)/(x-1)$ is irreducible over $\FPFR$ and $(\alph
 In what follows, when the basis elements are implicitly known, the vector representation  $A=(a_0,a_1,a_2,a_3) \in \FPFR$ refers to the same element represented as $A=a_0 \alpha+ a_1\alpha^2+ a_2\alpha^3+a_3\alpha^4$.
 
 %----------------------------------------------------------------
-\subsubsection{Field Arithmetic  of $\FPSN$}
+\subsubsection{Field Arithmetic  of \texorpdfstring{$\FPSN$}{}}
 For any platform, multiplication, squaring and inversion are regarded as computationally expensive than addition or subtraction. 
 For convenient estimation of the total pairing cost, we count operations in $\Fp$ for extension field arithmetic.
 The following table, Table \ref{tab_fpoperation} shows operation count for Karatsuba based multiplication and squaring.
 \renewcommand{\baselinestretch}{1.5}
-\begin{table}[!h]
+\begin{table}[ht]
 	%\caption{Number of arithmetic operations in  $\FPSN$ based on Type-I towering \eqref{towering_1}.}
 	\centering
 	\resizebox{\columnwidth}{!}{
@@ -169,7 +150,7 @@ Since, $c_0=2$ in \eqref{towering_1}, therefore, the multiplication by the basis
 In the context of pairing on the KSS-16 curves, the valid bilinear map $e:\g1 \times \g2 \rightarrow \g3$ takes input from two additive rational point groups $\g1, \g2$ 
 and output an element in the multiplicative group $\g3$ of order $r$. 
 $\g1$, $\g2$ and $\g3$ are defined as follows:
-\begin{eqnarray}\label{eq:g1}
+\begin{eqnarray}
 \g1 & = &  E(\FP) [r] \cap \text{Ker}(\pi_p - [1]), \nonumber \\
 \g2 & = &  E(\F{p}{k}) [r] \cap \text{Ker}(\pi_p - [p]), \nonumber \\
 \g3 & = & \mF{p}{k}/(\mF{p}{k})^r, \nonumber
@@ -187,10 +168,10 @@ The Optimal-Ate pairing on KSS-16 elliptic curve is given by Zhang et al. \cite{
   (P,Q) &\longmapsto &\left(( f_{u,Q}(P)l_{[u]Q,[p]Q}(P))^{p^3}l_{Q,Q}(P)\right)^{\frac{p^{16}-1}{r}}
 \end{eqnarray*}
 The rational function $f_{u,Q}(P)$ is computed thanks to Miller algorithm which is included in the first step of computing the Optimal-Ate pairing. Then, we have the second step which is the computation of the exponent $\frac{p^{16}-1}{r}$ named the Final Exponentiation.\\
-The calculation of the Optimal-Ate pairing in KSS-16 elliptic curve is given by the following algorithm \ref{optimal_algo}.
-\begin{algorithm}[!h]
+The calculation of the Optimal-Ate pairing in KSS-16 elliptic curve is given by the following algorithm \ref{cvma_kss16_optimal_algo}.
+\begin{algorithm}[ht]
 	\caption{The Optimal-Ate pairing algorithm for KSS-16 curve}
-	\label{optimal_algo}
+	\label{cvma_kss16_optimal_algo}
 	\DontPrintSemicolon
 	\hspace{-3ex}
 	\KwIn{$u,P\in\g1,Q\in\g2'$}%input
@@ -199,11 +180,11 @@ The calculation of the Optimal-Ate pairing in KSS-16 elliptic curve is given by 
 	\nl $f \leftarrow 1,T \leftarrow Q$
 	
 	\nl \For{$i = \lfloor \log_2 (u)\rfloor $ {\bf downto} $1$} {
-		\nl $f\leftarrow f^2\cdot l_{T,T}(P)$, $T\leftarrow [2]T$ \Comment*[r]{see \eqref{sparse_dbl}}
+		\nl $f\leftarrow f^2\cdot l_{T,T}(P)$, $T\leftarrow [2]T$ \Comment*[r]{see \eqref{cvma_kss16_sparse_dbl}}
 		\nl \If{$u[i]=1$} {
-			\nl $f\leftarrow f\cdot l_{T,Q}(P)$, $T\leftarrow T+Q$ \Comment*[r]{see \eqref{sparse_add}}}
+			\nl $f\leftarrow f\cdot l_{T,Q}(P)$, $T\leftarrow T+Q$ \Comment*[r]{see \eqref{cvma_kss16_sparse_add}}}
 		\nl \If{$u[i]=-1$} {
-			\nl $f\leftarrow f\cdot l_{T,-Q}(P)$, $T\leftarrow T-Q$\Comment*[r]{see \eqref{sparse_add}}} } 
+			\nl $f\leftarrow f\cdot l_{T,-Q}(P)$, $T\leftarrow T-Q$\Comment*[r]{see \eqref{cvma_kss16_sparse_add}}} } 
 	\nl $Q_1\leftarrow [u]Q$, $Q_2\leftarrow [p]Q$ \;
 	\nl $f\leftarrow f\cdot l_{Q_1,Q_2}(P)$ \;
 	\nl $f_1\leftarrow f^{p^3}$, $f\leftarrow f\cdot f_1$ \;
@@ -248,7 +229,7 @@ The overall process is as follows:
 	\item  Finally, we compare the proposed implementation with \cite{INDOCRYPT:KNGDNK17}'s approach.
 \end{enumerate}
 %-----------------------------------------------------------------------------------
-\subsection{$\FPFR$ arithmetic in Type-II towering}
+\subsection{\texorpdfstring{$\FPFR$ }{}arithmetic in Type-II towering}
 In \cite{cvma_sanada} (Japanese), Sanada et al. primarily focus on the $\FPFR$ finite field operation.
 They reduced 5 and 3 prime field additions for a single $\FPFR$ multiplication and squaring respectively than Karatsuba method.
 However, $\FPFR$ inversion in \cite{cvma_sanada} requires $(31 M_p +66A_p+1I_p)$.
@@ -256,7 +237,7 @@ In contrast, the authors applied Karatsuba based $\FPFR$ inversion in \cite{INDO
 In this thesis, the authors derived a better $\FPFR$ inversion than \cite{cvma_sanada} that reduces the cost to $(16M_p+26A_p+1I_p)$. 
 The comparative operation count is shown in Table \ref{tab_fp4_operation}.
 \renewcommand{\baselinestretch}{1.5}
-\begin{table*}[!h]
+\begin{table*}[ht]
 	\centering
 	%\resizebox{\columnwidth}{!}{
 	\begin{tabular}{|c|c|c|}
@@ -273,7 +254,7 @@ The comparative operation count is shown in Table \ref{tab_fp4_operation}.
 \end{table*}
 \renewcommand{\baselinestretch}{1.0}
 %---------------------------------------------------------------------------------------------
-\subsubsection{Multiplication in $\FPFR$ using CVMA}
+\subsubsection{Multiplication in \texorpdfstring{$\FPFR$}{} using CVMA}
 Let's consider $A,B$, two elements in $ \FPFR$ based on \eqref{towering_2} as follows:
 \begin{eqnarray*}
 	A&=&a_0\alpha+a_1\alpha^2+a_2\alpha^3+a_3\alpha^4,\\
@@ -318,7 +299,7 @@ T_8=(a_2-a_3)(b_2-b_3).
 \end{eqnarray*}
 The cost of each computed term is given in the following Table \ref{tab_cmva_mul_cost}.
 \renewcommand{\baselinestretch}{1.2}
-\begin{table*}[!h]
+\begin{table*}[ht]
 	\centering
 	%\resizebox{\columnwidth}{!}{
 	\begin{tabular}{|c|c|}
@@ -339,7 +320,7 @@ The cost of each computed term is given in the following Table \ref{tab_cmva_mul
 In total the multiplication in $\FPFR$ costs $9M_p+22A_p$, which saves $5A_p$ compared to Karatsuba based multiplication for elements in $\FPFR$.
 %---------------------------------------------------------------------------------------------
 
-\subsubsection{Squaring in $\FPFR$ using CVMA}
+\subsubsection{Squaring in \texorpdfstring{$\FPFR$}{} using CVMA}
 To compute the squaring of $A \in \FPFR$, we will replace the $b_i$ terms in \eqref{cvma4} by $a_i$, with $i \in \{0, 1, 2, 3\}$ obtaining $A^2$ as follows:
 \begin{eqnarray}
 A^2&=&(2a_1a_3-2a_0a_3-2a_1a_2+a_2^2)\alpha\nonumber
@@ -366,7 +347,7 @@ T_1&=&a_0-a_2,\ T_2=a_0-a_1,\ \ T_3=a_2-a_3,\ T_4=a_1-a_3,\ \ T_5=2T_2T_3,\  T_6
 \end{eqnarray*}
 The cost of each computed term is given in the following Table \ref{tab_cvma_sqr_cost_computedterms}.
 \renewcommand{\baselinestretch}{1.2}
-\begin{table}[!h]
+\begin{table}[ht]
 	\centering
 	%\resizebox{\columnwidth}{!}{
 	\begin{tabular}{|c|c|}
@@ -384,7 +365,7 @@ The cost of each computed term is given in the following Table \ref{tab_cvma_sqr
 \renewcommand{\baselinestretch}{1.0}
 The overall cost for computing a squaring by CVMA is then $6M_p+14A_p$. It saves $10A_p$ than Karatsuba based squaring for $\FPFR$ elements.
 %------------------------------------------------------------------------------------------
-\subsubsection{Frobenius mapping in $\FPFR$ using CVMA}
+\subsubsection{Frobenius mapping in \texorpdfstring{$\FPFR$}{} using CVMA}
 Since, $\alpha^5=1$, then, $\alpha^p=(\alpha^5)^{\frac{p-2}{5} }\alpha^2=\alpha^2$. 
 Recall that the Frobenius map, denoted as $\pi_p : (A) = (a_0 \alpha +a_1\alpha^2+a_2\alpha^3+a_3\alpha^4)^p$, is the $p$-th power of the vector which can be derived as follows:
 \begin{eqnarray}
@@ -397,7 +378,7 @@ Recall that the Frobenius map, denoted as $\pi_p : (A) = (a_0 \alpha +a_1\alpha^
 From the above procedure it is clear that the Frobenius map on an $\FPFR$ element by applying CVMA is free of cost.
 
 %-----------------------------------------------------------------------------------------------------------
-\subsubsection{Inversion in $\FPFR$ used in \cite{cvma_sanada}}
+\subsubsection{Inversion in \texorpdfstring{$\FPFR$} used in \texorpdfstring{\cite{cvma_sanada}}{}}
 Let $L$ be an $\mathbb{F}_{p^4}$ element, which is the result of the product of the Frobenius maps $A^p, A^{p^2}, A^{p^3}$.
 The inversion of $A$ can be obtained as follows.
 \begin{eqnarray}
@@ -407,7 +388,7 @@ The inversion of $A$ can be obtained as follows.
 where $s \in \mathbb{F}_p$ element represented as $(-s,-s,-s,-s)$ in normal basis.
 The calculation cost becomes $((9M_p+22A_p)\times3M_p)+4M_p+I_p=31M_p+66A_p+I_p$.
 %---------------------------------------------------------------------------------------------
-\subsubsection{Optimized  $\FPFR$ Inversion using CVMA}
+\subsubsection{Optimized  \texorpdfstring{$\FPFR$} Inversion using CVMA}
 Let $A=(a_0,a_1,a_2,a_3)$ be an element in $\mathbb{F}_{p^4}$.
 The proposed optimized method applies subfield calculation in $\FPT$ as 
 \begin{eqnarray}
@@ -445,7 +426,7 @@ In what follows, this thesis considers the cost of one $\FP$ squaring, as a simi
 The details of CVMA based operations in $\FPT$ for the above inversion is described in following sections.
 
 %-------------------------------------------------------------------------------------------------------
-\subsubsection{Calculation over $\mathbb{F}_{p^2}$ based on towering \eqref{towering_2}}
+\subsubsection{Calculation over \texorpdfstring{$\mathbb{F}_{p^2}$}{} based on towering \texorpdfstring{\eqref{towering_2}}{}}
 Let $X=(x_0,x_1,x_1,x_0)$ and $Y=(y_0,y_1,y_1,y_0)$ be  two $\mathbb{F}_{p^2}$ elements.  In this paragraph, we present the cost of the multiplication of $X$ and $Y$, the squaring of $X$ and its Frobenius.
 \paragraph{\bf{Multiplication:} }
 Let $R$ be the result of computing the multiplication $X Y$, $R=(r_0,r_1,r_1,r_0)$ is calculated as follows:
@@ -476,7 +457,7 @@ where $u=(-u,-u,-u,-u)$ is given by $u=-(x_0-x_1)^2+x_0x_1$
 Therefore, the inversion in $\mathbb{F}_{p^2}$ requires  ($3M_p+S_p+2A_p+I_p$).
 %------------------------------------------------------------------------------------
 
-\subsubsection{Frobenius mapping in $\FPSN$ using CVMA}\label{fobenius_map}
+\subsubsection{Frobenius mapping in \texorpdfstring{$\FPSN$}{} using CVMA}\label{fobenius_map}
 Let $A=(a_0+a_1\beta+a_2\gamma+a_3\beta \gamma)$ be certain vector in $\FPSN$ where $a_0,a_1,a_2, a_3 \in \FPFR$.
 By the definition, Frobenius map of $A$, i.e. $\pi_p : (A) = (a_0+a_1\beta+a_2\gamma+a_3\beta \gamma)^p$, can be computed as Frobenius map of each $\FPFR$ vector separately according to \eqref{fp4frob}. 
 The Frobenius map of $a_0$  is obtained as $(x_0\alpha+ x_1\alpha^2 + x_2\alpha^3 +x_3\alpha^4)^p = (x_2\alpha+ x_0\alpha^2 + x_3\alpha^3 +x_1\alpha^4)$, where $x_i \in \FP$.
@@ -512,7 +493,7 @@ A^p &=&  ( x_2 \alpha+x_0 \alpha^2+ x_3 \alpha^3+x_1\alpha^4) \nonumber \\
 %------------------------------------------------------------------------------------------------
 
 %------------------------------------------------------------------------------------------------
-\subsection{Quartic Twist of KSS-16 Curves}  \label{Quartic_twist}
+\subsection{Quartic Twist of KSS-16 Curves}  \label{eq:quartic_twist_cvma_kss16}
 The KSS-16 elliptic curve has CM discriminant of $D = 1$ and it's embedding degree $k=16$ is a multiple of 4. 
 Therefore, the maximum twist available for KSS-16 is the quartic twist or degree $d=4$ twist.
 Let $(\alpha-1)$ has no square root in $\FPFR$.  
@@ -528,28 +509,7 @@ Since points on the twisted curve are defined over a smaller field than $\FPSN$,
 Let, $Q'=(x',y')$ be a rational point in $E'(\FPFR)$. 
 From \eqref{towering_2}, we have  $(\alpha-1)^{1/2}=\beta$ and $(\alpha-1)^{3/4}=\beta\gamma$.
 Therefore, the map given in  \eqref{twist_q_to_q'} enables toll free mapping and remapping between $Q=(x,y)$ and $Q'=(x',y')$.
-Table \ref{tab_Q} shows the vector representation of $Q = (x_{Q},y_Q) = ((\alpha-1)^{1/2}x_{Q'},(\alpha-1)^{3/4}y_{Q'}) \in \FPSN$ according to \eqref{towering_2}. 
-\renewcommand{\baselinestretch}{1.5}
-\begin{table}[!h]
-%	\caption{Vector representation of $Q = (x_Q,y_Q) \in \g2 \subset E(\mathbb{F}_{p^{16}})$}
-	\centering
-	\resizebox{\columnwidth}{!}{
-		\begin{tabular}{|*{17}{c|}}
-			\hline 
-			Type-I & 1 & $\alpha$ & $\beta$ & $\alpha \beta$ & $\gamma$ & $\alpha \gamma$ & $\beta \gamma$ & $\alpha \beta \gamma$ & $\omega$ & $\alpha \omega$ & $ \beta \omega$ & $\alpha \beta \omega$ & $\gamma \omega$ & $\alpha \gamma \omega$ &$ \beta \gamma \omega$ & $\alpha \beta \gamma \omega$\\
-			\hline 
-			$x_Q$ & 0 & 0 & 0 & 0 & $a_4$ & $a_5$ &$ a_6$ & $a_7$ & 0 & 0 & 0 & 0 & 0 & 0 & 0& 0\\
-			\hline 
-			$y_Q$ & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & $a_{12}$ & $a_{13}$ & $a_{14}$ & $a_{15}$\\
-			\hline 
-			Type-II & $\alpha$ & $\alpha^2$ & $\alpha^3$ & $\alpha^4$ & $\alpha \beta$ & $\alpha^2\beta$ & $\alpha^3\beta$ & $\alpha^4\beta$  &$\alpha \gamma$ & $\alpha^2 \gamma$ & $\alpha^3\gamma$ & $\alpha^4\gamma$ &  $\alpha \beta \gamma$ & $\alpha^2\beta\gamma$ & $\alpha^3\beta\gamma$ & $\alpha^4\beta\gamma$\\
-			\hline 
-		\end{tabular}
-		}
-		\caption{Vector representation of $Q = (x_Q,y_Q) \in \g2 \subset E(\mathbb{F}_{p^{16}})$.}
-		\label{tab_Q}
-\end{table}
-%Here, $a_j \in \Fp$, where $j={0, 1, 2, \cdots,15}$.
+Table \ref{table:indo_kss16_Qing2} shows the vector representation of $Q = (x_{Q},y_Q) = ((\alpha-1)^{1/2}x_{Q'},(\alpha-1)^{3/4}y_{Q'}) \in \FPSN$ according to \eqref{towering_2}. 
 
 It's important here to show that $(\alpha-1)$ is a $\QNR$ in $\FPFR$. 
 From the definition of \eqref{towering_2}, $\alpha$ is one of the zeros of $\Phi_{5}(x)$, therefore $\alpha^5=1$.
@@ -597,7 +557,7 @@ Calculations of \eqref{lamda_tt} and \eqref{line_7ecd} can be optimized as follo
 \begin{alignat}{3}
 &A                = \frac{1}{2y_{T'}}, B =3x_{T'}^2+\delta, C =AB, D=2x_{T'},&\nonumber\\
 &x_{2T'}      = C^2-D,  E= Cx_{T'}-y_{T'}, y_{2T'}=E-Cx_{2T'}, F=-Cx_P &\nonumber\\
-&l_{T,T}(P)   = y_P+F \beta +E\beta \gamma&   \label{sparse_dbl}
+&l_{T,T}(P)   = y_P+F \beta +E\beta \gamma&   \label{cvma_kss16_sparse_dbl}
 \end{alignat}
 
 The elliptic curve addition phase ($T\neq Q$) and line evaluation of $ l_{T,Q}(P)$ can also be optimized similarly to the above procedure.
@@ -614,29 +574,29 @@ The common calculations in \eqref{line7_eca} can be reduced as follows:
 \begin{alignat}{3}
 &A=\frac{1}{x_{Q'}-x_{T'}}, B=y_{Q'}-y_{T'}, C=AB, D=x_{T'}+x_{Q'},&\nonumber\\
 & x_{R'}=C^2-D, E= Cx_{T'}-y_{T'}, y_{R'}=E-Cx_{R'},  F=-Cx_P &\nonumber\\
-&l_{T,Q}(P)= y_P-Cx_P\gamma +E \beta\gamma = y_P+F\beta+E\beta \gamma. &\label{sparse_add}
+&l_{T,Q}(P)= y_P-Cx_P\gamma +E \beta\gamma = y_P+F\beta+E\beta \gamma. &\label{cvma_kss16_sparse_add}
 \end{alignat}
-Comparing with Table \ref{tab_Q}, it can be noticed that $y_P$, $F$ and $E$ in \eqref{sparse_dbl} and \eqref{sparse_add} are coefficients in the basis position of $\alpha$, $\beta$, and $\beta\gamma$ of an $\FPSN$ vector.
+Comparing with Table \ref{table:indo_kss16_Qing2}, it can be noticed that $y_P$, $F$ and $E$ in \eqref{cvma_kss16_sparse_dbl} and \eqref{cvma_kss16_sparse_add} are coefficients in the basis position of $\alpha$, $\beta$, and $\beta\gamma$ of an $\FPSN$ vector.
 Therefore,  among the 16 coefficients of  $l_{T,T}(P)$ and $l_{T,Q}(P)\in \FPSN$, only 9 coefficients $y_P\in \Fp$, $Cx_P\in \FPFR$ and $E\in \FPFR$ are  non-zero.
 The remaining 7 zero coefficients leads to an efficient multiplication, which we call 7-sparse multiplication in KSS-16 curve. 
 Another important thing is, vectors $A,B,C, D, E, F$  are calculated in $\FPFR$ extension field while performing operations in $\FPSN$.
 %----------------------------------------------------------------------------------------------
 \subsection{Pseudo 8-sparse Multiplication for KSS-16 Curve using Type-II Towering}
-The main idea of  \textit{pseudo 8-sparse multiplication} is finding a more sparse form  of \eqref{sparse_dbl} and \eqref{sparse_add}, which allows reducing the number of multiplication of $\FPSN$ vector during Miller's algorithm evaluation. 
-To simplify both of \eqref{sparse_dbl} and \eqref{sparse_add}, $y_P^{-1}$ is multiplied to both side of  these two equations since $y_P$  remains the same through the Miller's algorithms loop calculation.
+The main idea of  \textit{pseudo 8-sparse multiplication} is finding a more sparse form  of \eqref{cvma_kss16_sparse_dbl} and \eqref{cvma_kss16_sparse_add}, which allows reducing the number of multiplication of $\FPSN$ vector during Miller's algorithm evaluation. 
+To simplify both of \eqref{cvma_kss16_sparse_dbl} and \eqref{cvma_kss16_sparse_add}, $y_P^{-1}$ is multiplied to both side of  these two equations since $y_P$  remains the same through the Miller's algorithms loop calculation.
 We get the following equations.
 \begin{subequations}
 	\begin{eqnarray}
-	y_{P}^{-1}l_{T,T}(P)& =  1 -Cx_{P}y_{P}^{-1}\gamma+E y_{P}^{-1}\beta\gamma ,  \label{ps_8_dbl}\\
-	y_{P}^{-1}l_{T,Q}(P)& =  1 -Cx_{P}y_{P}^{-1}\gamma+E y_{P}^{-1}\beta\gamma , \label{ps_8_add}
+	y_{P}^{-1}l_{T,T}(P)& =  1 -Cx_{P}y_{P}^{-1}\gamma+E y_{P}^{-1}\beta\gamma ,  \label{eq:cvma_kss16_ps_8_dbl}\\
+	y_{P}^{-1}l_{T,Q}(P)& =  1 -Cx_{P}y_{P}^{-1}\gamma+E y_{P}^{-1}\beta\gamma , \label{eq:cvma_kss16_ps_8_add}
 	\end{eqnarray}
 \end{subequations}
-Although the \eqref{ps_8_dbl} and \eqref{ps_8_add} do not get more sparse, but 1st coefficient becomes 1. 
+Although the \eqref{eq:cvma_kss16_ps_8_dbl} and \eqref{eq:cvma_kss16_ps_8_add} do not get more sparse, but 1st coefficient becomes 1. 
 Such vector is defined as \textit{pseudo sparse form} in this thesis. 
 This form realizes more efficient $\FPSN$ vectors  multiplication in Miller's loop.  
-However, it is clear that the \eqref{ps_8_add} creates computation overhead than \eqref{sparse_add}. We have to compute $y_{P}^{-1}l_{T,Q}(P)$ in the left side and $x_Py_{P}^{-1}$, $Ey_P^{-1}$ on the right. 
-The same goes between \eqref{ps_8_dbl} and \eqref{sparse_dbl}. 
-Since the computation of \eqref{ps_8_dbl} and \eqref{ps_8_add} are almost identical, therefore the rest of the thesis shows the optimization technique for \eqref{ps_8_dbl}.
+However, it is clear that the \eqref{eq:cvma_kss16_ps_8_add} creates computation overhead than \eqref{cvma_kss16_sparse_add}. We have to compute $y_{P}^{-1}l_{T,Q}(P)$ in the left side and $x_Py_{P}^{-1}$, $Ey_P^{-1}$ on the right. 
+The same goes between \eqref{eq:cvma_kss16_ps_8_dbl} and \eqref{cvma_kss16_sparse_dbl}. 
+Since the computation of \eqref{eq:cvma_kss16_ps_8_dbl} and \eqref{eq:cvma_kss16_ps_8_add} are almost identical, therefore the rest of the thesis shows the optimization technique for \eqref{eq:cvma_kss16_ps_8_dbl}.
 To overcome these overhead computations, the following techniques can be applied.
 \begin{itemize}
 	\item $x_{P}y_{P}^{-1}$ is omitted by applying further isomorphic mapping of $P \in \g1$.
@@ -647,13 +607,13 @@ To overcome the $Cx_{P}y_{P}^{-1}$  calculation cost, $x_{P}y_{P}^{-1} =1 $ is e
 To obtain $x_{P}y_{P}^{-1} = 1$, the following isomorphic mapping of $P=(x_P,y_P) \in \g1$ is introduced. 
 
 %----------------------------------------------------------------------------------------------
-\subsubsection{Isomorphic map of $P=(x_P,y_P) \to \bar P=(x_{\bar P},y_{\bar P})$.}
-Although the KSS-16 curve is typically defined over $\FPSN$ as $E(\FPSN)$, for efficient implementation of Optimal-Ate pairing, certain operations are carried out in a quartic twisted isomorphic curve $E'$ defined over $\FPFR$ as shown in Sec. \ref{Quartic_twist}. 
+\subsubsection{Isomorphic map of  \texorpdfstring{$P=(x_P,y_P) \to \bar P=(x_{\bar P},y_{\bar P})$}{}.}
+Although the KSS-16 curve is typically defined over $\FPSN$ as $E(\FPSN)$, for efficient implementation of Optimal-Ate pairing, certain operations are carried out in a quartic twisted isomorphic curve $E'$ defined over $\FPFR$ as shown in Sec. \ref{eq:quartic_twist_cvma_kss16}. 
 For the same, let us consider $\bar{E}(\FPFR)$ is isomorphic to $E(\FPFR)$ and certain $z \in \Fp$ as a quadratic residue (QR) in $\FPFR$. 
 A generalized mapping between $E(\FPFR)$ and $\bar{E}(\FPFR)$ can be given as follows:
 \begin{eqnarray}
 &&\bar{E}(\FPFR)[r]\longmapsto E(\FPFR)[r],\nonumber\\
-&&(x,y)\longmapsto (z^{-1}x,z^{-3/2}y),\label{map2}\nonumber
+&&(x,y)\longmapsto (z^{-1}x,z^{-3/2}y),\label{cvma_kss16_isomap}\nonumber
 \end{eqnarray}
 where,  $\bar{E}$ is the elliptic curve defined by  $ y^2=x^3+az^{-2}x,$ and $z, z^{-1},z^{-3/2}\in \Fp$.\\
 The mapping considers $z \in \Fp$ is a quadratic residue over $\FPFR$ which can be shown by the fact that $z^{(p^4-1)/2} = 1$ as follows:
@@ -663,14 +623,14 @@ z^{(p^4-1)/2}& = &z^{(p-1)(p^3+p^2+p+1)/2 } \nonumber \\
 & = & 1 \quad \text{QR $\in \FPFR$}.
 \end{eqnarray}
 Therefore, $z$ is a quadratic residue over $\FPFR$.\\
-Now  based on $P= (x_P, y_P)$ be the rational point on curve $E$, the considered isomorphic mapping of \eqref{map2}  can find a certain isomorphic rational point $\bar P = (x_{\bar P}, y_{\bar P})$ on the curve $\bar E$ as follows:
-\begin{eqnarray}\label{bar_P}
+Now  based on $P= (x_P, y_P)$ be the rational point on curve $E$, the considered isomorphic mapping of \eqref{cvma_kss16_isomap}  can find a certain isomorphic rational point $\bar P = (x_{\bar P}, y_{\bar P})$ on the curve $\bar E$ as follows:
+\begin{eqnarray}\label{eq:cvma_kss16_bar_P}
 y_P^2 & = & x_P^3+ax_P, \nonumber \\
 y_P^2 z^{-3}& = & x_P^3 z^{-3} +ax_Pz^{-3}, \nonumber \\
 (y_P z^{-3/2})^2& = & (x_Pz^{-1})^3 +az^{-2} x_Pz^{-1},
 \end{eqnarray}
 where $\bar P = (x_{\bar P}, y_{\bar P}) = (x_P z^{-1},y_P z^{-3/2})$ and recall that the general form of the curve $\bar E$ is given as follows:
-\begin{equation}\label{isomorphic_E_bar}
+\begin{equation}\label{eq:cvma_kss16_isomorphic_E_bar}
 y^2 = x^3+az^{-2}x.
 \end{equation}
 To obtain the target relation $x_{\bar P}y_{\bar P}^{-1} = 1$ from  above isomorphic map and rational point $\bar P$, let us find twist parameter $z$ as follows:
@@ -680,18 +640,18 @@ z^{-1}x_P (z^{-3/2}y_P)^{-1} &=& 1 \nonumber \\
 z^{1/2}(x_P.y_P^{-1})&=&1\nonumber \\
 \text{So, } z &= &(x_P^{-1}y_P)^2.
 \end{eqnarray}
-Now using $z = (x_P^{-1}y_P)^2$ and \eqref{bar_P}, $\bar P$ can be obtained as
+Now using $z = (x_P^{-1}y_P)^2$ and \eqref{eq:cvma_kss16_bar_P}, $\bar P$ can be obtained as
 \begin{equation}
 \bar{P}(x_{\bar{P}}, y_{\bar{P}})= (x_P z^{-1},y_P z^{-3/2})=(x_P^3y_P^{-2},x_P^3y_P^{-2}),
 \end{equation}
 %where the $x$ and $y$ coordinates of $\bar{P}$ are equal. 
 For the same isomorphic map we can obtain $\bar{Q}$ on curve $\bar{E}$ defined over $\FPSN$ as follows:
-\begin{equation} \label{Q_bar}
+\begin{equation} \label{eq:cvma_kss16_Q_bar}
 \bar{Q}(x_{\bar{Q}}, y_{\bar{Q}}) = (z^{-1}x_{Q'}\beta, z^{-3/2}y_{Q'}\beta\gamma),
 \end{equation} 
 where from \eqref{twist_q_to_q'}, $Q'(x_{Q'},y_{Q'}) \in E'$.% is obtained in quartic twisted curve $E'$. 
 
-At this point, to use $\bar{Q}$ with $\bar{P}$ in line evaluation we need to find another isomorphic map that will map $\bar{Q} \mapsto \bar{Q'}$, where $\bar{Q'}$ is the rational point on curve  $\bar{E'}$ defined over $\FPFR$. Such $\bar{Q'}$ and $\bar{E'}$ can be obtained from $\bar{Q}$ of \eqref{Q_bar} and curve $\bar{E}$ from \eqref{isomorphic_E_bar} as follows:
+At this point, to use $\bar{Q}$ with $\bar{P}$ in line evaluation we need to find another isomorphic map that will map $\bar{Q} \mapsto \bar{Q'}$, where $\bar{Q'}$ is the rational point on curve  $\bar{E'}$ defined over $\FPFR$. Such $\bar{Q'}$ and $\bar{E'}$ can be obtained from $\bar{Q}$ of \eqref{eq:cvma_kss16_Q_bar} and curve $\bar{E}$ from \eqref{eq:cvma_kss16_isomorphic_E_bar} as follows:
 \begin{eqnarray} 
 (z^{-3/2}y_{Q'}\beta\gamma )^2 &=& (z^{-1}x_{Q'}\beta)^3+az^{-2}z^{-1}x_{Q'}\beta, \nonumber \\
 (z^{-3/2}y_{Q'})^2 \beta^2 \gamma^2 &=& (z^{-1}x_{Q'})^3\beta^3+az^{-2}z^{-1}x_{Q'}\beta, \nonumber \\
@@ -700,22 +660,22 @@ At this point, to use $\bar{Q}$ with $\bar{P}$ in line evaluation we need to fin
 \end{eqnarray}
 From the above equations, $\bar{E'}$ and $\bar{Q'}$ are given as,
 \begin{eqnarray}
-\bar{E'}: ~y_{\bar{Q'}}^2 & = & x_{\bar{Q'}}^3+a(z\beta)^{-2}x_{\bar{Q'}}. \label{E_bar_prime}\\
+\bar{E'}: ~y_{\bar{Q'}}^2 & = & x_{\bar{Q'}}^3+a(z\beta)^{-2}x_{\bar{Q'}}. \label{eq:cvma_kss16_E_bar_prime}\\
 \bar{Q'}(x_{\bar{Q'}}, y_{\bar{Q'}}) & = & (z^{-1}x_{Q'}, z^{-3/2}y_{Q'})= 
-(x_{Q'} x_P^2y_P^{-2},y_{Q'} x_P^3y_{P}^{-3}) \label{Q_bar_prime}. 
+(x_{Q'} x_P^2y_P^{-2},y_{Q'} x_P^3y_{P}^{-3}) \label{eq:cvma_kss16_Q_bar_prime}. 
 \end{eqnarray}
-Now, by applying $\bar{P}$ and $\bar{Q'}$, the line evaluation of  \eqref{ps_8_add} becomes:
+Now, by applying $\bar{P}$ and $\bar{Q'}$, the line evaluation of  \eqref{eq:cvma_kss16_ps_8_add} becomes:
 \begin{eqnarray}
 y_{\bar{P}}^{-1} l_{\bar{T'},\bar{Q'}}(\bar{P})&=& 1-C(x_{\bar{P}}y_{\bar{P}}^{-1})\gamma+E y_{\bar{P}}^{-1}\beta\gamma,  \nonumber \\
-\bar{l}_{\bar{T'},\bar{Q'}}(\bar{P}) &=& 1 -C\gamma+E (x_{P}^{-3} y_{P}^2)\beta\gamma , \label{ps_8_add_twist}
+\bar{l}_{\bar{T'},\bar{Q'}}(\bar{P}) &=& 1 -C\gamma+E (x_{P}^{-3} y_{P}^2)\beta\gamma , \label{eq:cvma_kss16_ps_8_add_twist}
 \end{eqnarray}
-where $x_{\bar{P}}y_{\bar{P}}^{-1}=1$ and $y_{\bar{P}}^{-1} = z^{3/2}y_{P}^{-1}=(x_{P}^{-3} y_{P}^2)$. The \eqref{ps_8_dbl} becomes the same as \eqref{ps_8_add_twist}. 
-Compared to \eqref{ps_8_add}, the \eqref{ps_8_add_twist} will be faster while using in Miller's loop in combination of the pseudo 8-sparse multiplication recalled in Alg.~\ref{algo_sparse_mul_kss16}.
+where $x_{\bar{P}}y_{\bar{P}}^{-1}=1$ and $y_{\bar{P}}^{-1} = z^{3/2}y_{P}^{-1}=(x_{P}^{-3} y_{P}^2)$. The \eqref{eq:cvma_kss16_ps_8_dbl} becomes the same as \eqref{eq:cvma_kss16_ps_8_add_twist}. 
+Compared to \eqref{eq:cvma_kss16_ps_8_add}, the \eqref{eq:cvma_kss16_ps_8_add_twist} will be faster while using in Miller's loop in combination of the pseudo 8-sparse multiplication recalled in Alg.~\ref{algo_sparse_mul_kss16_cvma}.
 
 \vspace{0.6em}
-\begin{algorithm}[H]
+\begin{algorithm}[ht]
 	\caption{Pseudo 8-sparse multiplication for KSS-16 curve}
-	\label{algo_sparse_mul_kss16}
+	\label{algo_sparse_mul_kss16_cvma}
 	\DontPrintSemicolon
 	\hspace{-3ex}
 	\KwIn{$A,B\in \FPSN$\\
@@ -734,17 +694,17 @@ Compared to \eqref{ps_8_add}, the \eqref{ps_8_add_twist} will be faster while us
 	\nl return $C=(c_0+c_1\gamma)+(c_3+c_4\gamma)\beta$ \Comment*[r]{Total 54$M_p$} 
 \end{algorithm}
 \vspace{0.8mm}
-However, to apply \eqref{ps_8_add_twist} in Miller's algorithm, we need the following pre-computations once in every Miller's Algorithm execution.
+However, to apply \eqref{eq:cvma_kss16_ps_8_add_twist} in Miller's algorithm, we need the following pre-computations once in every Miller's Algorithm execution.
 \begin{itemize}
 	\item Computing $\bar{P}$ and $\bar{Q'}$,
 	\item Computing $y_{\bar{P}}^{-1}=(x_{P}^{-3} y_{P}^{2})$ and
-	\item Deducing the $z^{-2}$ term from curve $\bar{E'}$ of \eqref{E_bar_prime}.
+	\item Deducing the $z^{-2}$ term from curve $\bar{E'}$ of \eqref{eq:cvma_kss16_E_bar_prime}.
 	\item Calculating $az^{-2}(\alpha-1)^{-1} = z^{-2}\delta$ used during ECD of curve $\bar{E'}$.
 \end{itemize}
-Among the above terms $a=1$ and $\delta=(\alpha-1)^{-1}$ is pre-calculated during parameter setup. Rest of the operations are calculated as follows using Alg. \ref{pre_calc_Algo}.
+Among the above terms $a=1$ and $\delta=(\alpha-1)^{-1}$ is pre-calculated during parameter setup. Rest of the operations are calculated as follows using Alg. \ref{pre_calc_Algo_cvma_kss16}.
 \begin{algorithm}[!htp]
 	\caption{Pre-calculation and mapping $P \mapsto\bar{P}$ and $Q'\mapsto \bar{Q'}$}
-	\label{pre_calc_Algo}
+	\label{pre_calc_Algo_cvma_kss16}
 	\DontPrintSemicolon
 	\hspace{-3ex}
 	\KwIn{$P=(x_P,y_P) \in\g1,Q'=(x_{Q'},y_{Q'})\in\g2'$}%input
@@ -758,13 +718,13 @@ Among the above terms $a=1$ and $\delta=(\alpha-1)^{-1}$ is pre-calculated durin
 	\nl $y_{\bar{Q'}} \leftarrow ABy_{Q'}$ \Comment*[r]{$2M_{p^4}$}
 	\nl $y_P^{-1} \leftarrow y_{\bar{P}}^{-1}$ \Comment*[r]{$1I_{p^4}$}
 	\nl $z^{-2} \leftarrow B^2$ \Comment*[r]{$1S_{p^4}$}
-	\nl $z^{-2} \leftarrow z^{-2}\delta$  \Comment*[r]{used during ECD in \eqref{E_bar_prime}; $1M_{p^4}$}
+	\nl $z^{-2} \leftarrow z^{-2}\delta$  \Comment*[r]{used during ECD in \eqref{eq:cvma_kss16_E_bar_prime}; $1M_{p^4}$}
 	\nl {\bf return} $\bar{Q'}=(x_{\bar{Q'}},y_{\bar{Q'}}),\bar{P} = (x_{\bar{P}}, y_{\bar{P}}), y_{P}^{-1}, z^{-2},  z^{-2}\delta $\;
 \end{algorithm}
 \vspace{8mm}
 The remaining part of the Miller's algorithm i.e. the multiplication by prime $p[Q]$ or $[p^2]Q$ can be evaluated by applying skew Frobenius map  \cite{CANS:SNOKM08}.
 %-----------------------------------------
-\subsubsection{Skew Frobenius Map to Compute $[p]\bar{Q'}$}\label{sec_tskew_fm}
+\subsubsection{Skew Frobenius Map to Compute \texorpdfstring{$[p]\bar{Q'}$}{}}\label{sec:skew_fm_cvmakss16}
 From the definition of $Q \in \g2$ we recall that $Q$ satisfies $[\pi_p -p]Q = \cal O$ or $\pi_p(Q) = [p]Q$, which is also applicable for $\bar{Q'}$.
 Applying skew Frobenius map we can optimize $[p]\bar{Q'}$ calculation in Miller's algorithm as follows:
 \begin{equation*}
@@ -897,7 +857,7 @@ For this reason, in our work, we consider only the cyclotomic squaring.
 
 The overall optimizations can be seen as the following Alg. \ref{optimal_algo_improved}.
 
-\begin{algorithm}[!h]
+\begin{algorithm}[ht]
 	\caption{The improved Optimal-Ate pairing algorithm for KSS-16 curve using CVMA}
 	\label{optimal_algo_improved}
 	\DontPrintSemicolon
@@ -906,21 +866,21 @@ The overall optimizations can be seen as the following Alg. \ref{optimal_algo_im
 %	\hspace{-3ex}
 	\KwOut{$e(\bar{Q'},\bar{P})$} %output
 
-	\nl Pre-compute $\bar{Q'},\bar{P},y_{P}^{-1}, z^{-2}, z^{-2}\delta$ \Comment*[r]{see Alg. \ref{pre_calc_Algo}}
+	\nl Pre-compute $\bar{Q'},\bar{P},y_{P}^{-1}, z^{-2}, z^{-2}\delta$ \Comment*[r]{see Alg. \ref{pre_calc_Algo_cvma_kss16}}
 	
 	\nl $f \leftarrow 1, \bar{T'} \leftarrow \bar{Q'}$\;
 	\nl \For{$i = \lfloor \log_2 (u)\rfloor $ {\bf downto} $1$} {
-		\nl $f\leftarrow f^2\cdot \bar{l}_{\bar{T'},\bar{T'}}(\bar{P}) $, $ \bar{T'} \leftarrow [2] \bar{T'} $ \Comment*[r]{apply Alg. \ref{algo_sparse_mul_kss16} }
+		\nl $f\leftarrow f^2\cdot \bar{l}_{\bar{T'},\bar{T'}}(\bar{P}) $, $ \bar{T'} \leftarrow [2] \bar{T'} $ \Comment*[r]{apply Alg. \ref{algo_sparse_mul_kss16_cvma} }
 		\nl \If{$u[i]=1$} {
-			\nl $f\leftarrow f\cdot \bar{l}_{\bar{T'},\bar{Q'}}(\bar{P})$, $ \bar{T'} \leftarrow  \bar{T'} + \bar{Q'} $ \Comment*[r]{apply Alg.\ref{algo_sparse_mul_kss16} to solve \eqref{ps_8_add_twist}}}
+			\nl $f\leftarrow f\cdot \bar{l}_{\bar{T'},\bar{Q'}}(\bar{P})$, $ \bar{T'} \leftarrow  \bar{T'} + \bar{Q'} $ \Comment*[r]{apply Alg.\ref{algo_sparse_mul_kss16_cvma} to solve \eqref{eq:cvma_kss16_ps_8_add_twist}}}
 		\nl \If{$u[i]=-1$} {
-			\nl $f\leftarrow f\cdot \bar{l}_{\bar{T'},\bar{Q'}}(\bar{P})$, $ \bar{T'} \leftarrow  \bar{T'} - \bar{Q'} $\Comment*[r]{ apply Alg.\ref{algo_sparse_mul_kss16} to solve \eqref{ps_8_add_twist}}}} 
+			\nl $f\leftarrow f\cdot \bar{l}_{\bar{T'},\bar{Q'}}(\bar{P})$, $ \bar{T'} \leftarrow  \bar{T'} - \bar{Q'} $\Comment*[r]{ apply Alg.\ref{algo_sparse_mul_kss16_cvma} to solve \eqref{eq:cvma_kss16_ps_8_add_twist}}}} 
 	\nl $Q_1\leftarrow [u]\bar{Q'}$  \Comment*[r]{here $Q_1 = \bar{T'}$}
-	\nl $Q_2\leftarrow [p]\bar{Q'}$ \Comment*[r]{Skew Frobenius map Sec. \ref{sec_tskew_fm}}
-	\nl $f\leftarrow f\cdot l_{Q_1,Q_2}(\bar{P})$ \Comment*[r]{ Alg.\ref{algo_sparse_mul_kss16}}
+	\nl $Q_2\leftarrow [p]\bar{Q'}$ \Comment*[r]{Skew Frobenius map Sec. \ref{sec:skew_fm_cvmakss16}}
+	\nl $f\leftarrow f\cdot l_{Q_1,Q_2}(\bar{P})$ \Comment*[r]{ Alg.\ref{algo_sparse_mul_kss16_cvma}}
 	\nl $f_t\leftarrow f^{p^3}$   \Comment*[r]{Forbenius map of $p^3$}
-	\nl $f\leftarrow f\cdot f_t$ \Comment*[r]{Alg.\ref{algo_sparse_mul_kss16}}
-	\nl $f\leftarrow f\cdot l_{\bar{Q'},\bar{Q'}}(\bar{P})$ \Comment*[r]{ Alg.\ref{algo_sparse_mul_kss16}}
+	\nl $f\leftarrow f\cdot f_t$ \Comment*[r]{Alg.\ref{algo_sparse_mul_kss16_cvma}}
+	\nl $f\leftarrow f\cdot l_{\bar{Q'},\bar{Q'}}(\bar{P})$ \Comment*[r]{ Alg.\ref{algo_sparse_mul_kss16_cvma}}
 	\nl $f_1\leftarrow f^{(p^{8}-1)}$  \Comment*[r]{$1I_{p^{16}}+1M_{p^{16}}$}
 	\nl $f\leftarrow f_1^{d\frac{p^{8}+1}{r}}$  \Comment*[r]{ Alg.\ref{algo_final}}
 	\nl {\bf return} $f$\;
@@ -931,14 +891,14 @@ The overall optimizations can be seen as the following Alg. \ref{optimal_algo_im
 %------------------------------------------------RESULT----------------------------------------------
 \section{Experimental Result Evaluation}\label{sec:4}
 This section gives details of the experimental implementation. 
-The source code can be found in Github\footnote{\label{source}https://github.com/alaminkhandaker/KSS16-opt-ate}. 
+The source code can be found in Github\footnote{\label{source_code_cvma}https://github.com/alaminkhandaker/KSS16-opt-ate}. 
 The implemented code is not optimized for any specific platform, rather it is written keeping in mind of scalability with the change of parameters.
 The sole purpose of the piece of code is to compare the Optimal-Ate pairing operations between CVMA (this work) and Karatsuba based implementations \cite{INDOCRYPT:KNGDNK17} while applying state-of-art algorithms.
 
 \subsection{Experiment Environment and Assumptions}
-Table \ref{exp_tab} shows the implementation environment used to evaluate the proposal.  
+Table \ref{table:environemt_cvma_kss16} shows the implementation environment used to evaluate the proposal.  
 \renewcommand{\baselinestretch}{1.5}
-\begin{table}[!h]
+\begin{table}[ht]
 	\centering
 	\fontsize{9pt}{9pt}\selectfont
 	\resizebox{\columnwidth}{!}{
@@ -950,7 +910,7 @@ Table \ref{exp_tab} shows the implementation environment used to evaluate the pr
 		\end{tabular}
 	}
 	\caption{Computational Environment}
-	\label{exp_tab}
+	\label{table:environemt_cvma_kss16}
 \end{table}
 \renewcommand{\baselinestretch}{1.0}
 
@@ -964,12 +924,12 @@ TODO %To compare performance with respect to the passage of time,  \path{int clo
 The authors also compare the cycles count of the operations, obtained from CPU's  Time Stamp Counter.
 It's worth mentioning that none of the time and cycles promise constant output for certain operation in a certain environment due to several operating system factors. 
  
-The parameter is chosen according to \cite{sylvain_new_param}'s suggestion for to make DLP size secure enough against exTNFS \cite{C:KimBar16} as is shown in Table \ref{parameters}.
+The parameter is chosen according to \cite{EPRINT:BarDuq17}'s suggestion for to make DLP size secure enough against exTNFS \cite{C:KimBar16} as is shown in Table \ref{table:parameters_cvma_kss16}.
 The  chosen parameter is twist secure but doesn't guarantee subgroup security.
 However, finding both twist secure and subgroup secure parameters with lowest hamming weight can be a matter of time.
 \renewcommand{\baselinestretch}{1.5}
-\begin{table}[!h]
-	%\caption{Selected parameters for 128-bit security level according to  \cite{sylvain_new_param}}
+\begin{table}[ht]
+	%\caption{Selected parameters for 128-bit security level according to  \cite{EPRINT:BarDuq17}}
 	\setlength\tabcolsep{3pt}
 	\begin{center}		 
 		\resizebox{\columnwidth}{!}{
@@ -979,8 +939,8 @@ However, finding both twist secure and subgroup secure parameters with lowest ha
 				KSS-16 & $u=-2^{33}-2^{32}-2^{13}-2^{11}+2^6+1$ & $6$& $34$ & $334$ & $259$& $5344$\\ \hline
 			\end{tabular}
 		}
-		\caption{Selected parameters for 128-bit security level according to  \cite{sylvain_new_param}}
-		\label{parameters}
+		\caption{Selected parameters for 128-bit security level according to  \cite{EPRINT:BarDuq17}}
+		\label{table:parameters_cvma_kss16}
 	\end{center}
 \end{table}
 \renewcommand{\baselinestretch}{1.0}
@@ -995,7 +955,7 @@ Although the Frobenius map in $\FPFR$ is free of cost; however, the Frobenius ma
 The inversion in $\FPFR$ is costlier in CVMA. 
 But in terms of total operation, the CVMA approach shows better performance than Karatsuba approach.
 \renewcommand{\baselinestretch}{1.2}
-\begin{table}[!h]
+\begin{table}[ht]
 	\centering
 	\setlength\tabcolsep{3pt}
 	%\fontsize{10pt}{10pt}\selectfont
@@ -1025,7 +985,7 @@ But in terms of total operation, the CVMA approach shows better performance than
 Then, in Table \ref{miller_op_table} we compare   Miller algorithm with CVMA with Miller algorithm with Karatsuba  with respect to operation count.
 
 \renewcommand{\baselinestretch}{1.2}
-\begin{table}[!h]
+\begin{table}[ht]
 	\centering
 	%	\fontsize{10pt}{10pt}\selectfont
 	\begin{tabular}{l|l|l|l|l|l|l|l|l|}
@@ -1046,7 +1006,7 @@ Then, in Table \ref{miller_op_table} we compare   Miller algorithm with CVMA wit
 
 In the following Table \ref{final_expo_tab} we compare  the final exponentiation with CVMA with Miller algorithm with Karatsuba  with respect to operation count.
 
-\begin{table}[!h]
+\begin{table}[ht]
 	\centering
 	%	\fontsize{10pt}{10pt}\selectfont
 	\setlength\tabcolsep{4pt}
@@ -1066,7 +1026,7 @@ However, such advantage is overtaken by the number of reduced addition in CVMA~\
 The $3.4\%$ improvement is seemingly very insignificant in terms of 1 pairing. 
  \textcolor{red}{However, a real pairing-based protocol requiring multiple pairings can be benefited from it. \textbf{WHY?? Explain}}
 
-Table \ref{time_com_pairing} shows  execution time in millisecond (rounded 2 decimal places) and cycle counts for Optimal-Ate pairing implementation for the Table \ref{exp_tab} settings. 
+Table \ref{time_com_pairing} shows  execution time in millisecond (rounded 2 decimal places) and cycle counts for Optimal-Ate pairing implementation for the Table \ref{table:environemt_cvma_kss16} settings. 
 The main purpose of this execution time comparison is to show that the theoretic optimization also reflects in the real implementation.
 However, the implementation doesn't guarantee constant time operation which is crucial in the context of the side-channel attack.
 The negative value refers to CVMA's efficiency over Karatsuba based implementation. 
@@ -1081,7 +1041,7 @@ Therefore, in CVMA, the $\FPET$ squaring for cyclotomic squaring operation, call
 The further time-profile investigation finds that  the number of times GMP library calls its  memory allocation/reallocation impacts in the execution time.
 
 \renewcommand{\baselinestretch}{1.2}
-\begin{table}[!h]
+\begin{table}[ht]
 	\centering
 	%	\fontsize{10pt}{10pt}\selectfont
 	\setlength\tabcolsep{4pt}
@@ -1099,7 +1059,7 @@ The further time-profile investigation finds that  the number of times GMP libra
 \renewcommand{\baselinestretch}{1.0}
 
 \renewcommand{\baselinestretch}{1.2}
-\begin{table}[!h]
+\begin{table}[ht]
 	\centering
 	\setlength\tabcolsep{4pt}
 	%	\resizebox{\columnwidth}{!}{

@@ -48,21 +48,23 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 \usepackage[final]{nogamacro}
 \usepackage[final]{nogaref}
 \usepackage[linesnumbered, ruled,vlined]{algorithm2e}
-%\usepackage{algorithm2e}
 \usepackage[makeroom]{cancel}
 \usepackage{romannum}
 \usepackage{tabularx, booktabs}
 \usepackage{styleFiles/manyeqns}
-\usepackage{path}
+%\usepackage{path}
 \usepackage{makeidx} 
+%\usepackage{imakeidx}
 
 %Tikz related  package
-\usepackage{pgf,tikz,pgfplots}
-\pgfplotsset{compat=1.15}
-\usepackage{mathrsfs}
-\usetikzlibrary{arrows}
-%\usepackage{titlecaps}
+%\usepackage{pgf,tikz,pgfplots}
+%\pgfplotsset{compat=1.15}
+%\usepackage{mathrsfs}
+%\usetikzlibrary{arrows}
+
 \usepackage{anyfontsize} %for Font shape `U/rsfs/m/n' in size <5.5> not available(Font) size <5> substituted
+\usepackage{verbatim}
+\usepackage{listings}
 
 %----------------------------------------------------------------------------------------
 %	MARGIN SETTINGS
@@ -83,7 +85,8 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 %----------------------------------------------------------------------------------------
 
 %\thesistitle{Proposals on Efficient Software Implementation of Pairing-Based Cryptographic Primitives}
-\thesistitle{Efficient Software Implementation of Pairing-Based Cryptographic Primitives for High-level Security for IoT} % Your thesis title, this is used in the title and abstract, print it elsewhere with \ttitle
+%\thesistitle{Efficient Software Implementation of Pairing-Based Cryptographic Primitives for High-level Security for IoT}
+\thesistitle{Efficient Algorithms for Pairing-Based Cryptography Committing High-Level Security} % Your thesis title, this is used in the title and abstract, print it elsewhere with \ttitle
 \supervisor{Yasuyuki \textsc{Nogami}} % Your supervisor's name, this is used in the title page, print it elsewhere with \supname
 \examiner{} % Your examiner's name, this is not currently used anywhere in the template, print it elsewhere with \examname
 \degree{Doctor of Philosophy in Engineering} % Your degree name, this is used in the title page and abstract, print it elsewhere with \degreename
@@ -137,7 +140,6 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 \newcommand{\FQTV}{\mathbb{F}_{p^{12}}}
 \newcommand{\FQEN}{\mathbb{F}_{p^{18}}}
 \newcommand{\GT}{\mathbb{G}_T}
-\newcolumntype{Y}{>{\centering\arraybackslash}X}
 
 \newcommand\Fpiii{\ensuremath{\mathbb{F}_{p^{3}}}}
 \newcommand\Fpvi{\ensuremath{\mathbb{F}_{p^{6}}}}
@@ -181,8 +183,8 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 \newtheorem{prop}{Proposition}[section]
 \makeatletter\@addtoreset{chapter}{part}\makeatother%
 
-\setcounter{tocdepth}{4}
-\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
 %%---------------------------------------------_Custom command end---------------------------------
 
 \makeatletter
@@ -342,10 +344,14 @@ The work presented in this thesis is the result of original research carried out
 
 \vspace*{0.2\textheight}
 
-\noindent\enquote{\itshape If we knew what it was we were doing, it would not be called research, would it?
-}\bigbreak
+% \noindent\enquote{\itshape If we knew what it was we were doing, it would not be called research, would it?
+% }\bigbreak
 
-\hfill Albert Einstein
+% \hfill Albert Einstein
+
+\noindent\enquote{\itshape We live on an island surrounded by a sea of ignorance. As our island of knowledge grows, so does the shore of our ignorance.}\bigbreak
+
+%\hfill Albert Einstein
 
 %----------------------------------------------------------------------------------------
 %	ABSTRACT PAGE
@@ -438,44 +444,36 @@ To my parents who brought me to this world and to my wife who sacrificed the mos
 
 \pagestyle{thesis} % Return the page headers back to the "thesis" style
 %part{Mathematical Backgrounds}
-%\include{Chapters/Chapter1}
-%\include{Chapters/Chapter2} 
+\include{Chapters/Chapter1}
+\include{Chapters/Chapter2} 
 %\include{Chapters/Chap_intros} 
 
 
 %%=====================ICISC 2016 12 sparse is Chapter 3====================
-%\chapter{Improved Optimal-Ate Pairing for KSS-18 Curve} \label{ch_optate_kss18}
-%\input{Chapters/ICISC_2016} 
+\input{Chapters/ICISC_2016} 
 
 %%=====================WISA 2016 IEICE sparse is Chapter 4====================
-%\chapter{Improved \texorpdfstring{$\g{2}$}{G2} Scalar Multiplication over KSS-18 Curve} 
-%\input{Chapters/IEICE_2016} 
+\input{Chapters/IEICE_2016} 
 
-
-
-%%=====================CANDAR 2016 IJNC/JICCE sparse is Chapter 5====================
+%%=============CANDAR 2016 IJNC/JICCE sparse is Chapter5====================
 %\chapter{CANDAR 2016} 
-%\input{Chapters/CANDAR_2016} 
-\chapter{Isomorphic Mapping over Quartic and Sextic twisted KSS Curves}
+%\input{Chapters/CANDAR_2016}  // Merged in IJNC
 \input{Chapters/IJNC_2016}
 
 %\chapter{ICCIT 2016} 
-%\input{Chapters/ICCIT_2016}
+%\input{Chapters/ICCIT_2016} %:  NO NEED 
+
+\input{Chapters/IndoCrypt_OptAte_2017}
+\input{Chapters/CVMA_Indo} 
+\input{Chapters/CANDAR_2018} 
+%\chapter{CSS 2017} 
+%\input{Chapters/CSS_2017} //CHECK table
 
 %%%\part{Works}
 %\chapter{ICCE-TW 2016} 
-%\input{Chapters/ICCE_TW_16}
-%\chapter{INDOCRYPT 2017} 
-%\input{Chapters/IndoCrypt_OptAte_2017}
-%\chapter{INDOCRYPT Revisited Journal 2017} 
-%\input{Chapters/CVMA_Indo} 
-%\chapter{CSS 2017} 
-%\input{Chapters/CSS_2017} 
+%\input{Chapters/ICCE_TW_16} % NO NEED
 %\chapter{ITC CSCC 2017} 
-%\input{Chapters/ITC_CSCC_2017} 
-
-%\include{Chapters/Chapter5} 
-
+%\input{Chapters/ITC_CSCC_2017} //Skew FM table
 
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - APPENDICES
@@ -497,6 +495,7 @@ To my parents who brought me to this world and to my wife who sacrificed the mos
 \printbibliography[heading=bibintoc]
 %\printbibliography[heading=bibintoc, type=article,]
 %\printbibliography[heading=bibintoc, type=InProceedings]
+%\addcontentsline{toc}{chapter}{Index}
 \printindex 
 \addcontentsline{toc}{chapter}{Biography}
 \include{Chapters/Biography} 

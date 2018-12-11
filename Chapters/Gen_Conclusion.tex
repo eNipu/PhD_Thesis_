@@ -1,0 +1,39 @@
+\chapter{General Conclusion}
+\label{ch:general_conclusin}
+The main objective of this thesis was to contribute to putting pairing-based cryptographies into practical use.
+These innovative cryptographies had not yet led to practical use, due to their problem with processing time.
+In order to solve these problem, we proposed four methods that can accelerate operations mainly required for pairing-based cryptographies.    
+In detail, we propose an efficient scalar multiplication in $\g{2}$ in chapter 3, efficient scalar multiplication in $\g{1}$ in chapter 4, a new pairing that is referred as Xate pairing based on Ate pairing in chapter 5, and a new pairing based on {\it twisted} Ate pairing in chapter 6.
+These contents are summarized as follows. 
+Chapter 3 proposed an efficient scalar multiplication in $\g{2}$ that is used by Ate and {\it twisted} Ate pairings.
+To accelerate a scalar multiplication, it is important that a certain scalar multiplication is calculated by efficiently computable endomorphisms.
+A target $\g{2}$ has a property that a certain scalar multiplication is calculated by Frobenius endomorphism that is efficiently computable.
+Focusing on this property, we derived a key relation available for a scalar multiplication in $\g{2}$ from the structural properties of {\it families} of pairing-friendly curves.
+Then, using the key relation, an efficient scalar multiplication was shown.
+Using a BN curve, we showed that the proposed scalar multiplication was about 40\% faster than the conventional method from the experimental results.   
+
+Chapter 4 proposed an efficient scalar multiplication in $\g{1}$ that is used by Ate and {\it twisted} Ate pairings.
+A target $\g{1}$ did not have a property that Frobenius endomorphism is available for a scalar multiplication.
+Therefore, it was difficult to apply the method proposed in chapter 3 to a scalar multiplication in $\g{1}$.
+In order to overcome this problem, we proposed a new endomorphism available for a scalar multiplication in $\g{1}$.
+Using the endomorphism, a key relation was derived in a same manner of $\g{2}$.
+Then, using the key relation, an efficient scalar multiplication was proposed.   
+This chapter showed that the proposed method was about 30\% faster than the GLV method from the experimental results.   
+
+In chapter 5, the rules of decomposition for Miller's algorithm of pairing calculation were described, and it was shown that the approach for accelerating scalar multiplications is also applied to Miller's algorithm calculations.
+Then, we proposed an integer variable $\chi$-based Ate (Xate) pairing using the key relation available for a scalar multiplication in $\g{2}$.
+This was because the property of $\g{2}$ is closely related to Ate pairing.
+Xate pairing achieved the lower bound of the number of iterations in Miller's algorithm.
+Using a BN curve, we showed that Xate pairing was about twice faster than the original Ate pairings from the experimental results.
+Focusing on the decomposition technique for Miller's algorithm, {\it optimal}, $R$-ate, and Xate pairings have been proposed independently.
+{\it Optimal} and $R$-ate pairings have also achieved the lower bound of the number of iterations for Miller's algorithm.
+This chapter compared these pairings with Xate pairing and showed the advantages of Xate pairing.
+
+Chapter 6 proposed an efficient pairing based on {\it twisted} Ate pairing using the key relation proposed in chapter 4.
+Since the pairing calculation was inherently sequential, has been difficult to give the efficient parallelization of pairing.
+In this chapter, we proposed an idea for splitting Miller's algorithm. 
+In detail, using the pre-computed scalar multiplication, the proposed pairing could be efficiently applied the parallelizing technique such as {\it multi--pairing} technique or {\it thread-computing} that can not be applied to the conventional pairings.
+Using a BN curve, we showed that the Miller's part of the proposed {\it twisted} Ate pairing with {\it multi--pairing} technique and that with {\it thread computing} become faster than the original {\it twisted} Ate pairing by $55.6\%$ and $70.3\%$, respectively.
+
+Since the four proposed methods can substantially improve operations such as scalar multiplications and pairings mainly required for pairing-based cryptographies, we can help to solve the problem with processing times.  
+Therefore, our research contributes to promoting sophisticated cryptographies such as ID-based cryptographies and group signature authentications. 

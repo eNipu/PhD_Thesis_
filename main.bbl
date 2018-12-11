@@ -1661,51 +1661,6 @@
     \field{year}{2015}
   \endentry
 
-  \entry{PAIRING:Hess08}{inproceedings}{}
-    \name{author}{1}{}{%
-      {{hash=HF}{%
-         family={Hess},
-         familyi={H\bibinitperiod},
-         given={Florian},
-         giveni={F\bibinitperiod},
-      }}%
-    }
-    \name{editor}{2}{}{%
-      {{hash=GSD}{%
-         family={Galbraith},
-         familyi={G\bibinitperiod},
-         given={Steven\bibnamedelima D.},
-         giveni={S\bibinitperiod\bibinitdelim D\bibinitperiod},
-      }}%
-      {{hash=PKG}{%
-         family={Paterson},
-         familyi={P\bibinitperiod},
-         given={Kenneth\bibnamedelima G.},
-         giveni={K\bibinitperiod\bibinitdelim G\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {Springer, Heidelberg}%
-    }
-    \strng{namehash}{HF1}
-    \strng{fullhash}{HF1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{Hes08}
-    \field{sortinit}{H}
-    \field{sortinithash}{H}
-    \field{booktitle}{PAIRING 2008}
-    \verb{doi}
-    \verb 10.1007/978-3-540-85538-5_2
-    \endverb
-    \field{pages}{18\bibrangedash 38}
-    \field{series}{{LNCS}}
-    \field{title}{Pairing Lattices (Invited Talk)}
-    \field{volume}{5209}
-    \field{month}{09}
-    \field{year}{2008}
-  \endentry
-
   \entry{JC:Joux04}{article}{}
     \name{author}{1}{}{%
       {{hash=JA}{%

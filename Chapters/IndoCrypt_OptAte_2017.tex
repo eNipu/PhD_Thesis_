@@ -25,10 +25,10 @@ The recent development of NFS by Kim and Barbulescu \cite{C:KimBar16} requires u
 The most recent study by Barbulescu et al. \cite{EPRINT:BarDuq17} have shown the security estimation of the current parameter settings used in well-studied curves and proposed new parameters, resistant to small subgroup attack.
 
 Barbulescu and Duquesne's study finds that the current parameter settings for 128-bit security level on BN-curve studied in literature can withstand for 100-bit security. 
-Moreover, they proposed that BLS-12 and surprisingly KSS-16 are the most efficient choice for Optimal-Ate pairing at the 128-bit security level. Therefore, the authors focus on the efficient implementation of the less studied KSS-16 curve for Optimal-Ate pairing by applying the most recent parameters.
+Moreover, they proposed that BLS-12 and surprisingly KSS-16 are the most efficient choice for Optimal-Ate pairing at the 128-bit security level. Therefore, we focus on the efficient implementation of the less studied KSS-16 curve for Optimal-Ate pairing by applying the most recent parameters.
 Mori et al. \cite{PAIRING:MANS13} and Khandaker et al. \cite{ICISC:KONSD16} have shown a specific type of sparse multiplication for BN and KSS-18 curve respectively where both of the curves supports sextic twist. 
 The authors have extended the previous works for quartic twisted KSS-16 curve and derived pseudo-8 sparse multiplication for line evaluation step in the Miller's algorithm. 
-As a consequence, the authors made the choice to concentrate on Miller's algorithm's execution time and computational complexity to verify the claim of \cite{EPRINT:BarDuq17}.
+As a consequence, we made the choice to concentrate on Miller's algorithm's execution time and computational complexity to verify the claim of \cite{EPRINT:BarDuq17}.
 The implementation shows that Miller's algorithm time has a tiny difference between KSS-16 and BLS-12 curves. However, they both are more efficient and faster than BN curve. 
 
 \subsection{Contribution Summary}
@@ -36,7 +36,7 @@ Following the emergence of Kim and Barbulescu's new number field sieve (exTNFS) 
 Recently, Barbulescu and Duquesne have suggested new parameters \cite{EPRINT:BarDuq17} for well-studied pairing-friendly curves i.e., Barreto-Naehrig (BN) \cite{SAC:BarNae05}, Barreto-Lynn-Scott (BLS-12) \cite{SCN:BarLynSco02} and Kachisa-Schaefer-Scott (KSS-16) \cite{EPRINT:KacSchSco07} curves at 128-bit security level (twist and sub-group attack secure). 
 They have also concluded that in the context of Optimal-Ate pairing with their suggested parameters, BLS-12 and KSS-16 curves are more efficient choices than BN curves. 
 Therefore, this chapter selects the atypical and less studied pairing-friendly curve in literature, i.e., KSS-16 which offers quartic twist, while BN and BLS-12 curves have sextic twist.
-In this chapter, the authors optimize Miller's algorithm of Optimal-Ate pairing for the KSS-16 curve by deriving efficient sparse multiplication and implement them.
+In this chapter, we optimize Miller's algorithm of Optimal-Ate pairing for the KSS-16 curve by deriving efficient sparse multiplication and implement them.
 Furthermore, this chapter concentrates on the Miller's algorithm to experimentally verify Barbulescu et al.'s estimation.
 The result shows that Miller's algorithm time with the derived pseudo 8-sparse multiplication is most efficient for KSS-16 than other two curves.
 Therefore, this chapter defends Barbulescu and Duquesne's conclusion for 128-bit security.
@@ -96,8 +96,8 @@ In the context of BN or BLS-12, where $k=12$, $\FPTV$ is constructed as  a tower
 
 \subsubsection{Extension Field Arithmetic  of \texorpdfstring{$\FPSN$}{} and \texorpdfstring{$\FPTV$}{}}
 Among the arithmetic operations multiplication, squaring and inversion are regarded as expensive operation than addition/subtraction. The calculation cost, based on number of prime field multiplication $M_p$ and squaring $S_p$ is given in Table \ref{tab_ffoperation}. The arithmetic operations in $\Fp$ are denoted as $M_p$ for a multiplication, $S_p$ for a squaring, $I_p$ for an inversion and $m$ with suffix denotes multiplication with basis element.
-\begin{table*}[t]
-\caption{Number of arithmetic operations in  $\FPSN$ based on \eqref{towering}}
+\begin{table*}[ht]
+\caption{Number of arithmetic operations in  $\FPSN$ based on \eqref{towering}.}
 \label{tab_ffoperation}
 \centering
 \resizebox{\columnwidth}{!}{
@@ -115,8 +115,8 @@ However, squaring is more optimized by using Devegili et al.'s \cite{EPRINT:DOSD
 
 Table \ref{tab_f12_op_count} shows the operation estimation for $\FPTV$ according to the towering shown in \eqref{BN_towering}. The algorithms for $\FPT$ and $\FPTH$ multiplication and squaring given in \cite{EPRINT:DEHR15} have be used in this chapter to construct the $\FPTV$ extension field arithmetic. 
 
-\begin{table*}[t]
-\caption{Number of arithmetic operations in $\FPTV$ based on \eqref{BN_towering}}
+\begin{table*}[ht]
+\caption{Number of arithmetic operations in $\FPTV$ based on \eqref{BN_towering}.}
 \label{tab_f12_op_count}
 \centering
 \resizebox{\columnwidth}{!}{
@@ -133,7 +133,7 @@ $M_{p^{12}} = 3M_{p^6}+5A_{p^6}+1m_\gamma \rightarrow 54M_p $ &  $S_{p^{12}} = 2
 \subsection{Ate and Optimal-Ate On KSS-16, BN, BLS-12 Curve}
 \label{sec:ch:indo:optate_ksss16}
 
-A brief of pairing and it's properties are described in Sect.1.  
+% A brief of pairing and it's properties are described in Section. 1.  
 In the context of pairing on the targeted pairing-friendly curves, two additive rational point groups $\g1, \g2$ and a multiplicative group $\g3$ of order $r$ are considered. 
 $\g1$, $\g2$ and $\g3$ are defined as follows:
 \begin{eqnarray}
@@ -159,9 +159,9 @@ The previous work of Zhang et al. \cite{INDOCRYPT:ZhaLin12} has derived the opti
 \end{equation}
 The formulas for Optimal-Ate pairing for the target curves are given in Table \ref{tab_opt_ate}. 
 \renewcommand{\baselinestretch}{1.5}
-\begin{table*}[t]
+\begin{table*}[ht]
 \centering
-\caption{Optimal-Ate pairing formulas for target curves}
+\caption{Optimal-Ate pairing formulas for target curves.}
 \label{tab_opt_ate}
 \begin{tabular}{|l|l|l|}
 \hline
@@ -178,12 +178,14 @@ In what follows, the calculation steps from 1 to 11, shown in Alg.\ref{indo_kss1
 Steps 2-7 are specially named as Miller's loop.
 Steps 3, 5, 7 are the line evaluation together with elliptic curve doubling (ECD) and addition (ECA) inside the Miller's loop and steps 9, 11 are the line evaluation outside the loop.
 These line evaluation steps are the key steps to accelerate the loop calculation. 
-The authors extended the work of \cite{PAIRING:MANS13},\cite{ICISC:KONSD16} for KSS-16 curve to calculate \textit{pseudo 8-sparse multiplication} described in Sect. 3. The ECA and ECD are also calculated efficiently in the twisted curve. 
+The authors extended the work of \cite{PAIRING:MANS13},\cite{ICISC:KONSD16} for KSS-16 curve to calculate \textit{pseudo 8-sparse multiplication}.
+%TODO: Sec 3 correction.\textit{pseudo 8-sparse multiplication} described in Sect. 3.
+ The ECA and ECD are also calculated efficiently in the twisted curve. 
 The $Q_2 \leftarrow [p]Q$ term of step 8 is calculated by applying one skew Frobenius map over $\FPFR$ and $f_1\leftarrow f^{p^3}$ of step 10 is calculated by applying one Frobenius map in $\FPSN$. 
 Step 12, FE is calculated by applying Ghammam et al.'s work for KSS-16 curve \cite{EPRINT:GhaFou16b}.
 
 \begin{algorithm}[ht]
-	\caption{Optimal-Ate pairing on KSS-16 curve}
+	\caption{Optimal-Ate pairing on KSS-16 curve.}
 	\label{indo_kss16_optimal_algo}
 	\DontPrintSemicolon
 
@@ -229,8 +231,8 @@ where Ker($\cdot$) denotes the kernel of the mapping and $\pi_p$ denotes Frobeni
 
 Table \ref{table:indo_kss16_Qing2} shows the vector representation of $Q = (x_{Q},y_Q) = (\beta^{1/2}x_{Q'},\beta^{3/4}y_{Q'}) \in \FPSN$ according to the given towering in \eqref{towering}. Here, $x_{Q'}$ and $y_{Q'}$ are the coordinates of rational point $Q'$ on quartic twisted curve $E'$. 
 \renewcommand{\baselinestretch}{1.5}
-\begin{table*}[t]
-\caption{Vector representation of $Q = (x_Q,y_Q) \in \g2 \subset E(\mathbb{F}_{p^{16}})$}
+\begin{table*}[ht]
+\caption{Vector representation of $Q = (x_Q,y_Q) \in \g2 \subset E(\mathbb{F}_{p^{16}})$.}
 \label{table:indo_kss16_Qing2}
 \centering
 \resizebox{\columnwidth}{!}{
@@ -296,7 +298,7 @@ The  position of the $y_P$, $E$ and $F$ in $\FPSN$ vector representation is defi
 Therefore,  among the 16 coefficients of  $l_{T,T}(P)$ and $l_{T,Q}(P)\in \FPSN$, only 9 coefficients $y_P\in \Fp$, $Cx_P\in \FPFR$ and $E\in \FPFR$ are  non-zero. The remaining 7 zero coefficients leads to an efficient multiplication, usually called sparse multiplication. This particular instance in KSS-16 curve is named as 7-sparse multiplication.
 
 
-\subsection{Pseudo 8-Sparse Multiplication for BN and BLS-12 Curve}
+\subsection{Pseudo 8-Sparse Multiplication for BN and BLS-12 Curve} \index{BN: Sparse multiplication} \index{BLS-12: Sparse multiplication}
 Here we have followed Mori et al.'s \cite{PAIRING:MANS13} procedure to derive pseudo 8-sparse multiplication for the parameter settings of \cite{EPRINT:BarDuq17} for BN and BLS-12 curves. 
 For the new parameter settings, the towering is given as \eqref{BN_towering} for both BN and BLS-12 curve.
 However, the curve form $E:y^2=x^3+b, ~b \in \Fp$ is identical for both BN and BLS-12 curve.
@@ -312,8 +314,8 @@ Let $(\alpha+1)$ be a certain quadratic and cubic non-residue in $\FPT$.  The se
 \end{eqnarray}
 
 \renewcommand{\baselinestretch}{1.5}
-\begin{table*}[t]
-	\caption{Vector representation of $Q = (x_Q,y_Q) \in \mathbb{G}_2 \subset E(\mathbb{F}_{p^{12}})$}
+\begin{table*}[ht]
+	\caption{Vector representation of $Q = (x_Q,y_Q) \in \mathbb{G}_2 \subset E(\mathbb{F}_{p^{12}})$.}
 	\label{tab_Q_in12}
 	\centering
 	\resizebox{\columnwidth}{!}{
@@ -385,7 +387,7 @@ Finally, pseudo 8-sparse multiplication for BN and BLS-12 is given in
 
 
 \begin{algorithm}[ht]
-	\caption{Pseudo 8-sparse multiplication for BN and BLS-12 curves}
+	\caption{Pseudo 8-sparse multiplication for BN and BLS-12 curves.}
 	\label{sparse_mul}
 	\DontPrintSemicolon
 	\KwIn{$a,b\in \Fpxii$\\
@@ -410,7 +412,6 @@ Finally, pseudo 8-sparse multiplication for BN and BLS-12 is given in
 
 \subsection{Pseudo 8-sparse Multiplication for KSS-16 Curve}
 \label{sec:ch:indo:proposal_8sparse}
-
 The main idea of  \textit{pseudo 8-sparse multiplication} is finding more sparse form  of \eqref{indo_kss16_sparse_dbl} and \eqref{indo_kss16_sparse_add}, which allows to reduce the number of multiplication of $\FPSN$ vector during Miller's algorithm evaluation.  To obtains the same, $y_P^{-1}$ is multiplied to both side of  \eqref{indo_kss16_sparse_dbl} and \eqref{indo_kss16_sparse_add}, since $y_P$  remains the same through the Miller's algorithms loop calculation.
 \begin{subequations}
 \begin{eqnarray}
@@ -508,7 +509,7 @@ The above terms can be computed from $x_{P}^{-1}$ and $y_P^{-1}$ by utilizing Mo
 The pre-computation requires 21 multiplication, 2 squaring and 1 inversion in $\Fp$ and 2 multiplication, 3 squaring  in $\FPFR$.
 
 \begin{algorithm}[ht]
-	\caption{Pre-calculation and mapping $P \mapsto\bar{P}$ and $Q'\mapsto \bar{Q'}$}
+	\caption{Pre-calculation and mapping $P \mapsto\bar{P}$ and $Q'\mapsto \bar{Q'}$.}
 	\label{pre_calc_Algo_indo_kss16}
 	\DontPrintSemicolon
 %	\hspace{-3ex}
@@ -540,7 +541,7 @@ The overall mapping  and the curve obtained in the twisting process is shown in 
 
 Finally the Alg.\ref{algo_sparse_mul_kss16_indo} shows the derived pseudo 8-sparse multiplication.
 \begin{algorithm}[ht]
-	\caption{Pseudo 8-sparse multiplication for KSS-16 curve}
+	\caption{Pseudo 8-sparse multiplication for KSS-16 curve.}
 	\label{algo_sparse_mul_kss16_indo}
 	\DontPrintSemicolon
 %	\hspace{-3ex}
@@ -570,7 +571,7 @@ According to \eqref{scott_dec}, the exponent decomposition of the target curves 
 \renewcommand{\baselinestretch}{1.5}
 \begin{table}[htb]
 \centering
-\caption{Exponents of final exponentiation in pairing}
+\caption{Exponents of final exponentiation in pairing.}
 \label{fe_decomp}
 %\resizebox{\columnwidth}{!}{
 %\begin{adjustbox}{width=1.0\textwidth}
@@ -586,7 +587,7 @@ BN, BLS-12 \quad \quad &  \quad $\frac{p^{12}-1}{r}$ \quad & \quad $(p^6-1)(p^2+
 \end{table}
 \renewcommand{\baselinestretch}{1.0}
 
-This chapter carefully concentrates on Miller's algorithm for comparison and making pairing efficient. However, to verify the correctness of the bilinearity property,  the authors made a ``not state-of-art" implementation of  Fuentes et al.'s work \cite{SAC:FueKnaRod11} for  BN curve case and  Ghammam's et al.'s works \cite{EPRINT:GhaFou16b,EPRINT:GhaFou16a} for KSS-16 and BLS-12 curves.
+This chapter carefully concentrates on Miller's algorithm for comparison and making pairing efficient. However, to verify the correctness of the bilinearity property,  we made a ``not state-of-art" implementation of  Fuentes et al.'s work \cite{SAC:FueKnaRod11} for  BN curve case and  Ghammam's et al.'s works \cite{EPRINT:GhaFou16b,EPRINT:GhaFou16a} for KSS-16 and BLS-12 curves.
 For scalar multiplication by prime $p$, i.e., $p[Q]$ or $[p^2]Q$, skew Frobenius map technique by Sakemi et al. \cite{CANS:SNOKM08} is adapted.
 
 
@@ -598,7 +599,7 @@ Table \ref{table:environemt_indo_kss16} shows implementation environment.
 \renewcommand{\baselinestretch}{1.5}
 \begin{table}[ht]
 \centering
-\caption{Computational Environment}
+\caption{Computational environment.}
 \label{table:environemt_indo_kss16}
 \resizebox{\columnwidth}{!}{
 \begin{tabular}{|l|c|l|l|c|l|}
@@ -613,7 +614,7 @@ CPU{\textsuperscript{*}}                                                        
 Parameters chosen from \cite{EPRINT:BarDuq17} is shown in Table \ref{table:parameters_indo_kss16}.
 \renewcommand{\baselinestretch}{1.5}
 \begin{table}[ht]
-\caption{Selected parameters for 128-bit security level \cite{EPRINT:BarDuq17}}
+\caption{Selected parameters for 128-bit security level \cite{EPRINT:BarDuq17}.}
 \label{table:parameters_indo_kss16}
 \begin{center}		 
 \resizebox{\columnwidth}{!}{
@@ -632,7 +633,7 @@ Table \ref{result_table} shows execution time for Miller's algorithm implementat
 \renewcommand{\baselinestretch}{1.5}
 \begin{table}[h!]
 \centering
-\caption{Comparative results of Miller's Algorithm in [ms].}
+\caption{Comparative results of Miller's algorithm in [ms].}
 \label{result_table}
 %\resizebox{\columnwidth}{!}{
 \begin{tabular}{l|c|c|c|}
@@ -658,7 +659,7 @@ Basis multiplication refers to the vector multiplication such as $(a_o+a_1\alpha
 \renewcommand{\baselinestretch}{1.5}
 \begin{table}[ht]
 	\centering
-	\caption{Complexity of this implementation in $\Fp$ for Miller's algorithm [single pairing operation]}
+	\caption{Complexity of this implementation in $\Fp$ for Miller's algorithm [single pairing operation].}
 	\label{operation_count}
 \resizebox{\columnwidth}{!}{
 \begin{tabular}{l|c|c|c|c|c|c|}
@@ -674,7 +675,7 @@ Basis multiplication refers to the vector multiplication such as $(a_o+a_1\alpha
 \renewcommand{\baselinestretch}{1.0}
 
 
-As said before, this work is focused on Miller's algorithm. However, the authors made a ``not state-of-art" implementation of some  final exponentiation algorithms \cite{EPRINT:GhaFou16b,SAC:FueKnaRod11,EPRINT:GhaFou16a}. 
+As said before, this work is focused on Miller's algorithm. However, we made a ``not state-of-art" implementation of some  final exponentiation algorithms \cite{EPRINT:GhaFou16b,SAC:FueKnaRod11,EPRINT:GhaFou16a}. 
 Table \ref{com_fe} shows the total final exponentiation time in [ms].
 Here final exponentiation of KSS-16 is slower than BN and BLS-12.  
 We have applied square and multiply technique for exponentiation by integer $u$ in the hard part since the integer $u$ given in the sparse form.
@@ -682,7 +683,7 @@ However, Barbulescu et al. \cite{EPRINT:BarDuq17} mentioned that availability of
 \renewcommand{\baselinestretch}{1.5}
 \begin{table}[ht]
 \centering
-\caption{Final exponentiation time (not state-of-art) in [ms] }
+\caption{Final exponentiation time (not state-of-art) in [ms].}
 \label{com_fe}
 \begin{tabular}{l|c|c|c|}
 \cline{2-4}
@@ -695,7 +696,7 @@ However, Barbulescu et al. \cite{EPRINT:BarDuq17} mentioned that availability of
 \renewcommand{\baselinestretch}{1.5}
 \begin{table}[ht]
 	\centering
-	\caption{Complexity comparison of Miller's algorithm between this implementation and Barbulescu et al.'s \cite{EPRINT:BarDuq17} estimation [Multiplication + Squaring in $\Fp$]}
+	\caption{Complexity comparison of Miller's algorithm between this implementation and Barbulescu et al.'s \cite{EPRINT:BarDuq17} estimation [Multiplication + Squaring in $\Fp$].}
 	\label{com_com}
 	\begin{tabular}{l|l|l|l|}
 		\cline{2-4}

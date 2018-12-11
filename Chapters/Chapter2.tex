@@ -3,16 +3,16 @@
 It is necessary to recall some fundamental mathematical concept to understand the subsequent chapters and introduce the notations used in the thesis.
 This chapter introduces the essential mathematical backgrounds that are directly relevant to the contents of this thesis to help readers to a clear understanding of the subsequent chapters.
 The theoretical discussion will often appear with minimal definition and citation of the details works since details discussion is beyond the scope of this thesis.
-For more details of the topics discussed in this chapter we refer to \cite{lidl_niederreiter_1996, book_HFFMullen2013}.
+We refer to \cite{lidl_niederreiter_1996, book_HFFMullen2013, book_CMSSmart2015, book_GPCMrabet2016, book_CSCBlahut} for more details of the topics. 
 As an additional purpose, this chapter specifies most of the notations that will appear in the upcoming chapters.
 
 Cryptography deals with numbers mostly integers.
-To understand modern cryptography  it is essential to have a good understanding of the  underlying mathematical concepts. 
-The following concepts is the basic for the discussion of the subsequent chapters.
+It is essential to have a good understanding of the underlying mathematical concepts to understand modern cryptography.
+The following concepts are the basis for the discussion of the subsequent chapters.
 
 \section{Modular Arithmetic}
 \label{sec:chap:fund:modular_arithm} 
- Modular arithmetic is the fundamental tool for modern cryptography specially public key cryptosystems.
+ Modular arithmetic is the fundamental tool for modern cryptography especially public key cryptosystems.
 \begin{definition}[Modular Arithmetic\index{modulus}]
 	Let  $p$ be a positive integer named as the modulus \index{modulus} and  $a$ and $b$  are two arbitrary integers. 
 	If  $p$ divides $b-a$  then we can write
@@ -34,9 +34,9 @@ The following concepts is the basic for the discussion of the subsequent chapter
 \section{Group, Ring, Field}
 \label{sec:chap:fund:group}
 \subsection{Group}
-The concept of group \index{group} is very fundamental for understanding cryptography. It is an algebraic system defined as follows.
+The concept of group \index{group} is very fundamental to understanding cryptography. It is an algebraic system defined as follows.
 \begin{definition}[Group\index{group}]
-A group \index{group} is a non empty set $\mathbb{G}$ with a binary operation $\circ$ on its elements denoted as  $\langle\mathbb{G}\index{group},\circ\rangle$,  sometimes denoted by   $\mathbb{G}$ only, which satisfies the following axioms.
+	A group \index{group} is a non-empty set $\mathbb{G}$ with a binary operation $\circ$ on its elements denoted as  $\langle\mathbb{G}\index{group},\circ\rangle$,  sometimes denoted by   $\mathbb{G}$ only, which satisfies the following axioms.
 \begin{quote}
 	\begin{description}
 		\item[Closure] The group is closed under the operation $\circ$, i.e.  $\forall a \in\mathbb{G}$, and $\forall b \in\mathbb{G}$ the result of $ (a\circ b) = c \in \mathbb{G}$. \footnote{$\forall$ symbol bears is usual notation \textit{"for all"} }
@@ -144,7 +144,7 @@ From the definition cyclic group, it can be see visualized that any elements in 
 \begin{figure}[ht]
 \begin{center}
 	\includegraphics[width=.6\linewidth, height=.67\textheight, keepaspectratio]{Figures/cyclicgroup}
-\caption{Cyclic group\index{cyclic group}\index{group}}
+\caption{Cyclic group\index{cyclic group}\index{group}.}
 \label{Cyclic group}
 \end{center}
 \end{figure}
@@ -280,7 +280,7 @@ Such $(\mathbb{Z}_p,+,\cdot)$ will be a ring and having the above property it wi
 \end{definition}
 
 Most of the works presented in this dissertation deals with  finite fields only. 
-A common property of finite fields often used in cryptographic is fllows:
+A common property of finite fields often used in cryptographic is follows:
 \begin{theorem}\label{Cyclic Group in Finite Field}
 	For every finite field $\f{}$, the multiplicative group $({\f{\,}}^{\ast}\!\!, \cdot)$ is cyclic. 
 	\qed
@@ -405,7 +405,7 @@ On the other hand, quadratic non-residues also become QNR in $\F{q}{i}$, where $
 In this section, we review elliptic curves and pairings. 
 
 %--------------------------------------
-\subsection{Additive Group over Elliptic Curves}
+\subsection{Additive Group over Elliptic Curve}
 %--------------------------------------
 
 In general, let $p>3$, an elliptic curve $E/\F{p}{}$ over a finite field $\F{p}{}$ is defined as 
@@ -472,7 +472,7 @@ The binary method is an extensively applied method for calculating the elliptic 
   This method is easy to implement but the important drawback of this method is not resistant to \textit{side channel attack} \cite{C:Kocher96}.  
 
 \begin{algorithm}[ht]
-	\caption{Left-to-right binary algorithm for elliptic curve scalar multiplication}
+	\caption{Left-to-right binary algorithm for elliptic curve scalar multiplication.}
 	\label{alg:binary_scm_chap_fundamental}
 	\DontPrintSemicolon
 %	\hspace{-3ex}
@@ -493,7 +493,7 @@ The binary method is an extensively applied method for calculating the elliptic 
 Montgomery ladder algorithm is said to be resistant to \textit{side channel attack}. Such resistance comes by paying tolls as calculation overhead which slows down this method than binary method.  \algref{alg:mont_scm_chap_fundamental} shows the Montgomery ladder algorithm for scalar multiplication. Montgomery ladder has some similarity with binary method except in each iteration it performs ECA and ECD. 
 
 \begin{algorithm}[ht]
-	\caption{Montgomery ladder algorithm for elliptic curve scalar multiplication}
+	\caption{Montgomery ladder algorithm for elliptic curve scalar multiplication.}
 	\label{alg:mont_scm_chap_fundamental}
 	\DontPrintSemicolon
 %	\hspace{-3ex}
@@ -519,7 +519,7 @@ Montgomery ladder algorithm is said to be resistant to \textit{side channel atta
 Sliding-window \cite{DBLP:reference/crc/2005ehcc} algorithm is also resistant to \textit{side channel attack} and at the same  time it is faster than Montgomery ladder. In this method the scalar $s$ is processed in blocks of length $w$, known as window size. \algref{alg:sw_scm_chap_fundamental} shows the sliding-window algorithm for scalar multiplication.
 
 \begin{algorithm}[ht]
-	\caption{Sliding window algorithm for elliptic curve scalar multiplication}
+	\caption{Sliding window algorithm for elliptic curve scalar multiplication.}
 	\label{alg:sw_scm_chap_fundamental}
 	\DontPrintSemicolon
 %	\hspace{-3ex}
@@ -562,44 +562,43 @@ Thus, we have
 From Hasse's theorem, note the bit-size of Frobenius trace $t$ is about a half of the characteristic $p$. 
 Using \eqref{frobscm}, we can efficiently calculate scalar multiplication \cite{C:Koblitz91}.
 
-\section{Definition of Pairing} \label{secDefPairing} %\label{tp}
-
-%--------------------------------------
-\subsection{Properties of Pairing}
-%--------------------------------------
-%--------------------------------------
-\subsection{Pairing-friendly Curves}\label{sec:pfc}
-
-\subsubsection{Barreto-Neahrig Curve}
-
-\subsubsection{Barreto-Neahrig Curve}
-
-
-
-%--------------------------------------
-\subsection{Tate Pairing}
-%--------------------------------------
-
-%--------------------------------------
-\subsection{Ate Pairing}
-
-\subsection{Optimal-Ate Pairing}
-
-
-
-%--------------------------------------
-\subsection{Miller's Algorithm}
-%--------------------------------------
-
-	%--------------------------------------
-	\subsection{Final Exponentiation}
-	%--------------------------------------
-	
-	
-	
-	\section{Conclusion}
-	This chapter briefly reviewed the mathematical fact to define the pairing, and shows a target class of elliptic curves.
-	In addition, we described the conventional pairings such as Tate, Ate, and {\it twisted} Ate pairings.
-	
+%\section{Definition of Pairing} \label{secDefPairing} %\label{tp}
+%%TODO
+% \textcolor{red}{[TODO]: I have to write fundamentals of pairing.}
+%%--------------------------------------
+%\subsection{Properties of Pairing}
+%%--------------------------------------
+%%--------------------------------------
+%\subsection{Pairing-friendly Curves}\label{sec:pfc}
+%
+%\subsubsection{Barreto-Neahrig (BN) Curve}
+%\subsubsection{Barreto-Lynn-Scott (BLS) Curve}
+%\subsubsection{Kachisa-Schaefer-Scott (KSS) Curve}
+%
+% 
+%
+%%--------------------------------------
+%\subsection{Tate Pairing}
+%%--------------------------------------
+%
+%%--------------------------------------
+%\subsection{Ate Pairing}
+%
+%\subsection{Optimal-Ate Pairing}
+%
+%
+%
+%%--------------------------------------
+%\subsection{Miller's Algorithm}
+%%--------------------------------------
+%
+%	%--------------------------------------
+%	\subsection{Final Exponentiation}
+%	%--------------------------------------
+%	
+%	
+%	
+\section{Conclusion}
+This chapter defines the related mathematical fundamentals and introduced the notations for the subsequent chapters.
 	
 

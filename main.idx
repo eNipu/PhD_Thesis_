@@ -1,79 +1,105 @@
-\indexentry{modulus|hyperpage}{9}
-\indexentry{modulus|hyperpage}{9}
-\indexentry{group|hyperpage}{10}
-\indexentry{group|hyperpage}{10}
-\indexentry{group|hyperpage}{10}
-\indexentry{group|hyperpage}{10}
-\indexentry{Identity element|hyperpage}{10}
-\indexentry{group|hyperpage}{10}
-\indexentry{group|hyperpage}{10}
-\indexentry{group|hyperpage}{10}
-\indexentry{group|hyperpage}{10}
-\indexentry{group|hyperpage}{10}
-\indexentry{group|hyperpage}{10}
-\indexentry{group|hyperpage}{10}
-\indexentry{group|hyperpage}{10}
-\indexentry{group|hyperpage}{10}
-\indexentry{group order|hyperpage}{10}
-\indexentry{group|hyperpage}{10}
-\indexentry{group|hyperpage}{10}
-\indexentry{group|hyperpage}{10}
-\indexentry{order of element|hyperpage}{10}
-\indexentry{group|hyperpage}{10}
-\indexentry{order|hyperpage}{10}
-\indexentry{group|hyperpage}{10}
-\indexentry{finite group|hyperpage}{10}
-\indexentry{group|hyperpage}{10}
-\indexentry{group|hyperpage}{11}
-\indexentry{group|hyperpage}{11}
-\indexentry{group|hyperpage}{11}
-\indexentry{group|hyperpage}{11}
-\indexentry{group|hyperpage}{11}
-\indexentry{group|hyperpage}{11}
-\indexentry{generator|hyperpage}{11}
-\indexentry{group|hyperpage}{11}
-\indexentry{group|hyperpage}{11}
-\indexentry{group|hyperpage}{11}
-\indexentry{group|hyperpage}{11}
-\indexentry{group|hyperpage}{11}
-\indexentry{group|hyperpage}{11}
-\indexentry{group|hyperpage}{11}
-\indexentry{group|hyperpage}{11}
-\indexentry{group|hyperpage}{11}
-\indexentry{additive group|hyperpage}{11}
-\indexentry{multiplicative group|hyperpage}{11}
-\indexentry{cyclic group|hyperpage}{12}
-\indexentry{generator|hyperpage}{12}
-\indexentry{cyclic group|hyperpage}{12}
+\indexentry{Cryptology|hyperpage}{1}
+\indexentry{DHKE|hyperpage}{1}
+\indexentry{RSA|hyperpage}{1}
+\indexentry{Data confidentiality|hyperpage}{2}
+\indexentry{Data integrity|hyperpage}{2}
+\indexentry{Authentication|hyperpage}{2}
+\indexentry{Non repudiation|hyperpage}{3}
+\indexentry{Symmetric Cryptography|hyperpage}{3}
+\indexentry{Public-key Cryptography|hyperpage}{3}
+\indexentry{RSA|hyperpage}{4}
+\indexentry{ECC|hyperpage}{4}
+\indexentry{PBC|hyperpage}{5}
+\indexentry{Pairing-Based Cryptography|hyperpage}{5}
+\indexentry{modulus|hyperpage}{11}
+\indexentry{modulus|hyperpage}{11}
 \indexentry{group|hyperpage}{12}
 \indexentry{group|hyperpage}{12}
-\indexentry{Cayley table|hyperpage}{12}
-\indexentry{Cayley table|hyperpage}{12}
-\indexentry{Cayley!Cayley table|hyperpage}{12}
 \indexentry{group|hyperpage}{12}
-\indexentry{subgroup|hyperpage}{12}
-\indexentry{homomorphism|hyperpage}{13}
-\indexentry{rings|hyperpage}{13}
-\indexentry{Isomorphism|hyperpage}{13}
-\indexentry{Endomorphism|hyperpage}{13}
-\indexentry{Authomorphism|hyperpage}{13}
-\indexentry{kernel|hyperpage}{13}
-\indexentry{ring|hyperpage}{14}
-\indexentry{multiplicative inverse|hyperpage}{14}
-\indexentry{subfield|hyperpage}{14}
-\indexentry{order of field|hyperpage}{14}
-\indexentry{field characteristics|hyperpage}{14}
-\indexentry{prime field|hyperpage}{15}
-\indexentry{KSS Curve|hyperpage}{33}
-\indexentry{KSS-18|hyperpage}{33}
-\indexentry{KSS-18: towering|hyperpage}{33}
-\indexentry{KSS-18: extension field|hyperpage}{33}
-\indexentry{KSS-18: sextic twist|hyperpage}{33}
-\indexentry{KSS-18: isomorphic mapping |hyperpage}{34}
-\indexentry{KSS-18: pairing|hyperpage}{34}
-\indexentry{KSS-18: Optimal-Ate|hyperpage}{35}
-\indexentry{sparse multiplication|hyperpage}{35}
-\indexentry{ KSS-18: Optimal-Ate|hyperpage}{36}
-\indexentry{KSS-18: Optimal-Ate|hyperpage}{36}
-\indexentry{KSS-18: line-evaluation|hyperpage}{38}
-\indexentry{CVMA|hyperpage}{113}
+\indexentry{group|hyperpage}{12}
+\indexentry{Identity element|hyperpage}{12}
+\indexentry{group|hyperpage}{12}
+\indexentry{group|hyperpage}{12}
+\indexentry{group|hyperpage}{12}
+\indexentry{group|hyperpage}{12}
+\indexentry{group|hyperpage}{12}
+\indexentry{group|hyperpage}{12}
+\indexentry{group|hyperpage}{12}
+\indexentry{group|hyperpage}{12}
+\indexentry{group|hyperpage}{12}
+\indexentry{group order|hyperpage}{12}
+\indexentry{group|hyperpage}{12}
+\indexentry{group|hyperpage}{12}
+\indexentry{group|hyperpage}{12}
+\indexentry{order of element|hyperpage}{12}
+\indexentry{group|hyperpage}{12}
+\indexentry{order|hyperpage}{12}
+\indexentry{group|hyperpage}{12}
+\indexentry{finite group|hyperpage}{12}
+\indexentry{group|hyperpage}{12}
+\indexentry{group|hyperpage}{13}
+\indexentry{group|hyperpage}{13}
+\indexentry{group|hyperpage}{13}
+\indexentry{group|hyperpage}{13}
+\indexentry{group|hyperpage}{13}
+\indexentry{group|hyperpage}{13}
+\indexentry{generator|hyperpage}{13}
+\indexentry{group|hyperpage}{13}
+\indexentry{group|hyperpage}{13}
+\indexentry{group|hyperpage}{13}
+\indexentry{group|hyperpage}{13}
+\indexentry{group|hyperpage}{13}
+\indexentry{group|hyperpage}{13}
+\indexentry{group|hyperpage}{13}
+\indexentry{group|hyperpage}{13}
+\indexentry{group|hyperpage}{13}
+\indexentry{additive group|hyperpage}{13}
+\indexentry{multiplicative group|hyperpage}{13}
+\indexentry{cyclic group|hyperpage}{14}
+\indexentry{generator|hyperpage}{14}
+\indexentry{cyclic group|hyperpage}{14}
+\indexentry{group|hyperpage}{14}
+\indexentry{group|hyperpage}{14}
+\indexentry{Cayley table|hyperpage}{14}
+\indexentry{Cayley table|hyperpage}{14}
+\indexentry{Cayley!Cayley table|hyperpage}{14}
+\indexentry{group|hyperpage}{14}
+\indexentry{subgroup|hyperpage}{14}
+\indexentry{homomorphism|hyperpage}{15}
+\indexentry{rings|hyperpage}{15}
+\indexentry{Isomorphism|hyperpage}{15}
+\indexentry{Endomorphism|hyperpage}{15}
+\indexentry{Authomorphism|hyperpage}{15}
+\indexentry{kernel|hyperpage}{15}
+\indexentry{ring|hyperpage}{16}
+\indexentry{multiplicative inverse|hyperpage}{16}
+\indexentry{subfield|hyperpage}{16}
+\indexentry{order of field|hyperpage}{16}
+\indexentry{field characteristics|hyperpage}{16}
+\indexentry{prime field|hyperpage}{17}
+\indexentry{KSS Curve|hyperpage}{25}
+\indexentry{KSS-18|hyperpage}{25}
+\indexentry{KSS-18|hyperpage}{25}
+\indexentry{KSS-18: towering|hyperpage}{25}
+\indexentry{KSS-18: extension field|hyperpage}{25}
+\indexentry{KSS-18: sextic twist|hyperpage}{25}
+\indexentry{KSS-18: isomorphic mapping |hyperpage}{26}
+\indexentry{KSS-18: pairing|hyperpage}{26}
+\indexentry{Ate Pairing|hyperpage}{26}
+\indexentry{KSS-18: Optimal-Ate|hyperpage}{27}
+\indexentry{sparse multiplication|hyperpage}{27}
+\indexentry{ KSS-18: Optimal-Ate|hyperpage}{28}
+\indexentry{KSS-18: Optimal-Ate|hyperpage}{28}
+\indexentry{KSS-18: line-evaluation|hyperpage}{30}
+\indexentry{KSS-18: Frobenius map|hyperpage}{38}
+\indexentry{KSS-18: Sextic twist|hyperpage}{39}
+\indexentry{KSS-18: $\g{2}$ SCM|hyperpage}{39}
+\indexentry{$z$-adic decomposition|hyperpage}{42}
+\indexentry{KSS-18: Skew Frobenius map|hyperpage}{45}
+\indexentry{KSS-16: Quartic twist|hyperpage}{56}
+\indexentry{BN: Sparse multiplication|hyperpage}{71}
+\indexentry{BLS-12: Sparse multiplication|hyperpage}{71}
+\indexentry{KSS-16:Karatsuba|hyperpage}{86}
+\indexentry{KSS-16:CVMA|hyperpage}{86}
+\indexentry{CVMA|hyperpage}{102}
+\indexentry{KSS-16: $\g{2} SCM|hyperpage}{109}

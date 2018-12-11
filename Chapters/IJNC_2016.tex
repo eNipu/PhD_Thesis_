@@ -179,7 +179,7 @@ E'_6(\F{p}{e}) \rightarrow E(\F{p}{6e}),\\
 
 %In the context of Ate-based pairing for KSS curve of embedding degree 18, sextic twist is considered to be the most efficient. This chapter considers mapping of sextic twisted subfield isomorphic group of $\FPEN$. 
 
-\subsubsection{Quartic Twist of KSS-16 Curve}
+\subsubsection{Quartic Twist of KSS-16 Curve} \index{KSS-16: Quartic twist}
 \label{sec:ch:ijnc:kss16twist}
 The quartic twist of KSS-16 curve is given as  follows:
 \begin{eqnarray}
@@ -194,7 +194,7 @@ E'_4(\F{p}{4}) \rightarrow E(\F{p}{16}),\\
 \end{cases}
 \end{eqnarray}
 
-\section{Isomorphic Mapping between \texorpdfstring{$Q$}{Q} and \texorpdfstring{$Q'$}{Q'}}
+\section{Isomorphic Map between \texorpdfstring{$Q$}{Q} and \texorpdfstring{$Q'$}{Q'}}
 This section introduces the derived mapping procedure of $\g2$ rational point group to its twisted (quartic and  sextic) isomorphic group $\g2'$ for Ate-based pairing for the considered KSS curves. 
 The idea of isomorphic mapping for KSS-18  is already defined in  \secref{sec:ch:ieice2016:mappingQtoQprime} of \chref{Chapter_IEICE}. 
 In this section we recall this mapping to for more comprehensive reading along with the newly introduced idea of aquatic twist.
@@ -217,17 +217,17 @@ where $b \in \Fp$; $x, y, i \in \FPTH$ and basis element $i$ is the quadratic an
 
 In the context of KSS-18 curve, let us consider a rational point $Q\in \g2 \subset E(\F{p}{18})$.
 $Q$ has a  special vector representation with 18 $\Fp$ elements for each $x_Q$ and $y_Q$ coordinate.
-Figure \ref{fig:Q_structureKSS18_chap_ijnc2017} shows the structure of the coefficients of $Q \in \FPEN$ and its sextic twisted isomorphic rational point $Q' \in \FPTH$ in KSS-18 curve.
-\begin{figure*}
-\centering
-\includegraphics[width=4.5in]{structure.eps}
-\caption{ $Q \in \FPEN$ and its sextic twisted isomorphic rational point $Q' \in \FPTH$ structure in KSS-18 curve.}
-\label{fig:Q_structureKSS18_chap_ijnc2017}
-\end{figure*}
+Figure \ref{fig:Q_structure_chapter_g2scm_kss18} shows the structure of the coefficients of $Q \in \FPEN$ and its sextic twisted isomorphic rational point $Q' \in \FPTH$ in KSS-18 curve.
+%\begin{figure*}
+%\centering
+%\includegraphics[width=4.5in]{structure.eps}
+%\caption{ $Q \in \FPEN$ and its sextic twisted isomorphic rational point $Q' \in \FPTH$ structure in KSS-18 curve.}
+%\label{fig:Q_structure_chapter_g2scm_kss18}
+%\end{figure*}
 Among 18 elements, there are 3 continuous nonzero $\Fp$ elements. The others are zero.
 However, the set of these nonzero elements belongs to a $\FPTH$ field. 
 
-This chapter considers parameter given in \tbref{table_KSS18_param_chap_ijnc2017} for KSS-18 curve where mother parameter $u=65$-bit and characteristics $p=511$-bit. In such consideration, $Q$ is given as $Q = (Av\theta, Bv)$,  showed in Figure \ref{fig:Q_structureKSS18_chap_ijnc2017}, where $A, B \in \FPTH$ and $v$ and $\theta$ are the basis elements of $\F{p}{6}$ and $\FPEN$ respectively. 
+This chapter considers parameter given in \tbref{table_KSS18_param_chap_ijnc2017} for KSS-18 curve where mother parameter $u=65$-bit and characteristics $p=511$-bit. In such consideration, $Q$ is given as $Q = (Av\theta, Bv)$,  showed in Figure \ref{fig:Q_structure_chapter_g2scm_kss18}, where $A, B \in \FPTH$ and $v$ and $\theta$ are the basis elements of $\F{p}{6}$ and $\FPEN$ respectively. 
 
 Let us consider the sextic twisted isomorphic subfield rational point of $Q$ as $Q' \in \g2' \subset E'(\F{p}{3})$.
 Considering $x'$ and $y'$ as the coordinates of $Q'$, we can map the rational point $Q = (Av\theta, Bv)$  to the rational point  $Q' = (x',y')$ as follows.
@@ -296,7 +296,7 @@ Let us consider the rational point $Q \in \g2 \subset E(\FPSN)$ and its quartic 
 \renewcommand{\baselinestretch}{1.5}
 \begin{table}[ht] 
 	\begin{center}
-		\caption{Vector representation of $Q = (x_Q,y_Q) \in \FPSN$}
+		\caption{Vector representation of $Q = (x_Q,y_Q) \in \FPSN$.}
 		\resizebox{\columnwidth}{!}{
 		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
 			\hline 
@@ -357,7 +357,7 @@ Parameter of KSS curves are given in decimal value used for evaluating the mappi
 	\renewcommand{\arraystretch}{1.2}{
 \begin{table}[ht]
 	\centering
-	\caption{KSS-18 Parameters}
+	\caption{KSS-18 parameters.}
 	\label{table_KSS18_param_chap_ijnc2017}
 	\resizebox{\columnwidth}{!}{
 	\begin{tabular}{|l|l|l|}
@@ -373,7 +373,7 @@ Parameter of KSS curves are given in decimal value used for evaluating the mappi
 }
 
 \begin{table}[ht]
-	\caption{KSS-16 Parameters}
+	\caption{KSS-16 parameters.}
 	\label{table_KSS16_param_chap_ijnc2017}
 	\resizebox{\columnwidth}{!}{
 	\begin{tabular}{|l|l|l|}
@@ -390,7 +390,7 @@ Parameter of KSS curves are given in decimal value used for evaluating the mappi
 \renewcommand{\arraystretch}{1.5}{
 \begin{table}[ht]
 \centering
-\caption{ Computational Environment}
+\caption{ Computational environment.}
 \label{table_comenv_twist_chap_ijnc2017}
 \resizebox{\columnwidth}{!}{
 \begin{tabular}{l|l|l}
@@ -418,7 +418,7 @@ Library & GNU MP 6.1.1\cite{gmp} & GNU MP 6.1.1 \\
 \renewcommand{\arraystretch}{1.3}{
 \begin{table}[ht]
 	\begin{center}
-		\caption{Additional settings used in the experiment}
+		\caption{Additional settings used in the experiment.}
 		\label{table_additional_twist_chap_ijnc2017}
 		%\resizebox{\columnwidth}{!}{
 		\begin{tabular}{l|l|l}
@@ -440,7 +440,7 @@ Library & GNU MP 6.1.1\cite{gmp} & GNU MP 6.1.1 \\
 \begin{table}[ht]
 %\renewcommand{\arraystretch}{1.3}
 \centering
-\caption{ Comparative result of average execution time in [ms] for scalar multiplication}
+\caption{ Comparative result of average execution time in [ms] for scalar multiplication.}
 \label{table_opeationcomp_chap_ijnc2017}
 \resizebox{\columnwidth}{!}{
 \begin{tabular}{|l|c|c|c|c|c|c|}

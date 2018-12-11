@@ -8,7 +8,7 @@
 \label{sec:ch:icisc:bac_motivation}
 From the very beginning of the cryptosystems that utilizes elliptic curve pairing; proposed independently by Sakai et al. \cite{EPRINT:SakKas03} and Joux \cite{JC:Joux04}, has unlocked numerous novel ideas to researchers. 
 Many researchers tried to find out security protocol that exploits pairings to remove the need of certification by a trusted authority. 
-In this consequence, several ingenious pairing based encryption scheme such as ID-based encryption scheme by  Boneh and Franklin \cite{C:BonFra01} and group signature authentication by Nakanishi et al. \cite{AC:NakFun05} have come into the focus. 
+In this consequence, several ingenious pairing-based encryption scheme such as ID-based encryption scheme by  Boneh and Franklin \cite{C:BonFra01} and group signature authentication by Nakanishi et al. \cite{AC:NakFun05} have come into the focus. 
 In such outcome, Ate-based pairings such as Ate \cite{DBLP:reference/crc/2005ehcc}, Optimal-ate \cite{DBLP:journals/tit/Vercauteren10}, twisted Ate \cite{EPRINT:MKHO07},  R-ate \cite{r_ate}, and $u$-Ate \cite{PAIRING:NASKM08} pairings and their applications in cryptosystems have caught much attention since they have achieved quite efficient pairing calculation.
 But it has always been a challenge for researchers to make pairing calculation more efficient for being used practically as pairing calculation is regarded as quite time consuming operation. 
 
@@ -41,7 +41,7 @@ The previous work of Mori et al. \cite{PAIRING:MANS13} has showed the \textit{ps
 \label{sec:ch:icisc:preliminaries}
 This section briefly reviews the fundamentals of towering extension field with irreducible binomials \cite{JC:BaiPaa01}, sextic twist, pairings and sparse multiplication \cite{PAIRING:MANS13} with respect to KSS-18 curve \cite{EPRINT:KacSchSco07}.
 %-----------------------------------------------------------------------------------------------------------------------------------
-\subsection{KSS Curve \index{KSS Curve} of Embedding Degree \texorpdfstring{$k=18$}{k=18}}
+\subsection{KSS Curve \index{KSS Curve} of Embedding Degree \texorpdfstring{$k=18$}{k=18}} \index{KSS-18}
 \label{sec:ch:icisc:kss18curve}
 Kachisa-Schaefer-Scott (KSS) curve \cite{EPRINT:KacSchSco07} is a non supersingular pairing friendly elliptic curve of embedding degrees $k = \left\lbrace16, 18, 32, 36, 40\right\rbrace$. 
 This chapter considers KSS curve of embedding degree $k=18$, in short KSS-18 curve.
@@ -99,7 +99,7 @@ where $$\hat{z}, \hat{z}^{-1/2},\hat{z}^{-1/3} \in \Fp$$ \label{isisc16_kss18_is
 %-----------------------------------------------------------------------------------------------------------------------------------
 \subsection{Pairing over KSS-18 Curve \index{KSS-18: pairing}}
 As described earlier bilinear pairing requires two rational point groups to be mapped to a multiplicative group. In what follows,  Optimal-Ate pairing over KSS-18 curve of embedding degree $k = 18$ is described as follows.
-\subsubsection{Ate Pairing}
+\subsubsection{Ate Pairing} \index{Ate Pairing}
 Let us consider the following two additive groups as $\g1$ and $\g2$ and multiplicative group as $\g3$. The Ate pairing $\alpha$ is defined as follows:
 \begin{eqnarray}
 	\g1&=&E(\Fpk)[r]\cap {\rm Ker}(\pi_p-[1])\nonumber,\\
@@ -146,7 +146,7 @@ $l_{\psi_6(T),\psi_6(Q)}(P)\in \Fpxviii$ also has the same vector structure. Thu
 %
 %
 \begin{algorithm}[ht]  \index{ KSS-18: Optimal-Ate}
-	\caption{Optimal-Ate pairing on KSS-18 curve}
+	\caption{Optimal-Ate pairing on KSS-18 curve.}
 	\label{ch3_optimalalgo_kss18}
 	\DontPrintSemicolon
 
@@ -187,7 +187,7 @@ As said before $y_P$ shown in \eqref{icisc16_kss18_sparse_dbl} is a non-zero ele
 \end{equation}
 Replacing $l_{T,T}(P)$ by the above $y_P^{-1}l_{T,T}(P)$, the calculation result of the pairing does not change, since  $final\;exponentiation$ cancels $y_P^{-1}\in \Fp$. One of the non-zero coefficients becomes 1 after the division by $y_P$, which results in more efficient vector multiplications in Miller's loop. This chapter calls it $pseudo\;12-sparse\;multiplication$. \algref{algokss18sparsemul}  introduces the detailed calculation procedure of pseudo 12-sparse multiplication.
 \begin{algorithm}[ht]
-	\caption{Pseudo 12-sparse multiplication}
+	\caption{Pseudo 12-sparse multiplication.}
 	\label{algokss18sparsemul}
 	\DontPrintSemicolon
 
@@ -364,5 +364,5 @@ The simulation result shows that the proposed \textit{pseudo 12-sparse multiplic
 \section{Conclusion}
 This chapter has proposed pseudo 12-sparse multiplication for accelerating Optimal-Ate pairing on KSS-18 curve. 
 According to the calculation costs and experimental results shown in this chapter, the proposed method can calculate Optimal-Ate pairing more efficiently. 
-%As a future work we would like to evaluate the efficiency in practical case by implementing it in some pairing based protocols. 
+%As a future work we would like to evaluate the efficiency in practical case by implementing it in some pairing-based protocols. 
 

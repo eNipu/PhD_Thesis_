@@ -9,197 +9,187 @@
 \contentsline {chapter}{List of Notations and Symbols}{xxiii}{chapter*.7}
 \contentsline {chapter}{Research Activities}{xxvii}{chapter*.10}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.45}
-\contentsline {section}{\numberline {1.1}Cryptology}{1}{section.46}
+\contentsline {section}{\numberline {1.1}Cryptology }{1}{section.46}
 \contentsline {subsection}{\numberline {1.1.1}Symmetric/Private-Key Cryptography}{3}{subsection.48}
 \contentsline {subsection}{\numberline {1.1.2}Public-key Cryptography}{3}{subsection.49}
 \contentsline {subsection}{\numberline {1.1.3}Pairing-Based Cryptography}{5}{subsection.51}
-\contentsline {section}{\numberline {1.2}Motivation}{6}{section.52}
-\contentsline {section}{\numberline {1.3}Our Contribution}{7}{section.55}
-\contentsline {section}{\numberline {1.4}Thesis Outline}{7}{section.56}
-\contentsline {chapter}{\numberline {2}Fundamental Mathematics and Notation}{9}{chapter.57}
-\contentsline {section}{\numberline {2.1}Modular Arithmetic}{9}{section.58}
-\contentsline {section}{\numberline {2.2}Group, Ring, Field}{10}{section.62}
-\contentsline {subsection}{\numberline {2.2.1}Group}{10}{subsection.63}
-\contentsline {subsection}{\numberline {2.2.2}Homomorphism in groups }{13}{subsection.87}
-\contentsline {subsubsection}{\numberline {2.2.2.1}Types of Homomorphism}{13}{subsubsection.89}
-\contentsline {subsection}{\numberline {2.2.3}Ring}{13}{subsection.91}
-\contentsline {subsection}{\numberline {2.2.4}Field}{14}{subsection.94}
-\contentsline {section}{\numberline {2.3}Extension Field}{15}{section.105}
-\contentsline {section}{\numberline {2.4}Frobenius Map}{16}{section.108}
-\contentsline {section}{\numberline {2.5}Quadratic Residue/Quadratic Non-residue, \\and Cubic Residue/Cubic Non-residue}{16}{section.110}
-\contentsline {section}{\numberline {2.6}Elliptic Curve}{17}{section.112}
-\contentsline {subsection}{\numberline {2.6.1}Additive Group over Elliptic Curves}{17}{subsection.113}
-\contentsline {subsection}{\numberline {2.6.2}Scalar Multiplication in Elliptic Curve}{18}{subsection.117}
-\contentsline {paragraph}{Binary method}{18}{section*.119}
-\contentsline {paragraph}{Montgomery ladder method}{18}{section*.130}
-\contentsline {paragraph}{Sliding-window Method}{18}{section*.144}
-\contentsline {subsection}{\numberline {2.6.3}Frobenius Map on Elliptic Curve Groups}{19}{subsection.167}
-\contentsline {subsection}{\numberline {2.6.4}Definition of Pairing}{19}{subsection.169}
-\contentsline {subsection}{\numberline {2.6.5}Properties of Pairing}{20}{subsection.171}
-\contentsline {subsection}{\numberline {2.6.6}Pairing-friendly Curves}{21}{subsection.173}
-\contentsline {subsubsection}{\numberline {2.6.6.1}MNT Curve}{21}{subsubsection.177}
-\contentsline {subsubsection}{\numberline {2.6.6.2}Freeman Curve}{22}{subsubsection.178}
-\contentsline {subsubsection}{\numberline {2.6.6.3}Barreto-Neahrig Curve}{22}{subsubsection.179}
-\contentsline {subsection}{\numberline {2.6.7}Point Compression using Twisted Elliptic Curves}{23}{subsection.181}
-\contentsline {subsection}{\numberline {2.6.8}Tate Pairing}{24}{subsection.188}
-\contentsline {subsection}{\numberline {2.6.9}Ate Pairing}{25}{subsection.191}
-\contentsline {subsection}{\numberline {2.6.10}Twisted Ate Pairing}{26}{subsection.196}
-\contentsline {subsection}{\numberline {2.6.11}Divisor and Rational Function}{26}{subsection.201}
-\contentsline {subsection}{\numberline {2.6.12}Miller's Algorithm}{27}{subsection.208}
-\contentsline {subsection}{\numberline {2.6.13}Final Exponentiation}{28}{subsection.212}
-\contentsline {section}{\numberline {2.7}Conclusion}{30}{section.214}
-\contentsline {chapter}{\numberline {3}Improved Optimal-Ate Pairing for KSS-18 Curve}{31}{chapter.215}
-\contentsline {section}{\numberline {3.1}Introduction}{31}{section.216}
-\contentsline {subsection}{\numberline {3.1.1}Background and Motivation}{31}{subsection.217}
-\contentsline {subsection}{\numberline {3.1.2}General Notation}{31}{subsection.218}
-\contentsline {subsection}{\numberline {3.1.3}Contribution Outline}{32}{subsection.219}
-\contentsline {subsection}{\numberline {3.1.4}Related Works}{32}{subsection.220}
-\contentsline {section}{\numberline {3.2}Preliminaries}{33}{section.221}
-\contentsline {subsection}{\numberline {3.2.1}KSS Curve of Embedding Degree $k=18$}{33}{subsection.222}
-\contentsline {subsection}{\numberline {3.2.2}Towering Extension Field }{33}{subsection.224}
-\contentsline {subsection}{\numberline {3.2.3}Sextic Twist of KSS-18 Curve }{33}{subsection.226}
-\contentsline {subsection}{\numberline {3.2.4}Isomorphic Mapping between $E(\ensuremath {{\PazoBB {F}}_{p}})$ and $\mathaccentV {hat}45E{E}(\ensuremath {{\PazoBB {F}}_{p}})$}{34}{subsection.229}
-\contentsline {subsection}{\numberline {3.2.5}Pairing over KSS-18 Curve }{34}{subsection.231}
-\contentsline {subsubsection}{\numberline {3.2.5.1}Ate Pairing}{34}{subsubsection.232}
-\contentsline {subsubsection}{\numberline {3.2.5.2}Optimal-Ate Pairing }{35}{subsubsection.236}
-\contentsline {subsection}{\numberline {3.2.6}Sparse multiplication }{35}{subsection.238}
-\contentsline {subsubsection}{\numberline {3.2.6.1}Step 3: Elliptic curve doubling phase ($T = Q$)}{35}{subsubsection.239}
-\contentsline {subsubsection}{\numberline {3.2.6.2}Step 5: Elliptic curve addition phase ($T\neq Q$)}{36}{subsubsection.241}
-\contentsline {section}{\numberline {3.3}Improved Optimal-Ate Pairing for KSS-18 Curve}{36}{section.256}
-\contentsline {subsection}{\numberline {3.3.1}Pseudo 12-sparse Multiplication}{37}{subsection.259}
-\contentsline {subsection}{\numberline {3.3.2}Line Calculation in Miller's Loop}{38}{subsection.275}
-\contentsline {subsubsection}{\numberline {3.3.2.1}Step 3: Doubling Phase ($T=Q$)}{38}{subsubsection.280}
-\contentsline {subsubsection}{\numberline {3.3.2.2}Step 5: Addition Phase ($T\neq Q$)}{38}{subsubsection.282}
-\contentsline {section}{\numberline {3.4}Cost Evaluation and Experimental Result}{39}{section.284}
-\contentsline {subsection}{\numberline {3.4.1}Parameter Settings and Computational Environment}{39}{subsection.285}
-\contentsline {subsection}{\numberline {3.4.2}Cost Evaluation}{39}{subsection.288}
-\contentsline {subsection}{\numberline {3.4.3}Experimental Result}{40}{subsection.291}
-\contentsline {section}{\numberline {3.5}Contribution Summary}{40}{section.293}
-\contentsline {section}{\numberline {3.6}Conclusion}{41}{section.294}
-\contentsline {chapter}{\numberline {4}Improved $\g {2}$ Scalar Multiplication over KSS-18 Curve}{43}{chapter.295}
-\contentsline {section}{\numberline {4.1}Introduction}{43}{section.296}
-\contentsline {subsection}{\numberline {4.1.1}Background and Motivation}{43}{subsection.297}
-\contentsline {subsection}{\numberline {4.1.2}Related Works}{44}{subsection.300}
-\contentsline {subsection}{\numberline {4.1.3}Contribution Outline}{44}{subsection.301}
-\contentsline {section}{\numberline {4.2}Preliminaries}{45}{section.303}
-\contentsline {subsection}{\numberline {4.2.1}Elliptic Curve}{45}{subsection.304}
-\contentsline {subsection}{\numberline {4.2.2}KSS Curve of Embedding Degree $k=18$}{45}{subsection.306}
-\contentsline {subsection}{\numberline {4.2.3}$\PazoBB {F}_{p^{18}}$ Extension Field Arithmetic}{46}{subsection.310}
-\contentsline {subsection}{\numberline {4.2.4}Frobenius Mapping of Rational Points in $E(\PazoBB {F}_{p^{18}})$}{46}{subsection.312}
-\contentsline {subsection}{\numberline {4.2.5}Sextic Twist of KSS-18 Curve}{47}{subsection.313}
-\contentsline {section}{\numberline {4.3}Proposed Improved Scalar Multiplication for $\g 2$ Rational Point}{47}{section.316}
-\contentsline {subsection}{\numberline {4.3.1}Overview of the Proposal}{47}{subsection.317}
-\contentsline {subsection}{\numberline {4.3.2}\g 1, \g 2 and \g 3 Groups}{48}{subsection.319}
-\contentsline {subsection}{\numberline {4.3.3}Isomorphic Mapping between $Q$ and $Q'$}{48}{subsection.324}
-\contentsline {subsubsection}{\numberline {4.3.3.1}Mapping $Q = (Av\theta , Bv)$ to the rational point $Q' = (x',y')$}{49}{subsubsection.327}
-\contentsline {subsection}{\numberline {4.3.4}$z$-adic Representation of Scalar $s$}{50}{subsection.333}
-\contentsline {subsection}{\numberline {4.3.5}Reducing Elliptic Curve Doubling in $[s]Q'$}{51}{subsection.340}
-\contentsline {subsection}{\numberline {4.3.6}Skew Frobenius Map of $\g {2}$ Points in KSS-18 Curve}{53}{subsection.348}
-\contentsline {subsection}{\numberline {4.3.7}Multi-Scalar Multiplication}{53}{subsection.353}
-\contentsline {subsubsection}{\numberline {4.3.7.1}Re-mapping Rational Points from $E'(\PazoBB {F}_{p^3})$ to $E(\PazoBB {F}_{p^{18}})$}{54}{subsubsection.355}
-\contentsline {section}{\numberline {4.4}Simulation Result Evaluation}{54}{section.358}
-\contentsline {section}{\numberline {4.5}Contribution Summary}{56}{section.363}
-\contentsline {section}{\numberline {4.6}Future Work}{57}{section.364}
-\contentsline {chapter}{\numberline {5}Mapping over Quartic and Sextic twisted KSS Curves}{59}{chapter.365}
-\contentsline {section}{\numberline {5.1}Introduction}{59}{section.366}
-\contentsline {subsection}{\numberline {5.1.1}Background and Motivation}{59}{subsection.367}
-\contentsline {subsection}{\numberline {5.1.2}Related Works}{60}{subsection.368}
-\contentsline {subsection}{\numberline {5.1.3}Contribution Outline}{60}{subsection.369}
-\contentsline {section}{\numberline {5.2}Fundamentals}{61}{section.370}
-\contentsline {subsection}{\numberline {5.2.1}Kachisa-Schaefer-Scott (KSS) Curve Family}{61}{subsection.371}
-\contentsline {subsection}{\numberline {5.2.2}Extension Field Construction for KSS Curves}{62}{subsection.378}
-\contentsline {subsubsection}{\numberline {5.2.2.1}Towering of $\PazoBB {F}_{p^{18}}$ Extension Field}{62}{subsubsection.379}
-\contentsline {subsubsection}{\numberline {5.2.2.2}Towering of $\PazoBB {F}_{p^{16}}$ Extension Field}{62}{subsubsection.381}
-\contentsline {subsection}{\numberline {5.2.3}\g 1, \g 2 and \g 3 Groups}{63}{subsection.383}
-\contentsline {subsection}{\numberline {5.2.4}Twist of KSS Curves}{63}{subsection.386}
-\contentsline {subsubsection}{\numberline {5.2.4.1}Sextic Twist of KSS-18 Curve}{63}{subsubsection.387}
-\contentsline {subsubsection}{\numberline {5.2.4.2}Quartic Twist of KSS-16 Curve}{64}{subsubsection.390}
-\contentsline {section}{\numberline {5.3}Isomorphic Mapping between $Q$ and $Q'$}{64}{section.393}
-\contentsline {subsection}{\numberline {5.3.1}Sextic twisted Isomorphic Mapping between $Q \in \g 2 \subset E(\PazoBB {F}_{p^{18}})$ and $Q' \in \g 2' \subset E'(\PazoBB {F}_{p^3})$}{64}{subsection.394}
-\contentsline {subsubsection}{\numberline {5.3.1.1}$Q$ to $Q'$ Mapping in KSS-18}{66}{subsubsection.404}
-\contentsline {subsubsection}{\numberline {5.3.1.2}$Q'$ to $Q$ Mapping in KSS-18}{66}{subsubsection.407}
-\contentsline {subsection}{\numberline {5.3.2}Quartic Twisted Isomorphic Mapping}{67}{subsection.410}
-\contentsline {section}{\numberline {5.4}Result Analysis}{68}{section.417}
-\contentsline {section}{\numberline {5.5}Conclusion}{70}{section.423}
-\contentsline {chapter}{\numberline {6}Efficient Optimal-Ate Pairing at 128-bit Security}{73}{chapter.424}
-\contentsline {section}{\numberline {6.1}Introduction}{73}{section.425}
-\contentsline {subsection}{\numberline {6.1.1}Notation Overview}{73}{subsection.426}
-\contentsline {subsection}{\numberline {6.1.2}Related Works}{73}{subsection.427}
-\contentsline {subsection}{\numberline {6.1.3}Motivation}{74}{subsection.428}
-\contentsline {subsection}{\numberline {6.1.4}Contribution Summary}{74}{subsection.429}
-\contentsline {section}{\numberline {6.2}Fundamentals of Elliptic Curve and Pairing}{75}{section.430}
-\contentsline {subsection}{\numberline {6.2.1}Kachisa-Schaefer-Scott (KSS) Curve of Embedding Degree $k=16$}{75}{subsection.431}
-\contentsline {subsection}{\numberline {6.2.2}Extension Field Arithmetic and Towering}{75}{subsection.435}
-\contentsline {subsubsection}{\numberline {6.2.2.1}Towering of $\PazoBB {F}_{p^{16}}$ Extension Field}{75}{subsubsection.436}
-\contentsline {subsubsection}{\numberline {6.2.2.2}Towering of $\PazoBB {F}_{p^{12}}$ Extension Field}{76}{subsubsection.438}
-\contentsline {subsubsection}{\numberline {6.2.2.3}Extension Field Arithmetic of $\PazoBB {F}_{p^{16}}$ and $\PazoBB {F}_{p^{12}}$}{76}{subsubsection.440}
-\contentsline {subsection}{\numberline {6.2.3}Ate and Optimal-Ate On KSS-16, BN, BLS-12 Curve}{76}{subsection.443}
-\contentsline {subsection}{\numberline {6.2.4}Twist of KSS-16 Curves}{78}{subsection.464}
-\contentsline {subsubsection}{\numberline {6.2.4.1}Quartic Twist}{79}{subsubsection.465}
-\contentsline {section}{\numberline {6.3}Proposal}{79}{section.468}
-\contentsline {subsection}{\numberline {6.3.1}Overview: Sparse and Pseudo-Sparse Multiplication}{79}{subsection.469}
-\contentsline {subsection}{\numberline {6.3.2}Pseudo 8-Sparse Multiplication for BN and BLS-12 Curve}{81}{subsection.477}
-\contentsline {subsubsection}{\numberline {6.3.2.1}Sextic twist of BN and BLS-12 curve:}{81}{subsubsection.478}
-\contentsline {subsection}{\numberline {6.3.3}Pseudo 8-sparse Multiplication for KSS-16 Curve}{82}{subsection.507}
-\contentsline {subsubsection}{\numberline {6.3.3.1}Isomorphic map of $P=(x_P,y_P) \to \bar P=(x_{\bar P},y_{\bar P})$.}{83}{subsubsection.510}
-\contentsline {subsection}{\numberline {6.3.4}Final Exponentiation}{85}{subsection.544}
-\contentsline {section}{\numberline {6.4}Experimental Result Evaluation}{88}{section.547}
-\contentsline {section}{\numberline {6.5}Conclusion and Future Work}{89}{section.555}
-\contentsline {chapter}{\numberline {7}Optimal-Ate Pairing Using CVMA over KSS-16 Curve}{91}{chapter.556}
-\contentsline {section}{\numberline {7.1}Introduction}{91}{section.557}
-\contentsline {section}{\numberline {7.2}Fundamentals of Elliptic Curve and Pairing}{94}{section.558}
-\contentsline {subsection}{\numberline {7.2.1}Extension Field Arithmetic for Pairing}{94}{subsection.559}
-\contentsline {subsubsection}{\numberline {7.2.1.1}Type-I towering}{94}{subsubsection.560}
-\contentsline {subsubsection}{\numberline {7.2.1.2}Type-II towering}{94}{subsubsection.562}
-\contentsline {subsubsection}{\numberline {7.2.1.3}Field Arithmetic of $\PazoBB {F}_{p^{16}}$}{94}{subsubsection.564}
-\contentsline {subsection}{\numberline {7.2.2}Optimal-Ate Pairing on KSS-16 Curve}{95}{subsection.566}
-\contentsline {section}{\numberline {7.3}Finding Efficient Line Evaluation in Type-II Towering and Sparse Multiplication}{96}{section.599}
-\contentsline {subsection}{\numberline {7.3.1}$\PazoBB {F}_{p^4}$ arithmetic in Type-II towering}{97}{subsection.607}
-\contentsline {subsubsection}{\numberline {7.3.1.1}Multiplication in $\PazoBB {F}_{p^4}$ using CVMA}{97}{subsubsection.609}
-\contentsline {subsubsection}{\numberline {7.3.1.2}Squaring in $\PazoBB {F}_{p^4}$ using CVMA}{99}{subsubsection.614}
-\contentsline {subsubsection}{\numberline {7.3.1.3}Frobenius mapping in $\PazoBB {F}_{p^4}$ using CVMA}{99}{subsubsection.617}
-\contentsline {subsubsection}{\numberline {7.3.1.4}Inversion in $\PazoBB {F}_{p^4}$sed in \cite {cvma_sanada}}{100}{subsubsection.619}
-\contentsline {subsubsection}{\numberline {7.3.1.5}Optimized $\PazoBB {F}_{p^4}$nversion using CVMA}{100}{subsubsection.621}
-\contentsline {subsubsection}{\numberline {7.3.1.6}Calculation over $\PazoBB {F}_{p^2}$ based on towering Eq.(\ref {towering_2})}{101}{subsubsection.624}
-\contentsline {paragraph}{\bf {Multiplication:} }{101}{section*.625}
-\contentsline {paragraph}{\bf {Squaring:}}{101}{section*.626}
-\contentsline {paragraph}{\bf {Frobenius map:}}{102}{section*.627}
-\contentsline {paragraph}{\bf {Inversion:}}{102}{section*.628}
-\contentsline {subsubsection}{\numberline {7.3.1.7}Frobenius mapping in $\PazoBB {F}_{p^{16}}$ using CVMA}{102}{subsubsection.630}
-\contentsline {subsection}{\numberline {7.3.2}Quartic Twist of KSS-16 Curves}{102}{subsection.632}
-\contentsline {paragraph}{\bf {Rational points: }}{103}{section*.634}
-\contentsline {subsection}{\numberline {7.3.3}Overview: Sparse and Pseudo-Sparse Multiplication}{103}{subsection.636}
-\contentsline {paragraph}{\bf {7-Sparse Multiplication:}}{104}{section*.637}
-\contentsline {subsection}{\numberline {7.3.4}Pseudo 8-sparse Multiplication for KSS-16 Curve using Type-II Towering}{105}{subsection.643}
-\contentsline {subsubsection}{\numberline {7.3.4.1}Isomorphic map of $P=(x_P,y_P) \to \bar P=(x_{\bar P},y_{\bar P})$.}{105}{subsubsection.646}
-\contentsline {subsubsection}{\numberline {7.3.4.2}Skew Frobenius Map to Compute $[p]\bar {Q'}$}{108}{subsubsection.699}
-\contentsline {subsection}{\numberline {7.3.5}Final Exponentiation}{108}{subsection.700}
-\contentsline {section}{\numberline {7.4}Experimental Result Evaluation}{111}{section.741}
-\contentsline {subsection}{\numberline {7.4.1}Experiment Environment and Assumptions}{111}{subsection.743}
-\contentsline {subsection}{\numberline {7.4.2}Result and Analysis}{112}{subsection.746}
-\contentsline {section}{\numberline {7.5}Conclusion and Future Work}{114}{section.752}
-\contentsline {chapter}{\numberline {8}Efficient $\g {2}$ Scalar Multiplican in KSS-16 Curve}{117}{chapter.753}
-\contentsline {section}{\numberline {8.1}Introduction}{117}{section.754}
-\contentsline {subsection}{\numberline {8.1.1}Background and Motivation}{117}{subsection.755}
-\contentsline {subsection}{\numberline {8.1.2}Literature Review}{118}{subsection.756}
-\contentsline {subsection}{\numberline {8.1.3}Contribution Outline}{118}{subsection.757}
-\contentsline {section}{\numberline {8.2}Fundamentals}{118}{section.758}
-\contentsline {subsection}{\numberline {8.2.1}Gallant, Lambert, and Vanstone (GLV) Decomposition}{118}{subsection.759}
-\contentsline {section}{\numberline {8.3}Proposed GLV technique for $\g 2$ Rational Point on KSS-16 Curve}{119}{section.761}
-\contentsline {subsection}{\numberline {8.3.1}Quartic Twist of KSS-16 Curves}{119}{subsection.762}
-\contentsline {subsection}{\numberline {8.3.2}Elliptic Curve Operation in Twisted Curve$E'$}{119}{subsection.764}
-\contentsline {subsection}{\numberline {8.3.3}Finding Endomorphism between $p$ and $u$}{120}{subsection.767}
-\contentsline {subsection}{\numberline {8.3.4}GLV for the Group Having Order $r(u)$}{122}{subsection.780}
-\contentsline {subsubsection}{\numberline {8.3.4.1}Dimension 8 GLV decomposition}{122}{subsubsection.785}
-\contentsline {subsubsection}{\numberline {8.3.4.2}Dimension 4 GLV decomposition}{123}{subsubsection.788}
-\contentsline {subsubsection}{\numberline {8.3.4.3}Dimension 2 GLV decomposition}{123}{subsubsection.790}
-\contentsline {subsubsection}{\numberline {8.3.4.4}Dimension 2 GLV with Joint Sparse Form}{124}{subsubsection.792}
-\contentsline {subsection}{\numberline {8.3.5}Applying Straus-Shamir Simultaneous Multi-scalar Multiplication Technique}{124}{subsection.793}
-\contentsline {subsubsection}{\numberline {8.3.5.1}2-Split and 4-Split scalar multiplication}{124}{subsubsection.794}
-\contentsline {subsubsection}{\numberline {8.3.5.2}8-Split scalar multiplication}{124}{subsubsection.797}
-\contentsline {subsection}{\numberline {8.3.6}Skew Frobenius Map to Compute $[p]\bar {Q'}$}{125}{subsection.799}
-\contentsline {section}{\numberline {8.4}Experimental Result Analysis}{126}{section.809}
-\contentsline {section}{\numberline {8.5}Conclusion}{127}{section.816}
-\contentsline {chapter}{\numberline {9}General Conclusion}{131}{chapter.817}
-\contentsline {chapter}{Bibliography}{133}{appendix*.818}
-\contentsline {chapter}{Biography}{140}{appendix*.818}
+\contentsline {section}{\numberline {1.2}Motivation}{6}{section.53}
+\contentsline {section}{\numberline {1.3}Our Contribution}{7}{section.56}
+\contentsline {section}{\numberline {1.4}Thesis Outline}{8}{section.57}
+\contentsline {chapter}{\numberline {2}Fundamental Mathematics and Notation}{11}{chapter.58}
+\contentsline {section}{\numberline {2.1}Modular Arithmetic}{11}{section.59}
+\contentsline {section}{\numberline {2.2}Group, Ring, Field}{12}{section.63}
+\contentsline {subsection}{\numberline {2.2.1}Group}{12}{subsection.64}
+\contentsline {subsection}{\numberline {2.2.2}Homomorphism in groups }{15}{subsection.88}
+\contentsline {subsubsection}{\numberline {2.2.2.1}Types of Homomorphism}{15}{subsubsection.90}
+\contentsline {subsection}{\numberline {2.2.3}Ring}{15}{subsection.92}
+\contentsline {subsection}{\numberline {2.2.4}Field}{16}{subsection.95}
+\contentsline {section}{\numberline {2.3}Extension Field}{17}{section.106}
+\contentsline {section}{\numberline {2.4}Frobenius Map}{18}{section.109}
+\contentsline {section}{\numberline {2.5}Quadratic Residue/Quadratic Non-residue, \\and Cubic Residue/Cubic Non-residue}{18}{section.111}
+\contentsline {section}{\numberline {2.6}Elliptic Curve}{19}{section.113}
+\contentsline {subsection}{\numberline {2.6.1}Additive Group over Elliptic Curve}{19}{subsection.114}
+\contentsline {subsection}{\numberline {2.6.2}Scalar Multiplication in Elliptic Curve}{20}{subsection.118}
+\contentsline {paragraph}{Binary method}{20}{section*.120}
+\contentsline {paragraph}{Montgomery ladder method}{20}{section*.131}
+\contentsline {paragraph}{Sliding-window Method}{20}{section*.145}
+\contentsline {subsection}{\numberline {2.6.3}Frobenius Map on Elliptic Curve Groups}{21}{subsection.168}
+\contentsline {section}{\numberline {2.7}Conclusion}{21}{section.170}
+\contentsline {chapter}{\numberline {3}Improved Optimal-Ate Pairing for KSS-18 Curve}{23}{chapter.171}
+\contentsline {section}{\numberline {3.1}Introduction}{23}{section.172}
+\contentsline {subsection}{\numberline {3.1.1}Background and Motivation}{23}{subsection.173}
+\contentsline {subsection}{\numberline {3.1.2}General Notation}{23}{subsection.174}
+\contentsline {subsection}{\numberline {3.1.3}Contribution Outline}{24}{subsection.175}
+\contentsline {subsection}{\numberline {3.1.4}Related Works}{24}{subsection.176}
+\contentsline {section}{\numberline {3.2}Preliminaries}{25}{section.177}
+\contentsline {subsection}{\numberline {3.2.1}KSS Curve of Embedding Degree $k=18$}{25}{subsection.178}
+\contentsline {subsection}{\numberline {3.2.2}Towering Extension Field }{25}{subsection.180}
+\contentsline {subsection}{\numberline {3.2.3}Sextic Twist of KSS-18 Curve }{25}{subsection.182}
+\contentsline {subsection}{\numberline {3.2.4}Isomorphic Mapping between $E(\ensuremath {{\PazoBB {F}}_{p}})$ and $\mathaccentV {hat}45E{E}(\ensuremath {{\PazoBB {F}}_{p}})$}{26}{subsection.185}
+\contentsline {subsection}{\numberline {3.2.5}Pairing over KSS-18 Curve }{26}{subsection.187}
+\contentsline {subsubsection}{\numberline {3.2.5.1}Ate Pairing}{26}{subsubsection.188}
+\contentsline {subsubsection}{\numberline {3.2.5.2}Optimal-Ate Pairing }{27}{subsubsection.192}
+\contentsline {subsection}{\numberline {3.2.6}Sparse multiplication }{27}{subsection.194}
+\contentsline {subsubsection}{\numberline {3.2.6.1}Step 3: Elliptic curve doubling phase ($T = Q$)}{27}{subsubsection.195}
+\contentsline {subsubsection}{\numberline {3.2.6.2}Step 5: Elliptic curve addition phase ($T\neq Q$)}{28}{subsubsection.197}
+\contentsline {section}{\numberline {3.3}Improved Optimal-Ate Pairing for KSS-18 Curve}{28}{section.212}
+\contentsline {subsection}{\numberline {3.3.1}Pseudo 12-sparse Multiplication}{29}{subsection.215}
+\contentsline {subsection}{\numberline {3.3.2}Line Calculation in Miller's Loop}{30}{subsection.231}
+\contentsline {subsubsection}{\numberline {3.3.2.1}Step 3: Doubling Phase ($T=Q$)}{30}{subsubsection.236}
+\contentsline {subsubsection}{\numberline {3.3.2.2}Step 5: Addition Phase ($T\neq Q$)}{30}{subsubsection.238}
+\contentsline {section}{\numberline {3.4}Cost Evaluation and Experimental Result}{31}{section.240}
+\contentsline {subsection}{\numberline {3.4.1}Parameter Settings and Computational Environment}{31}{subsection.241}
+\contentsline {subsection}{\numberline {3.4.2}Cost Evaluation}{31}{subsection.244}
+\contentsline {subsection}{\numberline {3.4.3}Experimental Result}{32}{subsection.247}
+\contentsline {section}{\numberline {3.5}Contribution Summary}{32}{section.249}
+\contentsline {section}{\numberline {3.6}Conclusion}{33}{section.250}
+\contentsline {chapter}{\numberline {4}Improved $\g {2}$ Scalar Multiplication over KSS-18 Curve}{35}{chapter.251}
+\contentsline {section}{\numberline {4.1}Introduction}{35}{section.252}
+\contentsline {subsection}{\numberline {4.1.1}Background and Motivation}{35}{subsection.253}
+\contentsline {subsection}{\numberline {4.1.2}Related Works}{36}{subsection.256}
+\contentsline {subsection}{\numberline {4.1.3}Contribution Outline}{36}{subsection.257}
+\contentsline {section}{\numberline {4.2}Preliminaries}{37}{section.259}
+\contentsline {subsection}{\numberline {4.2.1}Elliptic Curve}{37}{subsection.260}
+\contentsline {subsection}{\numberline {4.2.2}KSS Curve of Embedding Degree $k=18$}{37}{subsection.262}
+\contentsline {subsection}{\numberline {4.2.3}$\PazoBB {F}_{p^{18}}$ Extension Field Arithmetic}{38}{subsection.266}
+\contentsline {subsection}{\numberline {4.2.4}Frobenius Mapping of Rational Points in $E(\PazoBB {F}_{p^{18}})$}{38}{subsection.268}
+\contentsline {subsection}{\numberline {4.2.5}Sextic Twist of KSS-18 Curve}{39}{subsection.269}
+\contentsline {section}{\numberline {4.3}Proposed Improved Scalar Multiplication for $\g 2$ Rational Point}{39}{section.272}
+\contentsline {subsection}{\numberline {4.3.1}Overview of the Proposal}{39}{subsection.273}
+\contentsline {subsection}{\numberline {4.3.2}\g 1, \g 2 and \g 3 Groups}{40}{subsection.275}
+\contentsline {subsection}{\numberline {4.3.3}Isomorphic Mapping between $Q$ and $Q'$}{40}{subsection.280}
+\contentsline {subsubsection}{\numberline {4.3.3.1}Mapping $Q = (Av\theta , Bv)$ to the Rational Point $Q' = (x',y')$}{41}{subsubsection.283}
+\contentsline {subsection}{\numberline {4.3.4}$z$-adic Representation of Scalar $s$}{42}{subsection.289}
+\contentsline {subsection}{\numberline {4.3.5}Reducing Elliptic Curve Doubling in $[s]Q'$}{43}{subsection.296}
+\contentsline {subsection}{\numberline {4.3.6}Skew Frobenius Map of $\g {2}$ Points in KSS-18 Curve}{45}{subsection.304}
+\contentsline {subsection}{\numberline {4.3.7}Multi-Scalar Multiplication}{45}{subsection.309}
+\contentsline {subsubsection}{\numberline {4.3.7.1}Re-mapping Rational Points from $E'(\PazoBB {F}_{p^3})$ to $E(\PazoBB {F}_{p^{18}})$}{46}{subsubsection.311}
+\contentsline {section}{\numberline {4.4}Simulation Result Evaluation}{46}{section.314}
+\contentsline {section}{\numberline {4.5}Contribution Summary}{48}{section.319}
+\contentsline {section}{\numberline {4.6}Future Work}{49}{section.320}
+\contentsline {chapter}{\numberline {5}Mapping over Quartic and Sextic twisted KSS Curves}{51}{chapter.321}
+\contentsline {section}{\numberline {5.1}Introduction}{51}{section.322}
+\contentsline {subsection}{\numberline {5.1.1}Background and Motivation}{51}{subsection.323}
+\contentsline {subsection}{\numberline {5.1.2}Related Works}{52}{subsection.324}
+\contentsline {subsection}{\numberline {5.1.3}Contribution Outline}{52}{subsection.325}
+\contentsline {section}{\numberline {5.2}Fundamentals}{53}{section.326}
+\contentsline {subsection}{\numberline {5.2.1}Kachisa-Schaefer-Scott (KSS) Curve Family}{53}{subsection.327}
+\contentsline {subsection}{\numberline {5.2.2}Extension Field Construction for KSS Curves}{54}{subsection.334}
+\contentsline {subsubsection}{\numberline {5.2.2.1}Towering of $\PazoBB {F}_{p^{18}}$ Extension Field}{54}{subsubsection.335}
+\contentsline {subsubsection}{\numberline {5.2.2.2}Towering of $\PazoBB {F}_{p^{16}}$ Extension Field}{54}{subsubsection.337}
+\contentsline {subsection}{\numberline {5.2.3}\g 1, \g 2 and \g 3 Groups}{55}{subsection.339}
+\contentsline {subsection}{\numberline {5.2.4}Twist of KSS Curves}{55}{subsection.342}
+\contentsline {subsubsection}{\numberline {5.2.4.1}Sextic Twist of KSS-18 Curve}{55}{subsubsection.343}
+\contentsline {subsubsection}{\numberline {5.2.4.2}Quartic Twist of KSS-16 Curve}{56}{subsubsection.346}
+\contentsline {section}{\numberline {5.3}Isomorphic Map between $Q$ and $Q'$}{56}{section.349}
+\contentsline {subsection}{\numberline {5.3.1}Sextic twisted Isomorphic Mapping between $Q \in \g 2 \subset E(\PazoBB {F}_{p^{18}})$ and $Q' \in \g 2' \subset E'(\PazoBB {F}_{p^3})$}{56}{subsection.350}
+\contentsline {subsubsection}{\numberline {5.3.1.1}$Q$ to $Q'$ Mapping in KSS-18}{58}{subsubsection.359}
+\contentsline {subsubsection}{\numberline {5.3.1.2}$Q'$ to $Q$ Mapping in KSS-18}{58}{subsubsection.362}
+\contentsline {subsection}{\numberline {5.3.2}Quartic Twisted Isomorphic Mapping}{58}{subsection.365}
+\contentsline {section}{\numberline {5.4}Result Analysis}{59}{section.372}
+\contentsline {section}{\numberline {5.5}Conclusion}{62}{section.378}
+\contentsline {chapter}{\numberline {6}Efficient Optimal-Ate Pairing at 128-bit Security}{63}{chapter.379}
+\contentsline {section}{\numberline {6.1}Introduction}{63}{section.380}
+\contentsline {subsection}{\numberline {6.1.1}Notation Overview}{63}{subsection.381}
+\contentsline {subsection}{\numberline {6.1.2}Related Works}{63}{subsection.382}
+\contentsline {subsection}{\numberline {6.1.3}Motivation}{64}{subsection.383}
+\contentsline {subsection}{\numberline {6.1.4}Contribution Summary}{64}{subsection.384}
+\contentsline {section}{\numberline {6.2}Fundamentals of Elliptic Curve and Pairing}{65}{section.385}
+\contentsline {subsection}{\numberline {6.2.1}Kachisa-Schaefer-Scott (KSS) Curve of Embedding Degree $k=16$}{65}{subsection.386}
+\contentsline {subsection}{\numberline {6.2.2}Extension Field Arithmetic and Towering}{65}{subsection.390}
+\contentsline {subsubsection}{\numberline {6.2.2.1}Towering of $\PazoBB {F}_{p^{16}}$ Extension Field}{65}{subsubsection.391}
+\contentsline {subsubsection}{\numberline {6.2.2.2}Towering of $\PazoBB {F}_{p^{12}}$ Extension Field}{66}{subsubsection.393}
+\contentsline {subsubsection}{\numberline {6.2.2.3}Extension Field Arithmetic of $\PazoBB {F}_{p^{16}}$ and $\PazoBB {F}_{p^{12}}$}{66}{subsubsection.395}
+\contentsline {subsection}{\numberline {6.2.3}Ate and Optimal-Ate On KSS-16, BN, BLS-12 Curve}{66}{subsection.398}
+\contentsline {subsection}{\numberline {6.2.4}Twist of KSS-16 Curves}{68}{subsection.419}
+\contentsline {subsubsection}{\numberline {6.2.4.1}Quartic Twist}{69}{subsubsection.420}
+\contentsline {section}{\numberline {6.3}Proposal}{69}{section.423}
+\contentsline {subsection}{\numberline {6.3.1}Overview: Sparse and Pseudo-Sparse Multiplication}{69}{subsection.424}
+\contentsline {subsection}{\numberline {6.3.2}Pseudo 8-Sparse Multiplication for BN and BLS-12 Curve}{71}{subsection.432}
+\contentsline {subsubsection}{\numberline {6.3.2.1}Sextic twist of BN and BLS-12 curve:}{71}{subsubsection.433}
+\contentsline {subsection}{\numberline {6.3.3}Pseudo 8-sparse Multiplication for KSS-16 Curve}{72}{subsection.462}
+\contentsline {subsubsection}{\numberline {6.3.3.1}Isomorphic map of $P=(x_P,y_P) \to \bar P=(x_{\bar P},y_{\bar P})$.}{73}{subsubsection.465}
+\contentsline {subsection}{\numberline {6.3.4}Final Exponentiation}{75}{subsection.499}
+\contentsline {section}{\numberline {6.4}Experimental Result Evaluation}{78}{section.502}
+\contentsline {section}{\numberline {6.5}Conclusion and Future Work}{79}{section.510}
+\contentsline {chapter}{\numberline {7}Optimal-Ate Pairing Using CVMA over KSS-16 Curve}{81}{chapter.511}
+\contentsline {section}{\numberline {7.1}Introduction}{81}{section.512}
+\contentsline {subsection}{\numberline {7.1.1}Motivation}{81}{subsection.513}
+\contentsline {subsection}{\numberline {7.1.2}Contribution Summary}{81}{subsection.514}
+\contentsline {subsection}{\numberline {7.1.3}Chapter Outline}{82}{subsection.515}
+\contentsline {section}{\numberline {7.2}Fundamentals of Elliptic Curve and Pairing}{82}{section.516}
+\contentsline {subsection}{\numberline {7.2.1}Extension Field Arithmetic for Pairing}{82}{subsection.517}
+\contentsline {subsubsection}{\numberline {7.2.1.1}Type-I Towering}{83}{subsubsection.518}
+\contentsline {subsubsection}{\numberline {7.2.1.2}Type-II Towering}{83}{subsubsection.520}
+\contentsline {subsubsection}{\numberline {7.2.1.3}Field Arithmetic of $\PazoBB {F}_{p^{16}}$}{83}{subsubsection.522}
+\contentsline {subsection}{\numberline {7.2.2}Optimal-Ate Pairing on KSS-16 Curve}{84}{subsection.524}
+\contentsline {section}{\numberline {7.3}Finding Efficient Line Evaluation in Type-II Towering and Sparse Multiplication}{85}{section.542}
+\contentsline {subsection}{\numberline {7.3.1}$\PazoBB {F}_{p^4}$ arithmetic in Type-II Towering}{86}{subsection.550}
+\contentsline {subsubsection}{\numberline {7.3.1.1}Multiplication in $\PazoBB {F}_{p^4}$ using CVMA}{86}{subsubsection.552}
+\contentsline {subsubsection}{\numberline {7.3.1.2}Squaring in $\PazoBB {F}_{p^4}$ using CVMA}{88}{subsubsection.557}
+\contentsline {subsubsection}{\numberline {7.3.1.3}Frobenius mapping in $\PazoBB {F}_{p^4}$ using CVMA}{89}{subsubsection.560}
+\contentsline {subsubsection}{\numberline {7.3.1.4}Inversion in $\PazoBB {F}_{p^4}$sed in \cite {cvma_sanada}}{89}{subsubsection.562}
+\contentsline {subsubsection}{\numberline {7.3.1.5}Optimized $\PazoBB {F}_{p^4}$nversion using CVMA}{89}{subsubsection.564}
+\contentsline {subsubsection}{\numberline {7.3.1.6}Calculation over $\PazoBB {F}_{p^2}$ based on towering Eq.(\ref {towering_2})}{90}{subsubsection.567}
+\contentsline {paragraph}{\bf {Multiplication:} }{90}{section*.568}
+\contentsline {paragraph}{\bf {Squaring:}}{90}{section*.569}
+\contentsline {paragraph}{\bf {Frobenius map:}}{90}{section*.570}
+\contentsline {paragraph}{\bf {Inversion:}}{91}{section*.571}
+\contentsline {subsubsection}{\numberline {7.3.1.7}Frobenius mapping in $\PazoBB {F}_{p^{16}}$ using CVMA}{91}{subsubsection.573}
+\contentsline {subsection}{\numberline {7.3.2}Quartic Twist of KSS-16 Curves}{91}{subsection.575}
+\contentsline {paragraph}{\bf {Rational points: }}{92}{section*.577}
+\contentsline {subsection}{\numberline {7.3.3}Overview: Sparse and Pseudo-Sparse Multiplication}{92}{subsection.579}
+\contentsline {paragraph}{\bf {7-Sparse Multiplication:}}{93}{section*.580}
+\contentsline {subsection}{\numberline {7.3.4}Pseudo 8-sparse Multiplication for KSS-16 Curve using Type-II Towering}{94}{subsection.586}
+\contentsline {subsubsection}{\numberline {7.3.4.1}Isomorphic map of $P=(x_P,y_P) \to \bar P=(x_{\bar P},y_{\bar P})$.}{94}{subsubsection.589}
+\contentsline {subsubsection}{\numberline {7.3.4.2}Skew Frobenius Map to Compute $[p]\bar {Q'}$}{97}{subsubsection.622}
+\contentsline {subsection}{\numberline {7.3.5}Final Exponentiation}{97}{subsection.624}
+\contentsline {section}{\numberline {7.4}Experimental Result Evaluation}{99}{section.647}
+\contentsline {subsection}{\numberline {7.4.1}Experiment Environment and Assumptions}{99}{subsection.649}
+\contentsline {subsection}{\numberline {7.4.2}Result and Analysis}{102}{subsection.652}
+\contentsline {section}{\numberline {7.5}Conclusion and Future Work}{104}{section.658}
+\contentsline {chapter}{\numberline {8}Efficient $\g {2}$ Scalar Multiplican in KSS-16 Curve}{107}{chapter.659}
+\contentsline {section}{\numberline {8.1}Introduction}{107}{section.660}
+\contentsline {subsection}{\numberline {8.1.1}Background and Motivation}{107}{subsection.661}
+\contentsline {subsection}{\numberline {8.1.2}Literature Review}{108}{subsection.662}
+\contentsline {subsection}{\numberline {8.1.3}Contribution Outline}{108}{subsection.663}
+\contentsline {section}{\numberline {8.2}Fundamentals}{108}{section.664}
+\contentsline {subsection}{\numberline {8.2.1}Gallant, Lambert, and Vanstone (GLV) Decomposition}{108}{subsection.665}
+\contentsline {section}{\numberline {8.3}Proposed GLV technique for $\g 2$ Rational Point on KSS-16 Curve}{109}{section.667}
+\contentsline {subsection}{\numberline {8.3.1}Quartic Twist of KSS-16 Curves}{109}{subsection.668}
+\contentsline {subsection}{\numberline {8.3.2}Elliptic Curve Operation in Twisted Curve$E'$}{109}{subsection.670}
+\contentsline {subsection}{\numberline {8.3.3}Finding Endomorphism between $p$ and $u$}{110}{subsection.673}
+\contentsline {subsection}{\numberline {8.3.4}GLV for the Group Having Order $r(u)$}{112}{subsection.686}
+\contentsline {subsubsection}{\numberline {8.3.4.1}Dimension 8 GLV Decomposition}{112}{subsubsection.691}
+\contentsline {subsubsection}{\numberline {8.3.4.2}Dimension 4 GLV Decomposition}{113}{subsubsection.694}
+\contentsline {subsubsection}{\numberline {8.3.4.3}Dimension 2 GLV Decomposition}{113}{subsubsection.696}
+\contentsline {subsubsection}{\numberline {8.3.4.4}Dimension 2 GLV with Joint Sparse Form}{114}{subsubsection.698}
+\contentsline {subsection}{\numberline {8.3.5}Applying Straus-Shamir Simultaneous Multi-scalar Multiplication Technique}{114}{subsection.699}
+\contentsline {subsubsection}{\numberline {8.3.5.1}2-Split and 4-Split Scalar Multiplication}{114}{subsubsection.700}
+\contentsline {subsubsection}{\numberline {8.3.5.2}8-Split Scalar Multiplication}{114}{subsubsection.703}
+\contentsline {subsection}{\numberline {8.3.6}Skew Frobenius Map to Compute $[p]\bar {Q'}$}{115}{subsection.705}
+\contentsline {section}{\numberline {8.4}Experimental Result Analysis}{116}{section.715}
+\contentsline {section}{\numberline {8.5}Conclusion}{118}{section.722}
+\contentsline {chapter}{\numberline {9}General Conclusion}{119}{chapter.723}
+\contentsline {chapter}{Bibliography}{121}{appendix*.724}
+\contentsline {chapter}{Biography}{131}{appendix*.724}

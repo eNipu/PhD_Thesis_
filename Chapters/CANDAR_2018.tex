@@ -13,7 +13,7 @@ However, most of the protocols usually require additional scalar multiplication 
 The Gallant-Lambert-Vanstone (GLV) method is an elegant technique to accelerate the scalar multiplication which can reduce the number of elliptic curve doubling by using Straus-Shamir simultaneous multi-scalar multiplication technique.
 However, efficiently computable endomorphisms are required to apply GLV for the elliptic curves. 
 This chapter shows the GLV technique by deriving efficiently computable endomorphism for Kachisa-Schaefer-Scott (KSS)  \cite{EPRINT:KacSchSco07} pairing-friendly curves of embedding degree $k=16$ (KSS-16) in the context of Optimal-ate pairing.
-%In addition, the authors show explicit formulas to compute the GLV method together with Straus-Shamir simultaneous multi-scalar multiplication technique for 2, 4 and 8 dimensions in $\g2$ group. 
+%In addition, we show explicit formulas to compute the GLV method together with Straus-Shamir simultaneous multi-scalar multiplication technique for 2, 4 and 8 dimensions in $\g2$ group. 
 %The comparative implementation shows that dimension 4 gives faster computational time than dimension 8 and 2. 
 
 
@@ -65,7 +65,8 @@ Later on Galbraith-Lin-Scott (GLS) have shown that over $\FPT$.
 This chapter focuses on such a trick for the KSS-16 curve in the context of Optimal-ate pairing. 
 
 %%---------------------------------------------------PROPOSAL----------------
-\section{Proposed GLV technique for \texorpdfstring{$\g2$}{} Rational Point on  KSS-16 Curve} \label{Proposal}
+\section{Proposed GLV technique for \texorpdfstring{$\g2$}{} Rational Point on  KSS-16 Curve} \index{KSS-16: $\g{2} SCM}
+\label{Proposal}
 As aforementioned, Optimal-ate pairing is computed over a twisted curve. 
 Therefore, the following sections will describe the twist property of KSS-16 curve and the procedure to obtain GLV decomposition in the $\g2$ group of a KSS-16 curve.
 
@@ -209,7 +210,8 @@ p^{4} &\equiv \sqrt{-1} \equiv i~(\bmod~r).
 \end{alignat}
 \end{subequations}
 Since $-1$ is a QNR in $\FP$, therefore, $\sqrt{-1}$ exists in $\Fp$. 
-\subsubsection{Dimension 8 GLV decomposition}
+
+\subsubsection{Dimension 8 GLV Decomposition}
 Since order $r$ of  the KSS-16 curve defined in \eqref{eq:kss_16_degree} is a degree 8 polynomial of integer $u$, therefore, to obtain dimension 8 GLV decomposition of a scalar $s$ as the following form
 \begin{equation}
  s = s_0 + u s_1 + u^2 s_2 + u^3 s_3 + u^4 s_4 + u^5 s_5 + u^6 s_6 + u^7 s_7, \nonumber
@@ -230,7 +232,7 @@ u &\equiv p(2i-1)~(\bmod~r), \nonumber \\
 u &\equiv 2p^5-p~(\bmod~r). \label{equ} 
 \end{alignat}
 
-\subsubsection{Dimension 4 GLV decomposition}
+\subsubsection{Dimension 4 GLV Decomposition}
 To obtain the dimension 4 decomposition, we derive the relation between degree 2 of $u$ and $p$ as follows:
 \begin {alignat}{3}
 u^2 &\equiv p^2(2p^4-1)^2~(\bmod~r), \nonumber \\
@@ -241,7 +243,7 @@ u^2 &\equiv -4p^6-3p^2~(\bmod~r). \label{equ2}
 \end{alignat}
 
 
-\subsubsection{Dimension 2 GLV decomposition}
+\subsubsection{Dimension 2 GLV Decomposition}
  Modular equation for dimension 2 GLV is already obtained in \eqref{eq_p_u_relation}.
 However, we can verify that as follows:
 \begin{alignat}{3}
@@ -274,7 +276,7 @@ and 8-dimension as 8-Split scalar multiplication.
 In our experimental implementation, we adopted the parameter suggested in \cite{EPRINT:BarDuq17}. 
 Using \cite{EPRINT:BarDuq17}'s settings the integer  $u$ is obtained as $35$-bit and order $r$ as $263$-bit. 
 Therefore, the maximum bit length of an $s$ is $\leq 263$-bit.
-\subsubsection{2-Split and 4-Split scalar multiplication}
+\subsubsection{2-Split and 4-Split Scalar Multiplication}
 The 2-Split scalar multiplication can be expressed as
 \begin{equation}
     [s]Q = [s_0]Q + s_1 [u^4]Q.
@@ -286,7 +288,7 @@ Similarly, 4-Split can be calculated as
 \end{equation}
 using $2^4$ pre-computed rational point patterns applied in 4-bit ($s_3,s_2,s_1,s_0$) simultaneous multi-scalar multiplication. 
 
-\subsubsection{8-Split scalar multiplication}
+\subsubsection{8-Split Scalar Multiplication}
 The 8-Split multiplication can be a little bit tricky since the usual way will calculate $2^8$ pre-computed points.
 \begin{figure*}
 \centering
@@ -302,7 +304,7 @@ Then we pre-computed $2^4 + 2^4 = 32$ rational points.
 \fgref{precom_figure}(a) shows the pre-computation steps.  
 Among the 32 pre-computed points each of the points will be utilized at least once during multi-scalar multiplication. 
 Finally, we combined the result of the two separately  obtained multi-scalar multiplication by one extra elliptic curve addition. 
-%\begin{figure}[t]
+%\begin{figure}[ht]
 %\centering
 %	\includegraphics[width=\linewidth,height=.4\textheight, keepaspectratio]{com}
 %%\includegraphics[scale=0.5]{com.eps}
@@ -312,7 +314,7 @@ Finally, we combined the result of the two separately  obtained multi-scalar mul
 As a result we can save $2^8-32 = 224$ pre-computation. 
 \fgref{precom_figure}(b) shows the computation of the loop where simultaneous multi-scalar multiplications are carried out. 
 
-To obtain the pre-computed rational points we need to calculate $[p]Q, [p^2]Q, \cdots, [p^7]Q$ as shown in \fgref{precom_figure}(a).
+To obtain the pre-computed rational points we need to calculate $$[p]Q, [p^2]Q, \cdots, [p^7]Q$$ as shown in \fgref{precom_figure}(a).
 Thanks to Frobenius map which can be calculated with a few multiplications in $\Fp$.
 Moreover, since rational points in $\g2$ have isomorphic twisted points in $\g2'\subset E'(\FPFR)$, therefore, skew Frobenius map \cite{CANS:SNOKM08} can be applied as shown in the \secref{sec:skew_fm_candar18}.
 
@@ -396,46 +398,46 @@ In the experiment, KSS-16 curve over $\FPSN$ is obtained as $y^2 = x^3 + 1$ by a
 \tbref{environment} shows the experiment environment used for comparative evaluation. 
 No optimization is done to execute the program in multithreading.
 \renewcommand{\baselinestretch}{1.5}
-\begin{table}[t]
+\begin{table}[ht]
 \centering
 \caption{Curve parameters.}
-\begin{tabular}{|l|l|l|l|}
+\begin{tabular}{l|l|l|l}
 \hline
 $u= 35$-bit                 & $p$      & $r$      & $t$      \\ \hline
 $2^{35}-2^{32}-2^{18}+2^8+1$ & 339 -bit & 263 -bit & 270 -bit \\ \hline
 \end{tabular}
 \end{table}
-\begin{table}[t]
+\begin{table}[ht]
 	\centering
 	\fontsize{8pt}{8pt}\selectfont
 	\caption{Experimental Implementation Environment.}
 	\label{environment}
-	\resizebox{\columnwidth}{!}{
-		\begin{tabular}{|l|l|l|l|l|}
+%	\resizebox{\columnwidth}{!}{
+		\begin{tabular}{l|l|l|l|l}
 			\hline
 			CPU                                                                          & Memory & Compiler  & OS               & \begin{tabular}[c]{@{}l@{}}Language \&\\ Library\end{tabular} \\ \hline
 			\begin{tabular}[c]{@{}l@{}}Intel(R) 2.7 GHz \\Core(TM) i5\end{tabular} & 16GB    & 4.2.1 & \begin{tabular}[c]{@{}l@{}}macOS High \\ Sierra 10.13.6\end{tabular}  &\begin{tabular}[c]{@{}l@{}}C\\GMP v 6.1.0 \cite{gmp}\end{tabular}    \\ \hline
 			%	\multicolumn{6}{l}{\textsuperscript{*}\footnotesize{Only single core is used from two cores.}}\\
 		\end{tabular}
-	}
+%	}
 \end{table}
-\begin{table}[t]
+\begin{table}[ht]
 \centering
 \caption{Maximum length of scalar $s$ after GLV decomposition in different dimensions.}
 \label{s_length}
-\resizebox{\columnwidth}{!}{
-\begin{tabular}{|l|l|l|l|l|l|}
+%\resizebox{\columnwidth}{!}{
+\begin{tabular}{l|l|l|l|l|l}
 \hline
 \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}Max bit length \\ of $s$ after GLV\end{tabular}} & \begin{tabular}[c]{@{}l@{}}Normal\\  binary\end{tabular} & 2-Split  & 2-Split JSF & 4-Split & 8-Split \\ \cline{2-6} 
                                                                                           & 263-bit                                                  & 139-bit & 139-bit    & 69-bit  & 35-bit  \\ \hline
 \end{tabular}
-}
+%}
 \end{table}
-\begin{table}[t]
+\begin{table}[ht]
 	\centering
 	\caption{ECD and ECA cost in $E'(\FPFR)$.}
 	\label{ecaecd_fp4}
-	\begin{tabular}{|l|l|}
+	\begin{tabular}{l|l}
 		\hline
 		ECD cost in $E'(\FPFR)$           & ECA cost in $E'(\FPFR)$  \\ \hline
 		$3 M_4 + 8 A_4 + 1 I_4 + 1 M_p$ & $2 M_4 + 6 A_4 + 1 I_4$ \\ \hline
@@ -454,19 +456,19 @@ The significant fall back of 8-Split compared to 4-Split comes from its number o
 Moreover, the total number of pre-computation also increases the other overhead calculations such as initialization, memory allocation, padding $0$ in MSB of the decomposed scalar smaller than the max length. Which also impacts on the execution time. 
 \renewcommand{\baselinestretch
 }{1.4}
-\begin{table}[t]
+\begin{table}[ht]
 \centering
 \caption{Comparative result of average execution time in [ms] for scalar multiplication.}
 \label{tab_res_time}
-\begin{tabular}{l|c|c|c|c|c|}
+\begin{tabular}{l|c|c|c|c|c}
 \cline{2-6}
                                     & \multicolumn{2}{l|}{Pre-computation} & \multicolumn{2}{l|}{\begin{tabular}[c]{@{}l@{}}In SCM\\ Algorithm\end{tabular}} & \multirow{2}{*}{Time {[}ms{]}} \\ \cline{1-5}
-\multicolumn{1}{|l|}{Operation}     & \#ECA         & \#ECD         & \#ECA                              & \#ECD                               &                                \\ \hline
-\multicolumn{1}{|l|}{Normal binary} & 0            & 0                & 120                                    & 262                         \textbf{}           & 42.81                          \\ \hline
-\multicolumn{1}{|l|}{2-Split}       & 5                 	& 6                & 98                                    & 138                                     & 28.48                          \\ \hline
-\multicolumn{1}{|l|}{2-Split JSF}   & 8                & 6                & 66                                    & 138                                 & 25.16                          \\ \hline
-\multicolumn{1}{|l|}{4-Split}       & 24                  & 20               & 64                                     & 68                                     & 19.09                          \\ \hline
-\multicolumn{1}{|l|}{8-Split}       & 52                 & 47               & 67                                     & 34                                     & 21.85                          \\ \hline
+\multicolumn{1}{l|}{Operation}     & \#ECA         & \#ECD         & \#ECA                              & \#ECD                               &                                \\ \hline
+\multicolumn{1}{l|}{Normal binary} & 0            & 0                & 120                                    & 262                         \textbf{}           & 42.81                          \\ \hline
+\multicolumn{1}{l|}{2-Split}       & 5                 	& 6                & 98                                    & 138                                     & 28.48                          \\ \hline
+\multicolumn{1}{l|}{2-Split JSF}   & 8                & 6                & 66                                    & 138                                 & 25.16                          \\ \hline
+\multicolumn{1}{l|}{4-Split}       & 24                  & 20               & 64                                     & 68                                     & 19.09                          \\ \hline
+\multicolumn{1}{l|}{8-Split}       & 52                 & 47               & 67                                     & 34                                     & 21.85                          \\ \hline
 \end{tabular}
 \end{table}
 \renewcommand{\baselinestretch}{1.0}
@@ -478,6 +480,6 @@ This chapter shows the detailed formula to apply the GLV decomposition together 
 The experimental implementation confirms the correctness of the derived technique.
 The comparative implementations show that dimension 4 is faster than 8 and 2. 
 There is still scope to make the technique better by optimizing the pre-computation which will reduce the number of ECA and ECD.
-As a future work, the authors would like to reduce the pre-computation cost by optimizing Frobenius map calculation together with the application of non-adjacent form (NAF) and evaluate the acceleration in a pairing-based protocol. 
+As a future work, we would like to reduce the pre-computation cost by optimizing Frobenius map calculation together with the application of non-adjacent form (NAF) and evaluate the acceleration in a pairing-based protocol. 
 
 

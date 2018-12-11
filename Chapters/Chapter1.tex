@@ -7,7 +7,7 @@ We introduce the importance of Pairing-Based Cryptography (PBC) in \secref{ch1_s
 \secref{ch1_sec_motivation} presents the motivation behind the works undertaken to assemble of this thesis.
 \secref{ch1_sec_outline} outlines the overall organization of this thesis.
 
-\section{Cryptology}
+\section{Cryptology \index{Cryptology}}
 \label{chap:sec:crypto}
 Cryptography is the science of communicating with the authentic receiver through an insecure channel in secret. 
 Cryptanalysis is the techniques of breaking the secret communications.
@@ -16,8 +16,8 @@ Cryptology is the combination of these two domains.
 The history of cryptography dates back to the time of the Greek and Roman empire.
 Julius Caesar used a simple shift and substitute system.
 Up until the early '70s of the last century, cryptology was evolved mostly for military purposes. 
-The cryptography got its first democratic form in 1975 when Diffie and Hellman invented the concept of public-key cryptography \cite{diffie1976new}. 
-The concept was first realized by as practical cryptosystem by the works of Rivest, Shamir and Adleman (RSA) in 1977 \cite{rivest1978method}.
+The cryptography got its first democratic form in 1975 when Diffie and Hellman invented the concept of public-key cryptography \cite{diffie1976new}. \index{DHKE}
+The concept was first realized by as practical cryptosystem by the works of Rivest, Shamir and Adleman (RSA) in 1977 \cite{rivest1978method}. \index{RSA}
 At the same time in 1977, National Bureau of Standards published a cryptosystem intended for the governmental agencies or banks with the named Data Encryption Standard (DES).
 From then a new era of cryptography known as \textit{Modern cryptography} was initiated.
 The well-organized procedures called \textit{protocols} is the basis of Modern cryptography.
@@ -47,27 +47,27 @@ Cryptography became more important as individuals and business increasingly depe
 
 
 \begin{itemize}
-\item Data confidentiality:
+\item Data confidentiality: \index{Data confidentiality}
 This property ensures that confidential information such as bank transactions or medical data etc. are secret from unauthorized entities. 
 
-\item Data integrity:
+\item Data integrity:  \index{Data integrity}
 When data is stored, this property ensures that it not only kept secret (Data confidentiality) but also not rigged.
 Confidentiality and integrity is enforced by encryption.
 
-\item Authentication:
+\item Authentication: \index{Authentication}
 In connection-oriented communication, authentication proves both parties identity before communication begins.
 The digital signature is used for this purpose to sign a message electronically.
 It shields the legitimate party against masquerader from impersonating as a trusted party.
 This property gives the receiver a confidence to believe that the actual signee indeed sends the message sent over the insecure channel.
 
-\item Non repudiation:
+\item Non repudiation:\index{Non repudiation}
 Non-repudiation (with proof of origin and with proof of receipt) ensures that the sender and receiver can not deny having taken part in communication.
 Non-repudiation is essential for many cases especially e-commerce while communicating over the Internet.
 \end{itemize}
 
 The modern crypto-protocols fall into the following two major categories. 
 
-\subsection{Symmetric/Private-Key Cryptography}
+\subsection{Symmetric/Private-Key Cryptography} \index{Symmetric Cryptography}
 Private-Key Cryptography, also known Symmetric Cryptography is the technique where both the sender and the receiver use the same \textit{key} or easily derivable from one another to encrypt and decrypt a message.
 This type of cryptography has an ancient history. 
 
@@ -79,7 +79,7 @@ The Public-key Cryptography offers the solution for \textit{Key establishment} a
 This work primarily focuses on a specific type of Public-key Cryptography. 
 The subsequent chapters will describe in details.
 
-\subsection{Public-key Cryptography}
+\subsection{Public-key Cryptography}\index{Public-key Cryptography}
 \label{ch1_subsec_pkc}
 The inception of public-key cryptography solved the problem of key distribution of Symmetric-key cryptography.
 It is also known as Asymmetric Cryptography.
@@ -106,7 +106,7 @@ Using this key-exchange, we change to establish a shared secret which we can for
 	\label{fig_DHKE}
 \end{figure}
 
-Rivest, Shamir, and Adleman (RSA) realized this protocol in 1977 and published their magnum opus which is widely known as RSA cryptosystem \cite{rivest1978method}. 
+Rivest, Shamir, and Adleman (RSA) realized this protocol in 1977 and published their magnum opus which is widely known as RSA cryptosystem \cite{rivest1978method}. \index{RSA}
 The security of the RSA depends on the difficulty of factorization of a larger integer into its two prime factors and the trapdoor permutation for encryption.
 Let us denote two large primes $p$ and $q$ (in practice about 1000-bit).
 It is easy to calculate their product to get $n = pq$.
@@ -117,15 +117,15 @@ Besides encryption, RSA also enables \textit{digital signature }where the sender
 Verification of a digitally signed message gives the receiver the confidence that a senders private key is tied to his public key.
 It is done to prevent forgery and holds \textit{Non-repudiation} property.
 
-In the mid 80's the independent work of Miller \cite{C:Miller85} and Koblitz \cite{koblitz1987elliptic} began the journey of elliptic curve cryptosystems (ECC). 
+In the mid 80's the independent work of Miller \cite{C:Miller85} and Koblitz \cite{koblitz1987elliptic} began the journey of elliptic curve cryptosystems (ECC). \index{ECC}
 The security of elliptic curve cryptography protocols depends on the difficulty to solve elliptic curve discrete logarithm problem.
-The mathematical details of this problem appear in Chapter 2. %TODO
+The mathematical details of this problem appear in \chref{chap:fundamentals}. %TODO
 ECC provides a shorter key length for the same level of security than RSA which makes ECC  popular among the researchers. 
 Compared to RSA, ECC has other advantages. 
 While RSA provides encryption and digital signature; ECC has a family of algorithms for encryption, signature, key agreement and some advanced high-level cryptographic protocols such as ID-based encryption \cite{AC:BonLynSha01}, where user's unique ID, e.g. email address, can be used as a public key. 
-The high-level cryptographic functionalities are provided by paring over elliptic curves \cite{book_GPCMrabet2016} which brings a new paradigm in cryptography called pairing-based cryptography.
+The high-level cryptographic functionalities are provided by pairing over elliptic curves \cite{book_GPCMrabet2016} which brings a new paradigm in cryptography called pairing-based cryptography.
 
-\subsection{Pairing-Based Cryptography}
+\subsection{Pairing-Based Cryptography} \index{PBC} \index{Pairing-Based Cryptography}
 \label{ch1_subsec_pbc}
 Since the inception by Sakai et al. \cite{sakai2000cryptosystems}, pairing-based cryptography has gained much attention to cryptographic researchers as well as  to mathematicians. It gives flexibility to protocol researcher to innovate applications with provable security and at the same time to mathematicians and cryptography engineers to find efficient algorithms to make pairing implementation more efficient and practical.
 
@@ -136,13 +136,30 @@ Two fundamental properties of pairing are
 	\item bilinearity is such that $\forall P_i \in \g1$ and $\forall Q_i \in \g2$, where $i= 1, 2$, then $e(Q_1+Q_2,P_1) = e(Q_1,P_1). e(Q_2,P_1)$ and $e(Q_1,P_1+P_2) = e(Q_1,P_1). e(Q_1,P_2)$,
 	\item and $e$ is non-degenerate means $\forall P \in \g1$ there is a $Q \in \g2$ such that  $e(Q,P) \neq 1$ and $\forall Q \in \g2$ there is a $P \in \g1$ such that $e(P,Q) \neq 1$.
 \end{itemize}
-Such properties allows researchers to come up with various cryptographic applications including ID-based encryption \cite{C:BonFra01}, group signature authentication \cite{C:BonBoySha04}, and functional encryption \cite{C:OkaTak10}.  However, the security of pairing-based cryptosystems depends  on 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{Figures/bilinearity}
+	\caption{Bilinearity of pairing.}
+	\label{fig:ch:intro:pairing}
+\end{figure}
+
+Such properties allows researchers to come up with various cryptographic applications including ID-based encryption \cite{C:BonFra01}, group signature authentication \cite{C:BonBoySha04}, and functional encryption \cite{C:OkaTak10}, homomorphic encryption \cite{EC:OkaUch98a,CCS:NacSte98,PAIRING:OkaTak08} However, the security of pairing-based cryptosystems depends  on 
 \begin{itemize}
 	\item  the difficulty of solving elliptic curve discrete logarithm problem (ECDLP) in the groups of order $r$ over $\Fp$,
 	\item  the infeasibility of solving the discrete logarithm problem (DLP) in the multiplicative group $\g3 \in \mF{p}{k}$,
 	\item and the difficulty of pairing inversion.
 \end{itemize}
-To maintain the same security level in both groups, the size of the order $r$ and extension field $p^k$ is chosen accordingly. If the desired security level is $\delta$ then $\log_2 r  \geq 2\delta$ is desirable due to Pollard's rho algorithm \cite{1978-pollard-kangaroo}.  For efficient pairing, the ratio $\rho = \log_2 p^k/ \log_2 r \approx 1$,   is expected (usually  $1\leq  \rho  \leq 2$). In practice, elliptic curves with small embedding degrees $k$ and large $r$ are selected and commonly are knows as ``pairing-friendly" elliptic curves.
+To maintain the same security level in both groups, the size of the order $r$ and extension field $p^k$ is chosen accordingly. 
+For a security level $\lambda$, $\g1$ should have order of size $\log_2 r \geq 2\lambda$ due to Pollard's rho algorithm \cite{1978-pollard-kangaroo}.
+In the case of parameterized curves, to balance the security and efficiency of pairing implementation a ratio index denoted as $\rho = \log_2 p/ \log_2 r$ is often used.
+It's value ranges $1\leq  \rho  \leq 2$, yet $\rho=1$ is sought after for efficiency purpose. 
+In practice, elliptic curves with small embedding degrees $k$ and highest twist degree $d$ are desired.
+For the case of a KSS-16 elliptic curve, the curve that we study in this chapter, $\rho$ is equal to  $ \approx 1.25$. \\
+In general, to obtain 128-bit AES level security it is expected that the order $r$ of $\g1$ should be equal to $2\lambda $ ($256$-bit prime).
+Then the field size  of  $\g1$ should be at least $\rho*256 = 320$-bit and the lower limit of extension field size of $\g3$ should be about $\rho*k*256= 5120$-bit.
+Since,  $d=4$ is the maximum twist degree for KSS-16, hence the field size of $\g2 \subset E'(\mathbb{F}_{p^{k/d}})$ after twist is  equal to $5120/d=1280$-bit, where, $E'$ is the twist curve of $E$.
+
 
 Galbraith et al. \cite{galbraith2008pairings} have classified pairings as three major categories based on the underlying group's structure as 
 \begin{itemize}
@@ -161,10 +178,10 @@ Galbraith et al. \cite{galbraith2008pairings} have classified pairings as three 
 %The most recent study by Barbulescu et al. \cite{EPRINT:BarDuq17} have shown the security estimation of the current parameter settings used in well-studied curves and proposed new parameters, resistant to small subgroup attack.
 %
 %Barbulescu and Duquesne's study finds that the current parameter settings for 128-bit security level on BN-curve studied in literature can withstand for 100-bit security. 
-%Moreover, they proposed that BLS-12 and surprisingly KSS-16 are the most efficient choice for Optimal-Ate pairing at the 128-bit security level. Therefore, the authors focus on the efficient implementation of the less studied KSS-16 curve for Optimal-Ate pairing by applying the most recent parameters.
+%Moreover, they proposed that BLS-12 and surprisingly KSS-16 are the most efficient choice for Optimal-Ate pairing at the 128-bit security level. Therefore, we focus on the efficient implementation of the less studied KSS-16 curve for Optimal-Ate pairing by applying the most recent parameters.
 %Mori et al. \cite{PAIRING:MANS13} and Khandaker et al. \cite{ICISC:KONSD16} have shown a specific type of sparse multiplication for BN and KSS-18 curve respectively where both of the curves supports sextic twist. 
 %The authors have extended the previous works for quartic twisted KSS-16 curve and derived pseudo-8 sparse multiplication for line evaluation step in the Miller's algorithm. 
-%As a consequence, the authors made the choice to concentrate on Miller's algorithm's execution time and computational complexity to verify the claim of \cite{EPRINT:BarDuq17}.
+%As a consequence, we made the choice to concentrate on Miller's algorithm's execution time and computational complexity to verify the claim of \cite{EPRINT:BarDuq17}.
 %The implementation shows that Miller's algorithm time has a tiny difference between KSS-16 and BLS-12 curves. However, they both are more efficient and faster than BN curve. 
 \section{Motivation}
 \label{ch1_sec_motivation}
@@ -234,36 +251,45 @@ Therefore, our research contributes to committing high-level security for sophis
 \label{ch1_sec_outline}
 This thesis is organized as follows: 
 
-In Chapter 2, we briefly discuss the mathematical concepts that are related to understanding the concepts of this thesis.
+In \chref{chap:fundamentals}, we briefly discuss the mathematical concepts that are related to understanding the concepts of this thesis.
 We also define the pairing in general. 
 Besides, a target class of pairing-friendly elliptic curves is shown.
 
-Chapter 3 proposes an efficient Optimal-Ate pairing for KSS-18 curve. 
+\chref{ch:optate_kss18_icisc2016} proposes an efficient Optimal-Ate pairing for KSS-18 curve. 
 We improved the Miller's algorithm of Optimal-Ate pairing by proposing \textit{pseudo 12-sparse multiplication} multiplication.
 In order to evaluate our theoretic proposal, we also include some experimental results with recommended parameter settings.
 
-Chapter 4 proposes a technique that will accelerate scalar multiplications in $\g{2}$ over KSS-18 curve. 
+\chref{Chapter_IEICE} proposes a technique that will accelerate scalar multiplications in $\g{2}$ over KSS-18 curve. 
 It is crucial to derive efficiently computable endomorphisms for accelerating scalar multiplication.
 The target $\g{2}$ group has a property that specific scalar multiplication can utilize  Frobenius endomorphism that is efficiently computable.
 Focusing on this property, we derive an essential relation available for scalar multiplication in $\g{2}$ from the structural properties of target elliptic curve.
 Then, using the relation, efficient scalar multiplication is proposed together with multi-scalar multiplication.
 Besides, from the experimental results, we show that the proposed scalar multiplication is about 60 times faster than the conventional method.  
 
-In chapter 5, we derived twist property for target elliptic curves for 192-bit security level and compared their performances concerning scalar multiplication.
+In \chref{ch:ijnc2017}, we derived twist property for target elliptic curves for 192-bit security level and compared their performances concerning scalar multiplication.
 This thesis shows that sextic twist over KSS-18 curve has an advantage over quartic twist in KSS-16 curve.
 
-Chapter 6, shows the state-of-the-art improvement of Optimal-Ate pairing over KSS-16 curve at the 128-bit security level.
+\chref{ch:indocrypt}, shows the state-of-the-art improvement of Optimal-Ate pairing over KSS-16 curve at the 128-bit security level.
 We adopted the most recent parameter and theoretically derived most efficient pairing calculation.
 Besides, we also showed experimental implementation and compared our result with other pairing-friendly curves.
 
 
-In Chapter 7, we opt to further accelerate the work of chapter 6 by improving the finite field arithmetic using cyclic vector multiplication algorithm.
+In \chref{ch:cvma_indocrypt}, we opt to further accelerate the work of chapter 6 by improving the finite field arithmetic using cyclic vector multiplication algorithm.
 We showed comparative results between chapter 6's proposal and this. 
 We also showed memory optimization currently exists final exponentiation algorithm.
 
-Chapter 8 shows the   $\g{2}$  scalar multiplication with by applying different dimension of GLV decomposition.
+\chref{ch:candar2018} shows the   $\g{2}$  scalar multiplication with by applying different dimension of GLV decomposition.
 We showed theoretical and experimental result and showed that 4-dimension is optimal for efficient scalar multiplication in  $\g{2}$ in KSS-16 curve.
 
-Finally, Chapter 9 concludes this thesis.
+Finally, \chref{ch:general_conclusin} concludes this thesis.
 
+
+%\chref{chap:fundamentals}  defines the necessary fundamentals.
+%\chref{ch:optate_kss18_icisc2016} proposes \textit{pseudo 12-sparse multiplicatio}n to accelerate pairing over KSS-18 curve at the 192-bit security level.
+%\chref{Chapter_IEICE} proposes efficient scalar multiplication for $\g{2}$ rational point groups using skew Frobenius map in KSS-18 curve.
+%\chref{ch:ijnc2017} shows a comparative implementation of scalar multiplication for sextic twisted KSS-18 curve and quartic twisted KSS-16 curve.
+%In \chref{ch:indocrypt}, we presented state-of-the-art improvement of Miller's algorithm for pairing at 128-bit security level using KSS-16 curve.
+%\chref{ch:cvma_indocrypt} shows the technique to improve finite field arithmetic targeted for $\FPSN$ extension field using CVMA. This chapter also revisits the work of \chref{ch:indocrypt} providing further improvements.
+%In \chref{ch:candar2018}, we presented the necessary procedure to decompose scalars for scalar multiplication in $\g{2}$ group in KSS-16 curve.
+%We also presented several decompositions and suggested that 4-dimension decomposition is optimal for the purpose.
 	

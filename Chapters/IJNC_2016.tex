@@ -20,15 +20,15 @@ KSS-18 curve $E'$ includes sextic twisted isomorphic rational point group denote
 Then the proposed mapping technique is applied to map rational points of $\g2$ to its isomorphic $\g2'$. 
 After that the scalar multiplication  is performed  in $\g2'$ and then resulted points are re-mapped to $\g2$.
 
-The experiment result shows  that efficiency of  scalar multiplication is increased by more than 20 to 10 times in subfield  twisted curve $E'$ than scalar multiplication in $E(\FPEN)$ and $E(\FPSN)$ respectively without applying the proposed mapping. The mapping and remapping for sextic twisted curves requires one bit wise shifting in $\Fp$, one $\FPTH$ inversion which can be pre-computed and one $\Fp$ multiplication; hence the sextic twisted mapping procedure has no expensive arithmetic operation. On the other hand, quartic twisted mapping requires no arithmetic operation rather it needs some attention since elliptic curve doubling in the twisted curve has a tricky part. The experiment also reveals that sextic twist is preferable since it gives better performance than quartic twist. 
+The experiment result shows  that efficiency of  scalar multiplication is increased by more than 20 to 10 times in subfield  twisted curve $E'$ than scalar multiplication in $E(\FPEN)$ and $E(\FPSN)$ respectively without applying the proposed mapping. The mapping and remapping for sextic twisted curves require one bit wise shifting in $\Fp$, one $\FPTH$ inversion which can be pre-computed and one $\Fp$ multiplication; hence the sextic twisted mapping procedure has no expensive arithmetic operation. On the other hand, quartic twisted mapping requires no arithmetic operation rather it needs some attention since elliptic curve doubling in the twisted curve has a tricky part. The experiment also reveals that sextic twist is preferable since it gives better performance than quartic twist. 
 Performance of such isomorphic mapping can be fully realized when it is applied in some pairing-based protocols. 
-It is obvious that efficiency of Ate-based pairing protocols depends not only on improved scalar multiplication but also on efficient Miller's algorithm  and final exponentiation implementation. 
+It is obvious that the efficiency of Ate-based pairing protocols depends not only on improved scalar multiplication but also on efficient Miller's algorithm  and final exponentiation implementation. 
 
 \subsection{Related Works}
-Pairings are often found in certain extension field $\FPK$, where $p$ is the prime number, also know as characteristics of the field and the minimum extension degree $k$ is called \textit{embedding} degree. 
+Pairings are often found in certain extension field $\FPK$, where $p$ is the prime number, also known as characteristics of the field and the minimum extension degree $k$ is called \textit{embedding} degree. 
 The rational points $E(\FPK)$ are defined over a certain pairing-friendly curve $E$ of embedded extension field of degree $k$. 
 In \cite{PAIRING:AFKMR12}, Aranha et al. have presented pairing calculation for 192-bit security level where  KSS curve of embedding degree 18 is regarded as one of the good candidates for 192-bit security level.
-Recently Zhang et al. \cite{INDOCRYPT:ZhaLin12} have shown that the KSS curve of embedding degree 16 are more suitable for 192-bit security level.
+Recently Zhang et al. \cite{INDOCRYPT:ZhaLin12} have shown that the KSS curve of embedding degree 16 is more suitable for 192-bit security level.
 Therefore this chapter has considered KSS pairing-friendly curves of embedding degree $k=16$ and $18$.
 
 \subsection{Contribution Outline}
@@ -144,11 +144,11 @@ where $\xi$ denotes Ate pairing. In the case of KSS curves, the above $\g1$ is j
  $P \in \g1 \subset E(\FP)$ and  $Q \in \g2$ where  $\g2$ is a subset of $E(\FPSN)$ and $E(\FPEN)$ for KSS-16 and KSS-18 curves respectively. 
 
 \subsection{Twist of KSS Curves}
-Let us consider performing an asynchronous type of pairing operation on KSS curves.  Let it be the Ate pairing $\xi(P,Q)$, one of asynchronous variants. $P$  is defined over the prime field $\FP$ and  $Q$ is typically placed on the $k$-th degree extension field $\FPK$ on the defined KSS curve. There exists a \textit{twisted curve} with a group of rational points of order $r$ which are isomorphic to the group where rational point $Q \in  E(\FPK)$  belongs to. This subfield isomorphic rational point group includes a twisted isomorphic point of $Q$, typically denoted as $Q' \in E'(\FPKD)$, where $k$ is the embedding degree and $d$ is the twist degree.  
+Let us consider performing an the asynchronous type of pairing operation on KSS curves.  Let it be the Ate pairing $\xi(P,Q)$, one of asynchronous variants. $P$  is defined over the prime field $\FP$ and  $Q$ is typically placed on the $k$-th degree extension field $\FPK$ on the defined KSS curve. There exists a \textit{twisted curve} with a group of rational points of order $r$ which are isomorphic to the group where rational point $Q \in  E(\FPK)$  belongs to. This subfield isomorphic rational point group includes a twisted isomorphic point of $Q$, typically denoted as $Q' \in E'(\FPKD)$, where $k$ is the embedding degree and $d$ is the twist degree.  
 
-Since points on the twisted curve are defined over a smaller field than $\FPK$, therefore ECA and ECD becomes faster. 
+Since points on the twisted curve are defined over a smaller field than $\FPK$, therefore ECA and ECD become faster. 
 However, when required in the pairing calculation such as  for line evaluation  they can be quickly mapped to a point on $E(\FPK )$. 
-Defining such mapping and re-mapping techniques is the main focus of this  chapter. Since the pairing-friendly KSS-16 \cite{EPRINT:KacSchSco07} curve has CM discriminant of $D = 1$ and $4|k$, therefore quartic twist is available. For sextic twist, the curve should have $D = 3$ and $6|k$, which exists in KSS-18.
+Defining such mapping and re-mapping techniques is the main focus of this  chapter. Since the pairing-friendly KSS-16 \cite{EPRINT:KacSchSco07} curve has CM discriminant of $D = 1$ and $4|k$; therefore quartic twist is available. For the sextic twist, the curve should have $D = 3$ and $6|k$, which exists in KSS-18.
 
 \subsubsection{Sextic Twist of KSS-18 Curve}
 %When the embedding degree $k = 2e$, where $e$ is positive integer, from \eqref{ec_curve} the quadratic twisted elliptic curve $E'_2$ is given as follows:
@@ -195,9 +195,9 @@ E'_4(\F{p}{4}) \rightarrow E(\F{p}{16}),\\
 \end{eqnarray}
 
 \section{Isomorphic Map between \texorpdfstring{$Q$}{Q} and \texorpdfstring{$Q'$}{Q'}}
-This section introduces the derived mapping procedure of $\g2$ rational point group to its twisted (quartic and  sextic) isomorphic group $\g2'$ for Ate-based pairing for the considered KSS curves. 
+This section introduces the derived mapping procedure of $\g2$ rational point group to its twisted (quartic and sextic) isomorphic group $\g2'$ for Ate-based pairing for the considered KSS curves. 
 The idea of isomorphic mapping for KSS-18  is already defined in  \secref{sec:ch:ieice2016:mappingQtoQprime} of \chref{Chapter_IEICE}. 
-In this section we recall this mapping to for more comprehensive reading along with the newly introduced idea of aquatic twist.
+In this section, we recall this mapping for more comprehensive reading along with the newly introduced idea of a quartic twist.
 
 \subsection{Sextic twisted Isomorphic Mapping between \texorpdfstring{$Q \in \g2 \subset E(\FPEN)$}{} and \texorpdfstring{$Q' \in \g2' \subset E'(\FPTH)$}{}}
 Figure \ref{fig:sextickss18_chap_ijnc2017} shows an overview of sextic twisted curve $E'(\FPTH)$ of $E(\FPEN)$.
@@ -460,21 +460,22 @@ Sliding-window  w/o mapping  &  $1.0 \times 10^3$  &  \multicolumn{2}{|c|} { $1.
 \end{table}
 }
 
-Analyzing   \tbref{table_opeationcomp_chap_ijnc2017}, we can find that scalar multiplication on the sextic twisted KSS-18 curve using the proposed  mapping technique is more than 20 times faster than scalar multiplication without the proposed mapping. 
+Analyzing   \tbref{table_opeationcomp_chap_ijnc2017}, we can find that scalar multiplication on the sextic twisted KSS-18 curve using the proposed mapping technique is more than 20 times faster than scalar multiplication without the proposed mapping. 
 On the other hand, in the quartic twisted KSS-16 curve, scalar multiplication becomes at most 10 times faster after applying proposed mapping techniques than no mapping. 
-Another important difference is sextic twisted mapped points take less  time for scalar multiplication in both experiment environments. Therefore we can certainly say sextic twist over KSS-18 is more efficient than the quartic twisted KSS-16 curve for implementing  pairing operations.
+Another critical difference is sextic twisted mapped points take less time for scalar multiplication in both experiment environments. Therefore we can undoubtedly say sextic twist over KSS-18 is more efficient than the quartic twisted KSS-16 curve for implementing pairing operations.
 
-In the experiment we have used two execution environments; such as PC and iPhone with different CPU frequencies. 
-In both environments only one processor core is utilized.
- The ratio of CPU frequencies of  iPhone and PC is about $1.84 / 2.7 \approx 0.68$. 
-The result  shows that the ratio of execution time of PC and iPhone without mapping  for KSS-18 curve is around $0.62$ to $0.66$.
+In the experiment, we have used two execution environments; such as PC and iPhone with different CPU frequencies. 
+In both environments, only one processor core is utilized.
+ The ratio of CPU frequencies of iPhone and PC is about $1.84 / 2.7 \approx 0.68$. 
+The result shows that the ratio of the execution time of PC and iPhone without mapping for KSS-18 curve is around $0.62$ to $0.66$.
 Which is close to CPU frequency ratio.
-On the other hand, the ratio of execution time with mapping  of KSS-18 curve is also around $0.6$. 
-For KSS-16 curve, the ratio with no mapping case is more than $0.8$ and for mapping case it is around $0.7$ to $0.9$.   
-Since PC and iPhone has different processor architectures therefore it's frequency ratio has modest relation with the execution time ratio. 
-The ratio may also be effected by the other processes, running in certain environment during the experiment time.
+On the other hand, the ratio of execution time with mapping of KSS-18 curve is also around $0.6$. 
+For KSS-16 curve, the ratio with no mapping case is more than $0.8$, and for mapping case, it is around $0.7$ to $0.9$.   
+Since PC and iPhone have different processor architectures, therefore its frequency ratio has a modest relation with the execution time ratio. 
+The ratio may also be affected by the other processes, running in a specific environment during the experiment time.
 
-The main focus of this experiment is to evaluate the  acceleration ratio of scalar multiplication by applying the proposed mapping on $\g2$ rational point group of the nominated KSS curves. The experiment does not focus on efficiently implementing scalar multiplication for certain environment. There are other pairing-friendly curves such as BLS-12, BLS-24 \cite{JC:FreScoTes10} where sextic twist is available. As our future work, we will try to apply the proposed mapping on those curves.
+The main focus of this experiment is to evaluate the acceleration ratio of scalar multiplication by applying the proposed mapping on $\g2$ rational point group of the nominated KSS curves. The experiment does not focus on efficiently implementing scalar multiplication for a particular environment. There are other pairing-friendly curves such as BLS-12, BLS-24 \cite{JC:FreScoTes10} where the sextic twist is available. As our future work, we will try to apply the proposed mapping on those curves.
+
 
 \section{Conclusion}
 In this chapter, we have demonstrated isomorphic mapping procedure of $\g2$ rational point group to its sextic and quartic twisted subfield isomorphic rational point group $\g2'$  and its reverse mapping for KSS-18 and KSS-16 curves in the context of Ate-based pairing. 

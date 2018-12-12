@@ -8,9 +8,9 @@
 \label{sec:ch:icisc:bac_motivation}
 From the very beginning of the cryptosystems that utilizes elliptic curve pairing; proposed independently by Sakai et al. \cite{EPRINT:SakKas03} and Joux \cite{JC:Joux04}, has unlocked numerous novel ideas to researchers. 
 Many researchers tried to find out security protocol that exploits pairings to remove the need of certification by a trusted authority. 
-In this consequence, several ingenious pairing-based encryption scheme such as ID-based encryption scheme by  Boneh and Franklin \cite{C:BonFra01} and group signature authentication by Nakanishi et al. \cite{AC:NakFun05} have come into the focus. 
-In such outcome, Ate-based pairings such as Ate \cite{DBLP:reference/crc/2005ehcc}, Optimal-ate \cite{DBLP:journals/tit/Vercauteren10}, twisted Ate \cite{EPRINT:MKHO07},  R-ate \cite{r_ate}, and $u$-Ate \cite{PAIRING:NASKM08} pairings and their applications in cryptosystems have caught much attention since they have achieved quite efficient pairing calculation.
-But it has always been a challenge for researchers to make pairing calculation more efficient for being used practically as pairing calculation is regarded as quite time consuming operation. 
+In this consequence, several original pairing-based encryption schemes such as ID-based encryption scheme by  Boneh and Franklin \cite{C:BonFra01} and group signature authentication by Nakanishi et al. \cite{AC:NakFun05} have come into the focus. 
+In such outcome, Ate-based pairings such as Ate \cite{DBLP:reference/crc/2005ehcc}, Optimal-Ate \cite{DBLP:journals/tit/Vercauteren10}, twisted Ate \cite{EPRINT:MKHO07},  R-ate \cite{r_ate}, and $u$-Ate \cite{PAIRING:NASKM08} pairings and their applications in cryptosystems have caught much attention since they have achieved quite efficient pairing calculation.
+But it has always been a challenge for researchers to make pairing calculation more efficient for being used practically as pairing calculation is regarded as quite time-consuming operation. 
 
 \subsection{General Notation}
 \label{sec:ch:icisc:notation}
@@ -19,23 +19,23 @@ Bilinear pairing operation consist of two predominant parts,  named as Miller's 
 In  the case of  Ate-based pairing using KSS-18 pairing-friendly elliptic curve of embedding degree $k=18$,  the bilinear map is denoted by $\g1 \times \g2 \rightarrow \g3$,
 The groups $\g1 \subset E(\FQ)$, $\g2 \subset E(\FQEN)$ and $\g3  \subset \mathbb{F}^*_{p^{18}}$ and  $p$ denotes the characteristic of $\Fp$.
  The elliptic curve $E$ is defined over the extension field $\FQEN$. 
-The rational point in $\g2 \subset E(\FQEN)$ has  a special vector representation where out of 18 $\Fp$ coefficients, continuously 3 of them are non-zero and the others are zero. 
-By utilizing such representation along with the sextic twist and isomorphic mapping in subfield of $\FQEN$, this chapter has computed the elliptic curve doubling and elliptic curve addition in the Miller's algorithm as $\FQTH$ arithmetic without any explicit mapping from $\FQEN$ to $\FQTH$.
+The rational point in $\g2 \subset E(\FQEN)$ has a unique vector representation where out of 18 $\Fp$ coefficients, continuously 3 of them are non-zero, and the others are zero. 
+By utilizing such representation along with the sextic twist and isomorphic mapping in the subfield of $\FQEN$, this chapter has computed the elliptic curve doubling and elliptic curve addition in the Miller's algorithm as $\FQTH$ arithmetic without any explicit mapping from $\FQEN$ to $\FQTH$.
 
 \subsection{Contribution Outline}
 \label{sec:ch:icisc:contriv_outline}
- This chapter proposes \textit{pseudo 12-sparse multiplication} in affine coordinates for line evaluation in the Miller's algorithm by considering the fact that multiplying or dividing the result of Miller's loop calculation by an arbitrary non-zero $\Fp$ element does not change the result as the following final exponentiation cancels the effect of multiplication or division. 
+ This chapter proposes \textit{pseudo 12-sparse multiplication} in affine coordinates for line evaluation in the Miller's algorithm by because multiplying or dividing the result of Miller's loop calculation by an arbitrary non-zero $\Fp$ element does not change the result as the following final exponentiation cancels the effect of multiplication or division. 
 Following the division by a non-zero $\Fp$ element, one of the 7 non-zero $\Fp$ coefficients (which is a combination of 1 $\Fp$ and 2 $\FQTH$ coefficients) becomes 1 that yields calculation efficiency.
-The calculation overhead caused from the division is canceled by isomorphic mapping with a quadratic and cubic residue in $\Fp$.
+The calculation overhead caused by the division is canceled by isomorphic mapping with a quadratic and cubic residue in $\Fp$.
 This chapter does not end by giving only the theoretic proposal of improvement of Optimal-Ate pairing by pseudo 12-sparse multiplication.
 In order to evaluate the theoretic proposal, this chapter shows some experimental results with recommended parameter settings. 
 
 \subsection{Related Works}
 \label{sec:ch:icisc:related_works}
 Finding pairing friendly curves \cite{EPRINT:FreScoTes06} and construction of efficient extension field arithmetic are the ground work for any pairing operation.
-Many research  has been conducted for finding pairing friendly curves \cite{SCN:BarLynSco02, JC:DupEngMor05} and efficient extension field arithmetic \cite{JC:BaiPaa01}.
+Many research has been conducted for finding pairing-friendly curves \cite{SCN:BarLynSco02, JC:DupEngMor05} and efficient extension field arithmetic \cite{JC:BaiPaa01}.
 Some previous work on optimizing the pairing algorithm on pairing friendly curve such Optimal-Ate pairing by Matsuda et al. \cite{EPRINT:MKHO07} on Barreto-Naehrig (BN) curve \cite{SAC:BarNae05} is already carried out.
-The previous work of Mori et al. \cite{PAIRING:MANS13} has showed the \textit{pseudo 8-sparse multiplication} to efficiently calculate Miller's algorithm defined over BN curve. Apart from it, Aranha et al. \cite{PAIRING:AFKMR12} has improved Optimal-Ate pairing over KSS-18 curve for 192 bit security level by utilizing the relation $t(u) - 1 \equiv u + 3p(u) \bmod r(u)$ where $t(u)$ is the Frobenius trace of KSS-18 curve, $u$ is an integer also known as \textit{mother parameter}, $p(u)$ is the prime number and $r(u)$ is the order of the curve. This chapter has exclusively focused on efficiently calculating the Miller's loop of Optimal-Ate pairing defined over KSS-18 curve \cite{EPRINT:KacSchSco07} for 192-bit security level by applying\textit{ pseudo 12-sparse multiplication} technique along with other optimization approaches. The parameter settings recommended in \cite{PAIRING:AFKMR12} for 192 bit security on KSS-18 curve is used in the simulation implementation. But in the recent work, Kim et al. \cite{C:KimBar16} has suggested to update the key sizes associated with pairing-based cryptography due to the development new algorithm to solve discrete logarithm problem over finite field. The parameter settings of \cite{PAIRING:AFKMR12} does not end up at the 192 bit security level according to \cite{C:KimBar16}. However the parameter settings of \cite{PAIRING:AFKMR12}  is primarily adapted in this chapter in order to show the resemblance of the proposal with the experimental result.
+The previous work of Mori et al. \cite{PAIRING:MANS13} has showed the \textit{pseudo 8-sparse multiplication} to calculate Miller's algorithm defined over BN curve efficiently. Apart from it, Aranha et al. \cite{PAIRING:AFKMR12} has improved Optimal-Ate pairing over KSS-18 curve for 192 bit security level by utilizing the relation $t(u) - 1 \equiv u + 3p(u) \bmod r(u)$ where $t(u)$ is the Frobenius trace of KSS-18 curve, $u$ is an integer also known as \textit{mother parameter}, $p(u)$ is the prime number and $r(u)$ is the order of the curve. This chapter has exclusively focused on efficiently calculating the Miller's loop of Optimal-Ate pairing defined over KSS-18 curve \cite{EPRINT:KacSchSco07} for 192-bit security level by applying\textit{ pseudo 12-sparse multiplication} technique along with other optimization approaches. The parameter settings recommended in \cite{PAIRING:AFKMR12} for 192-bit security on KSS-18 curve is used in the simulation implementation. But in the recent work, Kim et al. \cite{C:KimBar16} has suggested updating the key sizes associated with pairing-based cryptography due to the development new algorithm to solve discrete logarithm problem over the finite field. The parameter settings of \cite{PAIRING:AFKMR12} does not end up at the 192-bit security level according to \cite{C:KimBar16}. However the parameter settings of \cite{PAIRING:AFKMR12}  is primarily adapted in this chapter in order to show the resemblance of the proposal with the experimental result.
 
 \section{Preliminaries}
 \label{sec:ch:icisc:preliminaries}
@@ -44,7 +44,7 @@ This section briefly reviews the fundamentals of towering extension field with i
 \subsection{KSS Curve \index{KSS Curve} of Embedding Degree \texorpdfstring{$k=18$}{k=18}} \index{KSS-18}
 \label{sec:ch:icisc:kss18curve}
 Kachisa-Schaefer-Scott (KSS) curve \cite{EPRINT:KacSchSco07} is a non supersingular pairing friendly elliptic curve of embedding degrees $k = \left\lbrace16, 18, 32, 36, 40\right\rbrace$. 
-This chapter considers KSS curve of embedding degree $k=18$, in short KSS-18 curve.
+This chapter considers KSS curve of embedding degree $k=18$, in short, KSS-18 curve.
  The equation of KSS-18  \index{KSS-18} curve defined over $\FQEN$ is given as follows: 
 \begin{equation} \label{eqn_KSS_18}
 	E:y^2=x^3+b,\;\;\;b\in\Fp
@@ -356,13 +356,11 @@ Table \ref{result_192} shows the calculation times of Optimal-Ate pairing respec
 
 \section{Contribution Summary}
 Acceleration of a pairing calculation of an Ate-based pairing such as Optimal-Ate pairing depends not only on the optimization of Miller algorithm's loop parameter but also on efficient elliptic curve arithmetic operation and efficient final exponentiation. 
-This chapter has proposed a \textit{pseudo 12-sparse multiplication} to accelerate Miller's loop calculation in KSS-18 curve by utilizing the property of  rational point groups.
-In addition, this chapter has shown an enhancement of the elliptic curve addition and doubling calculation in Miller's algorithm by applying implicit mapping of its sextic twisted isomorphic group. 
-Moreover this chapter has implemented the proposal with recommended security parameter settings for KSS-18 curve at 192 bit security level.
+This chapter has proposed a \textit{pseudo 12-sparse multiplication} to accelerate Miller's loop calculation in KSS-18 curve by utilizing the property of rational point groups.
+Besides, this chapter has shown an enhancement of the elliptic curve addition and doubling calculation in Miller's algorithm by applying implicit mapping of its sextic twisted isomorphic group. 
+Moreover, this chapter has implemented the proposal with recommended security parameter settings for KSS-18 curve at the 192-bit security level.
 The simulation result shows that the proposed \textit{pseudo 12-sparse multiplication} gives more efficient Miller's loop calculation of an Optimal-Ate pairing operation along with recommended parameters than pairing calculation without sparse multiplication.
 
 \section{Conclusion}
 This chapter has proposed pseudo 12-sparse multiplication for accelerating Optimal-Ate pairing on KSS-18 curve. 
-According to the calculation costs and experimental results shown in this chapter, the proposed method can calculate Optimal-Ate pairing more efficiently. 
-%As a future work we would like to evaluate the efficiency in practical case by implementing it in some pairing-based protocols. 
-
+According to the calculation costs and experimental results are shown in this chapter, the proposed method can calculate Optimal-Ate pairing more efficiently. 

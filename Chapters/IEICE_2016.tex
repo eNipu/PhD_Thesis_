@@ -6,8 +6,8 @@
 Recall that, pairing-based cryptography has attracted many researchers since Sakai et al. \cite{EPRINT:SakKas03} and Joux et al. \cite{JC:Joux04} independently proposed a cryptosystem based on elliptic curve pairing. This has encouraged to invent several innovative pairing-based cryptographic applications such as broadcast encryption \cite{C:BonGenWat05} and group signature authentication \cite{C:BonBoySha04}, that has increased the popularity of pairing-based cryptographic research.
 
 However, using pairing-based cryptosystems in the industrial state is still restricted by its expensive operational cost concerning time and computational resources in a practical case. 
-In order to make it practical, several pairing techniques such as Ate \cite{DBLP:reference/crc/2005ehcc}, Optimal-ate \cite{DBLP:journals/tit/Vercauteren10}, twisted Ate \cite{EPRINT:MKHO07}, $\chi$-Ate \cite{PAIRING:NASKM08} and \textit{subfield twisted} Ate \cite{PAIRING:DevScoDah07} pairings have gained much attention since they have achieved quite efficient pairing calculation in certain pairing friendly curve. 
-Researchers continues on finding an efficient way to implement pairing to make it practical enough for industrial standardization. 
+In order to make it practical, several pairing techniques such as Ate \cite{DBLP:reference/crc/2005ehcc}, Optimal-Ate \cite{DBLP:journals/tit/Vercauteren10}, twisted Ate \cite{EPRINT:MKHO07}, $\chi$-Ate \cite{PAIRING:NASKM08} and \textit{subfield twisted} Ate \cite{PAIRING:DevScoDah07} pairings have gained much attention since they have achieved quite efficient pairing calculation in certain pairing friendly curve. 
+Researchers continue on finding an efficient way to implement pairing to make it practical enough for industrial standardization. 
 
 In such consequences, this chapter focuses on a peripheral technique of Ate-based pairings that is scalar multiplication defined over Kachisa-Schaefer-Scott (KSS) curve \cite{EPRINT:KacSchSco07} of embedding degree 18. 
 Scalar multiplication over higher degree rational point groups is often regarded as the bottleneck for faster pairing-based cryptography.
@@ -127,7 +127,7 @@ E'_6(\F{p}{e}) \rightarrow E(\F{p}{6e}),\\
 \end{eqnarray}
 In context of Ate-based pairing for KSS curve of embedding degree 18, sextic twist is considered to be the most efficient.
 
-\section{Proposed Improved Scalar Multiplication for \texorpdfstring{$\g2$}{G2} Rational Point} \index{KSS-18: $\g{2}$ SCM}
+\section{Proposed Improved Scalar Multiplication for \texorpdfstring{$\g2$}{G2} Rational Point}
 This section will introduce the proposal for efficient scalar multiplication of $\g2$ rational points defined over KSS curve of embedding degree $k=18$ in context of Ate-based pairing. 
 An overview the proposed method is given next before diving into the detailed procedure.
 \subsection{Overview of the Proposal} 
@@ -507,23 +507,23 @@ PC &  iPhone6s \\
 \end{table}
 \renewcommand{\baselinestretch}{1.0}
 
-Analyzing  Table \ref{table:tab_executiontime_chapter_g2scm_kss18}, we can find that when isomorphic mapping  and skew Frobenius mapping is not adapted for  Binary, Sliding-window and NAF, then the scalar multiplication of  proposed method is more than 60 times faster than other methods. However when isomorphic mapping  is applied for the other methods then our proposed technique is more than 3 times faster. Another important comparison shows that when only multi-scalar multiplication is applied then our proposed methods is about 20 times faster. 
-In every scenario our proposed method is faster than the other commonly used approaches.
+Analyzing  Table \ref{table:tab_executiontime_chapter_g2scm_kss18}, we can find that when isomorphic mapping  and skew Frobenius mapping is not adapted for  Binary, Sliding-window and NAF, then the scalar multiplication of  proposed method is more than 60 times faster than other methods. However when the isomorphic mapping  is applied for the other methods then our proposed technique is more than 3 times faster. Another important comparison shows that when only multi-scalar multiplication is applied then our proposed methods is about 20 times faster. 
+In every scenario, our proposed method is faster than the other commonly used approaches.
 
 
 The main focus of this experiment is to evaluate the  acceleration ratio of scalar multiplication by applying the proposed approach on $\g2$ rational point group of  KSS curve of embedding degree 18. The experiment does not focus on efficiently implementing scalar multiplication for certain environment. 
 
 \section{Contribution Summary}
-In this chapter we have proposed an efficient method to calculate elliptic curve scalar multiplication using skew Frobenius mapping  over KSS-18 curve in context of pairing-based cryptography. 
+In this chapter, we have proposed an efficient method to calculate elliptic curve scalar multiplication using skew Frobenius mapping  over KSS-18 curve in the context of pairing-based cryptography. 
 Utilizing the skew Frobenius map along with multi-scalar multiplication procedure, an efficient scalar multiplication method for KSS-18 curve is proposed in the chapter.
-In addition to the theoretic proposal, this chapter has also presented a comparative simulation of the proposed approach with plain binary method, sliding window method and non-adjacent form (NAF) for scalar multiplication. 
+In addition to the theoretic proposal, this chapter has also presented a comparative simulation of the proposed approach with the plain binary method, sliding window method and non-adjacent form (NAF) for scalar multiplication. 
 %The simulation shows that the proposed method is about 60 times faster than plain implementation of other compared methods.
 We have also applied $(t-1)$-adic and $z$-adic representation on the scalar and have applied multi-scalar multiplication technique to  calculate scalar multiplication in parallel. 
 We have evaluated and analyzed the improvement by implementing a simulation for large size of scalar in 192-bit security level. 
 According to the simulation result multi-scalar multiplication after applying skew Frobenius mapping in $\g2'$ can accelerate the scalar multiplication in $\g2 \subset E(\FQEN)$ by more than 60 times than scalar multiplication of $\g2$ rational point directly in $\FQEN$. 
 
-\section{Future Work}
+% \section{Future Work}
 
-In the previous work of Sakemi et al. \cite{CANS:SNOKM08} have proposed skew Frobenius map for $\g1$ rational point defined over BN curve. 
-As a future work we would like to apply such approach on $\g1$ rational point defined over KSS-18 curve.
-Together with the proposed method, the skew Frobenius mapping of $\g1$ will remarkably accelerate scalar multiplication over KSS-18 curve in the context of pairing-based cryptography. 
+% In the previous work of Sakemi et al. \cite{CANS:SNOKM08} have proposed skew Frobenius map for $\g1$ rational point defined over BN curve. 
+% As a future work we would like to apply such approach on $\g1$ rational point defined over KSS-18 curve.
+% Together with the proposed method, the skew Frobenius mapping of $\g1$ will remarkably accelerate scalar multiplication over KSS-18 curve in the context of pairing-based cryptography. 

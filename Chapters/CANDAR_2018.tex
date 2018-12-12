@@ -1,6 +1,5 @@
-\chapter{Efficient \texorpdfstring{$\g{2}$}{G2} Scalar Multiplican in KSS-16 Curve} 
+\chapter{Efficient \texorpdfstring{$\g{2}$}{G2} Scalar Multiplication in KSS-16 Curve} 
 \label{ch:candar2018}
-
 
 
 \section{Introduction}
@@ -12,20 +11,21 @@ Pairing algorithms involve computations on elements in all three pairing groups,
 However, most of the protocols usually require additional scalar multiplication and exponentiation in any of these three groups. 
 The Gallant-Lambert-Vanstone (GLV) method is an elegant technique to accelerate the scalar multiplication which can reduce the number of elliptic curve doubling by using Straus-Shamir simultaneous multi-scalar multiplication technique.
 However, efficiently computable endomorphisms are required to apply GLV for the elliptic curves. 
-This chapter shows the GLV technique by deriving efficiently computable endomorphism for Kachisa-Schaefer-Scott (KSS)  \cite{EPRINT:KacSchSco07} pairing-friendly curves of embedding degree $k=16$ (KSS-16) in the context of Optimal-ate pairing.
+This chapter shows the GLV technique by deriving efficiently computable endomorphism for Kachisa-Schaefer-Scott (KSS)  \cite{EPRINT:KacSchSco07} pairing-friendly curves of embedding degree $k=16$ (KSS-16) in the context of Optimal-Ate pairing.
 %In addition, we show explicit formulas to compute the GLV method together with Straus-Shamir simultaneous multi-scalar multiplication technique for 2, 4 and 8 dimensions in $\g2$ group. 
 %The comparative implementation shows that dimension 4 gives faster computational time than dimension 8 and 2. 
 
 
-The motivation to work on KSS-16 curve came from the recent work of Barbulescu et al. \cite{EPRINT:BarDuq17} and Khandaker et al. \cite{INDOCRYPT:KNGDNK17}, where they concluded that with the recent parameters for pairing-based protocols, KSS-16 curve is a better choice for Optimal-ate pairing over BN curve.
+The motivation to work on KSS-16 curve came from the recent work of Barbulescu et al. \cite{EPRINT:BarDuq17} and Khandaker et al. \cite{INDOCRYPT:KNGDNK17}, where they concluded that with the new parameters for pairing-based protocols, KSS-16 curve is a better choice for Optimal-Ate pairing over BN curve.
 
 Scalar multiplication dominates the execution time of any elliptic curve cryptography (ECC) algorithms.
-The common approach to accelerate scalar multiplication are log-step algorithm such as binary and non-adjacent form (NAF) methods.
+The conventional approach to accelerate scalar multiplication are log-step algorithm such as binary and non-adjacent form (NAF) methods.
 However, in the context of asymmetric pairing where there exists no efficiently computable isomorphism between $\g{1}$ and $\g2$, more efficient approach is to use GLV \cite{CANS:SNOKM08, khandaker2017improvement}.
 In order to accelerate scalar multiplication, Gallant-Lambert-Vanstone \cite{C:GalLamVan01} proposed a technique for rational points of prime order known as GLV method.
 Fundamentally, it divides the scalar into half of the bit length of the original one that reduces the number of doubling.
 The critical point of this technique is, there should have to be an efficiently computable endomorphism. 
-Otherwise, the advantage obtained from reduced doubling will have no effect on the acceleration. 
+Otherwise, the advantage obtained from reduced doubling will not affect the acceleration. 
+
 
 \subsection{Literature Review}
 There is a vast literature on GLV decomposition in pairing-friendly curves i.e.  Barreto-Naehrig \cite{SAC:BarNae05}, Kachisa-Schaefer-Scott (KSS) curve of embedding degree 18,  \cite{CANS:SNOKM08, khandaker2017improvement, DBLP:journals/ieicet/NogamiSONAM09, faz2015efficient, JC:GalLinSco11}. 
@@ -33,7 +33,7 @@ The common fact of in such literature is, they all applied GLV on sextic twisted
 However, in our knowledge till date, there is no literature on GLV decomposition for  KSS curve of embedding degree 16 where at most degree 4 twist is available.
 
 \subsection{Contribution Outline}
-The major contributions of this chapter are (\RNum{1}) obtaining the endomorphism to enable GLV decomposition for $\g2$ rational point in KSS-16 curve. 
+The significant contributions of this chapter are (\RNum{1}) obtaining the endomorphism to enable GLV decomposition for $\g2$ rational point in KSS-16 curve. 
 (\RNum{2}) Deriving the dimension 2, 4 and 8 GLV decomposition along with finding efficiently computable Frobenius maps. (\RNum{3}) Implementation of the derived techniques and their comparison. 
 This chapter shows that increasing the dimension of decomposition not necessarily accelerate the scalar multiplication. 
 In the case of $\g2$ points of KSS-16 curve, our experiment finds that dimension 4 is the fastest. 
@@ -62,12 +62,12 @@ where $max{|s_1|,|s_2|}  ~\leq C_1 \sqrt{r}$ for some explicit constant $C_1 > 0
 The main idea of the GLV trick is it exists essentially in an algorithm that finds a decomposition of an arbitrary scalar multiplication $[s]$ for $s \in  [1,r]$ into two scalar multiplications, while the new scalars having only about half the bit length of the original scalar.
 This immediately enables the elimination of half the doubling by employing the Straus-Shamir simultaneous multi-scalar point multiplication. 
 Later on Galbraith-Lin-Scott (GLS) have shown that over $\FPT$. 
-This chapter focuses on such a trick for the KSS-16 curve in the context of Optimal-ate pairing. 
+This chapter focuses on such a trick for the KSS-16 curve in the context of Optimal-Ate pairing. 
 
 %%---------------------------------------------------PROPOSAL----------------
-\section{Proposed GLV technique for \texorpdfstring{$\g2$}{} Rational Point on  KSS-16 Curve} \index{KSS-16: $\g{2} SCM}
+\section{Proposed GLV technique for \texorpdfstring{$\g2$}{} Rational Point on  KSS-16 Curve}
 \label{Proposal}
-As aforementioned, Optimal-ate pairing is computed over a twisted curve. 
+As aforementioned, Optimal-Ate pairing is computed over a twisted curve. 
 Therefore, the following sections will describe the twist property of KSS-16 curve and the procedure to obtain GLV decomposition in the $\g2$ group of a KSS-16 curve.
 
 \subsection{Quartic Twist of KSS-16 Curves} 
@@ -394,7 +394,7 @@ In the experiment, 100 randomly generated scalars of size $\leq r$ (263-bit) are
 Average value of execution time presented in the millisecond is considered for comparison.
 The source of the experimental implementation can be found in Github \footnote{\footurl}.
 
-In the experiment, KSS-16 curve over $\FPSN$ is obtained as $y^2 = x^3 + 1$ by applying the parameters  of Barbulescu et al. \cite{EPRINT:BarDuq17}  for 128-bit security level.
+In the experiment, KSS-16 curve over $\FPSN$ is obtained as $y^2 = x^3 + 1$ by applying the parameters of Barbulescu et al. \cite{EPRINT:BarDuq17}  for 128-bit security level.
 \tbref{environment} shows the experiment environment used for comparative evaluation. 
 No optimization is done to execute the program in multithreading.
 \renewcommand{\baselinestretch}{1.5}
@@ -444,16 +444,18 @@ $2^{35}-2^{32}-2^{18}+2^8+1$ & 339 -bit & 263 -bit & 270 -bit \\ \hline
 	\end{tabular}
 \end{table}
 \renewcommand{\baselinestretch}{1.0}
+
 \tbref{s_length} shows the maximum bit length after applying the GLV technique on a scalar of length $263$-bit.
 \tbref{ecaecd_fp4} shows the number of operation required to perform single ECA and ECD in $E'(\FPFR)$.
 \tbref{tab_res_time} shows the result with respect to ECA and ECD count and time [ms].
 From the results, it is clear that 4-Split is the fastest among the techniques followed by the 8-Split.
-It is expected that 8-Split should be faster than the 4-Split since it's loop length is half of the 4-Split.
+Logically  8-Split should be faster than the 4-Split since its loop length is half of the 4-Split.
 In other words, 8-Split requires about less than half of 4-Split's ECD during loop execution. 
 However, combining two 4-Split for one 8-Split increases the number of ECA.
 As a result, the total ECA count in the loop for  8-Split is almost same a 4-Split.
 The significant fall back of 8-Split compared to 4-Split comes from its number of pre-computed rational points.
 Moreover, the total number of pre-computation also increases the other overhead calculations such as initialization, memory allocation, padding $0$ in MSB of the decomposed scalar smaller than the max length. Which also impacts on the execution time. 
+
 \renewcommand{\baselinestretch
 }{1.4}
 \begin{table}[ht]
@@ -476,10 +478,5 @@ Moreover, the total number of pre-computation also increases the other overhead 
 
 
 \section{Conclusion}
-This chapter shows the detailed formula to apply the GLV decomposition together with Straus-Shamir multi-scalar multiplication technique for efficient $\g2$ scalar multiplication which is a major operation in many pairing-based protocols.
-The experimental implementation confirms the correctness of the derived technique.
-The comparative implementations show that dimension 4 is faster than 8 and 2. 
-There is still scope to make the technique better by optimizing the pre-computation which will reduce the number of ECA and ECD.
-As a future work, we would like to reduce the pre-computation cost by optimizing Frobenius map calculation together with the application of non-adjacent form (NAF) and evaluate the acceleration in a pairing-based protocol. 
-
+This chapter shows the explicit formula to apply the GLV decomposition together with Straus-Shamir multi-scalar multiplication technique for efficient $\g2$ scalar multiplication which is a significant operation in many pairing-based protocols. The experimental implementation confirms the correctness of the derived technique. The comparative implementations show that dimension 4 is faster than 8 and 2.  There is still scope to make the technique better by optimizing the pre-computation which will reduce the number of ECA and ECD. As a future work, we would like to reduce the pre-computation cost by optimizing Frobenius map calculation together with the application of non-adjacent form (NAF) and evaluate the acceleration in a pairing-based protocol. 
 

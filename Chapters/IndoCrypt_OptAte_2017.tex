@@ -38,7 +38,7 @@ They have also concluded that in the context of Optimal-Ate pairing with their s
 Therefore, this chapter selects the atypical and less studied pairing-friendly curve in literature, i.e., KSS-16 which offers quartic twist, while BN and BLS-12 curves have sextic twist.
 In this chapter, we optimize Miller's algorithm of Optimal-Ate pairing for the KSS-16 curve by deriving efficient sparse multiplication and implement them.
 Furthermore, this chapter concentrates on the Miller's algorithm to experimentally verify Barbulescu et al.'s estimation.
-The result shows that Miller's algorithm time with the derived pseudo 8-sparse multiplication is most efficient for KSS-16 than other two curves.
+The result shows that Miller's algorithm time with the derived pseudo 8-sparse multiplication is most efficient for KSS-16 than the other two curves.
 Therefore, this chapter defends Barbulescu and Duquesne's conclusion for 128-bit security.
 
 
@@ -436,7 +436,7 @@ To obtain $x_{P}y_{P}^{-1} = 1$, the following isomorphic mapping of $P=(x_P,y_P
 
 
 \subsubsection{Isomorphic map of \texorpdfstring{$P=(x_P,y_P) \to \bar P=(x_{\bar P},y_{\bar P})$}{}.}
-Although the KSS-16 curve is typically defined over $\FPSN$ as $E(\FPSN)$, but for efficient implementation of Optimal-Ate pairing, certain operations are carried out in a quartic twisted isomorphic curve $E'$ defined over $\FPFR$ as shown in Sec. \ref{sec:ch:indo:Quartic_twist}. 
+Although the KSS-16 curve is typically defined over $\FPSN$ as $E(\FPSN)$, but for efficient implementation of Optimal-Ate pairing, certain operations are carried out in a quartic twisted isomorphic curve $E'$ defined over $\FPFR$ as shown in \secref{sec:ch:indo:Quartic_twist}. 
 For the same, let us consider $\bar{E}(\FPFR)$ is isomorphic to $E(\FPFR)$ and certain $z \in \Fp$ as a quadratic residue (QR) in $\FPFR$. 
 A generalized mapping between $E(\FPFR)$ and $\bar{E}(\FPFR)$ can be given as follows:
 \begin{eqnarray}
@@ -715,4 +715,4 @@ This chapter has presented two major ideas.
 This chapter finds that Barbulescu and Duquesne's conclusion on BLS-12 is correct as it takes the less time for Miller's algorithm.
 Applying the derived pseudo 8-sparse multiplication, Miller's algorithm in KSS-16 is also more efficient than BN.
 \end{itemize}
-As a prospective work authors would like to evaluate the performance by finding compressed squaring for KSS-16's final exponentiation along with scalar multiplication of $\g1$, $\g2$ and exponentiation of $\g3$. The execution time for the target environment can be improved by a careful implementation using assembly language for prime field arithmetic.  
+%As a prospective work authors would like to evaluate the performance by finding compressed squaring for KSS-16's final exponentiation along with scalar multiplication of $\g1$, $\g2$ and exponentiation of $\g3$. The execution time for the target environment can be improved by a careful implementation using assembly language for prime field arithmetic.  

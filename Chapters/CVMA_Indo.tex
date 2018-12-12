@@ -23,7 +23,7 @@ In this chapter, we explored to find a more efficient implementation of Optimal-
 Therefore, we revisited the pseudo 8-sparse multiplication with cyclic vector multiplication algorithm (CVMA) \cite{cvma_kato}.
 This chapter adopts two different approaches of towering to construct $\FPSN$ extension field. 
 In what follows let's denote them as Type-I $\FPTTTT$ and Type-II  $\FPFRTT$.
-The Type-I is also characterized as optimal extension field (OEF) \cite{JC:BaiPaa01}.
+The Type-I is also characterized as an optimal extension field (OEF) \cite{JC:BaiPaa01}.
 Since OEF uses Karatsuba based polynomial multiplication and irreducible binomial as the modular polynomial;  multiplications are efficiently carried out in OEF. 
 In Type-II,  the base extension field $\FPFR$ is constructed with the optimal normal basis to employ cyclic vector multiplication where the modular polynomial is a degree 5 cyclotomic polynomial.
 We also applied Ghammam et al's \cite{EPRINT:GhaFou16b} final exponentiation algorithm with cyclotomic squaring \cite{DBLP:journals/moc/Karabina13} for a fair comparison.
@@ -50,7 +50,7 @@ the $m$ with lower case Greek suffix denotes multiplication with basis element.
 %-----------------------------------------------------------------
 \section{Fundamentals of Elliptic Curve and Pairing}\label{sec:1}
 \subsection{Extension Field Arithmetic for Pairing}
-While implementing pairing, a major speedup comes from the efficient finite field implementation. 
+While implementing pairing, a significant speedup comes from the efficient finite field implementation. 
 Calculation of pairing requires executing the arithmetic operation in the extension field {of degree greater than 6} \cite{EPRINT:BenSco09}.
 In what follows, the aforementioned towering procedure of  $\FPSN$ extension field is given with the irreducible polynomials.
 %On the other hand Nekado et al. \cite{cvma_kato} showed efficient  Cyclic Vector Multiplication Algorithm (CVMA) for extension field multiplication.
@@ -125,7 +125,7 @@ Let $\pi_p$ denotes the Frobenius endomorphism given as $\pi_p: (x,y) \mapsto (x
 
 Unless otherwise stated, rest of the chapter considers $P \in \g1 \subset E(\FP)$ and  $Q \in \g2 \subset  E(\FPSN)$. The map $e$ involves two major steps named Miller's loop followed by the final exponentiation.
 The Optimal-Ate pairing \cite{DBLP:journals/tit/Vercauteren10} proposed by Vercauteren reduces the Miller's loop length  to $\lfloor \log_2 u \rfloor = \frac{\lfloor \log_2 r \rfloor }{\varphi(k)} $, where $\varphi$ is the Euler's totient function.
-The choice of the parameter $u$ is an important factor for efficient Miller's algorithm since the smaller hamming weight of $u$ adds advantage by reducing elliptic curve doubling (ECD) inside the loop.
+The choice of the parameter $u$ is a critical factor for efficient Miller's algorithm since the smaller hamming weight of $u$ adds advantage by reducing elliptic curve doubling (ECD) inside the loop.
 
 The Optimal-Ate pairing on KSS-16 elliptic curve is given by Zhang et al. \cite{INDOCRYPT:ZhaLin12} and presented by the following map.
 \begin{eqnarray*}
@@ -159,7 +159,7 @@ The calculation of the Optimal-Ate pairing in KSS-16 elliptic curve is given by 
 \end{algorithm}
 %\vspace{6mm}
 
-Steps between  1 to 11 are identified as Miller's algorithm and step 12 is the FE.
+Steps between  1 to 11 are identified as Miller's algorithm, and step 12 is the FE.
 Optimization scopes of the chapter are the line evaluation of steps 3, 5, 7, 9, 11 together with ECD and ECA.
 These line evaluation steps are the key steps to accelerate the Miller loop calculation. \\
 In \cite{INDOCRYPT:KNGDNK17}, we showed an efficient technique for the above steps by \textit{pseudo 8-sparse multiplication} in the optimal extension field. 
@@ -196,7 +196,7 @@ The overall process is as follows:
 %-----------------------------------------------------------------------------------
 \subsection{\texorpdfstring{$\FPFR$ }{}arithmetic in Type-II Towering} \index{KSS-16:Karatsuba}  \index{KSS-16:CVMA}
 In \cite{cvma_sanada} (Japanese), Sanada et al. primarily focus on the $\FPFR$ finite field operation.
-They reduced 5 and 3 prime field additions for a single $\FPFR$ multiplication and squaring respectively than Karatsuba method.
+They reduced 5 and 3 prime field additions for a single $\FPFR$ multiplication and squaring respectively than the Karatsuba method.
 However, $\FPFR$ inversion in \cite{cvma_sanada} requires $(31 M_p +66A_p+1I_p)$.
 In contrast, we applied Karatsuba based $\FPFR$ inversion in \cite{INDOCRYPT:KNGDNK17} which costs $(14 M_p +29A_p+1I_p)$.
 In this chapter, we derived a better $\FPFR$ inversion than \cite{cvma_sanada} that reduces the cost to $(16M_p+26A_p+1I_p)$. 
@@ -574,7 +574,7 @@ To obtain $x_{P}y_{P}^{-1} = 1$, the following isomorphic mapping of $P=(x_P,y_P
 
 %----------------------------------------------------------------------------------------------
 \subsubsection{Isomorphic map of  \texorpdfstring{$P=(x_P,y_P) \to \bar P=(x_{\bar P},y_{\bar P})$}{}.}
-Although the KSS-16 curve is typically defined over $\FPSN$ as $E(\FPSN)$, for efficient implementation of Optimal-Ate pairing, certain operations are carried out in a quartic twisted isomorphic curve $E'$ defined over $\FPFR$ as shown in Sec. \ref{eq:quartic_twist_cvma_kss16}. 
+Although the KSS-16 curve is typically defined over $\FPSN$ as $E(\FPSN)$, for efficient implementation of Optimal-Ate pairing, certain operations are carried out in a quartic twisted isomorphic curve $E'$ defined over $\FPFR$ as shown in  \secref{eq:quartic_twist_cvma_kss16}. 
 For the same, let us consider $\bar{E}(\FPFR)$ is isomorphic to $E(\FPFR)$ and certain $z \in \Fp$ as a quadratic residue (QR) in $\FPFR$. 
 A generalized mapping between $E(\FPFR)$ and $\bar{E}(\FPFR)$ can be given as follows:
 \begin{eqnarray}
@@ -849,7 +849,7 @@ The overall optimizations can be seen as the following Alg. \ref{optimal_algo_im
 		 \If{$u[i]=-1$} {
 			 $f\leftarrow f\cdot \bar{l}_{\bar{T'},\bar{Q'}}(\bar{P})$, $ \bar{T'} \leftarrow  \bar{T'} - \bar{Q'} $\Comment*[r]{ apply Alg.\ref{algo_sparse_mul_kss16_cvma} to solve \eqref{eq:cvma_kss16_ps_8_add_twist}}}} 
 	 $Q_1\leftarrow [u]\bar{Q'}$  \Comment*[r]{here $Q_1 = \bar{T'}$}
-	 $Q_2\leftarrow [p]\bar{Q'}$ \Comment*[r]{Skew Frobenius map Sec. \ref{sec:skew_fm_cvmakss16}}
+	 $Q_2\leftarrow [p]\bar{Q'}$ \Comment*[r]{Skew Frobenius map \secref{sec:skew_fm_cvmakss16}}
 	 $f\leftarrow f\cdot l_{Q_1,Q_2}(\bar{P})$ \Comment*[r]{ Alg.\ref{algo_sparse_mul_kss16_cvma}}
 	 $f_t\leftarrow f^{p^3}$   \Comment*[r]{Forbenius map of $p^3$}
 	 $f\leftarrow f\cdot f_t$ \Comment*[r]{Alg.\ref{algo_sparse_mul_kss16_cvma}}

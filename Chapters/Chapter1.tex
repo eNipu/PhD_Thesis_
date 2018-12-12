@@ -3,7 +3,7 @@
 This chapter introduces the related literature review, motivation, and goals of the undertaken research.
 The chapter begins with a brief preface of cryptology and its importance in the era Internet of Things (IoT) and Big Data.
 In \secref{ch1_subsec_pkc} we present how Public-Key Cryptography (PKC) is shaping the security of our everyday life.
-We introduce the importance of Pairing-Based Cryptography (PBC) in \secref{ch1_subsec_pbc} for the next generation of security protocols. 
+We introduce the importance of \textit{Pairing-Based Cryptography} (PBC) in \secref{ch1_subsec_pbc} for the next generation of security protocols. 
 \secref{ch1_sec_motivation} presents the motivation behind the works undertaken to assemble of this thesis.
 \secref{ch1_sec_outline} outlines the overall organization of this thesis.
 
@@ -168,8 +168,7 @@ Galbraith et al. \cite{galbraith2008pairings} have classified pairings as three 
 	\item Type 3, which is also asymmetric pairing, i.e., $\g1 \neq \g2$. But no efficiently computable isomorphism is known in either direction  between $\g1$ and $\g2$.
 \end{itemize}
 
-
-%This thesis chooses one of the Type 3 variants of pairing named as Optimal-Ate \cite{DBLP:journals/tit/Vercauteren10} with Kachisa-Schaefer-Scott (KSS) \cite{EPRINT:KacSchSco07} pairing-friendly curve of embedding degree $k=16$. 
+This thesis focuses on one of the Type 3 variants of pairing named as Optimal-Ate \cite{DBLP:journals/tit/Vercauteren10} with Kachisa-Schaefer-Scott (KSS) \cite{EPRINT:KacSchSco07} pairing-friendly curve of embedding degree $k=16, 18$. 
 %Few previous works have been done on this  curve. 
 %Zhang et al. \cite{INDOCRYPT:ZhaLin12} have shown the computational estimation of the Miller's loop and proposed efficient final exponentiation for 192-bit security level in the context of Optimal-Ate pairing over KSS-16 curve. 
 %A few years later Ghammam et al. \cite{EPRINT:GhaFou16b} have shown that KSS-16 is the best suited for multi-pairing (i.e., the product and/or the quotient) when the number of pairing is more than two. 
@@ -205,7 +204,7 @@ There are several innovative solutions such as Identity-based encryption that ca
 The applications mentioned above stand on a compelling branch of cryptography named \textit{pairing-based cryptography over elliptic curve}.
 
 
-\subsection*{Case 1: Security of Medical Data in Cloud}
+\subsection*{Case 2: Security of Medical Data in Cloud}
 Modern medical diagnosis depends on medical examination that produces a vast amount of data ranges from patients personal information to diagnosis reports and images.
 Most of the data are stored in large cloud-based databases. 
 For the privacy of the patient, they should be encrypted before stored.
@@ -266,7 +265,7 @@ Focusing on this property, we derive an essential relation available for scalar 
 Then, using the relation, efficient scalar multiplication is proposed together with multi-scalar multiplication.
 Besides, from the experimental results, we show that the proposed scalar multiplication is about 60 times faster than the conventional method.  
 
-In \chref{ch:ijnc2017}, we derived twist property for target elliptic curves for 192-bit security level and compared their performances concerning scalar multiplication.
+In \chref{ch:ijnc2017}, we derived twist property for target elliptic curves for the192-bit security level and compared their performances concerning scalar multiplication.
 This thesis shows that sextic twist over KSS-18 curve has an advantage over quartic twist in KSS-16 curve.
 
 \chref{ch:indocrypt}, shows the state-of-the-art improvement of Optimal-Ate pairing over KSS-16 curve at the 128-bit security level.
@@ -278,7 +277,7 @@ In \chref{ch:cvma_indocrypt}, we opt to further accelerate the work of chapter 6
 We showed comparative results between chapter 6's proposal and this. 
 We also showed memory optimization currently exists final exponentiation algorithm.
 
-\chref{ch:candar2018} shows the   $\g{2}$  scalar multiplication with by applying different dimension of GLV decomposition.
+\chref{ch:candar2018} shows the   $\g{2}$  scalar multiplication by applying different dimension of GLV decomposition.
 We showed theoretical and experimental result and showed that 4-dimension is optimal for efficient scalar multiplication in  $\g{2}$ in KSS-16 curve.
 
 Finally, \chref{ch:general_conclusin} concludes this thesis.

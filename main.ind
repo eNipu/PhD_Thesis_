@@ -62,6 +62,7 @@
 
   \item kernel, \hyperpage{15}
   \item KSS Curve, \hyperpage{25}
+  \item KSS-16: Quartic twist, \hyperpage{56}
   \item KSS-16:CVMA, \hyperpage{86}
   \item KSS-16:Karatsuba, \hyperpage{86}
   \item KSS-18, \hyperpage{25}

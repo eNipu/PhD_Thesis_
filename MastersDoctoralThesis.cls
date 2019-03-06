@@ -349,7 +349,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 		\addchap*{\abstractname}%
 		{\chapteralign\normalsize\abstractauthorfont \authorname \par}% Author name
 		\vspace{\baselineskip}
-		{\chapteralign\parbox{.7\linewidth}{\chapteralign\normalsize\itshape\abstracttitlefont\@title}\par}% Thesis title
+		{\chapteralign\parbox{\linewidth}{\chapteralign\normalsize\itshape\abstracttitlefont\@title} \par}% Thesis title
 		\bigskip\noindent\ignorespaces
 	}%
 	{}%end alt-abstract
@@ -362,7 +362,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 		\begin{center}
 			%{\normalsize \MakeUppercase{\univname} \par}% University name in capitals
 			%\bigskip
-			{\huge\textit{\abstractname} \par}
+			{\huge\textit{\abstractname}\par}
 			\bigskip
 			%{\normalsize \facname \par}% Faculty name
 			%{\normalsize \deptname \par}% Department name

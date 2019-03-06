@@ -12,31 +12,31 @@ However, most of the protocols usually require additional scalar multiplication 
 The Gallant-Lambert-Vanstone (GLV) method is an elegant technique to accelerate the scalar multiplication which can reduce the number of elliptic curve doubling by using Straus-Shamir simultaneous multi-scalar multiplication technique.
 However, efficiently computable endomorphisms are required to apply GLV for the elliptic curves. 
 This chapter shows the GLV technique by deriving efficiently computable endomorphism for Kachisa-Schaefer-Scott (KSS)  \cite{EPRINT:KacSchSco07} pairing-friendly curves of embedding degree $k=16$ (KSS-16) in the context of Optimal-Ate pairing.
-%In addition, we show explicit formulas to compute the GLV method together with Straus-Shamir simultaneous multi-scalar multiplication technique for 2, 4 and 8 dimensions in $\g2$ group. 
-%The comparative implementation shows that dimension 4 gives faster computational time than dimension 8 and 2. 
+
 
 
 The motivation to work on KSS-16 curve came from the recent work of Barbulescu et al. \cite{EPRINT:BarDuq17} and Khandaker et al. \cite{INDOCRYPT:KNGDNK17}, where they concluded that with the new parameters for pairing-based protocols, KSS-16 curve is a better choice for Optimal-Ate pairing over BN curve.
 
 Scalar multiplication dominates the execution time of any elliptic curve cryptography (ECC) algorithms.
 The conventional approach to accelerate scalar multiplication are log-step algorithm such as binary and non-adjacent form (NAF) methods.
-However, in the context of asymmetric pairing where there exists no efficiently computable isomorphism between $\g{1}$ and $\g2$, more efficient approach is to use GLV \cite{CANS:SNOKM08, khandaker2017improvement}.
+However, in the context of asymmetric pairing where there exists no efficiently computable isomorphism between $\g{1}$ and $\g2$, a more efficient approach is to use GLV \cite{CANS:SNOKM08, khandaker2017improvement}.
 In order to accelerate scalar multiplication, Gallant-Lambert-Vanstone \cite{C:GalLamVan01} proposed a technique for rational points of prime order known as GLV method.
 Fundamentally, it divides the scalar into half of the bit length of the original one that reduces the number of doubling.
-The critical point of this technique is, there should have to be an efficiently computable endomorphism. 
+The critical point of this technique is that there should have to be an efficiently computable endomorphism. 
 Otherwise, the advantage obtained from reduced doubling will not affect the acceleration. 
 
+\subsection{Contribution}
+The significant contributions of this chapter are (\RNum{1}) obtaining the endomorphism to enable GLV decomposition for $\g2$ rational point in KSS-16 curve. 
+(\RNum{2}) Deriving dimension 2, 4 and 8 GLV decomposition along with finding efficiently computable Frobenius maps. (\RNum{3}) Implementation of the derived techniques and their comparison. 
+This chapter shows that increasing the dimension of decomposition not necessarily accelerate the scalar multiplication. 
+In the case of $\g2$ points of KSS-16 curve, our experiment finds that dimension 4 is the fastest. 
 
-\subsection{Literature Review}
+\subsection{Related Works}
 There is a vast literature on GLV decomposition in pairing-friendly curves i.e.  Barreto-Naehrig \cite{SAC:BarNae05}, Kachisa-Schaefer-Scott (KSS) curve of embedding degree 18,  \cite{CANS:SNOKM08, khandaker2017improvement, DBLP:journals/ieicet/NogamiSONAM09, faz2015efficient, JC:GalLinSco11}. 
 The common fact of in such literature is, they all applied GLV on sextic twisted curves. 
 However, in our knowledge till date, there is no literature on GLV decomposition for  KSS curve of embedding degree 16 where at most degree 4 twist is available.
 
-\subsection{Contribution Outline}
-The significant contributions of this chapter are (\RNum{1}) obtaining the endomorphism to enable GLV decomposition for $\g2$ rational point in KSS-16 curve. 
-(\RNum{2}) Deriving the dimension 2, 4 and 8 GLV decomposition along with finding efficiently computable Frobenius maps. (\RNum{3}) Implementation of the derived techniques and their comparison. 
-This chapter shows that increasing the dimension of decomposition not necessarily accelerate the scalar multiplication. 
-In the case of $\g2$ points of KSS-16 curve, our experiment finds that dimension 4 is the fastest. 
+
 
 %%-----------------------FUNDAMENTAL-------------------------------------------------------
 \section{Fundamentals}
@@ -56,10 +56,10 @@ The fundamental of GLV is summarized as in the following section.
 \subsection{Gallant, Lambert, and Vanstone (GLV) Decomposition}
 In CRYPTO 2001 \cite{C:GalLamVan01}, Gallant, Lambert, and Vanstone found that any multiple $[s]Q$ of a point $Q$ of prime order $r$ lying on an elliptic curve with a low-degree endomorphism $\Phi$ over $\FP$ can be calculated as follows:
 \begin{equation}
-    [s]Q = s_1 Q + s_2 \Phi(Q),  
+[s]Q = s_1 Q + s_2 \Phi(Q),  
 \end{equation}
 where $max{|s_1|,|s_2|}  ~\leq C_1 \sqrt{r}$ for some explicit constant $C_1 > 0$.
-The main idea of the GLV trick is it exists essentially in an algorithm that finds a decomposition of an arbitrary scalar multiplication $[s]$ for $s \in  [1,r]$ into two scalar multiplications, while the new scalars having only about half the bit length of the original scalar.
+The main idea of the GLV trick is it exists essentially in an algorithm that finds a decomposition of an arbitrary scalar multiplication $[s]$ for $s \in  [1,r]$ into two scalar multiplications, while the new scalars are having only about half the bit length of the original scalar.
 This immediately enables the elimination of half the doubling by employing the Straus-Shamir simultaneous multi-scalar point multiplication. 
 Later on Galbraith-Lin-Scott (GLS) have shown that over $\FPT$. 
 This chapter focuses on such a trick for the KSS-16 curve in the context of Optimal-Ate pairing. 
@@ -78,40 +78,40 @@ Since the pairing-friendly KSS-16 \cite{EPRINT:KacSchSco07} curve has CM discrim
 
 Let $\beta$ be a certain quadratic non-residue in $\FPFR$.  The quartic twisted curve $E'$ of KSS-16  curve $E$ defined in \eqref{eq:KSS_16} and  their isomorphic mapping $\psi_4$ are given as follows:
 \begin{eqnarray} 
-	E'&:&y^2=x^3+ax\beta^{-1},\;\;\;a\in\Fp, \label{twisted_E} \\ 
-	\psi_4&:&E'(\FPFR)[r] \longmapsto E(\FPSN)[r]\cap {\rm Ker}(\pi_p-[p]),\nonumber\\
-	&& \quad \quad (x,y)\longmapsto (\beta^{1/2}x,\beta^{3/4}y),
+E'&:&y^2=x^3+ax\beta^{-1},\;\;\;a\in\Fp, \label{twisted_E} \\ 
+\psi_4&:&E'(\FPFR)[r] \longmapsto E(\FPSN)[r]\cap {\rm Ker}(\pi_p-[p]),\nonumber\\
+&& \quad \quad (x,y)\longmapsto (\beta^{1/2}x,\beta^{3/4}y),
 \end{eqnarray}
 where Ker($\cdot$) denotes the kernel of the mapping and $\pi_p$ denotes Frobenius mapping  for rational point.
 
 For the above mapping, the vector representation of $Q = (x_{Q},y_Q) = (\beta^{1/2}x_{Q'},\beta^{3/4}y_{Q'}) \in \FPSN$ is obtained according to the given towering in \eqref{towering_1}.
-Here, $x_{Q'}$ and $y_{Q'}$ are the coordinates of rational point $Q'$ on quartic twisted curve $E'$. 
+Here, $x_{Q'}$ and $y_{Q'}$ are the coordinates of the rational point $Q'$ on quartic twisted curve $E'$. 
 
 
 
 
 \subsection{Elliptic Curve Operation in Twisted Curve\texorpdfstring{$E'$}{}}
- Since $E'$ in \eqref{twisted_E} is different from $E$, therefore, the elliptic curve addition and doubling operation slightly changed.
+Since $E'$ in \eqref{twisted_E} is different from $E$, therefore, the elliptic curve addition and doubling operation slightly changed.
 Let us consider  $T=(\gamma x_{T'},\gamma \omega y_{T'})$, $Q=(\gamma x_{Q'}, \gamma \omega y_{Q'})$  and  $P=(x_P,y_P) $, where $x_p, y_p \in \Fp$ given in affine coordinates on the curve $E(\FPSN)$ such that $T'=(x_{T'},y_{T'})$, $Q'=(x_{Q'},y_{Q'})$ are in the twisted curve $E'$ defined over $\FPFR$.
 Let the elliptic curve doubling of $T+T = R(x_R, y_R)$. 
 % The 7-sparse multiplication for KSS-16 can be derived as follows.
 %\begin{alignat}
 \begin{alignat}{3}
- \lambda & =  \frac{ 3x_{T'}^2 \gamma^2+a}{2 y_{T'} \gamma \omega} = \frac{ 3x_{T'}^2 \gamma \omega^{-1}+a (\gamma \omega)^{-1} }{2 y_{T'}}, \nonumber \\
- & = \frac{ (3x_{T'}^2 +a c^{-1} \alpha\beta)\omega}{2 y_{T'}} = \lambda' \omega, \nonumber 
- \end{alignat}
+\lambda & =  \frac{ 3x_{T'}^2 \gamma^2+a}{2 y_{T'} \gamma \omega} = \frac{ 3x_{T'}^2 \gamma \omega^{-1}+a (\gamma \omega)^{-1} }{2 y_{T'}}, \nonumber \\
+& = \frac{ (3x_{T'}^2 +a c^{-1} \alpha\beta)\omega}{2 y_{T'}} = \lambda' \omega, \nonumber 
+\end{alignat}
 since  $\gamma \omega^{-1} = \omega, (\gamma \omega)^{-1} = \omega \beta^{-1}$, and $a \beta^{-1} = (a + 0\alpha + 0 \beta + 0 \alpha \beta) \beta ^{-1}=a \beta^{-1} = ac^{-1} \alpha \beta$, where $\alpha^2=c$.
 Now the ECD are obtained as follows:
 \begin{eqnarray}
- x_R &=& (\lambda')^2 \omega^2 \ - 2x_{T'}\gamma   = ((\lambda')^2  \ - 2x_{T'})\gamma, \nonumber \\
- y_R &=& (x_{T'}\lambda' -x_{2T'}\lambda'-y_{T'})\gamma \omega \nonumber.
+x_R &=& (\lambda')^2 \omega^2 \ - 2x_{T'}\gamma   = ((\lambda')^2  \ - 2x_{T'})\gamma, \nonumber \\
+y_R &=& (x_{T'}\lambda' -x_{2T'}\lambda'-y_{T'})\gamma \omega \nonumber.
 \end{eqnarray}
 
 The elliptic curve addition phase (i.e. $T\neq Q$) can be written as $T+Q = R(x_R, y_R)$.
 \begin{eqnarray}
 \lambda &=& \frac{( y_{Q'}-y_{T'})\gamma \omega}{( x_{Q'}-x_{T'})\gamma} = \frac{( y_{Q'}-y_{T'}) \omega}{x_{Q'}-x_{T'}} = \lambda' \omega, \nonumber\\
 x_{R} & = & ((\lambda')^2  \ - x_{T'} -x_{Q'})\gamma, \nonumber \\
- y_{R} & = &  (x_{T'}\lambda' -x_{R'}\lambda'-y_{T'})\gamma \omega \nonumber.
+y_{R} & = &  (x_{T'}\lambda' -x_{R'}\lambda'-y_{T'})\gamma \omega \nonumber.
 \end{eqnarray}
 %-------
 \subsection{Finding  Endomorphism between \texorpdfstring{$p$}{} and \texorpdfstring{$u$}{}}
@@ -140,19 +140,19 @@ From the above equation we approach to find the relation between $p$ and $u$ as 
 Let us take 4-th power of both side of the \eqref{eq_p_u_1}.
 \begin{alignat}{3}
 7^4p^4 &  \equiv (11u+2\cdot5^3u^{-3})^4 \bmod r, \nonumber \\
- %&\equiv & 11^4u^4+4\cdot11^3u^{-3}\cdot2\cdot5^3u^{-3}  \nonumber \\
+%&\equiv & 11^4u^4+4\cdot11^3u^{-3}\cdot2\cdot5^3u^{-3}  \nonumber \\
 % & & +  6\cdot11^2u^2\cdot4\cdot5^6u^{-6} + 4 \cdot 11u\cdot2^3\cdot5^9\cdotu^{-9} \nonumber \\
 % & & + 2^4\cdot 5^{12}u^{-12} \bmod r\nonumber  \\
- & \equiv  11^4u^4 + 8 \cdot 5^3 11^3 + 24\cdot  5^6 11^2 u^{-4} + 32 \cdot 11 \cdot 5^9u^{-8} \nonumber \\
- &  \quad  + 2^4 5^{12}u^{-12} \bmod r. \label{eq_74p4}
+& \equiv  11^4u^4 + 8 \cdot 5^3 11^3 + 24\cdot  5^6 11^2 u^{-4} + 32 \cdot 11 \cdot 5^9u^{-8} \nonumber \\
+&  \quad  + 2^4 5^{12}u^{-12} \bmod r. \label{eq_74p4}
 \end{alignat}
 Multiplying $u^{-12}$ with \eqref{eq_order_mod} result in the following relation.
 \begin{equation}
-    u^{-4}+48u^{-8}+5^4u^{-12} \bmod r  \equiv   0 \nonumber. \\
+u^{-4}+48u^{-8}+5^4u^{-12} \bmod r  \equiv   0 \nonumber. \\
 \end{equation}
 Afterward multiplying $2^4 5^{8}$ with the above equation is obtained as follows:
 \begin{equation}
-    2^4 5^{8}u^{-4}+ 48 \cdot  2^4 5^{8}u^{-8}+  2^4 5^{12} u^{-12} \bmod r \equiv   0 \nonumber,
+2^4 5^{8}u^{-4}+ 48 \cdot  2^4 5^{8}u^{-8}+  2^4 5^{12} u^{-12} \bmod r \equiv   0 \nonumber,
 \end{equation}
 which helps to simplify the \eqref{eq_74p4} as 
 %\begin{eqnarray}
@@ -169,25 +169,25 @@ which helps to simplify the \eqref{eq_74p4} as
 \end{alignat}
 At this point let us multiply $992 \cdot 5^4u^{-8}$  with \eqref{eq_order_mod} to obtain
 \begin{equation}
-     992 \cdot 5^4 +  992 \cdot 48 \cdot  5^4 u^{-4}+ 992 \cdot 5^8u^{-8} \bmod r  \equiv   0. \nonumber
+992 \cdot 5^4 +  992 \cdot 48 \cdot  5^4 u^{-4}+ 992 \cdot 5^8u^{-8} \bmod r  \equiv   0. \nonumber
 \end{equation}
 Using the above relation, \eqref{eq_74p4_2} can be expressed as  
 \begin{alignat}{3}
- 7^4p^4 & \equiv  11^4u^4+ 8 \cdot 5^311^3+2504 \cdot 5^6u^{-4} - 992 \cdot48 \cdot 5^4 u^{-4}  \nonumber \\
- & \quad -992 \cdot 5^4 \bmod r,  \nonumber \\
- & \equiv  11^4x^4+5688 \cdot 5^3 +14984 \cdot 5^4 u^{-4} \bmod r. \label{eq_74p4_3} 
+7^4p^4 & \equiv  11^4u^4+ 8 \cdot 5^311^3+2504 \cdot 5^6u^{-4} - 992 \cdot48 \cdot 5^4 u^{-4}  \nonumber \\
+& \quad -992 \cdot 5^4 \bmod r,  \nonumber \\
+& \equiv  11^4x^4+5688 \cdot 5^3 +14984 \cdot 5^4 u^{-4} \bmod r. \label{eq_74p4_3} 
 \end{alignat}
 Now, let us multiply $14984u^{-4}$ with \eqref{eq_order_mod} to obtain the following equation as
 \begin{equation}
-    14984u^4+14984 \cdot 48+ 14984 \cdot 5^4 \bmod r \equiv 0.
+14984u^4+14984 \cdot 48+ 14984 \cdot 5^4 \bmod r \equiv 0.
 \end{equation}
 Substituting the above equation in \eqref{eq_74p4_3} the final relation can be obtained as follows:
 %\begin{eqnarray}
 \begin{alignat}{3}
- 7^4p^4  & \equiv 11^4x^4 + 5688 \cdot 5^3 - 14984 u^{4} - 14984 \cdot 48 \bmod r, \nonumber \\
-  &\equiv  (14641-14984)u^4 + (711000-719232) \bmod r, \nonumber \\
-  & \equiv  -343 u^4 -8232 \bmod r, \nonumber \\
-  7p^4 & \equiv  -u^4 -24 \bmod r.  \label{eq_p_u_relation}
+7^4p^4  & \equiv 11^4x^4 + 5688 \cdot 5^3 - 14984 u^{4} - 14984 \cdot 48 \bmod r, \nonumber \\
+&\equiv  (14641-14984)u^4 + (711000-719232) \bmod r, \nonumber \\
+& \equiv  -343 u^4 -8232 \bmod r, \nonumber \\
+7p^4 & \equiv  -u^4 -24 \bmod r.  \label{eq_p_u_relation}
 %\end{eqnarray}
 \end{alignat}
 Finally, $u^4 \equiv -7p^4-24 \bmod r$ is the endomorphism we are interested in.
@@ -201,20 +201,20 @@ However, as discussed in the introduction, there is always a trade-off between t
 
 In the context of KSS-16, $p^{16}-1$ can be divisible by $r$ from the definition of pairing.  Therefore, we got the following equations.
 \begin{subequations}
-\begin{alignat}{3}
-p^{16} &\equiv 1~(\bmod~r), \\
-\label{p8_m1}
-p^{8}&\equiv -1~(\bmod~r),\\
-\label{p4_i}
-p^{4} &\equiv \sqrt{-1} \equiv i~(\bmod~r).
-\end{alignat}
+	\begin{alignat}{3}
+	p^{16} &\equiv 1~(\bmod~r), \\
+	\label{p8_m1}
+	p^{8}&\equiv -1~(\bmod~r),\\
+	\label{p4_i}
+	p^{4} &\equiv \sqrt{-1} \equiv i~(\bmod~r).
+	\end{alignat}
 \end{subequations}
 Since $-1$ is a QNR in $\FP$, therefore, $\sqrt{-1}$ exists in $\Fp$. 
 
 \subsubsection{Dimension 8 GLV Decomposition}
 Since order $r$ of  the KSS-16 curve defined in \eqref{eq:kss_16_degree} is a degree 8 polynomial of integer $u$, therefore, to obtain dimension 8 GLV decomposition of a scalar $s$ as the following form
 \begin{equation}
- s = s_0 + u s_1 + u^2 s_2 + u^3 s_3 + u^4 s_4 + u^5 s_5 + u^6 s_6 + u^7 s_7, \nonumber
+s = s_0 + u s_1 + u^2 s_2 + u^3 s_3 + u^4 s_4 + u^5 s_5 + u^6 s_6 + u^7 s_7, \nonumber
 \end{equation}
 we need to find a relation between above degrees of $u$ and prime $p$. 
 Let us first obtain a relation between degree 1 of $u$ and $p$ as follows:
@@ -244,7 +244,7 @@ u^2 &\equiv -4p^6-3p^2~(\bmod~r). \label{equ2}
 
 
 \subsubsection{Dimension 2 GLV Decomposition}
- Modular equation for dimension 2 GLV is already obtained in \eqref{eq_p_u_relation}.
+Modular equation for dimension 2 GLV is already obtained in \eqref{eq_p_u_relation}.
 However, we can verify that as follows:
 \begin{alignat}{3}
 u^4 &\equiv p^4(-4p^4-3)^2~(\bmod~r), \nonumber \\
@@ -258,10 +258,10 @@ u^4 &\equiv -7p^4-24~(\bmod~r). ~~(\text{see~Eq.}(\ref{p8_m1})) \label{equ4}
 Beside $u, u^2$ and $u^4$ we also need to find the endomorphisms for $u^3, u^5, u^6$ and $u^7$.
 Using the above \eqref{equ}, \eqref{equ2} and \eqref{equ4}, they can be given as follows:
 \begin{alignat}{3}
- u^3 & \equiv  11p^3-2p^7, \nonumber \\
- u^5 & \equiv 38p -41p^5,\nonumber \\
- u^6 & \equiv  117p^6+44p^2, \nonumber \\
- u^7 & \equiv  -278p^3 -29p^7. \nonumber 
+u^3 & \equiv  11p^3-2p^7, \nonumber \\
+u^5 & \equiv 38p -41p^5,\nonumber \\
+u^6 & \equiv  117p^6+44p^2, \nonumber \\
+u^7 & \equiv  -278p^3 -29p^7. \nonumber 
 \end{alignat}
 
 \subsubsection{Dimension 2 GLV with Joint Sparse Form}
@@ -270,7 +270,7 @@ Let say the two integers are $s_0$ and $s_1$.
 The JSF representation of $s_0$ and $s_1$ will ensure that their joint Hamming weight is minimal among all signed binary representations of the same pair of integers. 
 Therefore, we combined 2-dimensional GLV with JSF to make the scalar multiplication faster.
 
-\subsection{Applying Straus-Shamir Simultaneous Multi-scalar Multiplication Technique}
+\subsection{Applying Straus-Shamir Simultaneous Multi-Scalar Multiplication Technique}
 In what follows let us denote the 2-dimension as 2-Split, 4-dimension as 4-Split
 and 8-dimension as 8-Split scalar multiplication.
 In our experimental implementation, we adopted the parameter suggested in \cite{EPRINT:BarDuq17}. 
@@ -279,12 +279,12 @@ Therefore, the maximum bit length of an $s$ is $\leq 263$-bit.
 \subsubsection{2-Split and 4-Split Scalar Multiplication}
 The 2-Split scalar multiplication can be expressed as
 \begin{equation}
-    [s]Q = [s_0]Q + s_1 [u^4]Q.
+[s]Q = [s_0]Q + s_1 [u^4]Q.
 \end{equation}
 For the above representation, we need at most $2^2$ pre-computed points and 2-bit (one for $s_0$ and another is $s_1$) simultaneous multi-scalar multiplication.
 Similarly, 4-Split can be calculated as 
 \begin{equation}
-    [s]Q = [s_0]Q+s_1[u^2]Q+s_2[u^4]Q+s_3[u^6]Q,
+[s]Q = [s_0]Q+s_1[u^2]Q+s_2[u^4]Q+s_3[u^6]Q,
 \end{equation}
 using $2^4$ pre-computed rational point patterns applied in 4-bit ($s_3,s_2,s_1,s_0$) simultaneous multi-scalar multiplication. 
 
@@ -293,12 +293,12 @@ The 8-Split multiplication can be a little bit tricky since the usual way will c
 \begin{figure*}
 \centering
 %\includegraphics[width=1.5\columnwidth]{pre.eps}
-	\includegraphics[width=\linewidth,height=.4\textheight, keepaspectratio]{com8split}
+\includegraphics[width=\linewidth,height=.4\textheight, keepaspectratio]{com8split}
 \caption{(a) Pre-computation of rational points for dimension 8  GLV. ~ (b) Computation of SCM for dimension 8  GLV.}
 \label{precom_figure}
 \end{figure*}
- Since $u = 35$-bit,  the maximum length of the scalar after the dimension 8 decomposition will be $\leq 35$-bit.
-Therefore, at most 35 pre-computed points will be utilized during the  multi-scalar multiplication.
+Since $u = 35$-bit,  the maximum length of the scalar after the dimension 8 decomposition will be $\leq 35$-bit.
+Therefore, at most 35 pre-computed points will be utilized during the multi-scalar multiplication.
 As a result, we separated the scalar into two groups as $(s_3,s_2,s_1,s_0)$ and $(s_7,s_6,s_5,s_4)$.
 Then we pre-computed $2^4 + 2^4 = 32$ rational points.
 \fgref{precom_figure}(a) shows the pre-computation steps.  
@@ -306,7 +306,7 @@ Among the 32 pre-computed points each of the points will be utilized at least on
 Finally, we combined the result of the two separately  obtained multi-scalar multiplication by one extra elliptic curve addition. 
 %\begin{figure}[ht]
 %\centering
-%	\includegraphics[width=\linewidth,height=.4\textheight, keepaspectratio]{com}
+%    \includegraphics[width=\linewidth,height=.4\textheight, keepaspectratio]{com}
 %%\includegraphics[scale=0.5]{com.eps}
 %\caption{Computation of SCM for dimension 8  GLV.}
 %\label{com_figure}
@@ -329,13 +329,13 @@ The detailed procedure to obtain the skew Frobenius map of $Q' = (x_{Q'}, y_{Q'}
 \end{equation}
 After remapping 
 \begin{eqnarray}
- (x_{Q'})^p \gamma^{p-1} & = &  (x_{Q'})^p (\gamma^2)^{\frac{p-1}{2}}, \nonumber
+(x_{Q'})^p \gamma^{p-1} & = &  (x_{Q'})^p (\gamma^2)^{\frac{p-1}{2}}, \nonumber
 \end{eqnarray}
- \end{subequations} 
+\end{subequations} 
 The $(\gamma^2)^{\frac{p-1}{2}} $ term can be simplified as follows:
- \begin{subequations}
- \begin{eqnarray}
- \label{gama1}
+\begin{subequations}
+\begin{eqnarray}
+\label{gama1}
 (\gamma^2)^{\frac{p-1}{2}} & = & (\beta^2)^{\frac{p-1}{4}}, \mbox{\quad since $p \equiv 5 \bmod 8$,} \nonumber \\
 & = & (\alpha)^{\frac{p-1}{4} -1}\alpha, \nonumber \\
 & = & (\alpha^2)^{\frac{p-5}{8}}\alpha, \nonumber \\
@@ -354,10 +354,10 @@ Similar way the skew Frobenius map of $y_{Q'}$ is given as,
 \end{equation}
 After remapping 
 \begin{eqnarray}
- (y_{Q'})^p \gamma^{p-1} \omega^{p-1} & = &  (y_{Q'})^p (\gamma^2)^{\frac{p-1}{2}} (\omega^2)^{\frac{p-1}{2}}. \nonumber
+(y_{Q'})^p \gamma^{p-1} \omega^{p-1} & = &  (y_{Q'})^p (\gamma^2)^{\frac{p-1}{2}} (\omega^2)^{\frac{p-1}{2}}. \nonumber
 \end{eqnarray}
- $(\gamma^2)^{\frac{p-1}{2}}$ is calculated same as \eqref{gama1}. 
- The $(\omega^2)^{\frac{p-1}{2}}$ term is calculated as follows:
+$(\gamma^2)^{\frac{p-1}{2}}$ is calculated same as \eqref{gama1}. 
+The $(\omega^2)^{\frac{p-1}{2}}$ term is calculated as follows:
 \begin{eqnarray}
 (\omega^2)^{\frac{p-1}{2}} & = & (\gamma^2)^{\frac{p-1}{4}},\mbox{\quad since $p \equiv 5 \bmod 8$,}\nonumber \\
 & = &  \beta^{\frac{p-1}{4} -1} \beta, \nonumber \\
@@ -367,13 +367,13 @@ After remapping
 & = &  ( \alpha^2)^{\frac{p-13}{16}}  \alpha \beta, \nonumber \\
 & = &  c^{\frac{p-13}{16}}  \alpha \beta. \nonumber
 \end{eqnarray}
- \end{subequations}
- The above constant terms will be pre-calculated.
- Now the $x_{Q'})^p, (y_{Q'})^p \in \FPFR$ can be easily calculated where the coefficients will change positions and sign while multiplying with basis elements. For example  $ (x_{Q'})^p (\gamma^2)^{\frac{p-1}{2}} \in \FPFR$ can be calculated as 
+\end{subequations}
+The above constant terms will be pre-calculated.
+Now the $x_{Q'})^p, (y_{Q'})^p \in \FPFR$ can be easily calculated where the coefficients will change positions and sign while multiplying with basis elements. For example  $ (x_{Q'})^p (\gamma^2)^{\frac{p-1}{2}} \in \FPFR$ can be calculated as 
 %  The  $(y_{Q'})^p \in \FPFR$ can be calculated as Frobenius map in $\FPFR$ same as 
 \begin{eqnarray}
- (x_{Q'})^p (\gamma^2)^{\frac{p-1}{2}} &=& (a_0+a_1\alpha+a_2\beta+a_3 \alpha\beta)^p c^{\frac{p-5}{8}}\alpha, \nonumber \\
- & = & ( -a_1c + a_0 \alpha -a_3c \beta +a_2\alpha \beta) c^{\frac{3p-7}{8}}. \nonumber
+(x_{Q'})^p (\gamma^2)^{\frac{p-1}{2}} &=& (a_0+a_1\alpha+a_2\beta+a_3 \alpha\beta)^p c^{\frac{p-5}{8}}\alpha, \nonumber \\
+& = & ( -a_1c + a_0 \alpha -a_3c \beta +a_2\alpha \beta) c^{\frac{3p-7}{8}}. \nonumber
 \end{eqnarray} 
 Here it costs 4 multiplication in $\Fp$.
 In the similar way $(y_{Q'})^p (\gamma^2)^{\frac{p-1}{2}} (\omega^2)^{\frac{p-1}{2}}$ can be calculated in costing 4 $M_p$.
@@ -382,7 +382,7 @@ Therefore, a single skew Frobenius map will cost 8 multiplications in $\Fp$.
 During the pre-computation stage of GLV method we also need to compute $[p^2]Q'$, $[p^3]Q'$, $[p^4]Q'$, $[p^5]Q'$, $[p^6]Q'$, $[p^6]Q'$, and $[p^7]Q'$ skew Frobenius maps. 
 The procedure is similar to computing $[p]Q'$.
 Interestingly, the coefficients basis positions after the skew Frobenius map is similar for $[p]Q'$ and  $[p^5]Q'$ pair; $[p^3]Q$ and $[p^7]Q'$ pair, $[p^2]Q'$ and $[p^6]Q'$ pair.
-Only the constant multiples will be different.  
+Only constant multiples will be different.  
 
 
 %%---------------------------------Result Analysis-----------------------------
@@ -402,24 +402,24 @@ No optimization is done to execute the program in multithreading.
 \centering
 \caption{Curve parameters.}
 \begin{tabular}{l|l|l|l}
-\hline
-$u= 35$-bit                 & $p$      & $r$      & $t$      \\ \hline
-$2^{35}-2^{32}-2^{18}+2^8+1$ & 339 -bit & 263 -bit & 270 -bit \\ \hline
+	\hline
+	$u= 35$-bit                 & $p$      & $r$      & $t$      \\ \hline
+	$2^{35}-2^{32}-2^{18}+2^8+1$ & 339 -bit & 263 -bit & 270 -bit \\ \hline
 \end{tabular}
 \end{table}
 \begin{table}[ht]
-	\centering
-	\fontsize{8pt}{8pt}\selectfont
-	\caption{Experimental Implementation Environment.}
-	\label{environment}
-%	\resizebox{\columnwidth}{!}{
-		\begin{tabular}{l|l|l|l|l}
-			\hline
-			CPU                                                                          & Memory & Compiler  & OS               & \begin{tabular}[c]{@{}l@{}}Language \&\\ Library\end{tabular} \\ \hline
-			\begin{tabular}[c]{@{}l@{}}Intel(R) 2.7 GHz \\Core(TM) i5\end{tabular} & 16GB    & 4.2.1 & \begin{tabular}[c]{@{}l@{}}macOS High \\ Sierra 10.13.6\end{tabular}  &\begin{tabular}[c]{@{}l@{}}C\\GMP v 6.1.0 \cite{gmp}\end{tabular}    \\ \hline
-			%	\multicolumn{6}{l}{\textsuperscript{*}\footnotesize{Only single core is used from two cores.}}\\
-		\end{tabular}
-%	}
+\centering
+\fontsize{8pt}{8pt}\selectfont
+\caption{Experimental Implementation Environment.}
+\label{environment}
+%    \resizebox{\columnwidth}{!}{
+\begin{tabular}{l|l|l|l|l}
+	\hline
+	CPU                                                                          & Memory & Compiler  & OS               & \begin{tabular}[c]{@{}l@{}}Language \&\\ Library\end{tabular} \\ \hline
+	\begin{tabular}[c]{@{}l@{}}Intel(R) 2.7 GHz \\Core(TM) i5\end{tabular} & 16GB    & 4.2.1 & \begin{tabular}[c]{@{}l@{}}macOS High \\ Sierra 10.13.6\end{tabular}  &\begin{tabular}[c]{@{}l@{}}C\\GMP v 6.1.0 \cite{gmp}\end{tabular}    \\ \hline
+	%    \multicolumn{6}{l}{\textsuperscript{*}\footnotesize{Only single core is used from two cores.}}\\
+\end{tabular}
+%    }
 \end{table}
 \begin{table}[ht]
 \centering
@@ -427,21 +427,21 @@ $2^{35}-2^{32}-2^{18}+2^8+1$ & 339 -bit & 263 -bit & 270 -bit \\ \hline
 \label{s_length}
 %\resizebox{\columnwidth}{!}{
 \begin{tabular}{l|l|l|l|l|l}
-\hline
-\multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}Max bit length \\ of $s$ after GLV\end{tabular}} & \begin{tabular}[c]{@{}l@{}}Normal\\  binary\end{tabular} & 2-Split  & 2-Split JSF & 4-Split & 8-Split \\ \cline{2-6} 
-                                                                                          & 263-bit                                                  & 139-bit & 139-bit    & 69-bit  & 35-bit  \\ \hline
+	\hline
+	\multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}Max bit length \\ of $s$ after GLV\end{tabular}} & \begin{tabular}[c]{@{}l@{}}Normal\\  binary\end{tabular} & 2-Split  & 2-Split JSF & 4-Split & 8-Split \\ \cline{2-6} 
+	& 263-bit                                                  & 139-bit & 139-bit    & 69-bit  & 35-bit  \\ \hline
 \end{tabular}
 %}
 \end{table}
 \begin{table}[ht]
-	\centering
-	\caption{ECD and ECA cost in $E'(\FPFR)$.}
-	\label{ecaecd_fp4}
-	\begin{tabular}{l|l}
-		\hline
-		ECD cost in $E'(\FPFR)$           & ECA cost in $E'(\FPFR)$  \\ \hline
-		$3 M_4 + 8 A_4 + 1 I_4 + 1 M_p$ & $2 M_4 + 6 A_4 + 1 I_4$ \\ \hline
-	\end{tabular}
+\centering
+\caption{ECD and ECA cost in $E'(\FPFR)$.}
+\label{ecaecd_fp4}
+\begin{tabular}{l|l}
+	\hline
+	ECD cost in $E'(\FPFR)$           & ECA cost in $E'(\FPFR)$  \\ \hline
+	$3 M_4 + 8 A_4 + 1 I_4 + 1 M_p$ & $2 M_4 + 6 A_4 + 1 I_4$ \\ \hline
+\end{tabular}
 \end{table}
 \renewcommand{\baselinestretch}{1.0}
 
@@ -452,7 +452,7 @@ From the results, it is clear that 4-Split is the fastest among the techniques f
 Logically  8-Split should be faster than the 4-Split since its loop length is half of the 4-Split.
 In other words, 8-Split requires about less than half of 4-Split's ECD during loop execution. 
 However, combining two 4-Split for one 8-Split increases the number of ECA.
-As a result, the total ECA count in the loop for  8-Split is almost same a 4-Split.
+As a result, the total ECA count in the loop for  8-Split is almost the same a 4-Split.
 The significant fall back of 8-Split compared to 4-Split comes from its number of pre-computed rational points.
 Moreover, the total number of pre-computation also increases the other overhead calculations such as initialization, memory allocation, padding $0$ in MSB of the decomposed scalar smaller than the max length. Which also impacts on the execution time. 
 
@@ -463,20 +463,19 @@ Moreover, the total number of pre-computation also increases the other overhead 
 \caption{Comparative result of average execution time in [ms] for scalar multiplication.}
 \label{tab_res_time}
 \begin{tabular}{l|c|c|c|c|c}
-\cline{2-6}
-                                    & \multicolumn{2}{l|}{Pre-computation} & \multicolumn{2}{l|}{\begin{tabular}[c]{@{}l@{}}In SCM\\ Algorithm\end{tabular}} & \multirow{2}{*}{Time {[}ms{]}} \\ \cline{1-5}
-\multicolumn{1}{l|}{Operation}     & \#ECA         & \#ECD         & \#ECA                              & \#ECD                               &                                \\ \hline
-\multicolumn{1}{l|}{Normal binary} & 0            & 0                & 120                                    & 262                         \textbf{}           & 42.81                          \\ \hline
-\multicolumn{1}{l|}{2-Split}       & 5                 	& 6                & 98                                    & 138                                     & 28.48                          \\ \hline
-\multicolumn{1}{l|}{2-Split JSF}   & 8                & 6                & 66                                    & 138                                 & 25.16                          \\ \hline
-\multicolumn{1}{l|}{4-Split}       & 24                  & 20               & 64                                     & 68                                     & 19.09                          \\ \hline
-\multicolumn{1}{l|}{8-Split}       & 52                 & 47               & 67                                     & 34                                     & 21.85                          \\ \hline
+	\cline{2-6}
+	& \multicolumn{2}{l|}{Pre-computation} & \multicolumn{2}{l|}{\begin{tabular}[c]{@{}l@{}}In SCM\\ Algorithm\end{tabular}} & \multirow{2}{*}{Time {[}ms{]}} \\ \cline{1-5}
+	\multicolumn{1}{l|}{Operation}     & \#ECA         & \#ECD         & \#ECA                              & \#ECD                               &                                \\ \hline
+	\multicolumn{1}{l|}{Normal binary} & 0            & 0                & 120                                    & 262                         \textbf{}           & 42.81                          \\ \hline
+	\multicolumn{1}{l|}{2-Split}       & 5                     & 6                & 98                                    & 138                                     & 28.48                          \\ \hline
+	\multicolumn{1}{l|}{2-Split JSF}   & 8                & 6                & 66                                    & 138                                 & 25.16                          \\ \hline
+	\multicolumn{1}{l|}{4-Split}       & 24                  & 20               & 64                                     & 68                                     & 19.09                          \\ \hline
+	\multicolumn{1}{l|}{8-Split}       & 52                 & 47               & 67                                     & 34                                     & 21.85                          \\ \hline
 \end{tabular}
 \end{table}
 \renewcommand{\baselinestretch}{1.0}
 
 
 
-\section{Conclusion}
-This chapter shows the explicit formula to apply the GLV decomposition together with Straus-Shamir multi-scalar multiplication technique for efficient $\g2$ scalar multiplication which is a significant operation in many pairing-based protocols. The experimental implementation confirms the correctness of the derived technique. The comparative implementations show that dimension 4 is faster than 8 and 2.  There is still scope to make the technique better by optimizing the pre-computation which will reduce the number of ECA and ECD. As a future work, we would like to reduce the pre-computation cost by optimizing Frobenius map calculation together with the application of non-adjacent form (NAF) and evaluate the acceleration in a pairing-based protocol. 
-
+\section{Summary}
+This chapter shows the explicit formula to apply the GLV decomposition together with Straus-Shamir multi-scalar multiplication technique for efficient $\g2$ scalar multiplication which is a significant operation in many pairing-based protocols. The experimental implementation confirms the correctness of the derived technique. The comparative implementations show that dimension 4 is faster than 8 and 2.  There is still scope to make the technique better by optimizing the pre-computation which will reduce the number of ECA and ECD. As a future work, we would like to reduce the pre-computation cost by optimizing the Frobenius map calculation together with the application of non-adjacent form (NAF) and evaluate the acceleration in a pairing-based protocol. 

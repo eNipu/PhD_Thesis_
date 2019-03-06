@@ -1,4 +1,3 @@
-%Improvement of Scalar Multiplication by Skew Frobenius Map with Multi-Scalar Multiplication for KSS-18 Curve
 \chapter{Improved \texorpdfstring{$\g{2}$}{G2} Scalar Multiplication over KSS-18 Curve} 
 \label{Chapter_IEICE}
 \section{Introduction}
@@ -7,7 +6,7 @@ Recall that, pairing-based cryptography has attracted many researchers since Sak
 
 However, using pairing-based cryptosystems in the industrial state is still restricted by its expensive operational cost concerning time and computational resources in a practical case. 
 In order to make it practical, several pairing techniques such as Ate \cite{DBLP:reference/crc/2005ehcc}, Optimal-Ate \cite{DBLP:journals/tit/Vercauteren10}, twisted Ate \cite{EPRINT:MKHO07}, $\chi$-Ate \cite{PAIRING:NASKM08} and \textit{subfield twisted} Ate \cite{PAIRING:DevScoDah07} pairings have gained much attention since they have achieved quite efficient pairing calculation in certain pairing friendly curve. 
-Researchers continue on finding an efficient way to implement pairing to make it practical enough for industrial standardization. 
+Researchers continue to find an efficient way to implement pairing to make it practical enough for industrial standardization. 
 
 In such consequences, this chapter focuses on a peripheral technique of Ate-based pairings that is scalar multiplication defined over Kachisa-Schaefer-Scott (KSS) curve \cite{EPRINT:KacSchSco07} of embedding degree 18. 
 Scalar multiplication over higher degree rational point groups is often regarded as the bottleneck for faster pairing-based cryptography.
@@ -29,12 +28,7 @@ The set of rational points $E(\FQK)$ are defined over a specific pairing-friendl
 This chapter has considered Kachisa-Schaefer-Scott (KSS) \cite{EPRINT:KacSchSco07} pairing friendly curves of emebdding degree $k=18$ described in \cite{EPRINT:FreScoTes06}.
 
 
-%  depends on several factors such as efficient pairing algorithm, efficient extension field arithmetic and .
-\subsection{Related Works} 
-There are several works \cite{DBLP:journals/ieicet/NogamiSONAM09}\cite{CANS:SNOKM08} on efficiently computing scalar multiplication defined over Barreto-Naehrig\cite{SAC:BarNae05} curve along with efficient extension field arithmetic \cite{C:BaiPaa98}. 
-This chapter focuses on scalar multiplication on KSS-18 curve.
-
-\subsection{Contribution Outline}
+\subsection{Contribution}
 Scalar multiplication is often considered to be one of the most time-consuming operations in the cryptographic scene. 
 Efficient scalar multiplication is one of the critical factors for making the pairing practical over KSS-18 curve.
 
@@ -53,10 +47,14 @@ Besides with Frobenius mapping and $z$-adic representation of $s$, we applied th
 We have compared our proposed method with three other well-studied methods named binary method, sliding-window method, and non-adjacent form method. 
 The comparison shows that our proposed method is about 60 times faster than the plain implementations of methods as mentioned above in execution time. The comparison also reveals that the proposed method requires more than five times less elliptic curve doubling than any of the compared methods.
 
+\subsection{Related Works} 
+There are several works \cite{DBLP:journals/ieicet/NogamiSONAM09}\cite{CANS:SNOKM08} on efficiently computing scalar multiplication defined over Barreto-Naehrig\cite{SAC:BarNae05} curve along with efficient extension field arithmetic \cite{C:BaiPaa98}. 
+This chapter focuses on scalar multiplication on KSS-18 curve.
+
 
 \section{Preliminaries}
 In this section, we recall some already introduced preliminaries for a comprehensible understanding of the proposal. 
-We will briefly review elliptic curve scalar multiplication. 
+We will briefly review the elliptic curve scalar multiplication. 
 Throughout this chapter, $p$ and $k$ denote characteristic and embedding extension degree, respectively. $\FQK$ denotes $k$-the extension field over prime field $\Fp$ and $\mF{p}{k}$ denotes the multiplicative group in $\FQK$.
 
 \subsection{Elliptic Curve}
@@ -72,25 +70,25 @@ We refer to \secref{sec:chap:fund:ecc} of \chref{chap:fundamentals} for the elli
 \subsection{KSS Curve of Embedding Degree \texorpdfstring{$k=18$}{\textit{k=18}}}
 We recall \secref{sec:ch:icisc:kss18curve} from \chref{ch:optate_kss18_icisc2016} for the definition of KSS-18 curve for comprehensive understanding of the chapter.
 Here we change the mother parameter notation as $z$.
-%In  \cite{EPRINT:KacSchSco07}, Kachisa, Schaefer, and Scott proposed a family of non super-singular Brezing-Weng pairing friendly elliptic curves using elements in the cyclotomic field. 
-In what follows this chapter considers the KSS curve of  embedding degree $k=18$ since it holds \textit{sextic twist}. 
+%In  \cite{EPRINT:KacSchSco07}, Kachisa, Schaefer, and Scott proposed a family of non super-singular Brezing-Weng pairing-friendly elliptic curves using elements in the cyclotomic field. 
+In what follows this chapter considers the KSS curve of embedding degree $k=18$ since it holds \textit{sextic twist}. 
 The equation of KSS curve defined over $\FQEN$ is given as follows:
 \begin{equation}\label{eqn_kss18curve_chapter_g2scm_kss18}
 E:Y^2=X^3+b, \quad \mbox{($b \in \Fp$)},
 \end{equation}
 where $b \neq 0$ and $X,Y \in \FQEN$. Its characteristic $p$, Frobenius trace $t$ and order $r$ are given systematically by using an integer variable $z$ as follows:
 \begin{subequations}
-\begin{eqnarray}
-p(z) &= & (z^8 +5z^7 +7z^6 +37z^5 +188z^4 +259z^3  \nonumber \\ 								
-& & + 343z^2 +1763z+2401)/21,\\\label{eq:kss_char_chapter_g2scm_kss18}
-r(z) &= &(z^6 + 37z^3 + 343)/343,\label{eq:kss_degree_chapter_g2scm_kss18}  \\
-t(z) &=& (z^4 + 16z + 7)/7, \label{eq:kss_trace_chapter_g2scm_kss18} 
-\end{eqnarray}
+	\begin{eqnarray}
+	p(z) &= & (z^8 +5z^7 +7z^6 +37z^5 +188z^4 +259z^3  \nonumber \\
+	& & + 343z^2 +1763z+2401)/21,\\\label{eq:kss_char_chapter_g2scm_kss18}
+	r(z) &= &(z^6 + 37z^3 + 343)/343,\label{eq:kss_degree_chapter_g2scm_kss18}  \\
+	t(z) &=& (z^4 + 16z + 7)/7, \label{eq:kss_trace_chapter_g2scm_kss18} 
+	\end{eqnarray}
 \end{subequations} 
 where $z$ is such that $z \equiv 14$ (mod $42$) and the $\rho$ value is $\rho = (\log_2 p/\log_2 r) \approx 1.33$.
 
 In some previous work of  Aranha et al. \cite{PAIRING:AFKMR12} and Scott et al. \cite{IMA:Scott11} has mentioned that the size of the characteristics $p$ to be 508 to 511-bit with order $r$ of 384-bit  for 192-bit security level.  
-Therefore this chapter used parameter settings according to the suggestion of \cite{PAIRING:AFKMR12} for 192-bit security on KSS-18 curve in the simulation implementation. In the recent work, Kim et al. \cite{C:KimBar16} has suggested updating the key sizes in pairing-based cryptography due to the development of new discrete logarithm problem over the finite field. The parameter settings used in this chapter does not completely end up at the 192-bit security level according to \cite{C:KimBar16}. However, the parameter settings used in this chapter in order to show the resemblance of the proposal with the experimental result.
+Therefore this chapter used parameter settings according to the suggestion of \cite{PAIRING:AFKMR12} for 192-bit security on KSS-18 curve in the simulation implementation. In recent work, Kim et al. \cite{C:KimBar16} has suggested updating the key sizes in pairing-based cryptography due to the development of a new discrete logarithm problem over the finite field. The parameter settings used in this chapter does not completely end up at the 192-bit security level according to \cite{C:KimBar16}. However, the parameter settings used in this chapter shows the resemblance of the proposal with the experimental result.
 
 \subsection{\texorpdfstring{$\FQEN$}{Fp18} Extension Field Arithmetic}
 Pairing-based cryptography requires to perform an arithmetic operation in extension fields of degree $k \geq 6$\cite{Silverman}. 
@@ -109,7 +107,7 @@ where the base extension field is $\FQTH$ for the \textit{sextic twist} of KSS-1
 \subsection{Frobenius Mapping of Rational Points in  \texorpdfstring{ $E(\FQEN)$}{E(Fp18)}} \index{KSS-18: Frobenius map}
 Let $(x,y)$ be certain rational point in $E(\FQEN)$. 
 Frobenius map $\pi_p : (x,y) \mapsto  (x^p,y^p)$ is the $p$-th power of the rational point defined over $\FQEN$. 
-Sakemi et al. \cite{CANS:SNOKM08} showed an efficient scalar multiplication by applying skew Frobenius mapping in the context of Ate-based pairing in BN curve of embedding degree $k=12$.  In this chapter we have utilized skew Frobenius mapping technique for efficient scalar multiplication for the KSS-18 curve.
+Sakemi et al. \cite{CANS:SNOKM08} showed an efficient scalar multiplication by applying skew Frobenius mapping in the context of Ate-based pairing in BN curve of embedding degree $k=12$.  In this chapter, we have utilized the skew Frobenius mapping technique for efficient scalar multiplication for the KSS-18 curve.
 
 \subsection{Sextic Twist of KSS-18 Curve}  \index{KSS-18: Sextic twist}
 We recall \secref{sec:ch:icisc:sextictwist_KSS18} from \chref{ch:optate_kss18_icisc2016} for the definition of sextic twist of KSS-18 curve.
@@ -127,22 +125,22 @@ E'_6(\F{p}{e}) \rightarrow E(\F{p}{6e}),\\
 \end{eqnarray}
 In context of Ate-based pairing for KSS curve of embedding degree 18, sextic twist is considered to be the most efficient.
 
-\section{Proposed Improved Scalar Multiplication for \texorpdfstring{$\g2$}{G2} Rational Point}
+\section{Improved Scalar Multiplication for \texorpdfstring{$\g2$}{G2}}
 This section will introduce the proposal for efficient scalar multiplication of $\g2$ rational points defined over KSS curve of embedding degree $k=18$ in context of Ate-based pairing. 
 An overview the proposed method is given next before diving into the detailed procedure.
 \subsection{Overview of the Proposal} 
 Figure \ref{fig:_overallprocess_towering_chapter_g2scm_kss18} shows an overview of overall process of proposed scalar multiplication.
 \begin{figure*}[ht]
-\centering
-%\resizebox{0.7\columnwidth}{!}{
+	\centering
+	%\resizebox{0.7\columnwidth}{!}{
 	\includegraphics[width=\linewidth, keepaspectratio]{process.eps}
-%\includegraphics[width=6.5in]{process.eps}
-\caption{Overview of the proposed scalar multiplication for KSS-18 curve.}
-\label{fig:_overallprocess_towering_chapter_g2scm_kss18}
+	%\includegraphics[width=6.5in]{process.eps}
+	\caption{Overview of the proposed scalar multiplication for KSS-18 curve.}
+	\label{fig:_overallprocess_towering_chapter_g2scm_kss18}
 \end{figure*}
 Rational point groups $\g1$, $\g2$ and multiplicative group $\g3$ groups will be defined at the beginning. Then a rational point $Q\in \g2 \subset E(\F{p}{18})$ will be calculated.
 $Q$ has a  special vector representation with 18 $\Fp$ elements for each coordinates. 
-A random scalar $s$ will be considered for scalar multiplication of $[s]Q$ which is denoted as input in  Figure \ref{fig:_overallprocess_towering_chapter_g2scm_kss18}. After that we will consider an isomorphic map of rational point $Q\in \g2 \subset E(\F{p}{18})$ to its sextic twisted rational point $Q' \in \g2' \subset E'(\F{p}{3})$. At the same time we will obtain the $z$-adic  representation of the scalar $s$. Next the some rational points defined over $E'(\FQTH)$ will be pre-computed by applying the skew Frobenius mapping. After that a multi-scalar multiplication technique will be applied to calculate the scalar multiplication in parallel. The result of this scalar multiplication will be defined over $\FQTH$. Finally the result of the multi-scalar multiplication will be re-mapped to rational point in $E(\FQEN)$ to get the final result.
+A random scalar $s$ will be considered for scalar multiplication of $[s]Q$ which is denoted as input in  Figure \ref{fig:_overallprocess_towering_chapter_g2scm_kss18}. After that we will consider an isomorphic map of rational point $Q\in \g2 \subset E(\F{p}{18})$ to its sextic twisted rational point $Q' \in \g2' \subset E'(\F{p}{3})$. At the same time, we will obtain the $z$-adic representation of the scalar $s$. Next, some rational points defined over $E'(\FQTH)$ will be pre-computed by applying the skew Frobenius mapping. After that, a multi-scalar multiplication technique will be applied to calculate the scalar multiplication in parallel. The result of this scalar multiplication will be defined over $\FQTH$. Finally, the result of the multi-scalar multiplication will be re-mapped to a rational point in $E(\FQEN)$ to get the final result.
 
 \subsection{\g1, \g2 and \g3 Groups} 
 In the context of pairing-based cryptography, especially on KSS-18 curve, three groups $\g1, \g2$, and $\mathbb{G}_3$ are considered. From \cite{PAIRING:MANS13}, we define $\g1$, $\g2$ and $\g3$ as follows:
@@ -180,10 +178,10 @@ where $b \in \Fp$; $x, y, i \in \FQTH$ and basis element $i$ is the quadratic an
 Rational point $Q\in \g2 \subset E(\F{p}{18})$ has a  special vector representation with 18 $\Fp$ elements for each $x_Q$ and $y_Q$ coordinates.
 Figure \ref{fig:Q_structure_chapter_g2scm_kss18} shows the structure of the coefficients of $Q \in \FQEN$ and its sextic twisted isomorphic rational point $Q' \in \FQTH$ in KSS-18 curve.
 \begin{figure}[ht]
-\centering
+	\centering
 	\includegraphics[width=\linewidth, keepaspectratio]{structure.eps}
-\caption{ $Q \in \FQEN$ and its sextic twisted isomorphic rational point $Q' \in \FQTH$ structure in KSS-18 curve.}
-\label{fig:Q_structure_chapter_g2scm_kss18}
+	\caption{ $Q \in \FQEN$ and its sextic twisted isomorphic rational point $Q' \in \FQTH$ structure in KSS-18 curve.}
+	\label{fig:Q_structure_chapter_g2scm_kss18}
 \end{figure}
 Among 18 elements, there are 3 continuous nonzero $\Fp$ elements which belongs to a $\FQTH$ element. The other coefficients are zero.
 In this chapter, considering parameter settings given in Table \ref{table:parameters_chapter_g2scm_kss18} of section 4; $Q$ is given as $Q = (Av\theta, Bv)$,  showed in Figure \ref{fig:Q_structure_chapter_g2scm_kss18}, where $A, B \in \FQTH$ and $v$ and $\theta$ are the basis elements of $\F{p}{6}$ and $\FQEN$ respectively. 
@@ -196,13 +194,13 @@ Let's multiply  $\theta^{-6}$ with both side of \eqref{eq:KSS18_Twist_chapter_g2
 \begin{equation}\label{eq:sextic_div_theta_chapter_g2scm_kss18}
 E':  \Big(\frac{y}{\theta^3}\Big)^2  = \Big(\frac{x}{\theta^2}\Big)^3+ b.
 \end{equation}
- Now $\theta^{-2}$ and $\theta^{-3}$ of  \eqref{eq:sextic_div_theta_chapter_g2scm_kss18} can be represented as follows:
- \begin{subequations}
- \begin{eqnarray}
- \theta^{-2} &  = & i^{-1}\theta^{4}, \label{eq:thta2_4_chapter_g2scm_kss18} \\
- \theta^{-3} &  = & i^{-1}\theta^{3}.\label{eq:thta_3_chapter_g2scm_kss18} 
- \end{eqnarray}
- \end{subequations}
+Now $\theta^{-2}$ and $\theta^{-3}$ of  \eqref{eq:sextic_div_theta_chapter_g2scm_kss18} can be represented as follows:
+\begin{subequations}
+	\begin{eqnarray}
+	\theta^{-2} &  = & i^{-1}\theta^{4}, \label{eq:thta2_4_chapter_g2scm_kss18} \\
+	\theta^{-3} &  = & i^{-1}\theta^{3}.\label{eq:thta_3_chapter_g2scm_kss18} 
+	\end{eqnarray}
+\end{subequations}
 Let us represent $Q = (Av\theta, Bv)$  as follows:
 \begin{equation}\label{eq:mapefp18_toefp3_chapter_g2scm_kss18}
 Q  =  (A\theta^4, B\theta^3), \quad \text{where $v=\theta^3$}.
@@ -213,28 +211,28 @@ follows:
 Q  =  (Ai\theta^{-2}, Bi\theta^{-3}),
 \end{equation}
 where $Ai = x'$ and $Bi = y'$ are the coordinates of $Q' =(x',y') \in \FQTH$. 
- From the structure of $\FQEN$, given in \ref{eq:KSS18_towering_chapter_g2scm_kss18}, this mapping has required no expensive arithmetic operation. Multiplication by the basis element $i$ in $\FQTH$ can be done by 1 bit wise left shifting since $c=2$ is considered for towering in \ref{eq:KSS18_towering_chapter_g2scm_kss18}.
+From the structure of $\FQEN$, given in \ref{eq:KSS18_towering_chapter_g2scm_kss18}, this mapping has required no expensive arithmetic operation. Multiplication by the basis element $i$ in $\FQTH$ can be done by 1 bit wise left shifting since $c=2$ is considered for towering in \ref{eq:KSS18_towering_chapter_g2scm_kss18}.
 
 
 \subsection{\texorpdfstring{$z$}{}-adic Representation of Scalar \texorpdfstring{$s$}{}}\index{$z$-adic decomposition}
- \label{section_zadic_chapter_g2scm_kss18}
+\label{section_zadic_chapter_g2scm_kss18}
 In context of KSS-18 curve, properties of $Q$ will be obtained to define the \eqref{eq:Q_rel2_chapter_g2scm_kss18} relation.
 Next, a random scalar $s$ will be considered for scalar multiplication of $[s]Q$. Then $(t-1)$-adic representation of $s$ will be considered as Figure \ref{fig:t_adic_chapter_g2scm_kss18}. Here $s$ will be divided into two smaller coefficients $S_H$, $S_L$ where  $S_L$ denotes lower bits of $s$,  will be nearly equal to the size of $(t-1)$. On the other hand the higher order bits $S_H$ will be the half of the size of $(t-1)$. Next, $z$-adic representation of $S_H$ and $S_L$ will be considered. Figure \ref{fig:z_adicl_chapter_g2scm_kss18}, shows the $z$-adic representation from where we find that scalar $s$ is divided into 6 coefficients of $z$, where the size of $z$ is about $1/4$ of that of $(t-1)$ according to \eqref{eq:kss_trace_chapter_g2scm_kss18}. 
 
 Figure \ref{fig:t_adic_chapter_g2scm_kss18} shows $(t-1)$-adic representation of scalar $s$. 
 \begin{figure}[ht]
-\centering
+	\centering
 	\includegraphics[width=0.7\linewidth, height=\textheight, keepaspectratio]{t_adic.eps}
-%\includegraphics[width=0.7\columnwidth]{t_adic.eps}
-\caption{$(t-1)$ -adic representation of scalar $s$.}
-\label{fig:t_adic_chapter_g2scm_kss18}
+	%\includegraphics[width=0.7\columnwidth]{t_adic.eps}
+	\caption{$(t-1)$ -adic representation of scalar $s$.}
+	\label{fig:t_adic_chapter_g2scm_kss18}
 \end{figure}
 
 \begin{figure}[ht]
-\centering
-\includegraphics[width=\linewidth, height=\textheight, keepaspectratio]{z_adic.eps}
-\caption{$z$-adic and $(t-1)$-adic representation of scalar $s$.}
-\label{fig:z_adicl_chapter_g2scm_kss18}
+	\centering
+	\includegraphics[width=\linewidth, height=\textheight, keepaspectratio]{z_adic.eps}
+	\caption{$z$-adic and $(t-1)$-adic representation of scalar $s$.}
+	\label{fig:z_adicl_chapter_g2scm_kss18}
 \end{figure}
 
 Figure \ref{fig:z_adicl_chapter_g2scm_kss18} shows the  $z$-adic representation of scalar $s$. 
@@ -295,28 +293,28 @@ Pre-computed rational points are denoted inside angular bracket such as $<Q'+Q_2
 
 \renewcommand{\baselinestretch}{1.5}
 \begin{table}[!ht]
-\centering
-\caption{13 pre-computed values of rational points.}
-\label{table:pre-compute_chapter_g2scm_kss18}
-\begin{tabular}{|c|c|}
-\hline 
- Pre-computed rational points & Skew Frobenius mapped rational points\\ 
-\hline 
- & $z(Q')$ \\ 
-\hline 
-$Q_1'$ & $z(Q_1')$  \\ 
-\hline 
-$Q_2'$ & $z(Q_2')$ \\ 
-\hline 
-$Q_1'+Q_2'$ & \quad  $ z(Q_1')+ z(Q_2') $ \quad \\ 
-\hline 
-$Q'+Q_2'$ & $ z(Q')+ z(Q_2') $ \\ 
-\hline 
-$Q'+Q_1'$ & $  z(Q')+ z(Q_1') $ \\ 
-\hline 
- \quad $Q'+Q_1'+Q_2'$ \quad  \quad &   \quad  $ z(Q')+ z(Q_1')+ z(Q_2')$  \quad \\ 
-\hline 
-\end{tabular} 
+	\centering
+	\caption{13 pre-computed values of rational points.}
+	\label{table:pre-compute_chapter_g2scm_kss18}
+	\begin{tabular}{|c|c|}
+		\hline 
+		Pre-computed rational points & Skew Frobenius mapped rational points\\ 
+		\hline 
+		& $z(Q')$ \\ 
+		\hline 
+		$Q_1'$ & $z(Q_1')$  \\ 
+		\hline 
+		$Q_2'$ & $z(Q_2')$ \\ 
+		\hline 
+		$Q_1'+Q_2'$ & \quad  $ z(Q_1')+ z(Q_2') $ \quad \\ 
+		\hline 
+		$Q'+Q_2'$ & $ z(Q')+ z(Q_2') $ \\ 
+		\hline 
+		$Q'+Q_1'$ & $  z(Q')+ z(Q_1') $ \\ 
+		\hline 
+		\quad $Q'+Q_1'+Q_2'$ \quad  \quad &   \quad  $ z(Q')+ z(Q_1')+ z(Q_2')$  \quad \\ 
+		\hline 
+	\end{tabular} 
 \end{table}
 \renewcommand{\baselinestretch}{1.0}
 
@@ -325,27 +323,27 @@ $Q'+Q_1'$ & $  z(Q')+ z(Q_1') $ \\
 Similar to Frobenius mapping, skew Frobenius map is the $p$-th power over the sextic twisted isomorphic rational points such as  $Q' = (x',y')$ as 
 follows:
 \begin{equation}
- \pi' : (x',y') \mapsto  (x'^p,y'^p)
+\pi' : (x',y') \mapsto  (x'^p,y'^p)
 \end{equation}
 The detailed procedure to obtain the skew Frobenius map of $Q' = (x',y') \in \g2' \subset E'(\FQTH)$ is given bellow:
 \begin{subequations}
-\begin{eqnarray}\label{eq:skew_x_prime_chapter_g2scm_kss18}
-\pi'(x') & = & (x')^p(i)^{1-p}(v)^{p-1}(\theta)^{p-1} \nonumber \\
-& = & (x')^p(i)^{1-p}(\theta^4)^{p-1} \nonumber \\
-& = & (x')^p (i^{-1})^pi(\theta^{p-1})^4 \nonumber \\
-& = & (x')^p (i^{-1})^pi(i^{\frac{p-1}{6}})^4  \mbox{\quad where $\theta^6=i$} \nonumber \\
-& = & (x')^p (i^{-1})^pi(i^{\frac{p-1}{6} -1}i)^4  \nonumber \\
-& = & (x')^p (i^{-1})^pi(i^{3\frac{\frac{p-7}{6}}{3}})^4i^4  \nonumber \\
-& = & (x')^p (i^{-1})^pi(2^{\frac{p-7}{18}})^42i  \mbox{\quad where $i^3=2$} \nonumber \\
-& = & (x')^p (i^{-1})^pi(2^{\frac{2p-14}{9}+1})i  \nonumber \\
-& = & (x')^p (i^{-1})^pi(2^{\frac{2p-5}{9}})i,
-\end{eqnarray}
-\begin{eqnarray}\label{eq:skew_y_prime_chapter_g2scm_kss18}
-\pi'(y') & = & (y')^p(i)^{1-p}(v)^{p-1} \nonumber \\
-& = & (y')^p (i^{-1})^pi(v^{6\frac{p-1}{6}})  \nonumber \\
-& = & (y')^p (i^{-1})^pi(i^{3\frac{p-1}{6}})  \nonumber \\
-& = & (y')^p (i^{-1})^pi2^{\frac{p-1}{6}}.
-\end{eqnarray}
+	\begin{eqnarray}\label{eq:skew_x_prime_chapter_g2scm_kss18}
+	\pi'(x') & = & (x')^p(i)^{1-p}(v)^{p-1}(\theta)^{p-1} \nonumber \\
+	& = & (x')^p(i)^{1-p}(\theta^4)^{p-1} \nonumber \\
+	& = & (x')^p (i^{-1})^pi(\theta^{p-1})^4 \nonumber \\
+	& = & (x')^p (i^{-1})^pi(i^{\frac{p-1}{6}})^4  \mbox{\quad where $\theta^6=i$} \nonumber \\
+	& = & (x')^p (i^{-1})^pi(i^{\frac{p-1}{6} -1}i)^4  \nonumber \\
+	& = & (x')^p (i^{-1})^pi(i^{3\frac{\frac{p-7}{6}}{3}})^4i^4  \nonumber \\
+	& = & (x')^p (i^{-1})^pi(2^{\frac{p-7}{18}})^42i  \mbox{\quad where $i^3=2$} \nonumber \\
+	& = & (x')^p (i^{-1})^pi(2^{\frac{2p-14}{9}+1})i  \nonumber \\
+	& = & (x')^p (i^{-1})^pi(2^{\frac{2p-5}{9}})i,
+	\end{eqnarray}
+	\begin{eqnarray}\label{eq:skew_y_prime_chapter_g2scm_kss18}
+	\pi'(y') & = & (y')^p(i)^{1-p}(v)^{p-1} \nonumber \\
+	& = & (y')^p (i^{-1})^pi(v^{6\frac{p-1}{6}})  \nonumber \\
+	& = & (y')^p (i^{-1})^pi(i^{3\frac{p-1}{6}})  \nonumber \\
+	& = & (y')^p (i^{-1})^pi2^{\frac{p-1}{6}}.
+	\end{eqnarray}
 \end{subequations}
 Here $(i^{-1})^pi$, $(2^{\frac{2p-5}{9}})i$  and $2^{\frac{p-1}{6}}$ can be pre-computed. 
 
@@ -355,28 +353,28 @@ Suppose in an arbitrary index, from left to right, bit pattern of $s_1$, $s_3$, 
 Therefore we apply the pre-computed points $< z(Q')+z(Q_2') >$ and $<Q'+Q_1'+Q_2'>$ as ECA in parallel.
 Then we perform ECD and move to the right next bit index to repeat the process until maximum length $z$-adic coefficient becomes zero.
 \begin{figure}[!ht]
-\centering
-\includegraphics[width=0.8\linewidth, height=\textheight, keepaspectratio]{z_sm.eps}
-\caption{Multi-scalar multiplication of $s$ with Frobenius mapping.}
-\label{eq:fig:z_sml_chapter_g2scm_kss18}
+	\centering
+	\includegraphics[width=0.8\linewidth, height=\textheight, keepaspectratio]{z_sm.eps}
+	\caption{Multi-scalar multiplication of $s$ with Frobenius mapping.}
+	\label{eq:fig:z_sml_chapter_g2scm_kss18}
 \end{figure}
 
-As shown in Figure \ref{eq:fig:z_sml_chapter_g2scm_kss18}, during scalar multiplication, we are considering 3 pair of coefficients of $z$-adic representation as shown in  \eqref{eq:sclar_final_rep_chapter_g2scm_kss18}. If we consider 6-coefficients for parallelization, it will require $2^6 \times 2$ pre-computed points. The chance of appearing each pre-computed point in the calculation will be only once that will cause redundancy.  
+As shown in Figure \ref{eq:fig:z_sml_chapter_g2scm_kss18}, during scalar multiplication, we are considering 3 pair of coefficients of $z$-adic representation as shown in  \eqref{eq:sclar_final_rep_chapter_g2scm_kss18}. If we consider 6-coefficients for parallelization, it will require $2^6 \times 2$ pre-computed points. The chance of appearing each pre-computed point in the calculation will be once that causes redundancy.  
 
 \subsubsection{Re-mapping Rational Points from \texorpdfstring{$E'(\FQTH)$}{} to  \texorpdfstring{$E(\FQEN)$}{}}
- After the multi-scalar multiplication, we need to remap the result to $\FQEN$. For example let us consider re-mapping of $Q' =(x',y') \in E'(\FQTH)$ to $Q =(Av\theta,Bv) \in E(\FQEN)$. From \eqref{eq:thta2_4_chapter_g2scm_kss18}, \eqref{eq:thta_3_chapter_g2scm_kss18} and \eqref{eq:sextic_div_theta_chapter_g2scm_kss18} it can be obtained as follows:
- \begin{subequations}
- \begin{eqnarray}
- x i^{-1}\theta^{4} & = & Av\theta, \nonumber \\
- y i^{-1}\theta^{3} & = & Bv, \nonumber
- \end{eqnarray}
- \end{subequations}
-  which resembles that $Q= (Av\theta, Bv)$. Therefore it means that multiplying $i^{-1}$ with the $Q'$ coordinates and placing the resulted coefficients in the corresponding position of the coefficients in $Q$, will map $Q'$ to $Q$.
+After the multi-scalar multiplication, we need to remap the result to $\FQEN$. For example let us consider re-mapping of $Q' =(x',y') \in E'(\FQTH)$ to $Q =(Av\theta,Bv) \in E(\FQEN)$. From \eqref{eq:thta2_4_chapter_g2scm_kss18}, \eqref{eq:thta_3_chapter_g2scm_kss18} and \eqref{eq:sextic_div_theta_chapter_g2scm_kss18} it can be obtained as follows:
+\begin{subequations}
+	\begin{eqnarray}
+	x i^{-1}\theta^{4} & = & Av\theta, \nonumber \\
+	y i^{-1}\theta^{3} & = & Bv, \nonumber
+	\end{eqnarray}
+\end{subequations}
+which resembles that $Q= (Av\theta, Bv)$. Therefore it means that multiplying $i^{-1}$ with the $Q'$ coordinates and placing the resulted coefficients in the corresponding position of the coefficients in $Q$, will map $Q'$ to $Q$.
 This mapping costs one $\FQTH$ inversion of $i$ which can be pre-computed and one $\Fp$ multiplication.
 
-\section{Simulation Result Evaluation}
-This section shows experimental result with the calculation cost.
- In the experiment we have compared the proposed method with three well studied method of scalar multiplication named binary method, sliding-window method and non-adjacent form (NAF) method. 
+\section{Simulation Result}
+This section shows the experimental result with the calculation cost.
+In the experiment, we have compared the proposed method with three well-studied methods of scalar multiplication named binary method, sliding-window method, and non-adjacent form (NAF) method. 
 The mother parameter $z$ is  selected according to the suggestion of Scott et al. \cite{IMA:Scott11} to obtain $p = 508 \approx 511$-bit and $r =  376 \approx 384$-bit  to simulate in 192-bit security level.
 Table \ref{table:parameters_chapter_g2scm_kss18} shows the parameter settings considered for the simulation.
 
@@ -403,41 +401,41 @@ Table \ref{table:parameters_chapter_g2scm_kss18} shows the parameter settings co
 Table \ref{table:comEnvironment_chapter_g2scm_kss18} shows the environment, used to experiment and evaluate the proposed method.  
 \renewcommand{\baselinestretch}{1.5}
 \begin{table}[!ht]
-\renewcommand{\arraystretch}{1.3}
-\centering
-\caption{ Computational environment.}
-\label{table:comEnvironment_chapter_g2scm_kss18}
-\resizebox{\columnwidth}{!}{
-\begin{tabular}{|c|c|c|}
-\hline 
- & PC & iPhone6s \\ 
-\hline \hline 
-CPU {\textsuperscript{*}} & \quad 2.7 GHz Intel Core i5 \quad & \quad Apple A9 Dual-core 1.84 GHz \quad \\ 
-\hline 
-Memory & 16 GB & 2 GB \\ 
-\hline 
-OS & Mac OS X 10.11.6 &  iOS 10.0 \\ 
-\hline 
-Compiler & gcc 4.2.1 & gcc 4.2.1 \\ 
-\hline 
-\quad Programming Language \quad  & C & Objective-C, C \\ 
-\hline 
-Library &  GMP 6.1.0 & GMP 6.1.0\\ 
-\hline 
-\multicolumn{3}{l}{\textsuperscript{*}\footnotesize{Only single core is used from two cores.}}\\
-\end{tabular} 
-}
+	\renewcommand{\arraystretch}{1.3}
+	\centering
+	\caption{ Computational environment.}
+	\label{table:comEnvironment_chapter_g2scm_kss18}
+	\resizebox{\columnwidth}{!}{
+		\begin{tabular}{|c|c|c|}
+			\hline 
+			& PC & iPhone6s \\ 
+			\hline \hline 
+			CPU {\textsuperscript{*}} & \quad 2.7 GHz Intel Core i5 \quad & \quad Apple A9 Dual-core 1.84 GHz \quad \\ 
+			\hline 
+			Memory & 16 GB & 2 GB \\ 
+			\hline 
+			OS & Mac OS X 10.11.6 &  iOS 10.0 \\ 
+			\hline 
+			Compiler & gcc 4.2.1 & gcc 4.2.1 \\ 
+			\hline 
+			\quad Programming Language \quad  & C & Objective-C, C \\ 
+			\hline 
+			Library &  GMP 6.1.0 & GMP 6.1.0\\ 
+			\hline 
+			\multicolumn{3}{l}{\textsuperscript{*}\footnotesize{Only single core is used from two cores.}}\\
+		\end{tabular} 
+	}
 \end{table}
 \renewcommand{\baselinestretch}{1.0}
 
-In the experiment 100 random scalar numbers of size less than order $r$ ( 378-bit) is generated.
+In experiment 100 random scalar numbers of size less than order $r$ ( 378-bit) is generated.
 13  ECA counted for pre-computed rational points is taken into account while the average is calculated for the proposed method.
-Window size of 4-bit is considered for sliding-window method. 
+A window size of 4-bit is considered for the sliding-window method. 
 Therefore 14 pre-computed ECA is required. 
-In addition, average execution time of the proposed method and the three other methods is also compared along with the operation count.
+Besides, the average execution time of the proposed method and the three other methods are also compared along with the operation count.
 
-In what follows, ``\textit{\textbf{With isomorphic mapping}}'' refers that  skew Frobenius mapping technique is applied for Binary, Sliding-window and NAF methods. Therefore the scalar multiplication is calculated in $\FQTH$ extension field.
-And for Proposed method it is skew Frobenius mapping with multi-scalar multiplication. 
+In what follows, ``\textit{\textbf{With isomorphic mapping}}'' refers that skew Frobenius mapping technique is applied for Binary, Sliding-window, and NAF methods. Therefore the scalar multiplication is calculated in $\FQTH$ extension field.
+Moreover, for the Proposed method, it is skew Frobenius mapping with multi-scalar multiplication. 
 On the other hand ``\textit{\textbf{Without isomorphic mapping}}'' denotes that Frobenius map is not applied for any of the methods.
 In this case, all the scalar multiplication is calculated in $\FQEN$ extension field.
 
@@ -445,85 +443,79 @@ In this case, all the scalar multiplication is calculated in $\FQEN$ extension f
 \renewcommand{\baselinestretch}{1.5}
 \begin{table}[ht]
 	\centering
-\caption{Comparison of average number of ECA and ECD for $\g{2}$ SCM in KSS-18.}
-\label{table:operationcount_chapter_g2scm_kss18}
-%\resizebox{\columnwidth}{!}{
-\begin{tabular}{l|l|l|}
-	\cline{2-3}
-	& \multicolumn{2}{l|}{Count of average number of ECA, ECD} \\ \hline
-	\multicolumn{1}{|l|}{Methods}        & ECA      \quad     \quad       \quad \quad     \quad       \quad       & ECD                        \\ \hline
-	\multicolumn{1}{|l|}{Binary}         & 186                         & 375                        \\ \hline
-	\multicolumn{1}{|l|}{Sliding-window} & 102                         & 376                        \\ \hline
-	\multicolumn{1}{|l|}{NAF}            & 127                         & 377                        \\ \hline
-	\multicolumn{1}{|l|}{Proposed}       & 123                         & 64                         \\ \hline
-\end{tabular}
-%}
+	\caption{Comparison of average number of ECA and ECD for $\g{2}$ SCM in KSS-18.}
+	\label{table:operationcount_chapter_g2scm_kss18}
+	%\resizebox{\columnwidth}{!}{
+	\begin{tabular}{l|l|l|}
+		\cline{2-3}
+		& \multicolumn{2}{l|}{Count of average number of ECA, ECD} \\ \hline
+		\multicolumn{1}{|l|}{Methods}        & ECA      \quad     \quad       \quad \quad     \quad       \quad       & ECD                        \\ \hline
+		\multicolumn{1}{|l|}{Binary}         & 186                         & 375                        \\ \hline
+		\multicolumn{1}{|l|}{Sliding-window} & 102                         & 376                        \\ \hline
+		\multicolumn{1}{|l|}{NAF}            & 127                         & 377                        \\ \hline
+		\multicolumn{1}{|l|}{Proposed}       & 123                         & 64                         \\ \hline
+	\end{tabular}
+	%}
 \end{table}
 \renewcommand{\baselinestretch}{1.0}
 In Table \ref{table:operationcount_chapter_g2scm_kss18} the operations of the \textit{Proposed} method are counted in $\FQTH$. On the other hand for Binary, Sliding-window and NAF method, the operations are counted in $\FQEN$.  The table clearly shows that in the \textit{Proposed} method requires about 6 times less ECD than any other methods.
-The number of ECA is also reduced in the \textit{Proposed} method by about 30\% than binary method and almost same number of ECA of NAF. 
+The number of ECA has also reduced in the \textit{Proposed} method by about 30\% than binary method and the almost the same number of ECA of NAF. 
 
 \renewcommand{\baselinestretch}{1.5}
 \begin{table}[!ht]
-\centering
-\caption{Comparison of execution time in [ms] for scalar multiplication in KSS-18 curve.}
-\label{table:tab_executiontime_chapter_g2scm_kss18}
-\resizebox{\columnwidth}{!}{
-\begin{tabular}{|c|c|c|c|c|}
-\cline{2-5}
-\multicolumn{1}{c|}{} & 
-\multicolumn{4}{c|}{Execution time in [ms] }\\
-\cline{2-5}
-\multicolumn{1}{c|}{} & 
- \multicolumn{2}{c|}{With isomorphic mapping}&
- \multicolumn{2}{c|}{Without isomorphic mapping }\\
-\hline
- Methods & 
-PC &  iPhone6s &
-PC &  iPhone6s \\
-\hline
- Binary  
- &  $5.4 \times 10^1$  &  $8.4 \times 10^1$ 
-  &  $1.2 \times 10^3$  &  $1.8 \times 10^3$ \\
- \hline
- Sliding-window 
-  &  $4.8 \times 10^1$  &  $7.5 \times 10^1$ 
-  &  $1.0 \times 10^3$  &  $1.6 \times 10^3$ \\
- \hline
- NAF
-  &  $5.3 \times 10^1$  &  $7.7 \times 10^1$ 
-  &  $1.6 \times 10^3$  &  $1.7 \times 10^3$ \\
- \hline
- Proposed
-  &  $1.6 \times 10^1$  &  $2.4 \times 10^1$ 
-  &  -  &  - \\
-\hline
- Multi-scalar  (only)
-  &  -  &  -
-  &  $3.4 \times 10^2$  &  $5.5 \times 10^2$ \\
-\hline
-\end{tabular}
-}
+	\centering
+	\caption{Comparison of execution time in [ms] for scalar multiplication in KSS-18 curve.}
+	\label{table:tab_executiontime_chapter_g2scm_kss18}
+	\resizebox{\columnwidth}{!}{
+		\begin{tabular}{|c|c|c|c|c|}
+			\cline{2-5}
+			\multicolumn{1}{c|}{} & 
+			\multicolumn{4}{c|}{Execution time in [ms] }\\
+			\cline{2-5}
+			\multicolumn{1}{c|}{} & 
+			\multicolumn{2}{c|}{With isomorphic mapping}&
+			\multicolumn{2}{c|}{Without isomorphic mapping }\\
+			\hline
+			Methods & 
+			PC &  iPhone6s &
+			PC &  iPhone6s \\
+			\hline
+			Binary  
+			&  $5.4 \times 10^1$  &  $8.4 \times 10^1$ 
+			&  $1.2 \times 10^3$  &  $1.8 \times 10^3$ \\
+			\hline
+			Sliding-window 
+			&  $4.8 \times 10^1$  &  $7.5 \times 10^1$ 
+			&  $1.0 \times 10^3$  &  $1.6 \times 10^3$ \\
+			\hline
+			NAF
+			&  $5.3 \times 10^1$  &  $7.7 \times 10^1$ 
+			&  $1.6 \times 10^3$  &  $1.7 \times 10^3$ \\
+			\hline
+			Proposed
+			&  $1.6 \times 10^1$  &  $2.4 \times 10^1$ 
+			&  -  &  - \\
+			\hline
+			Multi-scalar  (only)
+			&  -  &  -
+			&  $3.4 \times 10^2$  &  $5.5 \times 10^2$ \\
+			\hline
+		\end{tabular}
+	}
 \end{table}
 \renewcommand{\baselinestretch}{1.0}
 
-Analyzing  Table \ref{table:tab_executiontime_chapter_g2scm_kss18}, we can find that when isomorphic mapping  and skew Frobenius mapping is not adapted for  Binary, Sliding-window and NAF, then the scalar multiplication of  proposed method is more than 60 times faster than other methods. However when the isomorphic mapping  is applied for the other methods then our proposed technique is more than 3 times faster. Another important comparison shows that when only multi-scalar multiplication is applied then our proposed methods is about 20 times faster. 
+Analyzing  Table \ref{table:tab_executiontime_chapter_g2scm_kss18}, we can find that when isomorphic mapping and skew Frobenius mapping is not adapted for  Binary, Sliding-window, and NAF, then the scalar multiplication of proposed method is more than 60 times faster than other methods. However when the isomorphic mapping is applied for the other methods, then our proposed technique is more than 3 times faster. Another essential comparison shows that when only multi-scalar multiplication is applied, then our proposed methods is about 20 times faster. 
 In every scenario, our proposed method is faster than the other commonly used approaches.
 
 
-The main focus of this experiment is to evaluate the  acceleration ratio of scalar multiplication by applying the proposed approach on $\g2$ rational point group of  KSS curve of embedding degree 18. The experiment does not focus on efficiently implementing scalar multiplication for certain environment. 
+The main focus of this experiment is to evaluate the acceleration ratio of scalar multiplication by applying the proposed approach on $\g2$ rational point group of  KSS curve of embedding degree 18. The experiment does not focus on efficiently implementing scalar multiplication for a particular environment. 
 
-\section{Contribution Summary}
-In this chapter, we have proposed an efficient method to calculate elliptic curve scalar multiplication using skew Frobenius mapping  over KSS-18 curve in the context of pairing-based cryptography. 
-Utilizing the skew Frobenius map along with multi-scalar multiplication procedure, an efficient scalar multiplication method for KSS-18 curve is proposed in the chapter.
+\section{Summary}
+In this chapter, we have proposed an efficient method to calculate elliptic curve scalar multiplication using skew Frobenius mapping over KSS-18 curve in the context of pairing-based cryptography. 
+Utilizing the skew Frobenius map along with the multi-scalar multiplication procedure, an efficient scalar multiplication method for KSS-18 curve is proposed in the chapter.
 In addition to the theoretic proposal, this chapter has also presented a comparative simulation of the proposed approach with the plain binary method, sliding window method and non-adjacent form (NAF) for scalar multiplication. 
-%The simulation shows that the proposed method is about 60 times faster than plain implementation of other compared methods.
-We have also applied $(t-1)$-adic and $z$-adic representation on the scalar and have applied multi-scalar multiplication technique to  calculate scalar multiplication in parallel. 
-We have evaluated and analyzed the improvement by implementing a simulation for large size of scalar in 192-bit security level. 
+%The simulation shows that the proposed method is about 60 times faster than the plain implementation of other compared methods.
+We have also applied $(t-1)$-adic and $z$-adic representation on the scalar and have applied multi-scalar multiplication technique to calculate scalar multiplication in parallel. 
+We have evaluated and analyzed the improvement by implementing an experiment for the large size integer in 192-bit security level. 
 According to the simulation result multi-scalar multiplication after applying skew Frobenius mapping in $\g2'$ can accelerate the scalar multiplication in $\g2 \subset E(\FQEN)$ by more than 60 times than scalar multiplication of $\g2$ rational point directly in $\FQEN$. 
-
-% \section{Future Work}
-
-% In the previous work of Sakemi et al. \cite{CANS:SNOKM08} have proposed skew Frobenius map for $\g1$ rational point defined over BN curve. 
-% As a future work we would like to apply such approach on $\g1$ rational point defined over KSS-18 curve.
-% Together with the proposed method, the skew Frobenius mapping of $\g1$ will remarkably accelerate scalar multiplication over KSS-18 curve in the context of pairing-based cryptography. 

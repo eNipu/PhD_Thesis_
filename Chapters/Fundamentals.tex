@@ -829,7 +829,8 @@ Let pairing $e$ be defined as $e:\G_A\times\G_B\rightarrow\G_3$, $P_A\in\G_A$, a
 and \algref{3}, {\it see} \tbref{tbN1}.
 
 As shown in the algorithm, the structure of Miller's algorithm is similar to the binary method for a scalar multiplication.
-In this case, Miller's algorithm constantly iterates MDBL $\lfloor\log_2s\rfloor$ times, and execute MADD when $s_i$ is equal to $1$. %That is, if we can reduce the number of iterations, Miller's algorithm can be efficiently carried out.
+In this case, Miller's algorithm constantly iterates MDBL $\lfloor\log_2s\rfloor$ times, and execute MADD when $s_i$ is equal to $1$. 
+That is, if we can reduce the number of iterations, Miller's algorithm can be efficiently carried out.
 
 %In the case of {\it twisted--Ate} pairing, let $P \in \Gi$, $Q \in \Gii$ and $s$ be given by \eqref{loop}, $f_{s,P}(Q)$ becomes an element in $\F{p}{12}^*$.
 %In \fgref{fig:MillerAlg}, $s_i$ is the $i$-th bit of the binary representation of $s$ from the lower, FMUL and FSQR denote multiplication and squaring over $\F{p}{12}$, EADD and EDBL denote elliptic curve addition and doubling over $\Gi$.

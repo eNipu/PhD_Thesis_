@@ -1,13 +1,13 @@
-\chapter{General Conclusion}
+\chapter{Conclusion and Future Works}
 \label{ch:general_conclusin}
 The primary objective of this thesis was to contribute to settling pairing-based cryptography protocols into practical use.
 The innovative protocols mentioned in this thesis still obstruct with execution time.
-In order to solve this problem, we proposed several improvements to accelerate pairing and related algorithms.
+To solve this problem, we proposed several improvements to accelerate pairing and related algorithms.
 
 \chref{chap:fundamentals}  defines the necessary fundamentals.
-\chref{ch:optate_kss18_icisc2016} proposes \textit{pseudo 12-sparse multiplicatio}n to accelerate pairing over KSS-18 curve at the 192-bit security level.
-\chref{Chapter_IEICE} proposes efficient scalar multiplication for $\g{2}$ rational point groups using skew Frobenius map in KSS-18 curve.
 \chref{ch:ijnc2017} shows a comparative implementation of scalar multiplication for sextic twisted KSS-18 curve and quartic twisted KSS-16 curve.
+\chref{ch:optate_kss18_icisc2016} proposes \textit{pseudo 12-sparse multiplication}n to accelerate pairing over KSS-18 curve at the 192-bit security level.
+\chref{Chapter_IEICE} proposes efficient scalar multiplication for $\g{2}$ rational point groups using skew Frobenius map in KSS-18 curve.
 In \chref{ch:indocrypt}, we presented state-of-the-art improvement of Miller's algorithm for pairing at 128-bit security level using KSS-16 curve.
 \chref{ch:cvma_indocrypt} shows the technique to improve finite field arithmetic targeted for $\FPSN$ extension field using CVMA. This chapter also revisits the work of \chref{ch:indocrypt} providing further improvements.
 In \chref{ch:candar2018}, we presented the necessary procedure to decompose scalars for scalar multiplication in $\g{2}$ group in KSS-16 curve.
@@ -15,3 +15,8 @@ We also presented several decompositions and suggested that 4-dimension decompos
 
 From the experimental results presented with each chapter, resembles that our proposed methods can substantially improve pairing calculation the targeted curves and accelerate processing times.  
 Therefore, our research contributes to the acceleration of high-level security protocols such as ID-based encryption and homomorphic encryption.
+
+As future works, we would like to complete our ongoing, i.e., scalar multiplication on $\g1$ and efficient exponentiation on $\g3$.
+Besides, we also want to explore the possibilities of improving other pairing-friendly curves that may exhibit more efficient pairing.
+We want to improve the implementation program.
+The ultimate target is to apply our improvements in the real pairing-based application such as ID-Based encryption and group signature at a practical level.

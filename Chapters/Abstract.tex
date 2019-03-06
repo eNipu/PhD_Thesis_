@@ -1,36 +1,60 @@
 Pairing-based cryptography over the elliptic curves is a relatively new paradigm in public key cryptography (PKC). 
-It originates many novel cryptographic protocols that were not without pairing. Among these protocols, ID-Based encryption can be interesting for IoT security since it can support a device's ID as a public key.
-It can be helpful in the scenario where key-generation is computationally expensive for small devices.
-On the other hand, homomorphic encryption can realize strong security and more concrete privacy of patients information while working with encrypted medical data stored in a cloud data-server.
+It originates many novel cryptographic protocols that were not possible without pairing. Among these protocols, ID-Based encryption can be interesting for IoT security since it can support a device's ID as a public key. 
+It can be helpful in the scenario where key-generation is computationally expensive for small devices. 
+On the other hand, homomorphic encryption can realize strong security and more concrete privacy of patient’s information while working with encrypted medical data stored in a cloud data-server.
 
-In general, pairing calculation involves a particular elliptic curve named \textit{pairing friendly} curve defined over a finite extension of prime field.
-By definition, pairing is a bilinear map from rational points of two additive groups to a multiplicative group.
-Two mathematical tools named as Miller's algorithm and final exponentiation is mostly involved in pairing calculation.
-However, most protocols also require two more operations in pairing groups named as scalar multiplication and exponentiation in the multiplicative group.
-The above mentioned mathematical tools are the major bottleneck for the efficiency of pairing-based protocols.
 
-Since the inception at the advent of this century, pairing-based cryptography brings a remarkable amount of research. 
-The results of this vast amount of research brought some novel cryptographic application which was not possible before pairing-based cryptography. 
-However, the computation speed of pairing was very slow to consider them as a practical option.
+In general, pairing calculation involves a particular elliptic curve named pairing-friendly curve defined over a finite extension of prime field. 
+By definition, pairing is a bilinear map from rational points of two additive groups to a multiplicative group. 
+Two mathematical tools named as Miller's algorithm and final exponentiation are mostly involved in pairing calculation.
+However, most protocols also require two more operations in pairing groups named as scalar multiplication and exponentiation in the multiplicative group. 
+The above-mentioned mathematical tools are the major bottlenecks for the efficiency of pairing-based protocols.
+
+
+Since its inception at the advent of this century, pairing-based cryptography brings a remarkable amount of research.
+The results of this vast amount of research brought some novel cryptographic applications which were not possible before pairing-based cryptography. 
+However, the computation speed of pairing was very slow to consider them as a practical option. 
 Years of research from the mathematicians, cryptographers and computer scientists improve the efficiency of pairing.
 
-The security of pairing-based cryptography does not only rely on the intractability of elliptic curve discrete logarithm problem (ECDLP) of additive elliptic curve group but also discrete logarithm problem (DLP) on the multiplicative group.
-It is known that the "key" size in cryptography based on ECDLP requires fewer bits than cryptography based on DLP.
-Therefore, it is crucial to maintaining a balance in parameter sizes for both additive and multiplicative groups in pairing-based cryptography.
-In CRYPTO 2016, Kim and Barbulescu showed a more efficient version of the number field sieve algorithm to solve DLP. 
+
+The security of pairing-based cryptography does not rely on the intractability of elliptic curve discrete logarithm problem (ECDLP) of additive elliptic curve group only but also on the discrete logarithm problem (DLP) of the multiplicative group. 
+It is known that the "key" size in cryptography based on ECDLP requires fewer bits than cryptography based on DLP. 
+Therefore, it is crucial to maintaining a balance in parameter sizes for both additive and multiplicative groups in pairing-based cryptography. 
+In CRYPTO 2016, Kim and Barbulescu showed a more efficient version of the number field sieve algorithm named as Extended Tower Number Field Sieve (exTNFS) to solve DLP. 
 This new attack makes all previous parameter settings to update.
 
-This thesis presents several improvement technics for pairing-based cryptography over two ordinary pairing-friendly curves, i.e., Kachisa-Schaefer-Scott (KSS) KSS-16 and KSS-18.
-The motivation behind to work on these curves particularly KSS-16 is it has not been widely studied in the literature compared to other pairing-friendly curves.
-Moreover, after the extNFS algorithm, the security level of widely used pairing-friendly curves was in a challenge.
 
-We have proposed improved sparse multiplication in for both curves which reduce the number of finite field operation in Miller's algorithm of Optimal-Ate pairing.
-Our optimization of line evaluation for Optimal-Ate pairing in KSS-16 curve is state-of-the-art.
-We also proposed efficient scalar multiplication for adapting GLV-based decomposition.
-We derived the fundamental relation to applying the GLV decomposition in KSS-16 curve.
-We suggested that 6-dimension GLV for KSS-18 and 4-dimension GLV for KSS-16 can achieve optimal calculation cost.
-We substantiated our proposal with detailed theoretic explanation and experimental implementations.
-We bundled our implementation into an installable shared software library. 
-We can apply our proposed technics to other pairing-friendly curves as well.
+This thesis has presented several improvement techniques for pairing-based cryptography over two ordinary pairing-friendly curves, i.e., Kachisa-Schaefer-Scott (KSS) KSS-16 and KSS-18. 
+The motivation behind to work on these curves, particularly KSS-16 is, it has not been widely studied in the literature compared to other pairing-friendly curves. 
+Moreover, after the exTNFS algorithm, the security level of the widely used pairing-friendly curves was in a challenge.
 
-We are confident that our proposed methods can substantially improve pairing calculation. Therefore, our research contributes to committing high-level security for sophisticated pairing-based protocols for IoT and security and privacy of medical data in the cloud by using pairing-based homomorphic encryption.
+
+We have proposed several improvements for sparse multiplication for both curves which reduce the number of finite field operation in Miller's algorithm of Optimal-Ate pairing. 
+Our optimization of line evaluation for Optimal-Ate pairing in KSS-16 curve is state-of-the-art. 
+We have also proposed the efficient scalar multiplication by adapting GLV-based decomposition. 
+We have derived the fundamental relation for applying the GLV decomposition in KSS-16 curve. 
+
+
+In the thesis, we have suggested that the 6-dimension GLV for KSS-18 and 4-dimension GLV for KSS-16 can achieve optimal calculation cost. 
+We have substantiated our proposal with detailed theoretic explanations and experimental implementations. 
+We have bundled our implementation into an installable shared software library. 
+
+There are several scopes to improve our techniques. As a future work, we can apply our proposed techniques to other pairing-friendly curves as well. We would like to use our improvements in some real pairing-based application such as ID-Based encryption and group signature. 
+
+
+We are confident that our proposed methods can substantially improve pairing calculation. 
+Therefore, our research contributes to committing high-level security for sophisticated pairing-based protocols for IoT and security and privacy of medical data in the cloud by using pairing-based homomorphic encryption.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

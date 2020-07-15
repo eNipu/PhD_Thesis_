@@ -83,9 +83,6 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 %----------------------------------------------------------------------------------------
 %	THESIS INFORMATION
 %----------------------------------------------------------------------------------------
-
-%\thesistitle{Proposals on Efficient Software Implementation of Pairing-Based Cryptographic Primitives}
-%\thesistitle{Efficient Software Implementation of Pairing-Based Cryptographic Primitives for High-level Security for IoT}
 \thesistitle{Improvements of Pairing-Based Cryptography: Committed to High-Level Security} % Your thesis title, this is used in the title and abstract, print it elsewhere with \ttitle
 \supervisor{Yasuyuki \textsc{Nogami}} % Your supervisor's name, this is used in the title page, print it elsewhere with \supname
 \examiner{} % Your examiner's name, this is not currently used anywhere in the template, print it elsewhere with \examname
@@ -226,15 +223,14 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 		
 		\authorname
 		\vspace{15mm}
-		
-	 Graduate School of \\
+		Graduate School of \\
 		Natural Science and Technology \\
 		%\vspace{10mm}
 		(Doctor's Course)
 		
 		\vspace{10mm}
 		
-			{\scshape \LARGE \univname}
+		{\scshape \LARGE \univname}
 	\end{center}
 \end{titlepage}
 \clearpage
@@ -280,9 +276,6 @@ Satoshi \textsc{Denno}
 \deptname\\[2cm] % Research group name and department name
 %{\scshape\LARGE \univname\par}
 %\vspace{2cm} % University name
-
-%to Dublin City University following the requirements for the degree of Doctor of Philosophy (in ) in the Faculty of Computer Applications, School of Computing
-
 %\large \textit{A dissertation is submitted in fulfillment of the requirements\\ for the degree of \degreename}\\[0.3cm] % University requirement text
 %\textit{in the}\\[0.3cm]
 %%\groupname\\
@@ -314,8 +307,7 @@ Satoshi \textsc{Denno}
  I, \authorname, declare that this thesis titled, \enquote{\ttitle} and the work presented in it are my own. I confirm that:
 
 \begin{itemize} 
-\item 
-%This work was done wholly or mainly while in candidature for a research degree at this University.
+\item
 The work presented in this thesis is the result of original research carried out by myself, in collaboration with others, while enrolled in the Faculty of Engineering at Okayama University as a candidate for the degree of Doctor of Philosophy in Engineering.
 
 \item This work has not been submitted for a degree or any other qualification at this University or any other institution. 
@@ -324,11 +316,10 @@ The work presented in this thesis is the result of original research carried out
 
 \item The published work of others cited in this thesis is clearly attributed.  Where I have quoted from the work of others, the source is always given. With the exception of such quotations, this thesis is entirely my own work.
 \item I have acknowledged all main sources of help to pursue this work.
-%\item Where the thesis is based on work done by myself jointly with others, I have made clear exactly what was done by others and what I have contributed myself.
- \item My coauthors contribution is acknowledged  in all works. 
- \item The experiments and results presented in this thesis and in the articles where I am the first author were conducted by myself.\\
+\item My coauthors contribution is acknowledged  in all works. 
+\item The experiments and results presented in this thesis and in the articles where I am the first author were conducted by myself.\\
 \end{itemize}
- \vspace{8mm}
+\vspace{8mm}
 \noindent Signed: \quad \quad \quad \quad \authorname \quad \quad \quad \quad Student number: 51427351\\ 
 \rule[0.5em]{36em}{0.5pt} \\
  % This prints a line for the signature\authorname
@@ -344,14 +335,8 @@ The work presented in this thesis is the result of original research carried out
 
 \vspace*{0.2\textheight}
 
-% \noindent\enquote{\itshape If we knew what it was we were doing, it would not be called research, would it?
-% }\bigbreak
-
-% \hfill Albert Einstein
-
 \noindent\enquote{\itshape We live on an island surrounded by a sea of ignorance. As our island of knowledge grows, so does the shore of our ignorance.}\bigbreak
 
-%\hfill Albert Einstein
 
 %----------------------------------------------------------------------------------------
 %	ABSTRACT PAGE
@@ -369,7 +354,6 @@ The work presented in this thesis is the result of original research carried out
 \begin{acknowledgements}
 \addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
 \input{Chapters/Acknowledgements}
-%The acknowledgments and the people to thank go here, don't forget to include your project advisor\ldots
 \end{acknowledgements}
 
 %----------------------------------------------------------------------------------------
@@ -379,45 +363,17 @@ The work presented in this thesis is the result of original research carried out
 \onehalfspacing
 \tableofcontents % Prints the main table of contents
 
-
 \listoffigures % Prints the list of figures
 
 \listoftables % Prints the list of tables
 
-%----------------------------------------------------------------------------------------
-%	ABBREVIATIONS
-%----------------------------------------------------------------------------------------
-
-%\begin{abbreviations}{ll} % Include a list of abbreviations (a table of two columns)
-%
-%\textbf{LAH} & \textbf{L}ist \textbf{A}bbreviations \textbf{H}ere\\
-%\textbf{WSF} & \textbf{W}hat (it) \textbf{S}tands \textbf{F}or\\
-%
-%\end{abbreviations}
-
-%----------------------------------------------------------------------------------------
-%	PHYSICAL CONSTANTS/OTHER DEFINITIONS
-%----------------------------------------------------------------------------------------
-
-%\begin{constants}{lr@{${}={}$}l} % The list of physical constants is a three column table
-% The \SI{}{} command is provided by the siunitx package, see its documentation for instructions on how to use it
-%Speed of Light & $c_{0}$ & \SI{2.99792458e8}{\meter\per\second} (exact)\\
-%Constant Name & $Symbol$ & $Constant Value$ with units\\
-%\end{constants}
 
 %----------------------------------------------------------------------------------------
 %	SYMBOLS
 %----------------------------------------------------------------------------------------
 
-
 \begin{symbols}{lll} % Include a list of Symbols (a three column table)
 \input{Symbols.tex}
-%%%$P$ & power & \si{\watt} (\si{\joule\per\second}) \\
-%%Symbol & Name & Unit \\
-%
-%%\addlinespace % Gap to separate the Roman symbols from the Greek
-%
-%%$\omega$ & angular frequency & \si{\radian} \\
 \end{symbols}
 
 \singlespacing
@@ -428,16 +384,11 @@ The work presented in this thesis is the result of original research carried out
 \dedicatory{
 Dedicated to the people I owe most. 
 To my parents who brought me to this world and to my wife who sacrificed the most during my Ph.D. journey.} 
-% Print your own papers.
-%\addchaptertocentry
+
+
 %\addcontentsline{toc}{chapter}{Research Activities}
 \input{Chapters/Mypublication} 
-%\addchaptertocentry{Research Activities}
 
-%\include{Chapters/ResearchActivity} 
-
-% Include the chapters of the thesis as separate files from the Chapters folder
-% Uncomment the lines as you write the chapters
 
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - CHAPTERS
@@ -449,34 +400,12 @@ To my parents who brought me to this world and to my wife who sacrificed the mos
 %part{Mathematical Backgrounds}
 \input{Chapters/Chapter1}
 \input{Chapters/Chapter2} 
-%\include{Chapters/Chap_intros} 
-
-
-%%=====================ICISC 2016 12 sparse is Chapter 3====================
 \input{Chapters/ICISC_2016} 
-
-%%=====================WISA 2016 IEICE sparse is Chapter 4====================
 \input{Chapters/IEICE_2016} 
-
-%%=============CANDAR 2016 IJNC/JICCE sparse is Chapter5====================
-%\chapter{CANDAR 2016} 
-%\input{Chapters/CANDAR_2016}  // Merged in IJNC
 \input{Chapters/IJNC_2016}
-
-%\chapter{ICCIT 2016} 
-%\input{Chapters/ICCIT_2016} %:  NO NEED s
-
 \input{Chapters/IndoCrypt_OptAte_2017}
 \input{Chapters/CVMA_Indo} 
 \input{Chapters/CANDAR_2018} 
-%\chapter{CSS 2017} 
-%\input{Chapters/CSS_2017} //CHECK table
-
-%%%\part{Works}
-%\chapter{ICCE-TW 2016} 
-%\input{Chapters/ICCE_TW_16} % NO NEED
-%\chapter{ITC CSCC 2017} 
-%\input{Chapters/ITC_CSCC_2017} //Skew FM table
 \input{Chapters/Gen_Conclusion}
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - APPENDICES
@@ -484,12 +413,6 @@ To my parents who brought me to this world and to my wife who sacrificed the mos
 
 \appendix % Cue to tell LaTeX that the following "chapters" are Appendices
 
-% Include the appendices of the thesis as separate files from the Appendices folder
-% Uncomment the lines as you write the Appendices
-%\chapter{IJNC 2016 Parameter Set}
-%\input{Appendices/Appendix_IJNC2016}
-%\include{Appendices/AppendixA}
-%\include{Appendices/AppendixC}
 
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY
